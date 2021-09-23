@@ -57,6 +57,7 @@ nitrogen --restore &
 
 #run telegram-desktop &
 run discord &
+run steam &
 #run dropbox &
 #run insync start &
 #run ckb-next -b &
