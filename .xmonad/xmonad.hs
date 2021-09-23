@@ -101,9 +101,9 @@ myManageHook = composeAll . concat $
     myTFloats = ["Downloads", "Save As..."]
     myRFloats = []
     myIgnores = ["desktop_window"]
-    my1Shifts = ["alacritty", "termite", "emacs"]
+    my1Shifts = ["Alacritty", "termite", "emacs"]
     my2Shifts = ["Chromium", "firefox", "qutebrowser"]
-    my3Shifts = ["steam", "lutris", "minecraft-launcher"]
+    my3Shifts = ["steam", "steam-runtime", "lutris", "minecraft-launcher"]
     my4Shifts = ["Thunar"]
     my5Shifts = ["libreoffice"]
     my6Shifts = ["virt-manager"]
@@ -186,7 +186,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   --CONTROL + SHIFT KEYS
 
-  , ((controlMask .|. shiftMask , xK_Escape ), spawn $ "termite 'htop task manager' -e htop")
+  , ((controlMask .|. shiftMask , xK_Escape ), spawn $ "alacritty 'htop task manager' -e htop")
 
   --SCREENSHOTS
 
