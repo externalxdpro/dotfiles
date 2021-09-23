@@ -103,7 +103,7 @@ myManageHook = composeAll . concat $
     myIgnores = ["desktop_window"]
     my1Shifts = ["alacritty", "termite", "emacs"]
     my2Shifts = ["Chromium", "firefox", "qutebrowser"]
-    my3Shifts = ["steam", "lutris"]
+    my3Shifts = ["steam", "lutris", "minecraft-launcher"]
     my4Shifts = ["Thunar"]
     my5Shifts = ["libreoffice"]
     my6Shifts = ["virt-manager"]
@@ -148,7 +148,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
   , ((modMask, xK_x), spawn $ "arcolinux-logout" )
   , ((modMask, xK_Escape), spawn $ "xkill" )
-  , ((modMask, xK_Return), spawn $ "termite" )
+  , ((modMask, xK_Return), spawn $ "alacritty" )
 
   -- FUNCTION KEYS
 

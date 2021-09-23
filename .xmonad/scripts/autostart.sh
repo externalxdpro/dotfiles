@@ -17,7 +17,7 @@ function run {
 #xrandr --output LVDS1 --mode 1366x768 --output DP3 --mode 1920x1080 --right-of LVDS1
 #xrandr --output HDMI2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off
 #xrandr --output Virtual1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output Virtual2 --off --output Virtual3 --off --output Virtual4 --off --output Virtual5 --off --output Virtual6 --off --output Virtual7 --off --output Virtual8 --off
-xrandr --output eDP1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
+xrandr --output eDP1 --mode 1920x1080 --pos 0x700 --rotate normal --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
 
 (sleep 2; run $HOME/.config/polybar/launch.sh) &
 
@@ -31,12 +31,11 @@ xsetroot -cursor_name left_ptr &
 run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 
 #Some ways to set your wallpaper besides variety or nitrogen
-feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+#feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
 #start the conky to learn the shortcuts
-(conky -c $HOME/.xmonad/scripts/system-overview) &
+#(conky -c $HOME/.xmonad/scripts/system-overview) &
 
 #starting utility applications at boot time
-run variety &
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
@@ -48,7 +47,7 @@ picom --config $HOME/.xmonad/scripts/picom.conf &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
 #starting user applications at boot time
-#nitrogen --restore &
+nitrogen --restore &
 #run caffeine &
 #run vivaldi-stable &
 #run firefox &
@@ -57,7 +56,7 @@ picom --config $HOME/.xmonad/scripts/picom.conf &
 #run atom &
 
 #run telegram-desktop &
-#run discord &
+run discord &
 #run dropbox &
 #run insync start &
 #run ckb-next -b &
