@@ -186,7 +186,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   --CONTROL + SHIFT KEYS
 
-  , ((controlMask .|. shiftMask , xK_Escape ), spawn $ "alacritty 'htop task manager' -e htop")
+  , ((controlMask .|. shiftMask , xK_Escape ), spawn $ "xterm 'htop task manager' -e htop")
 
   --SCREENSHOTS
 
@@ -262,7 +262,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((controlMask .|. shiftMask , xK_l), sendMessage Expand)
 
   -- Push window back into tiling.
-  , ((controlMask .|. shiftMask , xK_t), withFocused $ windows . W.sink)
+  , ((modMask .|. shiftMask , xK_t), withFocused $ windows . W.sink)
 
   -- Increment the number of windows in the master area.
   , ((controlMask .|. modMask, xK_Left), sendMessage (IncMasterN 1))
@@ -290,12 +290,12 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)
       , (\i -> W.greedyView i . W.shift i, shiftMask)]]
 
-  ++
+  -- ++
   -- ctrl-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
   -- ctrl-shift-{w,e,r}, Move client to screen 1, 2, or 3
-  [((m .|. controlMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-      | (key, sc) <- zip [xK_w, xK_e] [0..]
-      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  -- [((m .|. controlMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+      -- | (key, sc) <- zip [xK_w, xK_e] [0..]
+      -- , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
 main :: IO ()
