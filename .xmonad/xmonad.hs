@@ -103,13 +103,13 @@ myManageHook = composeAll . concat $
     myIgnores = ["desktop_window"]
     my1Shifts = ["Alacritty", "termite", "emacs"]
     my2Shifts = ["Chromium", "firefox", "qutebrowser"]
-    my3Shifts = ["Steam", "lutris", "minecraft-launcher"]
+    my3Shifts = ["Steam", "lutris", "minecraft-launcher", "badlion client", "geforce now"]
     my4Shifts = ["Thunar"]
     my5Shifts = ["libreoffice"]
     my6Shifts = ["virt-manager"]
     my7Shifts = ["discord"]
     my8Shifts = ["spotify"]
-    my9Shifts = ["vlc", "mpv"]
+    my9Shifts = ["vlc", "mpv", "obs"]
     my10Shifts = ["gimp"]
 
 
