@@ -146,6 +146,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   [ ((modMask, xK_f), sendMessage $ Toggle NBFULL)
   -- , ((modMask, xK_p ), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
   , ((modMask, xK_p ), spawn $ "rofi -show drun -show-icons" )
+  , ((modMask, xK_o ), spawn $ "rofi -show ssh" )
   , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
   , ((modMask, xK_x), spawn $ "arcolinux-logout" )
   , ((modMask, xK_Escape), spawn $ "xkill" )
@@ -159,6 +160,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. shiftMask , xK_c ), kill)
   , ((modMask .|. shiftMask , xK_Return ), spawn $ "thunar")
   , ((modMask .|. shiftMask , xK_w ), spawn $ "firefox")
+  , ((modMask .|. shiftMask , xK_q ), spawn $ "qutebrowser")
   , ((modMask .|. shiftMask , xK_e ), spawn $ "emacs")
   -- , ((modMask .|. shiftMask , xK_x ), io (exitWith ExitSuccess))
 
