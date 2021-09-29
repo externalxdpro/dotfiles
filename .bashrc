@@ -36,7 +36,7 @@ bind "set completion-ignore-case on"
 #list
 alias ls='exa -al --color=always --group-directories-first'
 
-#Add to dotfiles bare repo
+#access dotfiles bare repo
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 
 #fix obvious typo's
