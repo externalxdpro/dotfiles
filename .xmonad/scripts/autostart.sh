@@ -49,7 +49,7 @@ polychromatic-tray-applet &
 
 #starting user applications at boot time
 nitrogen --restore &
-rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/
+rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &
 #run caffeine &
 #run vivaldi-stable &
 #run firefox &
