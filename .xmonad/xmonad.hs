@@ -109,7 +109,7 @@ myManageHook = composeAll . concat $
     my6Shifts = ["virt-manager"]
     my7Shifts = ["discord"]
     my8Shifts = ["spotify"]
-    my9Shifts = ["vlc", "mpv", "obs"]
+    my9Shifts = ["vlc", "mpv", "obs", "kdenlive"]
     my10Shifts = ["gimp-2.10"]
 
 
