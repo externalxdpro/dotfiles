@@ -43,6 +43,7 @@ run volumeicon &
 numlockx on &
 blueberry-tray &
 picom --config $HOME/.xmonad/scripts/picom.conf &
+trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 polychromatic-tray-applet &
