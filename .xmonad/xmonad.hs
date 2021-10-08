@@ -100,6 +100,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 -- Autostart
 myStartupHook :: X ()
 myStartupHook = do
+    spawnOnce "xrandr --output eDP1 --mode 1920x1080 --pos 0x700 --rotate normal --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "picom --config $HOME/.xmonad/scripts/picom.conf &"
     spawnOnce "nm-applet &"
@@ -110,6 +111,12 @@ myStartupHook = do
     spawnOnce "polychromatic-tray-applet &"
     spawnOnce "/usr/bin/trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
     spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
+    spawnOnce "rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &"
+
+    spawnOnce "discord &"
+    spawnOnce "obsidian &"
+    spawnOnce "steam &"
+
     -- uncomment to restore last saved wallpaper
     -- spawnOnce "xargs xwallpaper --stretch < ~/.xwallpaper"
     --uncomment to set a random wallpaper on login
@@ -339,12 +346,20 @@ myManageHook = composeAll
      , isFullscreen -->  doFullFloat
 
      , className =? "Alacritty"                                 --> doShift ( myWorkspaces !! 0 )
+     , className =? "emacs"                                     --> doShift ( myWorkspaces !! 0 )
      , title =? "Mozilla Firefox"                               --> doShift ( myWorkspaces !! 1 )
      , className =? "brave-browser"                             --> doShift ( myWorkspaces !! 1 )
      , className =? "qutebrowser"                               --> doShift ( myWorkspaces !! 1 )
+     , className =? "Steam"                                     --> doShift ( myWorkspaces !! 2 )
+     , className =? "obsidian"                                  --> doShift ( myWorkspaces !! 3 )
+     , title =? "LibreOffice"                                   --> doShift ( myWorkspaces !! 3 )
      , className =? "VirtualBox Manager"                        --> doShift ( myWorkspaces !! 4 )
-     , className =? "virt-manager"                              --> doShift ( myWorkspaces !! 4 )
+     , title =? "Virtual Machine Manager"                       --> doShift ( myWorkspaces !! 4 )
+     , className =? "discord"                                   --> doShift ( myWorkspaces !! 5 )
+     , title =? "Spotify"                                       --> doShift ( myWorkspaces !! 6 )
+     , className =? "kdenlive"                                  --> doShift ( myWorkspaces !! 7 )
      , className =? "mpv"                                       --> doShift ( myWorkspaces !! 7 )
+     , className =? "vlc"                                       --> doShift ( myWorkspaces !! 7 )
      , title =? "GNU Image Manipulation Program"                --> doShift ( myWorkspaces !! 8 )
      ] <+> namedScratchpadManageHook myScratchPads
 
@@ -354,7 +369,8 @@ myKeys =
     -- KB_GROUP Xmonad
         [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
         , ("M1-r", spawn "xmonad --restart")    -- Restarts xmonad
-        , ("M-x", io exitSuccess)              -- Quits xmonad
+        -- , ("M-x", io exitSuccess)               -- Quits xmonad
+        , ("M-x", spawn "arcolinux-logout")        -- Displays logout options
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
