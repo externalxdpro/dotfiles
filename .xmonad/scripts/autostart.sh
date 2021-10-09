@@ -19,7 +19,7 @@ function run {
 #xrandr --output Virtual1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output Virtual2 --off --output Virtual3 --off --output Virtual4 --off --output Virtual5 --off --output Virtual6 --off --output Virtual7 --off --output Virtual8 --off
 xrandr --output eDP1 --mode 1920x1080 --pos 0x700 --rotate normal --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
 
-(sleep 2; run $HOME/.config/polybar/launch.sh) &
+#(sleep 2; run $HOME/.config/polybar/launch.sh) &
 
 #change your keyboard if you need it
 #setxkbmap -layout be
@@ -30,26 +30,34 @@ xsetroot -cursor_name left_ptr &
 #start ArcoLinux Welcome App
 run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop
 
-#Some ways to set your wallpaper besides variety or nitrogen
+#Some ways to set your wallpaper
 #feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
+nitrogen --restore &
+
+#starting utility applications at boot time
+xrandr --output eDP1 --mode 1920x1080 --pos 0x700 --rotate normal --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+picom --config $HOME/.xmonad/scripts/picom.conf &
+nm-applet &
+pamac-tray &
+volumeicon &
+numlockx on &
+blueberry-tray &
+polychromatic-tray-applet &
+/usr/bin/trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &
+/usr/bin/emacs --daemon & #emacs daemon for the emacsclient
+
+#uncomment to restore last saved wallpaper
+#xargs xwallpaper --stretch < ~/.xwallpaper
+
+#~/.fehbg &  #set last saved feh wallpaper
+#feh --randomize --bg-fill ~/wallpapers/*  #feh set random wallpaper
+nitrogen --restore &   #if you prefer nitrogen to feh
+
 #start the conky to learn the shortcuts
 #(conky -c $HOME/.xmonad/scripts/system-overview) &
 
-#starting utility applications at boot time
-run nm-applet &
-run pamac-tray &
-run xfce4-power-manager &
-run volumeicon &
-numlockx on &
-blueberry-tray &
-picom --config $HOME/.xmonad/scripts/picom.conf &
-trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
-polychromatic-tray-applet &
-
 #starting user applications at boot time
-nitrogen --restore &
 rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &
 #run caffeine &
 #run vivaldi-stable &
@@ -60,6 +68,7 @@ rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &
 
 #run telegram-desktop &
 run discord &
+run obsidian &
 run steam &
 #run dropbox &
 #run insync start &
