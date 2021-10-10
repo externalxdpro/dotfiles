@@ -108,6 +108,7 @@ setopt GLOB_DOTS
 [[ $- != *i* ]] && return
 
 export HISTCONTROL=ignoreboth:erasedups
+export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Make vim the default editor
 
