@@ -82,7 +82,7 @@ myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
 
 myEditor :: String
-myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
+myEditor = "emacs"  -- Sets emacs as editor
 -- myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
 
 myBorderWidth :: Dimension
