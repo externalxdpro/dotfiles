@@ -112,7 +112,6 @@ myStartupHook = do
     spawnOnce "numlockx on &"
 
     spawnOnce "nm-applet &"
-    spawnOnce "pamac-tray &"
     spawnOnce "volumeicon &"
     spawnOnce "blueberry-tray &"
     spawnOnce "polychromatic-tray-applet &"
@@ -357,6 +356,7 @@ myManageHook = composeAll
      , className =? "brave-browser"                             --> doShift ( myWorkspaces !! 1 )
      , className =? "qutebrowser"                               --> doShift ( myWorkspaces !! 1 )
      , className =? "Chiaki"                                    --> doShift ( myWorkspaces !! 2 )
+     , className =? "GeForce NOW"                               --> doShift ( myWorkspaces !! 2 )
      , className =? "Lutris"                                    --> doShift ( myWorkspaces !! 2 )
      , className =? "Steam"                                     --> doShift ( myWorkspaces !! 2 )
      , className =? "obsidian"                                  --> doShift ( myWorkspaces !! 3 )
