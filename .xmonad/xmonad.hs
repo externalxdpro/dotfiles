@@ -364,7 +364,7 @@ myManageHook = composeAll
      , className =? "VirtualBox Manager"                        --> doShift ( myWorkspaces !! 4 )
      , title =? "Virtual Machine Manager"                       --> doShift ( myWorkspaces !! 4 )
      , className =? "discord"                                   --> doShift ( myWorkspaces !! 5 )
-     , title =? "Spotify"                                       --> doShift ( myWorkspaces !! 6 )
+     , className =? "Spotify"                                   --> doShift ( myWorkspaces !! 6 )
      , className =? "kdenlive"                                  --> doShift ( myWorkspaces !! 7 )
      , className =? "mpv"                                       --> doShift ( myWorkspaces !! 7 )
      , className =? "vlc"                                       --> doShift ( myWorkspaces !! 7 )
@@ -387,6 +387,7 @@ myKeys =
     -- KB_GROUP Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
     -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
+    -- Read how to install these at https://gitlab.com/dwt1/dmscripts
         {-
         , ("M-p a", spawn "dm-sounds")    -- choose an ambient background
         , ("M-p b", spawn "dm-setbg")     -- set a background
