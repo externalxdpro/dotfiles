@@ -157,9 +157,9 @@ myStartupHook = do
     spawnOnce "blueberry-tray &"
     spawnOnce "polychromatic-tray-applet &"
 
-    -- spawnOnce "discord &"
-    -- spawnOnce "obsidian &"
-    -- spawnOnce "steam &"
+    spawnOnce "discord &"
+    spawnOnce "obsidian &"
+    spawnOnce "steam &"
 
     -- uncomment to restore last saved wallpaper
     -- spawnOnce "xargs xwallpaper --stretch < ~/.xwallpaper"
