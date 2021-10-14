@@ -1,11 +1,11 @@
 #+TITLE: XMonad Config
 #+PROPERTY: header-args :tangle xmonad.hs
 
-* TABLE OF CONTENTS :toc:
+* Table of Contents :toc:
 - [[#about][About]]
-- [[#imports][IMPORTS]]
+- [[#imports][Imports]]
 - [[#variables][Variables]]
-- [[#autostart][AUTOSTART]]
+- [[#autostart][Autostart]]
 - [[#gridselect][Gridselect]]
 - [[#scratchpads][Scratchpads]]
 - [[#layouts][Layouts]]
@@ -25,7 +25,7 @@ This is the xmonad configuration of Sakib Ahmed
 NOTE: You will also need my xmobar config, which is located here: https://github.com/externalxdpro/dotfiles/tree/master/.config/xmobar
 ANOTHER BIG NOTE: This config is heavily based on DT's config. You can check him out here: https://youtube.com/c/DistroTube
 
-* IMPORTS
+* Imports
 These are Haskell modules that we must import so that we can use their functions later in the config.
 
 #+begin_src haskell
@@ -135,7 +135,7 @@ windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 #+end_src
 
-* AUTOSTART
+* Autostart
 These are commands we want XMonad to execute on startup, such as running a compositor, setting our wallpaper, starting the emacs daemon, and starting our system tray and the applications that belong on it.
 
 #+begin_src haskell
