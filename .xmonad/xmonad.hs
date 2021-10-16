@@ -387,6 +387,10 @@ myKeys =
     -- KB_GROUP Run Prompt
         , ("M-p", spawn "rofi -show drun -show-icons") -- Rofi
         -- , ("M-p", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
+
+    -- KB_GROUP Password Prompt
+        , ("M-S-p", spawn "rofi-pass") -- Rofi Pass addon
+        , ("M-S-p", spawn "passmenu") -- Dmenu Pass addon
     -- KB_GROUP Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
     -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
