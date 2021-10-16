@@ -76,7 +76,7 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myFileManager :: String
-myFileManager = "thunar"
+myFileManager = "pcmanfm"  -- Sets pcmanfm as file manager
 
 myBrowser :: String
 myBrowser = "firefox "  -- Sets firefox as browser
