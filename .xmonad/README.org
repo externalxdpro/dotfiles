@@ -19,8 +19,8 @@ Xmonad is a dynamically tiling X11 window manager that is written and configured
 Official Documentation: https://xmonad.org
 
 This is the xmonad configuration of Sakib Ahmed
-  My YouTube: https://www.youtube.com/channel/UCIJmhFK6L5f-4uGPxlJbNVg
-  My GitHub:  http://www.github.com/externalxdpro/
+ + My YouTube: https://www.youtube.com/channel/UCIJmhFK6L5f-4uGPxlJbNVg
+ + My GitHub:  http://www.github.com/externalxdpro/
 
 NOTE: You will also need my xmobar config, which is located here: https://github.com/externalxdpro/dotfiles/tree/master/.config/xmobar
 ANOTHER BIG NOTE: This config is heavily based on DT's config. You can check him out here: https://youtube.com/c/DistroTube
