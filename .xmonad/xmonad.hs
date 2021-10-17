@@ -79,7 +79,7 @@ myFileManager :: String
 myFileManager = "pcmanfm"  -- Sets pcmanfm as file manager
 
 myBrowser :: String
-myBrowser = "firefox "  -- Sets firefox as browser
+myBrowser = "brave"  -- Sets brave as browser
 
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
