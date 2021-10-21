@@ -103,7 +103,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
 
-    spawnOnce "xrandr --output eDP1 --mode 1920x1080 --pos 0x700 --rotate normal --output DP1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal"
+    spawnOnce "xrandr --output eDP1 --mode 1920x1080 --pos 1920x700 --rotate normal --output DP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal"
     spawnOnce "xsetroot -cursor_name left_ptr &"
 
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
