@@ -383,7 +383,7 @@ alias personal='cp -Rf /personal/* ~'
 
 # reporting tools - install when not installed
 # install neofetch
-neofetch
+#neofetch
 # install screenfetch
 #screenfetch
 # install ufetch-git
@@ -398,3 +398,4 @@ neofetch
 #hfetch
 # install lolcat
 #sfetch | lolcat
+colorscript random
