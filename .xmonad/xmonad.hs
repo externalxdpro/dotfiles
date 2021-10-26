@@ -103,7 +103,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
 
-    spawnOnce "xrandr --output eDP1 --mode 1920x1080 --pos 1920x700 --rotate normal --output DP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal"
+    spawnOnce "xrandr --output eDP-1 --mode 1920x1080 --pos 1920x700 --rotate normal --output DP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal"
     spawnOnce "xsetroot -cursor_name left_ptr &"
 
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
@@ -381,7 +381,7 @@ myKeys =
         [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
         , ("M1-r", spawn "xmonad --restart")    -- Restarts xmonad
         -- , ("M-x", io exitSuccess)               -- Quits xmonad
-        , ("M-x", spawn "arcolinux-logout")        -- Displays logout options
+        , ("M-x", spawn "arcolinux-logout")        -- Displays logout menu
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
@@ -522,7 +522,7 @@ myKeys =
         -- , ("C-e v", spawn (myEmacs ++ ("--eval '(vterm nil)'"))) -- vterm if on GNU Emacs
         , ("C-e v", spawn (myEmacs ++ ("--eval '(+vterm/here nil)'"))) -- vterm if on Doom Emacs
         -- , ("C-e w", spawn (myEmacs ++ ("--eval '(eww \"distrotube.com\")'"))) -- eww browser if on GNU Emacs
-        , ("C-e w", spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"distrotube.com\"))'"))) -- eww browser if on Doom Emacs
+        , ("C-e w", spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"start.duckduckgo.com\"))'"))) -- eww browser if on Doom Emacs
         -- emms is an emacs audio player. I set it to auto start playing in a specific directory.
         , ("C-e a", spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")))
 
