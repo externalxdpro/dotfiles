@@ -81,6 +81,9 @@ myFileManager = "pcmanfm"  -- Sets pcmanfm as file manager
 myBrowser :: String
 myBrowser = "firefox"  -- Sets firefox as browser
 
+mySecondaryBrowser :: String
+mySecondaryBrowser = "qutebrowser"  -- Sets qutebrowser as secondary browser
+
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
 
@@ -380,7 +383,7 @@ myKeys =
         [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
         , ("M1-r", spawn "xmonad --restart")    -- Restarts xmonad
         -- , ("M-x", io exitSuccess)               -- Quits xmonad
-        , ("M-x", spawn "arcolinux-logout")        -- Displays logout menu
+        -- , ("M-x", spawn "arcolinux-logout")        -- Displays logout menu
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
@@ -394,20 +397,18 @@ myKeys =
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
     -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
     -- Read how to install these at https://gitlab.com/dwt1/dmscripts
-        {-
-        , ("M-p a", spawn "dm-sounds")    -- choose an ambient background
-        , ("M-p b", spawn "dm-setbg")     -- set a background
-        , ("M-p c", spawn "dm-colpick")   -- pick color from our scheme
-        , ("M-p e", spawn "dm-confedit")  -- edit config files
-        , ("M-p i", spawn "dm-maim")      -- screenshots (images)
-        , ("M-p k", spawn "dm-kill")      -- kill processes
-        , ("M-p m", spawn "dm-man")       -- manpages
-        , ("M-p o", spawn "dm-bookman")   -- qutebrowser bookmarks/history
-        , ("M-p p", spawn "passmenu")     -- passmenu
-        , ("M-p q", spawn "dm-logout")    -- logout menu
-        , ("M-p r", spawn "dm-reddit")    -- reddio (a reddit viewer)
-        , ("M-p s", spawn "dm-websearch") -- search various search engines
-        -}
+        , ("M-x a", spawn "dm-sounds")    -- choose an ambient background
+        , ("M-x b", spawn "dm-setbg")     -- set a background
+        , ("M-x c", spawn "dm-colpick")   -- pick color from our scheme
+        , ("M-x e", spawn "dm-confedit")  -- edit config files
+        , ("M-x i", spawn "dm-maim")      -- screenshots (images)
+        , ("M-x k", spawn "dm-kill")      -- kill processes
+        , ("M-x m", spawn "dm-man")       -- manpages
+        , ("M-x o", spawn "dm-bookman")   -- qutebrowser bookmarks/history
+        , ("M-x p", spawn "passmenu")     -- passmenu
+        , ("M-x q", spawn "dm-logout")    -- logout menu
+        , ("M-x r", spawn "dm-reddit")    -- reddio (a reddit viewer)
+        , ("M-x s", spawn "dm-websearch") -- search various search engines
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
@@ -415,8 +416,8 @@ myKeys =
 
         , ("M-S-<Return>", spawn (myFileManager))
 
-        , ("M-S-w", spawn (myBrowser))
-        , ("M-S-q", spawn "qutebrowser")
+        , ("M-w", spawn (myBrowser))
+        , ("M-S-w", spawn (mySecondaryBrowser))
 
         , ("M-S-e", spawn (myEditor))
 
