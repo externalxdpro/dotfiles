@@ -394,8 +394,6 @@ myKeys =
         , ("M-S-p", spawn "rofi-pass") -- Rofi Pass addon
         -- , ("M-S-p", spawn "passmenu") -- Dmenu Pass addon
     -- KB_GROUP Other Dmenu Prompts
-    -- In Xmonad and many tiling window managers, M-p is the default keybinding to
-    -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
     -- Read how to install these at https://gitlab.com/dwt1/dmscripts
         , ("M-x a", spawn "dm-sounds")    -- choose an ambient background
         , ("M-x b", spawn "dm-setbg")     -- set a background
@@ -419,7 +417,7 @@ myKeys =
         , ("M-w", spawn (myBrowser))
         , ("M-S-w", spawn (mySecondaryBrowser))
 
-        , ("M-S-e", spawn (myEditor))
+        , ("M-e", spawn (myEditor))
 
     -- KB_GROUP Kill windows
         , ("M-S-c", kill1)     -- Kill the currently focused client
