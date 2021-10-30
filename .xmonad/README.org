@@ -461,8 +461,8 @@ myKeys =
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
-        , ("M-p", spawn "rofi -show drun -show-icons") -- Rofi
-        -- , ("M-p", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
+        -- , ("M-p", spawn "rofi -show drun -show-icons") -- Rofi
+        , ("M-p", spawn "dmenu_run -h 24 -i -p \"Run: \"") -- Dmenu
 
     -- KB_GROUP Password Prompt
         , ("M-S-p", spawn "rofi-pass") -- Rofi Pass addon
