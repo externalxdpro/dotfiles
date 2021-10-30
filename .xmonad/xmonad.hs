@@ -372,6 +372,7 @@ myManageHook = composeAll
      , className =? "Spotify"                                   --> doShift ( myWorkspaces !! 6 )
      , className =? "kdenlive"                                  --> doShift ( myWorkspaces !! 7 )
      , className =? "mpv"                                       --> doShift ( myWorkspaces !! 7 )
+     , className =? "obs"                                       --> doShift ( myWorkspaces !! 7 )
      , className =? "vlc"                                       --> doShift ( myWorkspaces !! 7 )
      , title =? "GNU Image Manipulation Program"                --> doShift ( myWorkspaces !! 8 )
      ] <+> namedScratchpadManageHook myScratchPads
@@ -511,6 +512,7 @@ myKeys =
 
     -- KB_GROUP Emacs (CTRL-e followed by a key)
         -- , ("C-e e", spawn myEmacs)                 -- start emacs
+        {-
         , ("C-e e", spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))   -- emacs dashboard
         , ("C-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))   -- list buffers
         , ("C-e d", spawn (myEmacs ++ ("--eval '(dired nil)'"))) -- dired
@@ -525,6 +527,7 @@ myKeys =
         , ("C-e w", spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"start.duckduckgo.com\"))'"))) -- eww browser if on Doom Emacs
         -- emms is an emacs audio player. I set it to auto start playing in a specific directory.
         , ("C-e a", spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")))
+        -}
 
     -- KB_GROUP Multimedia Keys
         , ("<XF86AudioPlay>", spawn "mocp --play")
