@@ -457,7 +457,7 @@ myKeys =
         [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
         , ("M1-r", spawn "xmonad --restart")    -- Restarts xmonad
         -- , ("M-x", io exitSuccess)               -- Quits xmonad
-        -- , ("M-x", spawn "arcolinux-logout")        -- Displays logout menu
+        , ("M-x", spawn "arcolinux-logout")        -- Displays logout menu (You can install this from the AUR)
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
@@ -469,6 +469,7 @@ myKeys =
         -- , ("M-S-p", spawn "passmenu") -- Dmenu Pass addon
     -- KB_GROUP Other Dmenu Prompts
     -- Read how to install these at https://gitlab.com/dwt1/dmscripts
+        {-
         , ("M-x a", spawn "dm-sounds")    -- choose an ambient background
         , ("M-x b", spawn "dm-setbg")     -- set a background
         , ("M-x c", spawn "dm-colpick")   -- pick color from our scheme
@@ -481,6 +482,7 @@ myKeys =
         , ("M-x q", spawn "dm-logout")    -- logout menu
         , ("M-x r", spawn "dm-reddit")    -- reddio (a reddit viewer)
         , ("M-x s", spawn "dm-websearch") -- search various search engines
+        -}
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
