@@ -456,7 +456,7 @@ myKeys :: [(String, X ())]
 myKeys =
     -- KB_GROUP Xmonad
         [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
-        , ("M1-r", spawn "xmonad --restart")    -- Restarts xmonad
+        , ("M-r", spawn "xmonad --restart")    -- Restarts xmonad
         -- , ("M-x", io exitSuccess)               -- Quits xmonad
         , ("M-x", spawn "arcolinux-logout")        -- Displays logout menu (You can install this from the AUR)
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
