@@ -18,7 +18,7 @@
 Xmonad is a dynamically tiling X11 window manager that is written and configured in Haskell.
 Official Documentation: https://xmonad.org
 
-This is the xmonad configuration of Sakib Ahmed
+This is the xmonad configuration of ExternalXDPro
  + My YouTube: https://www.youtube.com/channel/UCIJmhFK6L5f-4uGPxlJbNVg
  + My GitHub:  http://www.github.com/externalxdpro/
 
@@ -96,7 +96,6 @@ import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
-
 #+end_src
 
 * Variables
