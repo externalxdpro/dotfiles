@@ -751,3 +751,17 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- }}}
+
+-- Autostart
+awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("picom")
+awful.spawn.with_shell("nm-applet")
+awful.spawn.with_shell("volumeicon")
+awful.spawn.with_shell("blueberry-tray")
+awful.spawn.with_shell("polychromatic-tray-applet")
+
+awful.spawn.with_shell("/usr/bin/emacs --daemon")
+awful.spawn.with_shell("rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/")
+
+awful.spawn.with_shell("discord --no-sandbox --start-minimized")
+awful.spawn.with_shell("steam -silent")
