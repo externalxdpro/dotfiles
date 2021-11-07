@@ -756,6 +756,7 @@ awful.rules.rules = {
       }, properties = { floating = true }},
 
       -- Set some apps to always open on specific tags
+      -- (Doesn't work sometimes for some reason)
       { rule = { class = "Alacritty" },                           properties = { screen = 1, tag = "1" } },
       { rule = { class = "Emacs" },                               properties = { screen = 1, tag = "1" } },
 
@@ -776,7 +777,6 @@ awful.rules.rules = {
 
       { rule = { class = "discord" },                             properties = { screen = 2, tag = "6" } },
 
-      { rule = { class = "Spotify" },                             properties = { screen = 1, tag = "7" } },
       { rule = { class = "Spotify" },                             properties = { screen = 1, tag = "7" } },
 
       { rule = { class = "kdenlive" },                            properties = { screen = 1, tag = "8" } },
