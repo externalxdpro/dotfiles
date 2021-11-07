@@ -425,23 +425,31 @@ myManageHook = composeAll
 
      , className =? "Alacritty"                                 --> doShift ( myWorkspaces !! 0 )
      , className =? "Emacs"                                     --> doShift ( myWorkspaces !! 0 )
+
      , title =? "Mozilla Firefox"                               --> doShift ( myWorkspaces !! 1 )
      , className =? "Brave-browser"                             --> doShift ( myWorkspaces !! 1 )
      , className =? "qutebrowser"                               --> doShift ( myWorkspaces !! 1 )
+
      , className =? "Chiaki"                                    --> doShift ( myWorkspaces !! 2 )
      , className =? "GeForce NOW"                               --> doShift ( myWorkspaces !! 2 )
      , className =? "Lutris"                                    --> doShift ( myWorkspaces !! 2 )
      , className =? "Steam"                                     --> doShift ( myWorkspaces !! 2 )
+
      , className =? "obsidian"                                  --> doShift ( myWorkspaces !! 3 )
      , title =? "LibreOffice"                                   --> doShift ( myWorkspaces !! 3 )
+
      , className =? "VirtualBox Manager"                        --> doShift ( myWorkspaces !! 4 )
      , title =? "Virtual Machine Manager"                       --> doShift ( myWorkspaces !! 4 )
+
      , className =? "discord"                                   --> doShift ( myWorkspaces !! 5 )
+
      , className =? "Spotify"                                   --> doShift ( myWorkspaces !! 6 )
+
      , className =? "kdenlive"                                  --> doShift ( myWorkspaces !! 7 )
      , className =? "mpv"                                       --> doShift ( myWorkspaces !! 7 )
      , className =? "obs"                                       --> doShift ( myWorkspaces !! 7 )
      , className =? "vlc"                                       --> doShift ( myWorkspaces !! 7 )
+
      , title =? "GNU Image Manipulation Program"                --> doShift ( myWorkspaces !! 8 )
      ] <+> namedScratchpadManageHook myScratchPads
 #+end_src
