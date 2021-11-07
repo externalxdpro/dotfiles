@@ -755,9 +755,36 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+      -- Set some apps to always open on specific tags
+      { rule = { class = "Alacritty" },                           properties = { screen = 1, tag = "1" } },
+      { rule = { class = "Emacs" },                               properties = { screen = 1, tag = "1" } },
+
+      { rule = { class = "Firefox" },                             properties = { screen = 1, tag = "2" } },
+      { rule = { class = "Brave-browser" },                       properties = { screen = 1, tag = "2" } },
+      { rule = { class = "qutebrowser" },                         properties = { screen = 1, tag = "2" } },
+
+      { rule = { class = "Chiaki" },                              properties = { screen = 1, tag = "3" } },
+      { rule = { class = "GeForce Now" },                         properties = { screen = 1, tag = "3" } },
+      { rule = { class = "Lutris" },                              properties = { screen = 1, tag = "3" } },
+      { rule = { class = "Steam" },                               properties = { screen = 1, tag = "3" } },
+
+      { rule = { class = "obsidian" },                            properties = { screen = 1, tag = "4" } },
+      { rule = { title = "LibreOffice" },                         properties = { screen = 1, tag = "4" } },
+
+      { rule = { class = "VirtualBox Manager" },                  properties = { screen = 1, tag = "5" } },
+      { rule = { title = "Virtual Machine Manager" },             properties = { screen = 1, tag = "5" } },
+
+      { rule = { class = "discord" },                             properties = { screen = 2, tag = "6" } },
+
+      { rule = { class = "Spotify" },                             properties = { screen = 1, tag = "7" } },
+      { rule = { class = "Spotify" },                             properties = { screen = 1, tag = "7" } },
+
+      { rule = { class = "kdenlive" },                            properties = { screen = 1, tag = "8" } },
+      { rule = { class = "mpv" },                                 properties = { screen = 1, tag = "8" } },
+      { rule = { class = "obs" },                                 properties = { screen = 1, tag = "8" } },
+      { rule = { class = "vlc" },                                 properties = { screen = 1, tag = "8" } },
+
+      { rule = { title = "GNU Image Manipulation Program" },      properties = { screen = 1, tag = "9" } },
 }
 #+end_src
 
