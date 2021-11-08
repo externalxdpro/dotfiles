@@ -5,13 +5,13 @@
 - [[#about][About]]
 - [[#required-libraries][Required Libraries]]
 - [[#error-handling][Error Handling]]
-- [[#autostart-windowless-processes][Autostart windowless processes]]
+- [[#autostart-windowless-processes][Autostart Windowless Processes]]
 - [[#themes][Themes]]
 - [[#variables][Variables]]
 - [[#tags-and-layouts][Tags and Layouts]]
 - [[#menu][Menu]]
 - [[#screen-and-wallpaper][Screen and Wallpaper]]
-- [[#mouse-bindings][Mouse bindings]]
+- [[#mouse-bindings][Mouse Bindings]]
 - [[#keybindings][Keybindings]]
 - [[#rules][Rules]]
 - [[#signals][Signals]]
@@ -76,7 +76,7 @@ do
 end
 #+end_src
 
-* Autostart windowless processes
+* Autostart Windowless Processes
 This function will run once every time Awesome is started
 
 #+begin_src lua
@@ -278,7 +278,7 @@ end)
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 #+end_src
 
-* Mouse bindings
+* Mouse Bindings
 Defining what mouse clicks do
 
 #+begin_src lua
