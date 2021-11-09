@@ -301,21 +301,21 @@ globalkeys = mytable.join(
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
-    awful.key({ modkey }, "Tab",
-        function ()
-            if cycle_prev then
-                awful.client.focus.history.previous()
-            else
-                awful.client.focus.byidx(-1)
-            end
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "cycle with previous/go back", group = "client"}),
+    --awful.key({ modkey }, "Tab",
+    --    function ()
+    --        if cycle_prev then
+    --            awful.client.focus.history.previous()
+    --        else
+    --            awful.client.focus.byidx(-1)
+    --        end
+    --        if client.focus then
+    --            client.focus:raise()
+    --        end
+    --    end,
+    --    {description = "cycle with previous/go back", group = "client"}),
 
     -- Show/hide wibox
-    awful.key({ modkey }, "b", function ()
+    awful.key({ modkey }, "y", function ()
             for s in screen do
                 s.mywibox.visible = not s.mywibox.visible
                 if s.mybottomwibox then
@@ -365,9 +365,9 @@ globalkeys = mytable.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey, }, "f", function () awful.layout.inc( 1)                end,
+    awful.key({ modkey, }, "Tab", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
-    awful.key({ modkey, "Shift" }, "f", function () awful.layout.inc(-1)                end,
+    awful.key({ modkey, "Shift" }, "Tab", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 
     awful.key({ modkey, "Control" }, "n", function ()
