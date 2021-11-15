@@ -147,6 +147,8 @@ These are commands we want XMonad to execute on startup, such as running a compo
 myStartupHook :: X ()
 myStartupHook = do
 
+    spawnOnce "xsetroot -cursor_name left_ptr &"
+
     spawnOnce "nitrogen --restore &"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"

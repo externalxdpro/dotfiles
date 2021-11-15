@@ -106,6 +106,8 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
 
+    spawnOnce "xsetroot -cursor_name left_ptr &"
+
     spawnOnce "nitrogen --restore &"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
