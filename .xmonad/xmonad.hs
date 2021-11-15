@@ -106,20 +106,21 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
 
-    spawnOnce "xsetroot -cursor_name left_ptr &"
-
+    spawnOnce "nitrogen --restore &"
     spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
     spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
     spawnOnce "picom &"
     spawnOnce "/usr/bin/trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
-    spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
-    spawnOnce "rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &"
     spawnOnce "numlockx on &"
-
     spawnOnce "nm-applet &"
     spawnOnce "volctl &"
     spawnOnce "blueberry-tray &"
     spawnOnce "polychromatic-tray-applet &"
+    spawnOnce "flameshot &"
+    spawnOnce "udiskie &"
+
+    spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
+    spawnOnce "rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &"
 
     spawnOnce "discord --no-sandbox --start-minimized &"
     spawnOnce "obsidian &"
@@ -132,7 +133,6 @@ myStartupHook = do
 
     -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
     -- spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
-    spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
 
     -- spawn "$HOME/.xmonad/scripts/autostart.sh"
     setWMName "LG3D"
