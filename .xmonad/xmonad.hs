@@ -430,6 +430,8 @@ myKeys =
 
         , ("M-e", spawn (myEditor))
 
+        , ("M-S-s", spawn ("flameshot gui"))
+
     -- KB_GROUP Kill windows
         , ("M-S-c", kill1)     -- Kill the currently focused client
         , ("M-S-a", killAll)   -- Kill all windows on current workspace
