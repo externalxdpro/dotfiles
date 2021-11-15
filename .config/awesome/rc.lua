@@ -740,6 +740,7 @@ awful.spawn.with_shell("volctl")
 awful.spawn.with_shell("blueberry-tray")
 awful.spawn.with_shell("polychromatic-tray-applet")
 awful.spawn.with_shell("flameshot")
+awful.spawn.with_shell("udiskie")
 
 awful.spawn.with_shell("/usr/bin/emacs --daemon")
 awful.spawn.with_shell("rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/")
