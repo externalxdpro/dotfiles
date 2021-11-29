@@ -58,3 +58,6 @@
 (setq company-idle-delay 0.1 )
 ;; Minimun number of character required for auto-completion to start
 (setq company-minimum-prefix-length 1)
+
+;; Elcord settings
+(elcord-mode)
