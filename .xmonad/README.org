@@ -166,7 +166,6 @@ myStartupHook = do
     spawnOnce "rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &"
 
     spawnOnce "discord --no-sandbox --start-minimized &"
-    spawnOnce "obsidian &"
     spawnOnce "steam -silent &"
 
     -- uncomment to restore last saved wallpaper
