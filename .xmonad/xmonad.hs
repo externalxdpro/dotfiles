@@ -121,11 +121,10 @@ myStartupHook = do
     spawnOnce "flameshot &"
     spawnOnce "udiskie &"
 
-    spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
+    -- spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
     spawnOnce "rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &"
 
     spawnOnce "discord --no-sandbox --start-minimized &"
-    spawnOnce "obsidian &"
     spawnOnce "steam -silent &"
 
     -- uncomment to restore last saved wallpaper
