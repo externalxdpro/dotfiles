@@ -116,7 +116,7 @@ myStartupHook = do
     spawnOnce "numlockx on &"
     spawnOnce "nm-applet &"
     spawnOnce "volctl &"
-    spawnOnce "blueman-tray &"
+    spawnOnce "blueman-applet &"
     spawnOnce "polychromatic-tray-applet &"
     spawnOnce "flameshot &"
     spawnOnce "udiskie &"
