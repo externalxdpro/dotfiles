@@ -226,7 +226,7 @@ alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | egrep "^\."'
 
 # pacman and paru
-alias pacs='paru -S --skipreview'                 # Install software using paru
+alias pacs='paru -S --skipreview --needed'                 # Install software using paru
 alias pacd='paru -Runs'                           # Remove software and dependancies using paru
 alias pac='paru -Syyu --noconfirm'                # Update all pkgs using paru
 alias unlock='sudo rm /var/lib/pacman/db.lck'     # remove pacman lock
