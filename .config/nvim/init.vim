@@ -7,7 +7,7 @@
 :set softtabstop=4
 :set mouse=a
 
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'https://github.com/itchyny/lightline.vim' "
 Plug 'https://github.com/preservim/nerdtree'
