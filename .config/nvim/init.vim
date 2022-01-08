@@ -9,9 +9,9 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'https://github.com/itchyny/lightline.vim' "
-Plug 'https://github.com/preservim/nerdtree'
-Plug 'https://github.com/neoclide/coc.nvim'
+Plug 'https://github.com/itchyny/lightline.vim'		" Lightline statusbar
+Plug 'https://github.com/preservim/nerdtree'		" Nerd Tree (Filesystem tree)
+Plug 'https://github.com/neoclide/coc.nvim'			" Autocompletion
 
 call plug#end()
 
