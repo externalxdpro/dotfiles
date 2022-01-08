@@ -17,6 +17,8 @@ set smarttab
 set mouse=a						" Enable mouse functionality
 set clipboard=unnamedplus       " Copy/paste between vim and other programs.
 
+" autocmd vimenter * NERDTree   " Uncomment to autostart Nerd Tree
+map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1		"Show hidden files and directories in Nerd Tree
 " Set lightline theme
 let g:lightline = {
