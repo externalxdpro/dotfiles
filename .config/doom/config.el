@@ -63,7 +63,7 @@
 ;;      (smtpmail-stream-type starttls)
 ;;      (smtpmail-smtp-service 587))))
 
-(load "~/.config/doom/email")
+(load "~/.config/doom/email.el")
 
 (defun my-mu4e-set-account ()
   "Set the account for composing a message."

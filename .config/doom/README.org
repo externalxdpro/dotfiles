@@ -111,10 +111,10 @@ The settings below are specific to each of three different email accounts.  Thes
 ;;      (smtpmail-smtp-service 587))))
 #+end_src
 
-I’m sourcing an elisp file (~/.config/doom/email.el) that contains the above source block but with my actual email settings.  I do this so I don’t have to share my email addresses (other than derek@distrotube.com) publicly.  If you uncommented the above source block to use, then you should comment out or delete this line below.
+I’m sourcing an elisp file (~/.config/doom/email.el) that contains the above source block but with my actual email settings.  I do this so I don’t have to share my email addresses publicly.  If you uncommented the above source block to use, then you should comment out or delete this line below.
 
 #+begin_src emacs-lisp
-(load "~/.config/doom/email")
+(load "~/.config/doom/email.el")
 #+end_src
 
 ** Function To Facilitate Switching Between Accounts
