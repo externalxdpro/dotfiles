@@ -61,3 +61,49 @@
 
 ;; Elcord settings
 (elcord-mode)
+
+;; (defvar my-mu4e-account-alist
+;;   '(("acc1-domain"
+;;      (mu4e-sent-folder "/acc1-domain/Sent")
+;;      (mu4e-drafts-folder "/acc1-domain/Drafts")
+;;      (mu4e-trash-folder "/acc1-domain/Trash")
+;;      (mu4e-compose-signature
+;;        (concat
+;;          "Ricky Bobby\n"
+;;          "acc1@domain.com\n"))
+;;      (user-mail-address "acc1@domain.com")
+;;      (smtpmail-default-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-user "acc1@domain.com")
+;;      (smtpmail-stream-type starttls)
+;;      (smtpmail-smtp-service 587))
+;;     ("acc2-domain"
+;;      (mu4e-sent-folder "/acc2-domain/Sent")
+;;      (mu4e-drafts-folder "/acc2-domain/Drafts")
+;;      (mu4e-trash-folder "/acc2-domain/Trash")
+;;      (mu4e-compose-signature
+;;        (concat
+;;          "Suzy Q\n"
+;;          "acc2@domain.com\n"))
+;;      (user-mail-address "acc2@domain.com")
+;;      (smtpmail-default-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-user "acc2@domain.com")
+;;      (smtpmail-stream-type starttls)
+;;      (smtpmail-smtp-service 587))
+;;     ("acc3-domain"
+;;      (mu4e-sent-folder "/acc3-domain/Sent")
+;;      (mu4e-drafts-folder "/acc3-domain/Drafts")
+;;      (mu4e-trash-folder "/acc3-domain/Trash")
+;;      (mu4e-compose-signature
+;;        (concat
+;;          "John Boy\n"
+;;          "acc3@domain.com\n"))
+;;      (user-mail-address "acc3@domain.com")
+;;      (smtpmail-default-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-user "acc3@domain.com")
+;;      (smtpmail-stream-type starttls)
+;;      (smtpmail-smtp-service 587))))
+
+(load "~/.config/doom/email")
