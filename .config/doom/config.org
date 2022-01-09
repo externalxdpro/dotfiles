@@ -1,0 +1,178 @@
+#+TITLE: Doom Emacs Config
+#+property: header-args :tangle config.el
+
+* Table of Contents :toc:
+- [[#about][About]]
+- [[#doom-theme][Doom Theme]]
+- [[#eww][EWW]]
+- [[#line-settings][Line Settings]]
+- [[#mu4e][MU4E]]
+  - [[#setting-up-multiple-accounts][Setting Up Multiple Accounts]]
+  - [[#function-to-facilitate-switching-between-accounts][Function To Facilitate Switching Between Accounts]]
+- [[#neotree][Neotree]]
+- [[#company][Company]]
+- [[#elcord][Elcord]]
+
+* About
+This is my personal Doom Emacs config. Doom EMacs is a distribution of Emacs that uses the "evil" keybindings (Vim keybindings) and includes a number of nice extensions and bit of configureation out of the box.
+
+* Doom Theme
+Setting the theme to doom-one. To try out new themes, I set a keybinding for counsel-load-theme with 'SPC h t'.
+
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-one)
+(map! :leader
+      :desc "Load new theme" "h t" #'counsel-load-theme)
+#+end_src
+
+* EWW
+EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to open in a specific browser (eww) with browse-url-browser-function.  By default, Doom Emacs does not use ‘SPC e’ for anything, so I choose to use the format ‘SPC e’ plus ‘key’ for these (I also use ‘SPC e’ for ‘eval’ keybindings).  I chose to use ‘SPC s w’ for eww-search-words because Doom Emacs uses ‘SPC s’ for ‘search’ commands.
+
+#+begin_src emacs-lisp
+(setq browse-url-browser-function 'eww-browse-url)
+(map! :leader
+      :desc "Search web for text between BEG/END"
+      "s w" #'eww-search-words
+      (:prefix ("e" . "evaluate/EWW")
+       :desc "Eww web browser" "w" #'eww
+       :desc "Eww reload page" "R" #'eww-reload))
+#+end_src
+
+* Line Settings
+I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comment-line is ‘C-x C-;’.  The other keybindings are for commands that toggle on/off various line-related settings.  Doom Emacs uses ‘SPC t’ for “toggle” commands, so I choose ‘SPC t’ plus ‘key’ for those bindings.
+
+| Command                  | Description                                | Keybinding  |
+| comment-line             | /Comment or uncomment lines/               | SPC TAB TAB |
+| hl-line-mode             | /Toggle line higlighting in current frame/ | SPC t h     |
+| global-hl-line-mode      | /Toggle line highlighting globally/        | SPC t H     |
+| doom/toggle-line-numbers | /Toggle line numbers/                      | SPC t l     |
+| toggle-truncate-lines    | /Toggle truncate lines/                    | SPC t t     |
+
+#+begin_src emacs-lisp
+(setq display-line-numbers-type t)
+(map! :leader
+      :desc "Comment or uncomment lines" "TAB TAB" #'comment-line
+      (:prefix ("t" . "toggle")
+       :desc "Toggle line numbers" "l" #'doom/toggle-line-numbers
+       :desc "Toggle line highlight in frame" "h" #'hl-line-mode
+       :desc "Toggle line highlight globally" "H" #'global-hl-line-mode
+       :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
+#+end_src
+
+* MU4E
+Setting up mu4e which is an email client that works within emacs.  You must install mu4e and mbsync through your Linux distribution’s package manager. Setting up smtp for sending mail. Make sure the gnutls command line utils are installed. Package ‘gnutls-bin’ in Debian/Ubuntu, and ‘gnutls’ in Arch.
+
+** Setting Up Multiple Accounts
+The settings below are specific to each of three different email accounts.  These settings are fictional and are here for documentation purposes.  Hence, I have this source block entirely commented out.  Now, I do use a source code block similar to the one below, but I don’t want to share it publicly.  Keep reading to see how I handle this.
+
+#+begin_src emacs-lisp
+;; (defvar my-mu4e-account-alist
+;;   '(("acc1-domain"
+;;      (mu4e-sent-folder "/acc1-domain/Sent")
+;;      (mu4e-drafts-folder "/acc1-domain/Drafts")
+;;      (mu4e-trash-folder "/acc1-domain/Trash")
+;;      (mu4e-compose-signature
+;;        (concat
+;;          "Ricky Bobby\n"
+;;          "acc1@domain.com\n"))
+;;      (user-mail-address "acc1@domain.com")
+;;      (smtpmail-default-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-user "acc1@domain.com")
+;;      (smtpmail-stream-type starttls)
+;;      (smtpmail-smtp-service 587))
+;;     ("acc2-domain"
+;;      (mu4e-sent-folder "/acc2-domain/Sent")
+;;      (mu4e-drafts-folder "/acc2-domain/Drafts")
+;;      (mu4e-trash-folder "/acc2-domain/Trash")
+;;      (mu4e-compose-signature
+;;        (concat
+;;          "Suzy Q\n"
+;;          "acc2@domain.com\n"))
+;;      (user-mail-address "acc2@domain.com")
+;;      (smtpmail-default-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-user "acc2@domain.com")
+;;      (smtpmail-stream-type starttls)
+;;      (smtpmail-smtp-service 587))
+;;     ("acc3-domain"
+;;      (mu4e-sent-folder "/acc3-domain/Sent")
+;;      (mu4e-drafts-folder "/acc3-domain/Drafts")
+;;      (mu4e-trash-folder "/acc3-domain/Trash")
+;;      (mu4e-compose-signature
+;;        (concat
+;;          "John Boy\n"
+;;          "acc3@domain.com\n"))
+;;      (user-mail-address "acc3@domain.com")
+;;      (smtpmail-default-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-server "smtp.domain.com")
+;;      (smtpmail-smtp-user "acc3@domain.com")
+;;      (smtpmail-stream-type starttls)
+;;      (smtpmail-smtp-service 587))))
+#+end_src
+
+I’m sourcing an elisp file (~/.config/doom/email.el) that contains the above source block but with my actual email settings.  I do this so I don’t have to share my email addresses (other than derek@distrotube.com) publicly.  If you uncommented the above source block to use, then you should comment out or delete this line below.
+
+#+begin_src emacs-lisp
+(load "~/.config/doom/email")
+#+end_src
+
+** Function To Facilitate Switching Between Accounts
+The following function can be used to select an account. This function is then added to mu4e-compose-pre-hook.
+
+#+begin_src emacs-lisp
+(defun my-mu4e-set-account ()
+  "Set the account for composing a message."
+  (let* ((account
+          (if mu4e-compose-parent-message
+              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                (string-match "/\\(.*?\\)/" maildir)
+                (match-string 1 maildir))
+            (completing-read (format "Compose with account: (%s) "
+                                     (mapconcat #'(lambda (var) (car var))
+                                                my-mu4e-account-alist "/"))
+                             (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                             nil t nil nil (caar my-mu4e-account-alist))))
+         (account-vars (cdr (assoc account my-mu4e-account-alist))))
+    (if account-vars
+        (mapc #'(lambda (var)
+                  (set (car var) (cadr var)))
+              account-vars)
+      (error "No email account found"))))
+
+(add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+#+end_src
+
+* Neotree
+Neotree is a file tree viewer.  When you open neotree, it jumps to the current file thanks to neo-smart-open.  The neo-window-fixed-size setting makes the neotree width be adjustable.  Doom Emacs had no keybindings set for neotree.  Since Doom Emacs uses ‘SPC t’ for ‘toggle’ keybindings, I used ‘SPC t n’ for toggle-neotree.
+
+| Command        | Description                 | Keybinding |
+|----------------+-----------------------------+------------|
+| neotree-toggle | /Toggle neotree/            | SPC t n    |
+| neotree-dir    | /Open directory in neotree/ | SPC d n    |
+
+#+begin_src emacs-lisp
+(after! neotree
+  (setq neo-smart-open t
+        neo-window-fixed-size nil))
+(after! doom-themes
+  (setq doom-neotree-enable-variable-pitch t))
+(map! :leader
+      :desc "Toggle neotree file viewer" "t n" #'neotree-toggle
+      :desc "Open directory in neotree" "d n" #'neotree-dir)
+#+end_src
+
+* Company
+Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster.
+
+#+begin_src emacs-lisp
+(setq company-idle-delay 0.1)
+(setq company-minimum-prefix-length 1)
+#+end_src
+
+* Elcord
+Elcord is an Emacs extension that shows Emacs in your Discord status.
+
+#+begin_src emacs-lisp
+(elcord-mode)
+#+end_src
