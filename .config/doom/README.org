@@ -42,6 +42,7 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
 I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comment-line is ‘C-x C-;’.  The other keybindings are for commands that toggle on/off various line-related settings.  Doom Emacs uses ‘SPC t’ for “toggle” commands, so I choose ‘SPC t’ plus ‘key’ for those bindings.
 
 | Command                  | Description                                | Keybinding  |
+|--------------------------+--------------------------------------------+-------------|
 | comment-line             | /Comment or uncomment lines/               | SPC TAB TAB |
 | hl-line-mode             | /Toggle line higlighting in current frame/ | SPC t h     |
 | global-hl-line-mode      | /Toggle line highlighting globally/        | SPC t H     |
