@@ -4,6 +4,7 @@
 * Table of Contents :toc:
 - [[#about][About]]
 - [[#doom-theme][Doom Theme]]
+- [[#emojis][Emojis]]
 - [[#eww][EWW]]
 - [[#line-settings][Line Settings]]
 - [[#mu4e][MU4E]]
@@ -25,6 +26,14 @@ Setting the theme to doom-one. To try out new themes, I set a keybinding for cou
 (setq doom-theme 'doom-one)
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
+#+end_src
+
+* Emojis
+Emojify is an Emacs extension to display emojis. It can display github style emojis like :smile: or plain ascii ones like :).
+
+#+begin_src emacs-lisp
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
 #+end_src
 
 * EWW

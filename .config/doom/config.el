@@ -2,6 +2,9 @@
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
 
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+
 (setq browse-url-browser-function 'eww-browse-url)
 (map! :leader
       :desc "Search web for text between BEG/END"
