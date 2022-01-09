@@ -86,6 +86,8 @@
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
+(xterm-mouse-mode 1)
+
 (after! neotree
   (setq neo-smart-open t
         neo-window-fixed-size nil))
@@ -94,6 +96,11 @@
 (map! :leader
       :desc "Toggle neotree file viewer" "t n" #'neotree-toggle
       :desc "Open directory in neotree" "d n" #'neotree-dir)
+
+(map! :leader
+      :desc "Org babel tangle" "m B" #'org-babel-tangle)
+(after! org
+  (setq org-directory "~/Documents/org/"))
 
 (setq company-idle-delay 0.1)
 (setq company-minimum-prefix-length 1)
