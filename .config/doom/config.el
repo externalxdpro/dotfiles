@@ -2,6 +2,11 @@
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
 
+(setq company-idle-delay 0.1)
+(setq company-minimum-prefix-length 1)
+
+(elcord-mode)
+
 (use-package emojify
   :hook (after-init . global-emojify-mode))
 
@@ -118,8 +123,3 @@
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 (after! org
   (setq org-directory "~/Documents/org/"))
-
-(setq company-idle-delay 0.1)
-(setq company-minimum-prefix-length 1)
-
-(elcord-mode)
