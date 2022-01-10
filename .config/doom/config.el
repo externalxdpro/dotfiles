@@ -89,6 +89,20 @@
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
+(require 'org-msg)
+(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil"
+      org-msg-startup "indent inlineimages"
+      org-msg-greeting-fmt "\nHi *%s*,\n\n"
+      org-msg-greeting-name-limit 3
+      org-msg-signature "
+      Regards,
+
+   #+begin_signature
+   -- *{your-name}* \\\\
+   /Sent from my Emacs/
+   #+end_signature")
+(org-msg-mode)
+
 (xterm-mouse-mode 1)
 
 (after! neotree

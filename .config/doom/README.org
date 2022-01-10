@@ -10,6 +10,7 @@
 - [[#mu4e][MU4E]]
   - [[#setting-up-multiple-accounts][Setting Up Multiple Accounts]]
   - [[#function-to-facilitate-switching-between-accounts][Function To Facilitate Switching Between Accounts]]
+  - [[#org-msg][Org-Msg]]
 - [[#mouse-support][Mouse Support]]
 - [[#neotree][Neotree]]
 - [[#org-mode][Org Mode]]
@@ -153,6 +154,25 @@ The following function can be used to select an account. This function is then a
       (error "No email account found"))))
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+#+end_src
+
+** Org-Msg
+This extension makes it possible to use org mode when composing emails in mu4e.
+
+#+begin_src emacs-lisp
+(require 'org-msg)
+(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil"
+      org-msg-startup "indent inlineimages"
+      org-msg-greeting-fmt "\nHi *%s*,\n\n"
+      org-msg-greeting-name-limit 3
+      org-msg-signature "
+      Regards,
+
+   #+begin_signature
+   -- *{your-name}* \\\\
+   /Sent from my Emacs/
+   #+end_signature")
+(org-msg-mode)
 #+end_src
 
 * Mouse Support
