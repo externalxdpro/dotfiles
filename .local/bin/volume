@@ -1,4 +1,4 @@
 #!/bin/bash 
 
-vol="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+vol="$(pamixer --get-default-sink | tail -n 1 | awk '{print $1;}')"
 echo "${vol}% volume "
