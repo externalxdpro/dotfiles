@@ -5,7 +5,6 @@
 - [[#about][About]]
 - [[#doom-theme][Doom Theme]]
 - [[#company][Company]]
-- [[#elcord][Elcord]]
 - [[#emojis][Emojis]]
 - [[#eww][EWW]]
 - [[#line-settings][Line Settings]]
@@ -35,13 +34,6 @@ Company is used for auto-completion in Emacs. It supports almost every programmi
 #+begin_src emacs-lisp
 (setq company-idle-delay 0.1)
 (setq company-minimum-prefix-length 1)
-#+end_src
-
-* Elcord
-Elcord is an Emacs extension that shows Emacs in your Discord status.
-
-#+begin_src emacs-lisp
-(elcord-mode)
 #+end_src
 
 * Emojis

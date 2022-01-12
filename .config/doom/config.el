@@ -5,8 +5,6 @@
 (setq company-idle-delay 0.1)
 (setq company-minimum-prefix-length 1)
 
-(elcord-mode)
-
 (use-package emojify
   :hook (after-init . global-emojify-mode))
 
