@@ -420,12 +420,12 @@ myKeys =
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
-        , ("M-p", spawn "rofi -modi combi -combi-modi window,run,drun,ssh -show combi -opacity 70 -show-icons") -- Rofi
-        -- , ("M-p", spawn "dmenu_run -h 24 -i -p \"Run: \"") -- Dmenu
+        -- , ("M-p", spawn "rofi -modi combi -combi-modi window,run,drun,ssh -show combi -opacity 70 -show-icons") -- Rofi
+        , ("M-p", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
 
     -- KB_GROUP Password Prompt
-        , ("M-S-p", spawn "rofi-pass") -- Rofi Pass addon
-        -- , ("M-S-p", spawn "passmenu") -- Dmenu Pass addon
+        -- , ("M-S-p", spawn "rofi-pass") -- Rofi Pass addon
+        , ("M-S-p", spawn "passmenu") -- Dmenu Pass addon
     -- KB_GROUP Other Dmenu Prompts
     -- Read how to install these at https://gitlab.com/dwt1/dmscripts
         {-
