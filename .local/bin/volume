@@ -1,4 +1,4 @@
 #!/bin/bash 
 
-vol="$(pamixer --get-default-sink | tail -n 1 | awk '{print $1;}')"
-echo "${vol}% volume "
+vol="$(pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print $5;}')"
+echo "${vol} volume "
