@@ -823,7 +823,7 @@ These are commands we want Awesome to execute on startup, such as running a comp
 
 #+begin_src lua
 awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("picom --experimental-backends")
+awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("volctl")
 awful.spawn.with_shell("blueman-applet")
