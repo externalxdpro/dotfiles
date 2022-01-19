@@ -106,6 +106,9 @@
    #+end_signature")
 (org-msg-mode)
 
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "firefox")
+
 (xterm-mouse-mode 1)
 
 (after! neotree

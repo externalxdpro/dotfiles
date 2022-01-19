@@ -12,6 +12,7 @@
   - [[#setting-up-multiple-accounts][Setting Up Multiple Accounts]]
   - [[#function-to-facilitate-switching-between-accounts][Function To Facilitate Switching Between Accounts]]
   - [[#org-msg][Org-Msg]]
+  - [[#open-links-in-browser][Open Links in Browser]]
 - [[#mouse-support][Mouse Support]]
 - [[#neotree][Neotree]]
 - [[#org-mode][Org Mode]]
@@ -180,6 +181,14 @@ This extension makes it possible to use org mode when composing emails in mu4e.
    /Sent from my Emacs/
    #+end_signature")
 (org-msg-mode)
+#+end_src
+
+** Open Links in Browser
+This opens any link clicked in emails in the browser specified below.
+
+#+begin_src emacs-lisp
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "firefox")
 #+end_src
 
 * Mouse Support
