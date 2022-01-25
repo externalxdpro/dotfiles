@@ -828,7 +828,6 @@ awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("volctl")
 awful.spawn.with_shell("blueman-applet")
 awful.spawn.with_shell("polychromatic-tray-applet")
-awful.spawn.with_shell("flameshot")
 awful.spawn.with_shell("udiskie")
 
 awful.spawn.with_shell("/usr/bin/emacs --daemon")

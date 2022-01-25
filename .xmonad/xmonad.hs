@@ -118,7 +118,6 @@ myStartupHook = do
     spawnOnce "volctl &"
     spawnOnce "blueman-applet &"
     spawnOnce "polychromatic-tray-applet &"
-    spawnOnce "flameshot &"
     spawnOnce "udiskie &"
 
     spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
