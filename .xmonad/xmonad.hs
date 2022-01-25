@@ -387,7 +387,7 @@ myKeys =
 
         , ("M-e", spawn (myEditor))
 
-        , ("M-S-s", spawn ("flameshot gui"))
+        , ("M-S-s", spawn ("dm-maim"))
 
     -- KB_GROUP Kill windows
         , ("M-S-c", kill1)     -- Kill the currently focused client

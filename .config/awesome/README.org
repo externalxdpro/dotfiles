@@ -418,8 +418,8 @@ globalkeys = mytable.join(
     awful.key({ modkey, "Shift" }, "Return", function () awful.spawn(filemanager) end,
               {description = "open the file manager", group = "launcher"}),
 
-    awful.key({ modkey, "Shift" }, "s", function () awful.spawn("flameshot gui") end,
-              {description = "open screenshot utility (flameshot)", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "s", function () awful.spawn("dm-maim") end,
+              {description = "open screenshot utility", group = "launcher"}),
 
     awful.key({ modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
