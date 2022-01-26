@@ -109,7 +109,7 @@ myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr &"
 
     spawnOnce "nitrogen --restore &"
-    spawnOnce "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
+    spawnOnce "/usr/bin/lxpolkit &"
     spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
     spawnOnce "picom &"
     spawnOnce "/usr/bin/trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
