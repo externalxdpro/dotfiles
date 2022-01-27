@@ -210,6 +210,9 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
+# mkdir creates all folders
+alias mkdir='mkdir -pv'
+
 # vim and emacs
 alias vim='nvim'
 alias em='/usr/bin/emacs -nw'
@@ -223,11 +226,11 @@ alias lt='exa -aT --color=always --group-directories-first' # tree listing
 alias l.='exa -a | egrep "^\."'
 
 # pacman and paru
-alias pacs='paru -S --skipreview --needed'                 # Install software using paru
-alias pacd='paru -Runs'                           # Remove software and dependancies using paru
-alias pac='paru -Syyu --noconfirm'                # Update all pkgs using paru
-alias unlock='sudo rm /var/lib/pacman/db.lck'     # remove pacman lock
-alias cleanup='sudo pacman -Runs (pacman -Qtdq)'  # remove orphaned packages
+alias pacin='paru -S --skipreview --needed'        # Install software using paru
+alias pacrm='paru -Runs'                           # Remove software and dependancies using paru
+alias pacup='paru -Syyu --noconfirm'               # Update all pkgs using paru
+alias unlock='sudo rm /var/lib/pacman/db.lck'      # remove pacman lock
+alias cleanup='sudo pacman -Runs (pacman -Qtdq)'   # remove orphaned packages
 
 # get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -244,6 +247,7 @@ alias fgrep='fgrep --color=auto'
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
+alias ln='ln -i'
 
 # adding flags
 alias df='df -h'                          # human-readable sizes
