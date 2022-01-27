@@ -33,7 +33,7 @@ Setting the theme to doom-one. To try out new themes, I set a keybinding for cou
 Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster.
 
 #+begin_src emacs-lisp
-(setq company-idle-delay 0.1)
+(setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
 #+end_src
 

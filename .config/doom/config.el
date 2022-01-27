@@ -2,7 +2,7 @@
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
 
-(setq company-idle-delay 0.1)
+(setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
 
 (use-package emojify
