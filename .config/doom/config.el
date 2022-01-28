@@ -71,6 +71,12 @@
 
 (load "~/.config/doom/email.el")
 
+(setq mu4e-get-mail-command "mbsync -a"
+      ;; get emails and index every 5 minutes
+      mu4e-update-interval 300
+      ;; send emails with format=flowed
+      mu4e-compose-format-flowed t)
+
 (defun my-mu4e-set-account ()
   "Set the account for composing a message."
   (let* ((account

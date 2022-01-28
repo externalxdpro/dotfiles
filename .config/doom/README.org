@@ -138,6 +138,16 @@ I’m sourcing an elisp file (~/.config/doom/email.el) that contains the above s
 (load "~/.config/doom/email.el")
 #+end_src
 
+These are some extra settings for mu4e for convenience.
+
+#+begin_src emacs-lisp
+(setq mu4e-get-mail-command "mbsync -a"
+      ;; get emails and index every 5 minutes
+      mu4e-update-interval 300
+      ;; send emails with format=flowed
+      mu4e-compose-format-flowed t)
+#+end_src
+
 ** Function To Facilitate Switching Between Accounts
 The following function can be used to select an account. This function is then added to mu4e-compose-pre-hook.
 
