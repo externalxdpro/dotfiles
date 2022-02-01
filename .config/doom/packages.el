@@ -52,3 +52,4 @@
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
+(package! omnisharp)
