@@ -296,19 +296,20 @@ myManageHook = composeAll
      -- using 'doShift ( myWorkspaces !! 7)' sends program to workspace 8!
      -- I'm doing it this way because otherwise I would have to write out the full
      -- name of my workspaces and the names would be very long if using clickable workspaces.
-     [ className =? "confirm"         --> doFloat
-     , className =? "file_progress"   --> doFloat
-     , className =? "dialog"          --> doFloat
-     , className =? "download"        --> doFloat
-     , className =? "error"           --> doFloat
-     , className =? "Gimp"            --> doFloat
-     , className =? "notification"    --> doFloat
-     , className =? "pinentry-gtk-2"  --> doFloat
-     , className =? "splash"          --> doFloat
-     , className =? "toolbar"         --> doFloat
-     , className =? "Yad"             --> doCenterFloat
-     , title =? "Oracle VM VirtualBox Manager"  --> doFloat
-     , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
+     [ className =? "confirm"                                   --> doFloat
+     , className =? "file_progress"                             --> doFloat
+     , title =? "File Operation Progress"                       --> doFloat
+     , className =? "dialog"                                    --> doFloat
+     , className =? "download"                                  --> doFloat
+     , className =? "error"                                     --> doFloat
+     , className =? "Gimp"                                      --> doFloat
+     , className =? "notification"                              --> doFloat
+     , className =? "pinentry-gtk-2"                            --> doFloat
+     , className =? "splash"                                    --> doFloat
+     , className =? "toolbar"                                   --> doFloat
+     , className =? "Yad"                                       --> doCenterFloat
+     , title =? "Oracle VM VirtualBox Manager"                  --> doFloat
+     , (className =? "firefox" <&&> resource =? "Dialog")       --> doFloat  -- Float Firefox Dialog
      , isFullscreen -->  doFullFloat
 
      , className =? "Alacritty"                                 --> doShift ( myWorkspaces !! 0 )
