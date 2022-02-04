@@ -1,3 +1,5 @@
+{-# LANGUAGE NoMonomorphismRestriction #-}
+{-# LANGUAGE FlexibleContexts #-}
   -- Base
 import XMonad
 import System.Directory
@@ -272,16 +274,16 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                myDefaultLayout =     withBorder myBorderWidth tall
-                                 ||| magnify
+                                 -- ||| magnify
                                  ||| noBorders monocle
-                                 ||| floats
-                                 ||| noBorders tabs
-                                 ||| grid
-                                 ||| spirals
-                                 ||| threeCol
-                                 ||| threeRow
-                                 ||| tallAccordion
-                                 ||| wideAccordion
+                                 -- ||| floats
+                                 -- ||| noBorders tabs
+                                 -- ||| grid
+                                 -- ||| spirals
+                                 -- ||| threeCol
+                                 -- ||| threeRow
+                                 -- ||| tallAccordion
+                                 -- ||| wideAccordion
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces = [" dev ", " www ", " game ", " doc ", " virt ", " chat ", " mus ", " vid ", " gfx "]

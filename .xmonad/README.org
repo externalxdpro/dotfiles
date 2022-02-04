@@ -28,6 +28,8 @@ ANOTHER BIG NOTE: This config is heavily based on DT's config. You can check him
 These are Haskell modules that we must import so that we can use their functions later in the config.
 
 #+begin_src haskell
+{-# LANGUAGE NoMonomorphismRestriction #-}
+{-# LANGUAGE FlexibleContexts #-}
   -- Base
 import XMonad
 import System.Directory
@@ -325,16 +327,16 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                myDefaultLayout =     withBorder myBorderWidth tall
-                                 ||| magnify
+                                 -- ||| magnify
                                  ||| noBorders monocle
-                                 ||| floats
-                                 ||| noBorders tabs
-                                 ||| grid
-                                 ||| spirals
-                                 ||| threeCol
-                                 ||| threeRow
-                                 ||| tallAccordion
-                                 ||| wideAccordion
+                                 -- ||| floats
+                                 -- ||| noBorders tabs
+                                 -- ||| grid
+                                 -- ||| spirals
+                                 -- ||| threeCol
+                                 -- ||| threeRow
+                                 -- ||| tallAccordion
+                                 -- ||| wideAccordion
 #+end_src
 * Workspaces
 I have made my workspaces in xmobar “clickable.” Clickable workspaces means the mouse can be used to switch workspaces. This requires xdotool to be installed. You need to use UnsafeStdInReader instead of simply StdInReader in your xmobar config so you can pass actions to it.
