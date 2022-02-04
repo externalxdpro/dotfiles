@@ -71,12 +71,6 @@
 
 (load "~/.config/doom/email.el")
 
-(setq mu4e-get-mail-command "mbsync -a"
-      mu4e-update-interval 300         ;; get emails and index every 5 minutes
-      mu4e-compose-format-flowed t     ;; send emails with format=flowed
-      mu4e-index-cleanup nil           ;; don't do a full cleanup check
-      mu4e-index-lazy-check t)         ;; don't consider up-to-date dirs
-
 (defun my-mu4e-set-account ()
   "Set the account for composing a message."
   (let* ((account
@@ -114,6 +108,12 @@
 
 (setq browse-url-browser-function 'browse-url-generic)
 (setq browse-url-generic-program "firefox")
+
+(setq mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbsyncrc -a"
+      mu4e-update-interval 300         ;; get emails and index every 5 minutes
+      mu4e-compose-format-flowed t     ;; send emails with format=flowed
+      mu4e-index-cleanup nil           ;; don't do a full cleanup check
+      mu4e-index-lazy-check t)         ;; don't consider up-to-date dirs
 
 (xterm-mouse-mode 1)
 

@@ -13,6 +13,7 @@
   - [[#function-to-facilitate-switching-between-accounts][Function To Facilitate Switching Between Accounts]]
   - [[#org-msg][Org-Msg]]
   - [[#open-links-in-browser][Open Links in Browser]]
+  - [[#extra-settings][Extra Settings]]
 - [[#mouse-support][Mouse Support]]
 - [[#neotree][Neotree]]
 - [[#org-mode][Org Mode]]
@@ -138,16 +139,6 @@ I’m sourcing an elisp file (~/.config/doom/email.el) that contains the above s
 (load "~/.config/doom/email.el")
 #+end_src
 
-These are some extra settings for mu4e for convenience.
-
-#+begin_src emacs-lisp
-(setq mu4e-get-mail-command "mbsync -a"
-      mu4e-update-interval 300         ;; get emails and index every 5 minutes
-      mu4e-compose-format-flowed t     ;; send emails with format=flowed
-      mu4e-index-cleanup nil           ;; don't do a full cleanup check
-      mu4e-index-lazy-check t)         ;; don't consider up-to-date dirs
-#+end_src
-
 ** Function To Facilitate Switching Between Accounts
 The following function can be used to select an account. This function is then added to mu4e-compose-pre-hook.
 
@@ -199,6 +190,17 @@ This opens any link clicked in emails in the browser specified below.
 #+begin_src emacs-lisp
 (setq browse-url-browser-function 'browse-url-generic)
 (setq browse-url-generic-program "firefox")
+#+end_src
+
+** Extra Settings
+These are some extra settings for mu4e for convenience.
+
+#+begin_src emacs-lisp
+(setq mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbsyncrc -a"
+      mu4e-update-interval 300         ;; get emails and index every 5 minutes
+      mu4e-compose-format-flowed t     ;; send emails with format=flowed
+      mu4e-index-cleanup nil           ;; don't do a full cleanup check
+      mu4e-index-lazy-check t)         ;; don't consider up-to-date dirs
 #+end_src
 
 * Mouse Support
