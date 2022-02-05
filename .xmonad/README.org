@@ -417,7 +417,7 @@ myKeys =
 
         , ("M-e", spawn (myEditor))
 
-        , ("M-S-s", spawn ("dm-maim"))
+        , ("M-S-s", spawn ("maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i"))
 
     -- KB_GROUP Kill windows
         , ("M-S-c", kill1)     -- Kill the currently focused client
