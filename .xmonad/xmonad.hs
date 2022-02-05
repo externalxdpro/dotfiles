@@ -139,37 +139,6 @@ myStartupHook = do
     -- spawn "$HOME/.xmonad/scripts/autostart.sh"
     setWMName "LG3D"
 
-myScratchPads :: [NamedScratchpad]
-myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
-                , NS "mocp" spawnMocp findMocp manageMocp
-                , NS "calculator" spawnCalc findCalc manageCalc
-                ]
-  where
-    spawnTerm  = myTerminal ++ " -t scratchpad"
-    findTerm   = title =? "scratchpad"
-    manageTerm = customFloating $ W.RationalRect l t w h
-               where
-                 h = 0.9
-                 w = 0.9
-                 t = 0.95 -h
-                 l = 0.95 -w
-    spawnMocp  = myTerminal ++ " -t mocp -e mocp"
-    findMocp   = title =? "mocp"
-    manageMocp = customFloating $ W.RationalRect l t w h
-               where
-                 h = 0.9
-                 w = 0.9
-                 t = 0.95 -h
-                 l = 0.95 -w
-    spawnCalc  = "qalculate-gtk"
-    findCalc   = className =? "Qalculate-gtk"
-    manageCalc = customFloating $ W.RationalRect l t w h
-               where
-                 h = 0.5
-                 w = 0.4
-                 t = 0.75 -h
-                 l = 0.70 -w
-
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
@@ -342,7 +311,7 @@ myManageHook = composeAll
      , className =? "vlc"                                       --> doShift ( myWorkspaces !! 7 )
 
      , title =? "GNU Image Manipulation Program"                --> doShift ( myWorkspaces !! 8 )
-     ] <+> namedScratchpadManageHook myScratchPads
+     ]
 
 -- START_KEYS
 myKeys :: [(String, X ())]
@@ -452,14 +421,6 @@ myKeys =
         , ("M-C-.", onGroup W.focusUp')    -- Switch focus to next tab
         , ("M-C-,", onGroup W.focusDown')  -- Switch focus to prev tab
 
-    -- KB_GROUP Scratchpads
-    -- Toggle show/hide these programs.  They run on a hidden workspace.
-    -- When you toggle them to show, it brings them to your current workspace.
-    -- Toggle them to hide and it sends them back to hidden workspace (NSP).
-        , ("M-s t", namedScratchpadAction myScratchPads "terminal")
-        , ("M-s m", namedScratchpadAction myScratchPads "mocp")
-        , ("M-s c", namedScratchpadAction myScratchPads "calculator")
-
     -- KB_GROUP Set wallpaper
     -- Set wallpaper with either 'xwallwaper'. Type 'SUPER+F1' to launch sxiv in the
     -- wallpapers directory; then in sxiv, type 'C-x x' to set the wallpaper that you
@@ -535,7 +496,7 @@ main = do
         , borderWidth        = myBorderWidth
         , normalBorderColor  = myNormColor
         , focusedBorderColor = myFocusColor
-        , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
+        , logHook = dynamicLogWithPP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
               { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
                               >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
