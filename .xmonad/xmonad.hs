@@ -114,7 +114,7 @@ myStartupHook = do
     spawnOnce "/usr/bin/lxpolkit &"
     spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
     spawnOnce "picom &"
-    spawnOnce "/usr/bin/trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
+    spawnOnce "/usr/bin/trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
     spawnOnce "numlockx on &"
     spawnOnce "nm-applet &"
     spawnOnce "volctl &"
