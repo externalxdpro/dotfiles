@@ -121,7 +121,7 @@ local vi_focus         = false -- vi-like client focus https://github.com/lcpz/a
 local cycle_prev       = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 
 -- Personal variables
-local browser          = "firefox"
+local browser          = "librewolf"
 local secondarybrowser = "qutebrowser"
 local editor           = "emacsclient -c -a 'emacs'" or "vim"
 local filemanager      = "thunar"
