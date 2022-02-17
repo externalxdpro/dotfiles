@@ -746,7 +746,7 @@ awful.spawn.with_shell("polychromatic-tray-applet")
 awful.spawn.with_shell("udiskie")
 
 awful.spawn.with_shell("/usr/bin/emacs --daemon")
-awful.spawn.with_shell("rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/")
+awful.spawn.with_shell("rclone --vfs-cache-mode writes mount Notes: $HOME/Notes/")
 
 awful.spawn.with_shell("discord --no-sandbox --start-minimized")
 awful.spawn.with_shell("steam -silent")

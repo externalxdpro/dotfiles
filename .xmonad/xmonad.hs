@@ -81,7 +81,7 @@ myFileManager :: String
 myFileManager = "thunar"  -- Sets pcmanfm as file manager
 
 myBrowser :: String
-myBrowser = "librewolf"  -- Sets librewolf as browser
+myBrowser = "firefox"  -- Sets librewolf as browser
 
 mySecondaryBrowser :: String
 mySecondaryBrowser = "qutebrowser"  -- Sets qutebrowser as secondary browser
@@ -123,7 +123,7 @@ myStartupHook = do
     spawnOnce "udiskie &"
 
     spawnOnce "/usr/bin/emacs --daemon &" -- emacs daemon for the emacsclient
-    spawnOnce "rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/ &"
+    spawnOnce "rclone --vfs-cache-mode writes mount Notes: $HOME/Notes/ &"
 
     spawnOnce "discord --no-sandbox --start-minimized &"
     spawnOnce "steam -silent &"

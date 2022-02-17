@@ -121,7 +121,7 @@ local vi_focus         = false -- vi-like client focus https://github.com/lcpz/a
 local cycle_prev       = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 
 -- Personal variables
-local browser          = "librewolf"
+local browser          = "firefox"
 local secondarybrowser = "qutebrowser"
 local editor           = "emacsclient -c -a 'emacs'" or "vim"
 local filemanager      = "thunar"
@@ -832,7 +832,7 @@ awful.spawn.with_shell("polychromatic-tray-applet")
 awful.spawn.with_shell("udiskie")
 
 awful.spawn.with_shell("/usr/bin/emacs --daemon")
-awful.spawn.with_shell("rclone --vfs-cache-mode writes mount onedrive-home: $HOME/onedrive/")
+awful.spawn.with_shell("rclone --vfs-cache-mode writes mount Notes: $HOME/Notes/")
 
 awful.spawn.with_shell("discord --no-sandbox --start-minimized")
 awful.spawn.with_shell("steam -silent")
