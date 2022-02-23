@@ -321,7 +321,7 @@ myKeys =
         , ("M-r", spawn "xmonad --restart")    -- Restarts xmonad
         -- , ("M-x", io exitSuccess)               -- Quits xmonad
         -- , ("M-x", spawn "arcolinux-logout")        -- Displays logout menu (You can install this from the AUR)
-        , ("M-x", spawn "dm-logout")
+        , ("M-x", spawn "arcolinux-logout")
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
