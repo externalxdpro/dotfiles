@@ -81,7 +81,7 @@ myFileManager :: String
 myFileManager = "thunar"  -- Sets pcmanfm as file manager
 
 myBrowser :: String
-myBrowser = "firefox"  -- Sets librewolf as browser
+myBrowser = "brave"  -- Sets brave as browser
 
 mySecondaryBrowser :: String
 mySecondaryBrowser = "qutebrowser"  -- Sets qutebrowser as secondary browser
