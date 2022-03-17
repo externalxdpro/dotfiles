@@ -547,6 +547,7 @@ These are the contents of the *packages.el* file.
 #+end_src
 
 #+begin_src emacs-lisp :tangle packages.el
+(package! dashboard)
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
