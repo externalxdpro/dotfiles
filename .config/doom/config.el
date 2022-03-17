@@ -128,6 +128,6 @@
 (map! :leader
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 (after! org
-  (setq org-directory "~/onedrive/Notes/"
+  (setq org-directory "~/Notes/"
         org-agenda-files '("~/Notes/agenda.org")
         org-log-done 'time))
