@@ -68,9 +68,11 @@ List of keybindings (SPC h b b)")
 
 *** Dashboard in Emacsclient
 This setting ensures that emacsclient always opens on *dashboard* rather than *scratch*.
+
 #+begin_src emacs-lisp :tangle config.el
 (setq doom-fallback-buffer "*dashboard*")
 #+end_src
+
 ** Doom Theme
 Setting the theme to doom-one. To try out new themes, I set a keybinding for counsel-load-theme with 'SPC h t'.
 
