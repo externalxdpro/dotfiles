@@ -595,5 +595,4 @@ These are the contents of the *packages.el* file.
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
-(package! omnisharp)
 #+end_src
