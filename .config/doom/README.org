@@ -3,9 +3,9 @@
 * Table of Contents :toc:
 - [[#about][About]]
 - [[#config][Config]]
+  - [[#company][Company]]
   - [[#dashboard][Dashboard]]
   - [[#doom-theme][Doom Theme]]
-  - [[#company][Company]]
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
   - [[#line-settings][Line Settings]]
@@ -35,6 +35,14 @@ This is my personal Doom Emacs config. Doom Emacs is a distribution of Emacs tha
 
 * Config
 These are the contents of the *config.el* file.
+
+** Company
+Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster.
+
+#+begin_src emacs-lisp :tangle config.el
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
+#+end_src
 
 ** Dashboard
 Emacs Dashboard is an extensible startup screen showing you recent files, bookmarks, agenda items and an Emacs banner.
@@ -80,14 +88,6 @@ Setting the theme to doom-one. To try out new themes, I set a keybinding for cou
 (setq doom-theme 'doom-one)
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
-#+end_src
-
-** Company
-Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster.
-
-#+begin_src emacs-lisp :tangle config.el
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 1)
 #+end_src
 
 ** Emojis

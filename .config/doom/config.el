@@ -1,3 +1,6 @@
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
+
 (use-package dashboard
   :init      ;; tweak dashboard config before loading it
   (setq dashboard-set-heading-icons t)
@@ -27,9 +30,6 @@ List of keybindings (SPC h b b)")
 (setq doom-theme 'doom-one)
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
-
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 1)
 
 (use-package emojify
   :hook (after-init . global-emojify-mode))
