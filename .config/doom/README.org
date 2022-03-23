@@ -6,6 +6,7 @@
   - [[#company][Company]]
   - [[#dashboard][Dashboard]]
   - [[#doom-theme][Doom Theme]]
+  - [[#elcord][Elcord]]
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
   - [[#line-settings][Line Settings]]
@@ -90,6 +91,11 @@ Setting the theme to doom-one. To try out new themes, I set a keybinding for cou
       :desc "Load new theme" "h t" #'counsel-load-theme)
 #+end_src
 
+** Elcord
+
+#+begin_src emacs-lisp :tangle config.el
+(elcord-mode)
+#+end_src
 ** Emojis
 Emojify is an Emacs extension to display emojis. It can display github style emojis like :smile: or plain ascii ones like :).
 
