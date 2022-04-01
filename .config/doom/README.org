@@ -5,6 +5,7 @@
 - [[#config][Config]]
   - [[#company][Company]]
   - [[#dashboard][Dashboard]]
+  - [[#debug-adapter-protocol][Debug Adapter Protocol]]
   - [[#doom-theme][Doom Theme]]
   - [[#elcord][Elcord]]
   - [[#emojis][Emojis]]
@@ -80,6 +81,13 @@ This setting ensures that emacsclient always opens on *dashboard* rather than *s
 
 #+begin_src emacs-lisp :tangle config.el
 (setq doom-fallback-buffer "*dashboard*")
+#+end_src
+
+** Debug Adapter Protocol
+These are settings for the Debug Adapter Protocol also known as dap-mode that works with LSP to create a seamless IDE experience
+#+begin_src emacs-lisp :tangle config.el
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy))
 #+end_src
 
 ** Doom Theme
@@ -415,7 +423,7 @@ These are the contents of the *init.el* file.
 #+begin_src emacs-lisp :tangle init.el
        :tools
        ;;ansible
-       debugger          ; FIXME stepping through code, to help you add bugs
+       (debugger +lsp)          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;;docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces

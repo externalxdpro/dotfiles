@@ -27,6 +27,9 @@ List of keybindings (SPC h b b)")
 
 (setq doom-fallback-buffer "*dashboard*")
 
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy))
+
 (setq doom-theme 'doom-one)
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
