@@ -22,4 +22,4 @@ _darcs
 
 
 # Custom ignores
-bin
+.bin
