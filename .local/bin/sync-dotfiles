@@ -7,9 +7,8 @@ BLUE='\033[1;34m'
 RED='\033[1;30m'
 NC='\033[0m'
 
-# Navigate to the directory of this script (generally ~/.dotfiles/.bin)
-cd $(dirname $(readlink -f $0))
-cd ..
+# Navigate to the parent directory of this script (generally ~/.dotfiles)
+cd ~/.dotfiles
 
 echo -e "${BLUE}Stashing existing changes...${NC}"
 stash_result=$(git stash push -m "sync-dotfiles: Before syncing dotfiles")
