@@ -568,7 +568,7 @@ main = do
                                -- This works perfect on SINGLE monitor systems. On multi-monitor systems,
                                -- it adds a border around the window if screen does not have focus. So, my solution
                                -- is to use a keybinding to toggle fullscreen noborders instead.  (M-<Space>)
-                               -- <+> fullscreenEventHook
+                               <+> fullscreenEventHook
         , modMask            = myModMask
         , terminal           = myTerminal
         , startupHook        = myStartupHook
