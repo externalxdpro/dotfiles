@@ -370,6 +370,31 @@ myManageHook = composeAll
 * Keybindings
 I am using the Xmonad.Util.EZConfig module which allows keybindings to be written in simpler, emacs-like format.  The Super/Windows key is ‘M’ (the modkey).  The ALT key is ‘M1’.  SHIFT is ‘S’ and CTRL is ‘C’.
 
+| KEYBINDING          | ACTION                                                         |
+|---------------------+----------------------------------------------------------------|
+| SUPER + RETURN      | /opens terminal/                                               |
+| SUPER + P           | /opens run launcher (dmenu)/                                   |
+| SUPER + TAB         | /rotates through the available layouts/                        |
+| SUPER + SPACE       | /toggles fullscreen on/off (useful for watching videos)/       |
+| SUPER + SHIFT + c   | /closes window with focus/                                     |
+| SUPER + r           | /restarts xmonad/                                              |
+| SUPER + SHIFT + r   | /recompiles and restarts xmonad/                               |
+| SUPER + x           | /opens logout menu/                                            |
+| SUPER + 1-9         | /switch focus to workspace (1-9)/                              |
+| SUPER + SHIFT + 1-9 | /send focused window to workspace (1-9)/                       |
+| SUPER + j           | /windows focus down (switches focus between windows in stack)/ |
+| SUPER + k           | /windows focus up (switches focus between windows in stack)/   |
+| SUPER + SHIFT + j   | /windows swap down (swap windows in the stack)/                |
+| SUPER + SHIFT + k   | /windows swap up (swap the windows in the stack)/              |
+| SUPER + h           | /shrink window (decreases window width)/                       |
+| SUPER + l           | /expand window (increases window width)/                       |
+| SUPER + w           | /opens browser/                                                |
+| SUPER + e           | /opens emacs/                                                  |
+| SUPER + period      | /switch focus to next monitor/                                 |
+| SUPER + comma       | /switch focus to prev monitor/                                 |
+| SUPER + SPACE       | /toggles fullscreen on/off (useful for watching videos)/       |
+| SUPER + t           | /force floating window back into tiling/                       |
+
 #+begin_src haskell
 -- START_KEYS
 myKeys :: [(String, X ())]
