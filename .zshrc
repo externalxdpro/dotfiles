@@ -26,7 +26,7 @@ SAVEHIST=1000
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-zstyle :compinstall filename '/home/sakib/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 setopt globdots
 
 ### CURSOR
