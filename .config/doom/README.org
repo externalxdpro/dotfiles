@@ -51,6 +51,7 @@ Company is used for auto-completion in Emacs. It supports almost every programmi
 Emacs Dashboard is an extensible startup screen showing you recent files, bookmarks, agenda items and an Emacs banner.
 
 *** Configuring Dashboard
+
 #+begin_src emacs-lisp :tangle config.el
 (use-package dashboard
   :init      ;; tweak dashboard config before loading it
@@ -86,6 +87,7 @@ This setting ensures that emacsclient always opens on *dashboard* rather than *s
 
 ** Debug Adapter Protocol
 These are settings for the Debug Adapter Protocol also known as dap-mode that works with LSP to create a seamless IDE experience
+
 #+begin_src emacs-lisp :tangle config.el
 (after! dap-mode
   (setq dap-python-debugger 'debugpy))
@@ -105,6 +107,7 @@ Setting the theme to doom-one. To try out new themes, I set a keybinding for cou
 #+begin_src emacs-lisp :tangle config.el
 (elcord-mode)
 #+end_src
+
 ** Emojis
 Emojify is an Emacs extension to display emojis. It can display github style emojis like :smile: or plain ascii ones like :).
 
@@ -359,6 +362,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Input
+
 #+begin_src emacs-lisp :tangle init.el
 (doom! :input
        ;;chinese
@@ -367,6 +371,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Completion
+
 #+begin_src emacs-lisp :tangle init.el
        :completion
        company           ; the ultimate code completion backend
@@ -377,6 +382,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** UI
+
 #+begin_src emacs-lisp :tangle init.el
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -405,6 +411,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Editor
+
 #+begin_src emacs-lisp :tangle init.el
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -422,6 +429,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Emacs
+
 #+begin_src emacs-lisp :tangle init.el
        :emacs
        dired             ; making dired pretty [functional]
@@ -432,6 +440,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Term
+
 #+begin_src emacs-lisp :tangle init.el
        :term
        eshell            ; the elisp shell that works everywhere
@@ -449,6 +458,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Tools
+
 #+begin_src emacs-lisp :tangle init.el
        :tools
        ;;ansible
@@ -474,6 +484,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** OS
+
 #+begin_src emacs-lisp :tangle init.el
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
@@ -481,6 +492,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Lang
+
 #+begin_src emacs-lisp :tangle init.el
        :lang
        ;;agda              ; types of types of types of types...
@@ -546,6 +558,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Email
+
 #+begin_src emacs-lisp :tangle init.el
        :email
        (mu4e +org +gmail)
@@ -554,6 +567,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** App
+
 #+begin_src emacs-lisp :tangle init.el
        :app
        ;;calendar
@@ -565,6 +579,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Config
+
 #+begin_src emacs-lisp :tangle init.el
        :config
        ;;literate
