@@ -11,6 +11,7 @@
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
   - [[#line-settings][Line Settings]]
+  - [[#minimap][Minimap]]
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
   - [[#neotree][Neotree]]
@@ -145,6 +146,19 @@ I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comm
        :desc "Toggle line highlight in frame" "h" #'hl-line-mode
        :desc "Toggle line highlight globally" "H" #'global-hl-line-mode
        :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
+#+end_src
+
+** Minimap
+A minimap sidebar displaying a smaller version of the current buffer on either the left or right side. It highlights the currently shown region and updates its position automatically.  Be aware that this minimap program does not work in Org documents.  This is not unusual though because I have tried several minimap programs and none of them can handle Org.
+
+| COMMAND      | DESCRIPTION           | KEYBINDING |
+| minimap-mode | /Toggle minimap mode/ | SPC t m    |
+
+#+begin_src emacs-lisp :tangle config.el
+(setq minimap-window-location 'right)
+(map! :leader
+      (:prefix ("t" . "toggle")
+       :desc "toggle minimap-mode" "m" #'minimap-mode))
 #+end_src
 
 ** MU4E
@@ -603,4 +617,5 @@ These are the contents of the *packages.el* file.
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
+(package! minimap)
 #+end_src

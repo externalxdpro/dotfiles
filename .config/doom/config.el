@@ -56,6 +56,11 @@ List of keybindings (SPC h b b)")
        :desc "Toggle line highlight globally" "H" #'global-hl-line-mode
        :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
 
+(setq minimap-window-location 'right)
+(map! :leader
+      (:prefix ("t" . "toggle")
+       :desc "toggle minimap-mode" "m" #'minimap-mode))
+
 ;; (defvar my-mu4e-account-alist
 ;;   '(("acc1-domain"
 ;;      (mu4e-sent-folder "/acc1-domain/Sent")
