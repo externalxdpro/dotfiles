@@ -152,6 +152,7 @@ I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comm
 A minimap sidebar displaying a smaller version of the current buffer on either the left or right side. It highlights the currently shown region and updates its position automatically.  Be aware that this minimap program does not work in Org documents.  This is not unusual though because I have tried several minimap programs and none of them can handle Org.
 
 | Command      | Description           | Keybinding |
+|--------------+-----------------------+------------|
 | minimap-mode | /Toggle minimap mode/ | SPC t m    |
 
 #+begin_src emacs-lisp :tangle config.el
