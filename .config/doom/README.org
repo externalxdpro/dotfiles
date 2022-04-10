@@ -6,6 +6,7 @@
   - [[#company][Company]]
   - [[#dashboard][Dashboard]]
   - [[#debug-adapter-protocol][Debug Adapter Protocol]]
+  - [[#dired][Dired]]
   - [[#doom-theme][Doom Theme]]
   - [[#elcord][Elcord]]
   - [[#emojis][Emojis]]
@@ -91,6 +92,79 @@ These are settings for the Debug Adapter Protocol also known as dap-mode that wo
 #+begin_src emacs-lisp :tangle config.el
 (after! dap-mode
   (setq dap-python-debugger 'debugpy))
+#+end_src
+
+** Dired
+Dired is the file manager within Emacs.  Below, I setup keybindings for image previews (peep-dired).  Doom Emacs does not use 'SPC d' for any of its keybindings, so I've chosen the format of 'SPC d' plus 'key'.
+
+| Command                 | Description                                 | Keybinding |
+|-------------------------+---------------------------------------------+------------|
+| dired                   | /Open dired file manager/                     | SPC d d    |
+| dired-jump              | /Jump to current directory in dired/          | SPC d j    |
+| dired-view-file         | /View file in dired/                          | SPC d v    |
+| dired-up-directory      | /Go up in directory tree/                     | h          |
+| dired-find-file         | /Go down in directory tree (or open if file)/ | l          |
+| dired-next-line         | /Move down to next line/                      | j          |
+| dired-previous-line     | /Move up to previous line/                    | k          |
+| dired-mark              | /Mark file at point/                          | m          |
+| dired-unmark            | /Unmark file at point/                        | u          |
+| dired-do-copy           | /Copy current file or marked files/           | C          |
+| dired-do-rename         | /Rename current file or marked files/         | R          |
+| dired-hide-details      | /Toggle detailed listings on/off/             | (          |
+| dired-git-info-mode     | /Toggle git information on/off/               | )          |
+| dired-create-directory  | /Create new empty directory/                  | +          |
+| dired-diff              | /Compare file at point with another/          | =          |
+| dired-subtree-toggle    | /Toggle viewing subtree at point/             | TAB        |
+| dired-mark-files-regexp | /Mark files using regex/                      | % m        |
+| dired-do-copy-regexp    | /Copy files using regex/                      | % C        |
+| dired-do-rename-regexp  | /Rename files using regex/                    | % R        |
+| dired-mark-files-regexp | /Mark all files using regex/                  | * %        |
+| dired-do-chgrp          | /Change the group of marked files/            | g G        |
+| dired-do-chmod          | /Change the mode of marked files/             | M          |
+| dired-do-chown          | /Change the owner of marked files/            | O          |
+| dired-do-rename         | /Rename file or all marked files/             | R          |
+
+#+begin_src emacs-lisp :tangle config.el
+(map! :leader
+      (:prefix ("d" . "dired")
+       :desc "Open dired" "d" #'dired
+       :desc "Dired jump to current" "j" #'dired-jump)
+      (:after dired
+       (:map dired-mode-map
+        :desc "Peep-dired image previews" "d p" #'peep-dired
+        :desc "Dired view file" "d v" #'dired-view-file)))
+
+(evil-define-key 'normal dired-mode-map
+  (kbd "M-RET") 'dired-display-file
+  (kbd "h") 'dired-up-directory
+  (kbd "l") 'dired-open-file ; use dired-find-file instead of dired-open.
+  (kbd "m") 'dired-mark
+  (kbd "t") 'dired-toggle-marks
+  (kbd "u") 'dired-unmark
+  (kbd "C") 'dired-do-copy
+  (kbd "D") 'dired-do-delete
+  (kbd "J") 'dired-goto-file
+  (kbd "M") 'dired-do-chmod
+  (kbd "O") 'dired-do-chown
+  (kbd "P") 'dired-do-print
+  (kbd "R") 'dired-do-rename
+  (kbd "T") 'dired-do-touch
+  (kbd "Y") 'dired-copy-filenamecopy-filename-as-kill ; copies filename to kill ring.
+  (kbd "+") 'dired-create-directory
+  (kbd "-") 'dired-up-directory
+  (kbd "% l") 'dired-downcase
+  (kbd "% u") 'dired-upcase
+  (kbd "; d") 'epa-dired-do-decrypt
+  (kbd "; e") 'epa-dired-do-encrypt)
+;; Get file icons in dired
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+;; With dired-open plugin, you can launch external programs for certain extensions
+;; For example, I set all .png files to open in 'nsxiv' and all .mp4 files to open in 'mpv'
+(setq dired-open-extensions '(("gif" . "nsxiv")
+                              ("jpg" . "nsxiv")
+                              ("png" . "nsxiv")
+                              ("mkv" . "mpv")
+                              ("mp4" . "mpv")))
 #+end_src
 
 ** Doom Theme
@@ -432,7 +506,7 @@ These are the contents of the *init.el* file.
 
 #+begin_src emacs-lisp :tangle init.el
        :emacs
-       dired             ; making dired pretty [functional]
+       (dired +icons)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        ;;ibuffer         ; interactive buffer management
        undo              ; persistent, smarter undo for your inevitable mistakes
