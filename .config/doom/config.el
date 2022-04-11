@@ -88,6 +88,16 @@ List of keybindings (SPC h b b)")
        :desc "Eww web browser" "w" #'eww
        :desc "Eww reload page" "R" #'eww-reload))
 
+(setq doom-font (font-spec :family "Fira Code" :size 15)
+      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+      doom-big-font (font-spec :family "Fira Code" :size 24))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
+
 (setq display-line-numbers-type t)
 (map! :leader
       :desc "Comment or uncomment lines" "TAB TAB" #'comment-line

@@ -11,6 +11,7 @@
   - [[#elcord][Elcord]]
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
+  - [[#fonts][Fonts]]
   - [[#line-settings][Line Settings]]
   - [[#minimap][Minimap]]
   - [[#mu4e][MU4E]]
@@ -203,11 +204,25 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
        :desc "Eww reload page" "R" #'eww-reload))
 #+end_src
 
+** Fonts
+
+#+begin_src emacs-lisp :tangle config.el
+(setq doom-font (font-spec :family "Fira Code" :size 15)
+      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+      doom-big-font (font-spec :family "Fira Code" :size 24))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
+#+end_src
+
 ** Line Settings
 I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comment-line is ‘C-x C-;’.  The other keybindings are for commands that toggle on/off various line-related settings.  Doom Emacs uses ‘SPC t’ for “toggle” commands, so I choose ‘SPC t’ plus ‘key’ for those bindings.
 
-| Command                  | Description                                | Keybinding  |
-|--------------------------+--------------------------------------------+-------------|
+| Command                  | Description                              | Keybinding  |
+|--------------------------+------------------------------------------+-------------|
 | comment-line             | /Comment or uncomment lines/               | SPC TAB TAB |
 | hl-line-mode             | /Toggle line higlighting in current frame/ | SPC t h     |
 | global-hl-line-mode      | /Toggle line highlighting globally/        | SPC t H     |
@@ -228,8 +243,8 @@ I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comm
 ** Minimap
 A minimap sidebar displaying a smaller version of the current buffer on either the left or right side. It highlights the currently shown region and updates its position automatically.  Be aware that this minimap program does not work in Org documents.  This is not unusual though because I have tried several minimap programs and none of them can handle Org.
 
-| Command      | Description           | Keybinding |
-|--------------+-----------------------+------------|
+| Command      | Description         | Keybinding |
+|--------------+---------------------+------------|
 | minimap-mode | /Toggle minimap mode/ | SPC t m    |
 
 #+begin_src emacs-lisp :tangle config.el
@@ -370,8 +385,8 @@ Adding mouse support in the terminal version of Emacs.
 ** Neotree
 Neotree is a file tree viewer.  When you open neotree, it jumps to the current file thanks to neo-smart-open.  The neo-window-fixed-size setting makes the neotree width be adjustable.  Doom Emacs had no keybindings set for neotree.  Since Doom Emacs uses ‘SPC t’ for ‘toggle’ keybindings, I used ‘SPC t n’ for toggle-neotree.
 
-| Command        | Description                 | Keybinding |
-|----------------+-----------------------------+------------|
+| Command        | Description               | Keybinding |
+|----------------+---------------------------+------------|
 | neotree-toggle | /Toggle neotree/            | SPC t n    |
 | neotree-dir    | /Open directory in neotree/ | SPC d n    |
 
@@ -467,7 +482,7 @@ These are the contents of the *init.el* file.
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        ;;indent-guides     ; highlighted indent columns
-       (ligatures +extras)         ; ligatures and symbols to make your code pretty again
+       (ligatures +fira)         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
