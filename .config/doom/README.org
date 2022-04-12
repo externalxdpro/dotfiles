@@ -12,6 +12,7 @@
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
   - [[#fonts][Fonts]]
+  - [[#ligatures][Ligatures]]
   - [[#line-settings][Line Settings]]
   - [[#minimap][Minimap]]
   - [[#mu4e][MU4E]]
@@ -216,6 +217,12 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+#+end_src
+
+** Ligatures
+
+#+begin_src emacs-lisp :tangle config.el
+(setq global-prettify-symbols-mode t)
 #+end_src
 
 ** Line Settings
