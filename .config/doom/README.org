@@ -14,7 +14,6 @@
   - [[#fonts][Fonts]]
   - [[#ligatures][Ligatures]]
   - [[#line-settings][Line Settings]]
-  - [[#minimap][Minimap]]
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
   - [[#neotree][Neotree]]
@@ -247,20 +246,6 @@ I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comm
        :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
 #+end_src
 
-** Minimap
-A minimap sidebar displaying a smaller version of the current buffer on either the left or right side. It highlights the currently shown region and updates its position automatically.  Be aware that this minimap program does not work in Org documents.  This is not unusual though because I have tried several minimap programs and none of them can handle Org.
-
-| Command      | Description         | Keybinding |
-|--------------+---------------------+------------|
-| minimap-mode | /Toggle minimap mode/ | SPC t m    |
-
-#+begin_src emacs-lisp :tangle config.el
-(setq minimap-window-location 'right)
-(map! :leader
-      (:prefix ("t" . "toggle")
-       :desc "toggle minimap-mode" "m" #'minimap-mode))
-#+end_src
-
 ** MU4E
 Setting up mu4e which is an email client that works within emacs.  You must install mu4e and mbsync through your Linux distribution’s package manager. Setting up smtp for sending mail. Make sure the gnutls command line utils are installed. Package ‘gnutls-bin’ in Debian/Ubuntu, and ‘gnutls’ in Arch.
 
@@ -490,7 +475,7 @@ These are the contents of the *init.el* file.
        ;;hydra
        ;;indent-guides     ; highlighted indent columns
        (ligatures +fira)         ; ligatures and symbols to make your code pretty again
-       ;;minimap           ; show a map of the code on the side
+       minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
        neotree           ; a project drawer, like NERDTree for vim
@@ -743,5 +728,4 @@ These are the contents of the *packages.el* file.
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
-(package! minimap)
 #+end_src
