@@ -200,15 +200,6 @@ List of keybindings (SPC h b b)")
 
 (xterm-mouse-mode 1)
 
-(after! neotree
-  (setq neo-smart-open t
-        neo-window-fixed-size nil))
-(after! doom-themes
-  (setq doom-neotree-enable-variable-pitch t))
-(map! :leader
-      :desc "Toggle neotree file viewer" "t n" #'neotree-toggle
-      :desc "Open directory in neotree" "d n" #'neotree-dir)
-
 (map! :leader
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 (after! org
