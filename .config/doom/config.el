@@ -98,8 +98,6 @@ List of keybindings (SPC h b b)")
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 
-(setq global-prettify-symbols-mode t)
-
 (setq display-line-numbers-type t)
 (map! :leader
       :desc "Comment or uncomment lines" "TAB TAB" #'comment-line

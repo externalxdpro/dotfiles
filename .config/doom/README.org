@@ -12,7 +12,6 @@
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
   - [[#fonts][Fonts]]
-  - [[#ligatures][Ligatures]]
   - [[#line-settings][Line Settings]]
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
@@ -215,12 +214,6 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
-#+end_src
-
-** Ligatures
-
-#+begin_src emacs-lisp :tangle config.el
-(setq global-prettify-symbols-mode t)
 #+end_src
 
 ** Line Settings
@@ -454,7 +447,7 @@ These are the contents of the *init.el* file.
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        indent-guides     ; highlighted indent columns
-       (ligatures +fira)         ; ligatures and symbols to make your code pretty again
+       ligatures         ; ligatures and symbols to make your code pretty again
        minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        ;;nav-flash         ; blink cursor line after big motions
