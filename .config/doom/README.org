@@ -16,6 +16,7 @@
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
   - [[#org-mode][Org Mode]]
+  - [[#open-links-in-browser][Open Links in Browser]]
 - [[#init][Init]]
   - [[#information][Information]]
   - [[#input][Input]]
@@ -341,14 +342,6 @@ This extension makes it possible to use org mode when composing emails in mu4e.
 (org-msg-mode)
 #+end_src
 
-*** Open Links in Browser
-This opens any link clicked in emails in the browser specified below.
-
-#+begin_src emacs-lisp :tangle config.el
-(setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "firefox")
-#+end_src
-
 *** Extra Settings
 These are some extra settings for mu4e for convenience.
 
@@ -390,6 +383,14 @@ You can set the Org heading levels to be different font sizes.  So I choose to h
   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
 )
+#+end_src
+
+** Open Links in Browser
+This opens any link clicked in emacs in the browser specified below.
+
+#+begin_src emacs-lisp :tangle config.el
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "firefox")
 #+end_src
 
 * Init

@@ -188,9 +188,6 @@ List of keybindings (SPC h b b)")
    #+end_signature")
 (org-msg-mode)
 
-(setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "firefox")
-
 (setq mu4e-update-interval 300         ;; get emails and index every 5 minutes
       mu4e-compose-format-flowed t     ;; send emails with format=flowed
       mu4e-index-cleanup nil           ;; don't do a full cleanup check
@@ -213,3 +210,6 @@ List of keybindings (SPC h b b)")
   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
 )
+
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "firefox")
