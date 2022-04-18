@@ -195,6 +195,9 @@ List of keybindings (SPC h b b)")
 
 (xterm-mouse-mode 1)
 
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "firefox")
+
 (map! :leader
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 (after! org
@@ -210,6 +213,3 @@ List of keybindings (SPC h b b)")
   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
 )
-
-(setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "firefox")
