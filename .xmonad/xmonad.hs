@@ -120,6 +120,7 @@ myStartupHook = do
     spawnOnce "volctl &"
     spawnOnce "blueman-applet &"
     spawnOnce "udiskie &"
+    spawnOnce "dex -a -s .config/autostart &"
 
     -- uncomment to restore last saved wallpaper
     -- spawnOnce "xargs xwallpaper --stretch < ~/.xwallpaper"
