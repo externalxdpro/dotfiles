@@ -296,6 +296,7 @@ myManageHook = composeAll
      , title =? "Virtual Machine Manager"                       --> doShift ( myWorkspaces !! 4 )
 
      , className =? "discord"                                   --> doShift ( myWorkspaces !! 5 )
+     , className =? "Ferdi"                                     --> doShift ( myWorkspaces !! 5 )
 
      , className =? "Spotify"                                   --> doShift ( myWorkspaces !! 6 )
 
