@@ -179,7 +179,7 @@ Setting the theme to doom-one. To try out new themes, I set a keybinding for cou
 ** Elcord
 
 #+begin_src emacs-lisp :tangle config.el
-(elcord-mode)
+;; (elcord-mode)
 #+end_src
 
 ** Emojis

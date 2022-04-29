@@ -75,7 +75,7 @@ List of keybindings (SPC h b b)")
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
 
-(elcord-mode)
+;; (elcord-mode)
 
 (use-package emojify
   :hook (after-init . global-emojify-mode))
