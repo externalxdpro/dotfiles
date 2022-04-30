@@ -25,7 +25,7 @@ List of keybindings (SPC h b b)")
   (dashboard-modify-heading-icons '((recents . "file-text")
                                     (bookmarks . "book"))))
 
-(setq doom-fallback-buffer "*dashboard*")
+(setq doom-fallback-buffer-name "*dashboard*")
 
 (after! dap-mode
   (setq dap-python-debugger 'debugpy))

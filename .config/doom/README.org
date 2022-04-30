@@ -83,7 +83,7 @@ List of keybindings (SPC h b b)")
 This setting ensures that emacsclient always opens on *dashboard* rather than *scratch*.
 
 #+begin_src emacs-lisp :tangle config.el
-(setq doom-fallback-buffer "*dashboard*")
+(setq doom-fallback-buffer-name "*dashboard*")
 #+end_src
 
 ** Debug Adapter Protocol
