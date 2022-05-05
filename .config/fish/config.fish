@@ -228,7 +228,7 @@ alias l.='exa -a | egrep "^\."'
 # pacman and paru
 alias pacin='paru -S --skipreview --needed'        # Install software using paru
 alias pacrm='paru -Runs'                           # Remove software and dependancies using paru
-alias pacup='paru -Syyu --noconfirm'               # Update all pkgs using paru
+alias pacup='paru -Syyu'                           # Update all pkgs using paru
 alias unlock='sudo rm /var/lib/pacman/db.lck'      # remove pacman lock
 alias cleanup='sudo pacman -Runs (pacman -Qtdq)'   # remove orphaned packages
 
