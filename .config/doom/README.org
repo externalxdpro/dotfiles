@@ -508,7 +508,7 @@ These are the contents of the *init.el* file.
 #+begin_src emacs-lisp :tangle init.el
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       ;;(spell +flyspell) ; tasing you for misspelling mispelling
+       (spell +everywhere +flyspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 #+end_src
 
