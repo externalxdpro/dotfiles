@@ -213,6 +213,31 @@ default_border none
 # Set window gaps
 gaps inner 8
 
+# Window rules
+assign [app_id="Alacritty"]                 dev
+assign [class="Emacs"]                      dev
+
+assign [class="firefox"]                    www
+
+assign [app_id="chiaki"]                    game
+assign [class="GeForce NOW"]                game
+assign [app_id="lutris"]                    game
+assign [class="Steam"]                      game
+
+assign [app_id="libreoffice-startcenter"]   doc
+
+assign [app_id="virt-manager"]              virt
+
+assign [class="discord"]                    chat
+
+assign [class="Spotify"]                    mus
+
+assign [app_id="mpv"]                       vid
+assign [app_id="com.obsproject.Studio"]     vid
+assign [class="vlc"]                        vid
+
+assign [class="Gimp"]                       gfx
+
 ### Autostart
 exec nm-applet
 exec volctl
