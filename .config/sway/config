@@ -8,8 +8,10 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Preferred terminal emulator
+# Preferred applications
 set $term alacritty
+set $browser firefox
+set $editor emacsclient -c -a 'emacs'
 # Preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -130,9 +132,9 @@ input type:pointer {
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    #bindsym $mod+s layout stacking
+    #bindsym $mod+w layout tabbed
+    #bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+space fullscreen
@@ -145,7 +147,6 @@ input type:pointer {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-
 
 # Scratchpad:
     # Sway has a "scratchpad", which is a bag of holding for windows.
@@ -180,6 +181,10 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# Applications
+bindsym $mod+w exec $browser
+bindsym $mod+e exec $editor
 
 # Status Bar:
 # Read `man 5 sway-bar` for more information about this section.
