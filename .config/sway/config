@@ -257,8 +257,5 @@ assign [class="vlc"]                        vid
 assign [class="Gimp"]                       gfx
 
 ### Autostart
-exec nm-applet
-exec volctl
-exec blueman-applet
+exec dunst
 exec dex -a -s .config/autostart
-
