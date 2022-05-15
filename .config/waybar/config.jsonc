@@ -15,7 +15,7 @@
     //"height": 30,
     "position": "top",
 
-    "modules-left": ["custom/menu", "sway/workspaces", "custom/scratchpad"],
+    "modules-left": ["sway/workspaces", "custom/scratchpad"],
     "modules-center": ["custom/wf-recorder", "sway/mode", "custom/weather"],
     "modules-right": [
         // informational
@@ -26,7 +26,6 @@
         "cpu",
         "memory",
         "battery",
-        "temperature",
 
         // connecting
         "network",
