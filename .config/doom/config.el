@@ -3,8 +3,11 @@
 
 (with-eval-after-load 'company
     (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+    (define-key company-active-map (kbd "TAB") 'company-complete-selection)
     (define-key company-active-map (kbd "RET") nil)
-    (define-key company-active-map (kbd "TAB") nil))
+    (define-key company-active-map (kbd "<return>") nil)
+    (define-key company-active-map (kbd "SPC") (lambda () (interactive) (company-complete-selection) (insert 32)))
+    (define-key company-active-map (kbd ";") (lambda () (interactive) (company-complete-selection) (insert 59))))
 
 (use-package dashboard
   :init      ;; tweak dashboard config before loading it
