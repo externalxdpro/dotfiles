@@ -223,7 +223,7 @@ bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ 
 
 bar {
     id default
-    swaybar_command /home/sakib/.config/sway/scripts/waybar.sh
+    swaybar_command .config/sway/scripts/waybar.sh
     position top
 }
 
