@@ -95,8 +95,7 @@
         "format-ethernet": "",
         "format-disconnected": "睊",
         "tooltip-format": "{ifname} ({essid}): {ipaddr}",
-        "on-click": "swaymsg -- exec \\$term -e nmtui",
-        "on-click": "swaymsg -- exec \\$term -e nm-connection-editor"
+        "on-click": "swaymsg -- exec nm-connection-editor"
     },
 
     "sway/mode": {
