@@ -4,6 +4,8 @@
 include /etc/sway/config.d/*
 include $HOME/.config/sway/config.d/*.conf
 ### Variables
+# Set environment variables
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
