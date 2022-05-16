@@ -267,7 +267,7 @@
         "tooltip": true,
         "interval": 3600,
         // accepts a location as an argument (in quotes)
-        "exec": "/usr/share/sway/scripts/weather.py",
+        "exec": "$HOME/.config/sway/scripts/weather.py",
         "return-type": "json",
         "format-icons": {
             "Unknown": "",
