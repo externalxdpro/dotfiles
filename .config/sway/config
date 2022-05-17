@@ -238,29 +238,30 @@ default_border none
 gaps inner 10
 
 # Window rules
-assign [app_id="Alacritty"]                 dev
-assign [class="Emacs"]                      dev
+assign [app_id="Alacritty"]                     dev
+assign [class="Emacs"]                          dev
 
-assign [class="firefox"]                    www
+assign [class="firefox"]                        www
+assign [app_id="org.qutebrowser.qutebrowser"]   www
 
-assign [app_id="chiaki"]                    game
-assign [class="GeForce NOW"]                game
-assign [app_id="lutris"]                    game
-assign [class="Steam"]                      game
+assign [app_id="chiaki"]                        game
+assign [class="GeForce NOW"]                    game
+assign [app_id="lutris"]                        game
+assign [class="Steam"]                          game
 
-assign [app_id="libreoffice-startcenter"]   doc
+assign [app_id="libreoffice-startcenter"]       doc
 
-assign [app_id="virt-manager"]              virt
+assign [app_id="virt-manager"]                  virt
 
-assign [class="discord"]                    chat
+assign [class="discord"]                        chat
 
-assign [class="Spotify"]                    mus
+assign [class="Spotify"]                        mus
 
-assign [app_id="mpv"]                       vid
-assign [app_id="com.obsproject.Studio"]     vid
-assign [class="vlc"]                        vid
+assign [app_id="mpv"]                           vid
+assign [app_id="com.obsproject.Studio"]         vid
+assign [class="vlc"]                            vid
 
-assign [class="Gimp"]                       gfx
+assign [class="Gimp"]                           gfx
 
 ### Autostart
 exec dunst
