@@ -16,7 +16,9 @@ set $right l
 # Preferred applications
 set $term alacritty
 set $browser firefox
+set $secondBrowser qutebrowser
 set $editor emacsclient -c -a 'emacs'
+set $fileManager thunar
 # Preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -197,7 +199,9 @@ bindsym $mod+r mode "resize"
 
 # Applications
 bindsym $mod+w exec $browser
+bindsym $mod+Shift+w exec $secondBrowser
 bindsym $mod+e exec $editor
+bindsym $mod+Shift+Return exec $fileManager
 
 # Multimedia
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
