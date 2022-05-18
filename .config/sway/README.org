@@ -1,6 +1,41 @@
+#+title: Sway Config
+#+property: header-args :tangle config
+
+* Table of Contents :toc:
+- [[#about][About]]
+- [[#includes][Includes]]
+- [[#variables][Variables]]
+- [[#output][Output]]
+  - [[#wallpaper][Wallpaper]]
+  - [[#displays][Displays]]
+- [[#idle][Idle]]
+- [[#input][Input]]
+- [[#keybindings][Keybindings]]
+  - [[#basics][Basics]]
+  - [[#moving-around][Moving around]]
+  - [[#workspaces][Workspaces]]
+  - [[#layout-stuff][Layout stuff]]
+  - [[#scratchpad][Scratchpad]]
+  - [[#resizing-containers][Resizing containers]]
+  - [[#applications][Applications]]
+  - [[#multimedia][Multimedia]]
+- [[#status-bar][Status Bar]]
+- [[#window-settings][Window Settings]]
+  - [[#window-rules][Window rules]]
+- [[#autostart][Autostart]]
+
+* About
+Sway is a tiling window manager made to be a drop in replacement for i3 but for Wayland. This is my sway config.
+
+* Includes
+Include some other sway config directories
+#+begin_src conf
 include /etc/sway/config.d/*
 include $HOME/.config/sway/config.d/*.conf
+#+end_src
 
+* Variables
+#+begin_src conf
 # Set environment variables
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 # Logo key. Use Mod1 for Alt.
@@ -28,15 +63,27 @@ set $volume_up $(pactl set-sink-volume @DEFAULT_SINK@ +5% && $sink_volume)
 set $volume_mute $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | sed -En "/no/ s/.*/$($sink_volume)/p; /yes/s/.*/0/p")
 set $mic_mute $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
 set $pulseaudio $term -e pulsemixer
+#+end_src
 
+* Output
+** Wallpaper
+#+begin_src conf
 # Example configuration
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#+end_src
 
+** Displays
+#+begin_src conf
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 output DP-1 resolution 1920x1080 position 1920,0
 output eDP-1 resolution 1920x1080 position 0,800
 focus output DP-1
+#+end_src
 
+* Idle
+This is a configuration for your display to automatically lock your screen and go to sleep. I have this disabled because it can sometimes make your screen turn off in the middle of a video, if you haven't touched the mouse in a while.
+
+#+begin_src conf
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -45,7 +92,12 @@ focus output DP-1
 #         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
 #         before-sleep 'swaylock -f -c 000000' \
 #         before-sleep 'playerctl pause'
+#+end_src
 
+* Input
+NOTE: You can get the names of your inputs by running: swaymsg -t get_inputs (Read `man 5 sway-input` for more information about this section.)
+
+#+begin_src conf
 input type:pointer {
     accel_profile flat
     dwt disabled
@@ -54,7 +106,11 @@ input type:pointer {
     pointer_accel 0
     tap enabled
 }
+#+end_src
 
+* Keybindings
+** Basics
+#+begin_src conf
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -77,7 +133,10 @@ input type:pointer {
     # Exit sway (logs you out of your Wayland session)
     #bindsym $mod+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
     bindsym $mod+x exec arcolinux-logout
+#+end_src
 
+** Moving around
+#+begin_src conf
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -99,7 +158,11 @@ input type:pointer {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+#+end_src
 
+** Workspaces
+NOTE: workspaces can have any name you want, not just numbers. 1-10 is just used as the default.
+#+begin_src conf
     # Switch to workspace
     bindsym $mod+1 [workspace="dev"] move workspace to output current; workspace dev
     bindsym $mod+2 [workspace="www"] move workspace to output current; workspace www
@@ -120,7 +183,10 @@ input type:pointer {
     bindsym $mod+Shift+7 move container to workspace mus
     bindsym $mod+Shift+8 move container to workspace vid
     bindsym $mod+Shift+9 move container to workspace gfx
+#+end_src
 
+** Layout stuff
+#+begin_src conf
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
@@ -143,14 +209,21 @@ input type:pointer {
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+#+end_src
 
+** Scratchpad
+Sway has a "scratchpad", which is a bag of holding for windows. You can send windows there and get them back later.
+#+begin_src conf
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+#+end_src
 
+** Resizing containers
+#+begin_src conf
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -172,16 +245,26 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+#+end_src
 
+** Applications
+#+begin_src conf
 bindsym $mod+w exec $browser
 bindsym $mod+Shift+w exec $secondBrowser
 bindsym $mod+e exec $editor
 bindsym $mod+Shift+Return exec $fileManager
+#+end_src
 
+** Multimedia
+#+begin_src conf
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+#+end_src
 
+* Status Bar
+Read `man 5 sway-bar` for more information about this section.
+#+begin_src conf
 # Default status bar
 #bar {
 #    position top
@@ -202,12 +285,17 @@ bar {
     swaybar_command .config/sway/scripts/waybar.sh
     position top
 }
-
+#+end_src
+* Window Settings
+#+begin_src conf
 # Disable titlebar
 default_border none
 # Set window gaps
 gaps inner 10
+#+end_src
 
+** Window rules
+#+begin_src conf
 assign [app_id="Alacritty"]                     dev
 assign [class="Emacs"]                          dev
 
@@ -232,6 +320,11 @@ assign [app_id="com.obsproject.Studio"]         vid
 assign [class="vlc"]                            vid
 
 assign [class="Gimp"]                           gfx
+#+end_src
 
+* Autostart
+These are some programs I want to start automatically on the window manager's startup
+#+begin_src conf
 exec dunst
 exec dex -a -s .config/autostart
+#+end_src
