@@ -19,22 +19,16 @@
     "modules-center": ["custom/wf-recorder", "sway/mode", "custom/weather"],
     "modules-right": [
         // informational
-        "sway/language",
-        "custom/github",
-        "custom/clipboard",
-        "custom/zeit",
         "cpu",
         "memory",
         "battery",
 
         // connecting
         "network",
-        "bluetooth",
 
         // media
         "custom/playerctl",
         "pulseaudio",
-        "backlight",
 
         // system
         "custom/sunset",
