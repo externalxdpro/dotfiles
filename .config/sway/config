@@ -236,3 +236,4 @@ assign [class="Gimp"]                           gfx
 
 exec dunst
 exec dex -a -s .config/autostart
+exec blueman-applet
