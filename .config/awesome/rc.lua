@@ -353,7 +353,7 @@ globalkeys = mytable.join(
 
     awful.key({ modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey }, "x", function() awful.util.spawn("arcolinux-logout") end,
+    awful.key({ modkey }, "x", function() awful.util.spawn("archlinux-logout") end,
               {description = "open logout menu", group = "awesome"}),
 
     awful.key({ modkey, altkey    }, "l",     function () awful.tag.incmwfact( 0.05)          end,
