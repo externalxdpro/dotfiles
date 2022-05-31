@@ -3,7 +3,8 @@
 
 (with-eval-after-load 'company
     (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
-    (define-key company-active-map (kbd "<return>") nil))
+    (define-key company-active-map (kbd "RET") nil)
+    (define-key company-active-map (kbd "TAB") nil))
 
 (use-package dashboard
   :init      ;; tweak dashboard config before loading it
