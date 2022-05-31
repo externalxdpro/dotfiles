@@ -41,11 +41,15 @@ This is my personal Doom Emacs config. Doom Emacs is a distribution of Emacs tha
 These are the contents of the *config.el* file.
 
 ** Company
-Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster.
+Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster and to change keybindings.
 
 #+begin_src emacs-lisp :tangle config.el
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
+
+(with-eval-after-load 'company
+    (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+    (define-key company-active-map (kbd "<return>") nil))
 #+end_src
 
 ** Dashboard
