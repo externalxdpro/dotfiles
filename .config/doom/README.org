@@ -16,6 +16,7 @@
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
   - [[#open-links-in-browser][Open Links in Browser]]
+  - [[#org-auto-tangle][Org Auto Tangle]]
   - [[#org-mode][Org Mode]]
 - [[#init][Init]]
   - [[#information][Information]]
@@ -379,6 +380,14 @@ This opens any link clicked in emacs in the browser specified below.
 (setq browse-url-generic-program "firefox")
 #+end_src
 
+** Org Auto Tangle
+#+begin_src emacs-lisp :tangle config.el
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+#+end_src
 ** Org Mode
 I wrapped most of this block in (after! org).  Without this, my settings might be evaluated too early, which will result in my settings being overwritten by Doom’s defaults.
 
@@ -714,4 +723,5 @@ These are the contents of the *packages.el* file.
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
+(package! org-auto-tangle)
 #+end_src
