@@ -243,6 +243,7 @@ assign [class="vlc"]                            vid
 
 assign [class="Gimp"]                           gfx
 
-exec dunst
+exec dunst -conf $HOME/.config/dunst/swayrc
 exec dex -a -s .config/autostart
 exec blueman-applet
+exec lxpolkit

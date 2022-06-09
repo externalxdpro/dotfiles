@@ -335,7 +335,8 @@ assign [class="Gimp"]                           gfx
 * Autostart
 These are some programs I want to start automatically on the window manager's startup
 #+begin_src conf
-exec dunst
+exec dunst -conf $HOME/.config/dunst/swayrc
 exec dex -a -s .config/autostart
 exec blueman-applet
+exec lxpolkit
 #+end_src
