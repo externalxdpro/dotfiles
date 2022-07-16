@@ -206,7 +206,7 @@ List of keybindings (SPC h b b)")
 (xterm-mouse-mode 1)
 
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "firefox")
+(setq browse-url-generic-program "brave")
 
 (use-package! org-auto-tangle
   :defer t

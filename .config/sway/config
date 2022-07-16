@@ -12,7 +12,7 @@ set $up k
 set $right l
 # Preferred applications
 set $term alacritty
-set $browser firefox
+set $browser brave
 set $secondBrowser qutebrowser
 set $editor emacsclient -c -a 'emacs'
 set $fileManager thunar

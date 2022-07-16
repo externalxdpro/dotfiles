@@ -375,7 +375,7 @@ This opens any link clicked in emacs in the browser specified below.
 
 #+begin_src emacs-lisp :tangle config.el
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program "firefox")
+(setq browse-url-generic-program "brave")
 #+end_src
 
 ** Org Auto Tangle
