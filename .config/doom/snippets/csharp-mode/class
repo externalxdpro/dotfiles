@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: class ... { ... }
+# key: class
+# uuid: class
+# --
+class ${1:Name}
+{
+    $0
+}

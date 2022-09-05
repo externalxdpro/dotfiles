@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: namespace .. { ... }
+# key: namespace
+# uuid: namespace
+# --
+namespace $1
+{
+    $0
+}
