@@ -98,7 +98,8 @@ These are settings for the Debug Adapter Protocol also known as dap-mode that wo
 
 #+begin_src emacs-lisp :tangle config.el
 (after! dap-mode
-  (setq dap-python-debugger 'debugpy))
+  (setq dap-python-debugger 'debugpy)
+  (require 'dap-netcore))
 #+end_src
 
 ** Dired

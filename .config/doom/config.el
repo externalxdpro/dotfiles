@@ -34,7 +34,8 @@ List of keybindings (SPC h b b)")
 (setq doom-fallback-buffer-name "*dashboard*")
 
 (after! dap-mode
-  (setq dap-python-debugger 'debugpy))
+  (setq dap-python-debugger 'debugpy)
+  (require 'dap-netcore))
 
 (map! :leader
       (:prefix ("d" . "dired")
