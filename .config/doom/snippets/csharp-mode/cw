@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: cw
+# key: cw
+# uuid: cw
+# --
+Console.WriteLine($0)
