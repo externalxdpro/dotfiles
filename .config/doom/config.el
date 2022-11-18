@@ -38,7 +38,8 @@ List of keybindings (SPC h b b)")
 
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
-  (require 'dap-netcore))
+  (require 'dap-netcore)
+  (require 'dap-cpptools))
 
 (map! :leader
       (:prefix ("d" . "dired")
