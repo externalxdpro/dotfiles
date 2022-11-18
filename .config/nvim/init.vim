@@ -1,8 +1,7 @@
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/nvim/autoload')
 
-Plug 'https://github.com/itchyny/lightline.vim'		" Lightline statusbar
-Plug 'https://github.com/preservim/nerdtree'		" Nerd Tree (Filesystem tree)
-Plug 'https://github.com/neoclide/coc.nvim'			" Autocompletion
+Plug 'itchyny/lightline.vim'	" Lightline statusbar
+Plug 'preservim/nerdtree'		" Nerd Tree (Filesystem tree)
 
 call plug#end()
 
@@ -22,7 +21,5 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1		"Show hidden files and directories in Nerd Tree
 " Set lightline theme
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'one',
       \ }
-
-inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
