@@ -1,5 +1,6 @@
-call plug#begin('~/.config/nvim/autoload')
+call plug#begin('~/.config/nvim/plugged/')
 
+Plug 'joshdick/onedark.vim'     " Onedark theme
 Plug 'itchyny/lightline.vim'	" Lightline statusbar
 Plug 'preservim/nerdtree'		" Nerd Tree (Filesystem tree)
 
@@ -16,10 +17,13 @@ set smarttab
 set mouse=a						" Enable mouse functionality
 set clipboard=unnamedplus       " Copy/paste between vim and other programs.
 
+syntax on
+colorscheme onedark
+
 " autocmd vimenter * NERDTree   " Uncomment to autostart Nerd Tree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1		"Show hidden files and directories in Nerd Tree
 " Set lightline theme
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'onedark',
       \ }
