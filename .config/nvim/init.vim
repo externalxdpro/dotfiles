@@ -18,12 +18,31 @@ set mouse=a						" Enable mouse functionality
 set clipboard=unnamedplus       " Copy/paste between vim and other programs.
 
 syntax on
-colorscheme onedark
 
 " autocmd vimenter * NERDTree   " Uncomment to autostart Nerd Tree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1		"Show hidden files and directories in Nerd Tree
+
 " Set lightline theme
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ }
+        \ 'colorscheme': 'wombat',
+		\ 'component': {
+		\   'lineinfo': ' %3l:%-2v',
+		\ },
+		\ 'component_function': {
+		\   'readonly': 'LightlineReadonly',
+		\   'fugitive': 'LightlineFugitive'
+		\ },
+		\ 'separator': { 'left': '', 'right': '' },
+		\ 'subseparator': { 'left': '', 'right': '' }
+		\ }
+	function! LightlineReadonly()
+		return &readonly ? '' : ''
+	endfunction
+	function! LightlineFugitive()
+		if exists('*fugitive#head')
+			let branch = fugitive#head()
+			return branch !=# '' ? ''.branch : ''
+		endif
+		return ''
+	endfunction
