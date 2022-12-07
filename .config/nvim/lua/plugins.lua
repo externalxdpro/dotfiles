@@ -50,7 +50,7 @@ return packer.startup(function(use)
     -- File Management
     use {
         'francoiscabrol/ranger.vim',    -- Have to install on system e.g. sudo pacman -S ranger
-        requires = { 'rbgrouleff/bclose.vim'}
+        requires = { 'rbgrouleff/bclose.vim', opt = true, cmd = { 'Bclose', 'Bclose!' } }
     }
     use 'preservim/nerdtree'
 
