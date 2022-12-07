@@ -18,6 +18,13 @@ map('n', '<leader>wh', '<C-w>h')
 map('n', '<leader>wj', '<C-w>j')
 map('n', '<leader>wk', '<C-w>k')
 map('n', '<leader>wl', '<C-w>l')
+map('n', '<leader>ws', '<CMD>split<CR>')
+map('n', '<leader>wv', '<CMD>vsplit<CR>')
+map('n', '<leader>w+', '<CMD>resize -2<CR>')
+map('n', '<leader>w-', '<CMD>resize +2<CR>')
+map('n', '<leader>w<', '<CMD>vertical resize -2<CR>')
+map('n', '<leader>w>', '<CMD>vertical resize +2<CR>')
+map('n', '<leader>wc', '<CMD>q<CR>')
 
 -- Other
 map('v', 'p', '"_dP')
