@@ -7,7 +7,7 @@ end
 -- Buffers
 map('n', '<leader>bn', '<CMD>bnext<CR>')
 map('n', '<leader>bp', '<CMD>bprevious<CR>')
-map('n', '<leader>bk', '<CMD>Bclose<CR>')
+map('n', '<leader>bk', '<CMD>bdelete<CR>')
 
 -- Indent
 map('v', '<', '<gv')
@@ -24,7 +24,7 @@ map('v', 'p', '"_dP')
 
 -- Plugins
 -- Vimagit
-map('n', '<leader>gg', '<CMD>Magit<CR>')
+map('n', '<leader>gg', '<CMD>LazyGit<CR>')
 
 -- Ranger
 map('n', '<leader>od', '<CMD>Ranger<CR>')

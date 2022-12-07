@@ -39,7 +39,7 @@ return packer.startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Productivity
-    use 'jreybert/vimagit'
+    use 'kdheepak/lazygit.nvim'
     use 'airblade/vim-gitgutter'
 
     use {
