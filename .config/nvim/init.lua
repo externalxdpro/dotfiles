@@ -1,4 +1,4 @@
-require("ext.settings")
-require("ext.keybinds")
-require("ext.plugins")
-require("ext.colourschemes")
+require("settings")
+require("keybinds")
+require("plugins")
+require("colourschemes")

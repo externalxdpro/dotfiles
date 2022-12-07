@@ -76,10 +76,15 @@ o.splitbelow = true
 -- o.foldlevelstart = 99
 -- o.foldnestmax = 3
 -- o.foldminlines = 1
---
+
 opt.mouse = "a"
 
 -- Map <leader> to space
 g.mapleader = " "
 g.maplocalleader = " "
+
+-- Ranger
+g.ranger_map_keys = 0
+g.NERDTreeHijackNetrw = 0
+g.ranger_replace_netrw = 1
 

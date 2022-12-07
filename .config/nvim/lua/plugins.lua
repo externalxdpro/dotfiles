@@ -24,14 +24,23 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Productivity
-    use 'preservim/nerdtree'
+    use 'jreybert/vimagit'
+    use 'airblade/vim-gitgutter'
+
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
+    -- File Management
+    use {
+        'francoiscabrol/ranger.vim',    -- Have to install on system e.g. sudo pacman -S ranger
+        requires = { 'rbgrouleff/bclose.vim'}
+    }
+    use 'preservim/nerdtree'
+
     -- Colour schemes
-    use("RRethy/nvim-base16")
+    use 'RRethy/nvim-base16'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
