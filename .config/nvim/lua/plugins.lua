@@ -61,11 +61,16 @@ return packer.startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'      -- Snippet completions
 
     -- Snippets
-    use 'L3MON4D3/LuaSnip'              -- snippet engine
-    use 'rafamadriz/friendly-snippets'  -- a bunch of snippets to use
+    use 'L3MON4D3/LuaSnip'              -- Snippet engine
+    use 'rafamadriz/friendly-snippets'  -- A bunch of snippets to use
+
+    -- Telescope
+    use 'nvim-telescope/telescope.nvim' -- Fuzzy finder
 
     -- Colour schemes
     use 'RRethy/nvim-base16'
+
+    use 'nvim-lua/plenary.nvim'         -- Useful lua functions used by lots of plugins
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

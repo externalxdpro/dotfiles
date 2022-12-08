@@ -39,3 +39,6 @@ map('n', '<leader>od', '<CMD>Ranger<CR>')
 
 -- Nerd Tree
 map('n', '<leader>op', '<CMD>NERDTreeToggle<CR>')
+
+-- Telescope
+map('n', '<leader>pf', '<CMD>Telescope find_files<CR>')
