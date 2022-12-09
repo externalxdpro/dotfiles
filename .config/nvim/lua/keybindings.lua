@@ -27,15 +27,20 @@ map('n', '<leader>wc', '<CMD>q<CR>')
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
--- Other
-map('v', 'p', '"_dP')
+-- Text Manipulation
+map('v', '<A-j>', ':m .+1<CR>==')
+map('v', '<A-k>', ':m .-2<CR>==')
+map('x', '<A-j>', ':move \'>+1<CR>gv-gv')
+map('x', '<A-k>', ':move \'<-2<CR>gv-gv')
+map('v', 'p', '"_dP')       -- Prevent auto-yank when pasting
 
 -- Plugins
 -- LazyGit
 map('n', '<leader>gg', '<CMD>LazyGit<CR>')
 
 -- Ranger
-map('n', '<leader>od', '<CMD>Ranger<CR>')
+map('n', '<leader>o-', '<CMD>Ranger<CR>')
+map('n', '<leader>dd', '<CMD>Ranger<CR>')
 
 -- Nerd Tree
 map('n', '<leader>op', '<CMD>NERDTreeToggle<CR>')
