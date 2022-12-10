@@ -38,18 +38,21 @@ packer.init({
 return packer.startup(function(use)
     use 'wbthomason/packer.nvim'
 
+    use 'nvim-lua/plenary.nvim'         -- Useful lua functions used by lots of plugins
+
     -- Productivity
     use 'kdheepak/lazygit.nvim'
     use 'airblade/vim-gitgutter'
-
+    use 'nvim-orgmode/orgmode'
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+    use 'windwp/nvim-autopairs'         -- Autopairs, integrates with both cmp and treesitter
 
     -- File Management
     use {
-        'francoiscabrol/ranger.vim',    -- Have to install on system e.g. sudo pacman -S ranger
+        'francoiscabrol/ranger.vim',    -- Have to install on system as well e.g. sudo pacman -S ranger
         requires = { 'rbgrouleff/bclose.vim', opt = true, cmd = { 'Bclose', 'Bclose!' } }
     }
     use 'preservim/nerdtree'
@@ -67,10 +70,14 @@ return packer.startup(function(use)
     -- Telescope
     use 'nvim-telescope/telescope.nvim' -- Fuzzy finder
 
+    -- Treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
+
     -- Colour schemes
     use 'RRethy/nvim-base16'
-
-    use 'nvim-lua/plenary.nvim'         -- Useful lua functions used by lots of plugins
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
