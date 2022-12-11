@@ -42,7 +42,7 @@ return packer.startup(function(use)
 
     -- Productivity
     use 'kdheepak/lazygit.nvim'
-    use 'airblade/vim-gitgutter'
+    use 'lewis6991/gitsigns.nvim'
     use 'nvim-orgmode/orgmode'
     use {
         'nvim-lualine/lualine.nvim',
