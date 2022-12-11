@@ -49,6 +49,7 @@ return packer.startup(function(use)
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
     use 'windwp/nvim-autopairs'         -- Autopairs, integrates with both cmp and treesitter
+    use 'numToStr/Comment.nvim'
 
     -- File Management
     use {
