@@ -27,7 +27,9 @@ function fish_user_key_bindings
   # fish_default_key_bindings
   fish_vi_key_bindings
 end
-### END OF VI MODE ###
+
+# Change keybinding for word by word backspace
+bind -Minsert \b 'backward-kill-path-component'
 
 ### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
 set fish_color_normal brcyan
