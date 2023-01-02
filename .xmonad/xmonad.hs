@@ -321,11 +321,11 @@ myKeys =
 
     -- KB_GROUP Run Prompt
         -- , ("M-p", spawn "rofi -modi combi -combi-modi window,run,drun,ssh -show combi -opacity 70 -show-icons") -- Rofi
-        , ("M-p", spawn "dmenu_run -h 24 -i -p \"Run: \"") -- Dmenu
+        , ("M-<Space>", spawn "dmenu_run -h 24 -i -p \"Run: \"") -- Dmenu
 
     -- KB_GROUP Password Prompt
         -- , ("M-S-p", spawn "rofi-pass") -- Rofi Pass addon
-        , ("M-S-p", spawn "passmenu") -- Dmenu Pass addon
+        , ("M-p", spawn "passmenu") -- Dmenu Pass addon
     -- KB_GROUP Other Dmenu Prompts
     -- Read how to install these at https://gitlab.com/dwt1/dmscripts
         {-
@@ -367,7 +367,7 @@ myKeys =
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
 
     -- KB_GROUP Floating windows
-        , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
+        -- , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
         , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile
         , ("M-S-t", sinkAll)                       -- Push ALL floating windows to tile
 
@@ -390,7 +390,7 @@ myKeys =
 
     -- KB_GROUP Layouts
         , ("M-<Tab>", sendMessage NextLayout)           -- Switch to next layout
-        , ("M-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+        , ("M-f", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
 
     -- KB_GROUP Increase/decrease windows in the master pane or the stack
         , ("M-S-<Up>", sendMessage (IncMasterN 1))      -- Increase # of clients master pane

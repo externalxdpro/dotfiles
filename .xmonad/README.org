@@ -365,30 +365,29 @@ myManageHook = composeAll
 * Keybindings
 I am using the Xmonad.Util.EZConfig module which allows keybindings to be written in simpler, emacs-like format.  The Super/Windows key is ‘M’ (the modkey).  The ALT key is ‘M1’.  SHIFT is ‘S’ and CTRL is ‘C’.
 
-| KEYBINDING          | ACTION                                                         |
-|---------------------+----------------------------------------------------------------|
+| KEYBINDING          | ACTION                                                       |
+|---------------------+--------------------------------------------------------------|
 | SUPER + RETURN      | /opens terminal/                                               |
-| SUPER + P           | /opens run launcher (dmenu)/                                   |
+| SUPER + SPACE       | /opens run launcher (dmenu)/                                   |
 | SUPER + TAB         | /rotates through the available layouts/                        |
-| SUPER + SPACE       | /toggles fullscreen on/off (useful for watching videos)/       |
-| SUPER + SHIFT + c   | /closes window with focus/                                     |
-| SUPER + r           | /restarts xmonad/                                              |
-| SUPER + SHIFT + r   | /recompiles and restarts xmonad/                               |
-| SUPER + x           | /opens logout menu/                                            |
+| SUPER + F           | /toggles fullscreen on/off (useful for watching videos)/       |
+| SUPER + SHIFT + C   | /closes window with focus/                                     |
+| SUPER + R           | /restarts xmonad/                                              |
+| SUPER + SHIFT + R   | /recompiles and restarts xmonad/                               |
+| SUPER + X           | /opens logout menu/                                            |
 | SUPER + 1-9         | /switch focus to workspace (1-9)/                              |
 | SUPER + SHIFT + 1-9 | /send focused window to workspace (1-9)/                       |
-| SUPER + j           | /windows focus down (switches focus between windows in stack)/ |
-| SUPER + k           | /windows focus up (switches focus between windows in stack)/   |
-| SUPER + SHIFT + j   | /windows swap down (swap windows in the stack)/                |
-| SUPER + SHIFT + k   | /windows swap up (swap the windows in the stack)/              |
-| SUPER + h           | /shrink window (decreases window width)/                       |
-| SUPER + l           | /expand window (increases window width)/                       |
-| SUPER + w           | /opens browser/                                                |
-| SUPER + e           | /opens emacs/                                                  |
-| SUPER + period      | /switch focus to next monitor/                                 |
-| SUPER + comma       | /switch focus to prev monitor/                                 |
-| SUPER + SPACE       | /toggles fullscreen on/off (useful for watching videos)/       |
-| SUPER + t           | /force floating window back into tiling/                       |
+| SUPER + J           | /windows focus down (switches focus between windows in stack)/ |
+| SUPER + K           | /windows focus up (switches focus between windows in stack)/   |
+| SUPER + SHIFT + J   | /windows swap down (swap windows in the stack)/                |
+| SUPER + SHIFT + K   | /windows swap up (swap the windows in the stack)/              |
+| SUPER + H           | /shrink window (decreases window width)/                       |
+| SUPER + K           | /expand window (increases window width)/                       |
+| SUPER + W           | /opens browser/                                                |
+| SUPER + E           | /opens emacs/                                                  |
+| SUPER + PERIOD      | /switch focus to next monitor/                                 |
+| SUPER + COMMA       | /switch focus to prev monitor/                                 |
+| SUPER + T           | /force floating window back into tiling/                       |
 
 #+begin_src haskell
 -- START_KEYS
@@ -404,11 +403,11 @@ myKeys =
 
     -- KB_GROUP Run Prompt
         -- , ("M-p", spawn "rofi -modi combi -combi-modi window,run,drun,ssh -show combi -opacity 70 -show-icons") -- Rofi
-        , ("M-p", spawn "dmenu_run -h 24 -i -p \"Run: \"") -- Dmenu
+        , ("M-<Space>", spawn "dmenu_run -h 24 -i -p \"Run: \"") -- Dmenu
 
     -- KB_GROUP Password Prompt
         -- , ("M-S-p", spawn "rofi-pass") -- Rofi Pass addon
-        , ("M-S-p", spawn "passmenu") -- Dmenu Pass addon
+        , ("M-p", spawn "passmenu") -- Dmenu Pass addon
     -- KB_GROUP Other Dmenu Prompts
     -- Read how to install these at https://gitlab.com/dwt1/dmscripts
         {-
@@ -450,7 +449,7 @@ myKeys =
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
 
     -- KB_GROUP Floating windows
-        , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
+        -- , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
         , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile
         , ("M-S-t", sinkAll)                       -- Push ALL floating windows to tile
 
@@ -473,7 +472,7 @@ myKeys =
 
     -- KB_GROUP Layouts
         , ("M-<Tab>", sendMessage NextLayout)           -- Switch to next layout
-        , ("M-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+        , ("M-f", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
 
     -- KB_GROUP Increase/decrease windows in the master pane or the stack
         , ("M-S-<Up>", sendMessage (IncMasterN 1))      -- Increase # of clients master pane
