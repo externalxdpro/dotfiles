@@ -324,8 +324,8 @@ myKeys =
         -- , ("M-<Space>", spawn "dmenu_run -h 24 -i -p \"Run: \"") -- Dmenu
 
     -- KB_GROUP Password Prompt
-        -- , ("M-S-p", spawn "rofi-pass") -- Rofi Pass addon
-        , ("M-p", spawn "passmenu") -- Dmenu Pass addon
+        , ("M-p", spawn "rofi-pass") -- Rofi Pass addon
+        -- , ("M-p", spawn "passmenu") -- Dmenu Pass addon
     -- KB_GROUP Other Dmenu Prompts
     -- Read how to install these at https://gitlab.com/dwt1/dmscripts
         {-
