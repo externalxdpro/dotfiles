@@ -1,0 +1,3 @@
+#! /bin/bash
+
+playerctl metadata title | sed 's/\(.\{50\}\).*/\1.../'

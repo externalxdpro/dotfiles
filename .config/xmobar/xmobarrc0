@@ -25,7 +25,7 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:h
                         -- Echos a "play" icon in front of media output
                     Run Com "echo" ["<fn=2>\xf144</fn>"] "play" 36000
                         -- Get current media
-                    , Run Com "playerctl" ["metadata", "title"] "media" 100
+                    , Run Com ".local/bin/media" [] "media" 100
                         -- Echos a "penguin" icon in front of the kernel output.
                     , Run Com "echo" ["<fn=3>\xf17c</fn>"] "penguin" 3600
                         -- Get kernel version (script found in .local/bin)
@@ -49,7 +49,7 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:h
                         -- Battery
                     , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
                         -- Time and date
-                    , Run Date "<fn=2>\xf017</fn>  %D - (%H:%M %P) " "date" 50
+                    , Run Date "<fn=2>\xf017</fn>  %D - (%I:%M %P) " "date" 50
                         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
                         -- Prints out the left side items such as workspaces, layout, etc.
