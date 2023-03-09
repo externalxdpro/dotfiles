@@ -2,10 +2,10 @@
 -- Dependencies: otf-font-awesome ttf-mononoki ttf-ubuntu-font-family trayer
 -- Also depends on scripts from dtos-local-bin from the dtos-core-repo.
 
-Config { font            = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
-       , additionalFonts = [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
-                           , "xft:Font Awesome 5 Free Solid:pixelsize=12"
-                           , "xft:Font Awesome 5 Brands:pixelsize=12"
+Config { font            = "Ubuntu Bold 9"
+       , additionalFonts = [ "Mononoki 11"
+                           , "Font Awesome 6 Free Solid 12"
+                           , "Font Awesome 6 Brands 12"
                            ]
        , bgColor      = "#282c34"
        , fgColor      = "#ff6c6b"
@@ -14,7 +14,8 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:h
        --   an integer for the percentage width, so 100 would be 100%.
        --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
        --   NOTE: The height should be the same as the trayer (system tray) height.
-       , position       = TopSize L 100 24
+       -- , position       = TopSize L 100 24
+       , position = Static { xpos = 1935 , ypos = 15, width = 1890, height = 24 }
        , lowerOnStart = True
        , hideOnStart  = False
        , allDesktops  = True
