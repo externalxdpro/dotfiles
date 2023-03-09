@@ -53,4 +53,5 @@
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
+(package! mu4e)
 (package! org-auto-tangle)
