@@ -1,3 +1,13 @@
+(add-hook 'c++-mode-hook
+  (lambda ()
+    (unless (or (file-exists-p "makefile")
+                (file-exists-p "Makefile"))
+      (setq-local compile-command
+        (if buffer-file-name
+          (concat "g++ -g " (shell-quote-argument buffer-file-name) " -o " (shell-quote-argument (file-name-sans-extension buffer-file-name)) ".exe")
+          ("g++ -g")
+          )))))
+
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
 

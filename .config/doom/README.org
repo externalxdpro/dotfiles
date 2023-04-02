@@ -3,6 +3,7 @@
 * Table of Contents :toc:
 - [[#about][About]]
 - [[#config][Config]]
+  - [[#c][C++]]
   - [[#company][Company]]
   - [[#dashboard][Dashboard]]
   - [[#debug-adapter-protocol][Debug Adapter Protocol]]
@@ -40,6 +41,22 @@ This is my personal Doom Emacs config. Doom Emacs is a distribution of Emacs tha
 
 * Config
 These are the contents of the *config.el* file.
+
+** C++
+Some extra settings to auto-set compile commands for C++.
+(Also will need to install ccls, gdb, and mono to have everything working correctly)
+
+#+begin_src emacs-lisp :tangle config.el
+(add-hook 'c++-mode-hook
+  (lambda ()
+    (unless (or (file-exists-p "makefile")
+                (file-exists-p "Makefile"))
+      (setq-local compile-command
+        (if buffer-file-name
+          (concat "g++ -g " (shell-quote-argument buffer-file-name) " -o " (shell-quote-argument (file-name-sans-extension buffer-file-name)) ".exe")
+          ("g++ -g")
+          )))))
+#+end_src
 
 ** Company
 Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster and to change keybindings.
