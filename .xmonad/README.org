@@ -116,7 +116,7 @@ myFileManager :: String
 myFileManager = "thunar"  -- Sets default file manager
 
 myBrowser :: String
-myBrowser = "brave"  -- Sets default browser
+myBrowser = "firefox"  -- Sets default browser
 
 mySecondaryBrowser :: String
 mySecondaryBrowser = "qutebrowser"  -- Sets qutebrowser as secondary browser
