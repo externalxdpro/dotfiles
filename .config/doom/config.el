@@ -4,7 +4,7 @@
                 (file-exists-p "Makefile"))
       (setq-local compile-command
         (if buffer-file-name
-          (concat "g++ -g " (shell-quote-argument buffer-file-name) " -o " (shell-quote-argument (file-name-sans-extension buffer-file-name)) ".exe")
+          (concat "g++ -g " (shell-quote-argument buffer-file-name) " -o " (shell-quote-argument (file-name-sans-extension buffer-file-name)))
           ("g++ -g")
           )))))
 
