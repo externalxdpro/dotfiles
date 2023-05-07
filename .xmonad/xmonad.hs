@@ -121,7 +121,7 @@ myStartupHook = do
     spawnOnce "/usr/bin/emacs --daemon"
     spawnOnce "numlockx on &"
     spawnOnce "nm-applet &"
-    spawnOnce "volctl &"
+    spawnOnce "volumeicon &"
     spawnOnce "blueman-applet &"
     spawnOnce "udiskie &"
     spawnOnce "dex -a -s .config/autostart &"
