@@ -344,7 +344,6 @@ myManageHook = composeAll
      , className =? "Chiaki"                                    --> doShift ( myWorkspaces !! 2 )
      , className =? "GeForce NOW"                               --> doShift ( myWorkspaces !! 2 )
      , className =? "Lutris"                                    --> doShift ( myWorkspaces !! 2 )
-     , className =? "Steam"                                     --> doShift ( myWorkspaces !! 2 )
 
      , className =? "obsidian"                                  --> doShift ( myWorkspaces !! 3 )
      , title =? "LibreOffice"                                   --> doShift ( myWorkspaces !! 3 )
