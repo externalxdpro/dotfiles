@@ -15,7 +15,7 @@
     //"height": 30,
     "position": "top",
 
-    "modules-left": ["sway/workspaces", "custom/scratchpad"],
+    "modules-left": ["wlr/workspaces", "custom/scratchpad"],
     "modules-center": ["custom/wf-recorder", "sway/mode", "custom/weather"],
     "modules-right": [
         // informational
