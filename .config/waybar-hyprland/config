@@ -25,7 +25,7 @@
 
     "hyprland/window": {
         "format": "{}",
-        "max-length": 200,
+        "max-length": 50,
         "separate-outputs": true,
     },
     "wlr/workspaces": {
