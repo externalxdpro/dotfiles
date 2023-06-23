@@ -19,6 +19,7 @@
   - [[#open-links-in-browser][Open Links in Browser]]
   - [[#org-auto-tangle][Org Auto Tangle]]
   - [[#org-mode][Org Mode]]
+  - [[#workspaces][Workspaces]]
 - [[#init][Init]]
   - [[#information][Information]]
   - [[#input][Input]]
@@ -433,6 +434,14 @@ You can set the Org heading levels to be different font sizes.  So I choose to h
   '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
 )
+#+end_src
+
+** Workspaces
+Prevent a new workspace from being created whenever opening emacs with emacsclient
+
+#+begin_src emacs-lisp :tangle config.el
+(after! persp-mode
+  (setq persp-emacsclient-init-frame-behaviour-override "main"))
 #+end_src
 
 * Init
