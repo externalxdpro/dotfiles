@@ -179,3 +179,5 @@ configuration {
 	me-accept-custom: "Control+MouseDPrimary";
 */
 }
+//@theme "/home/sakib/.local/share/rofi/themes/onedark.rasi"
+@theme "/home/sakib/.local/share/rofi/themes/nord.rasi"
