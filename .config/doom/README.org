@@ -357,19 +357,13 @@ The following function can be used to select an account. This function is then a
 This extension makes it possible to use org mode when composing emails in mu4e.
 
 #+begin_src emacs-lisp :tangle config.el
-(require 'org-msg)
-(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil"
-      org-msg-startup "indent inlineimages"
-      org-msg-greeting-fmt "\nHi *%s*,\n\n"
-      org-msg-greeting-name-limit 3
-      org-msg-signature "
+(setq org-msg-signature "
       Regards,
 
    #+begin_signature
    -- *{your-name}* \\\\
    /Sent from my Emacs/
    #+end_signature")
-(org-msg-mode)
 #+end_src
 
 *** Extra Settings

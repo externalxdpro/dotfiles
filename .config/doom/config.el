@@ -195,19 +195,13 @@ List of keybindings (SPC h b b)")
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
-(require 'org-msg)
-(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil"
-      org-msg-startup "indent inlineimages"
-      org-msg-greeting-fmt "\nHi *%s*,\n\n"
-      org-msg-greeting-name-limit 3
-      org-msg-signature "
+(setq org-msg-signature "
       Regards,
 
    #+begin_signature
    -- *{your-name}* \\\\
    /Sent from my Emacs/
    #+end_signature")
-(org-msg-mode)
 
 (after! mu4e
     (setq mu4e-update-interval (* 5 60)                         ;; get emails and index every 5 minutes
