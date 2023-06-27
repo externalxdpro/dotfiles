@@ -54,3 +54,8 @@
 (package! emojify)
 (package! evil-tutor)
 (package! org-auto-tangle)
+
+;; (package! evil-collection :disable t)
+(unpin! evil-collection)
+(package! evil-collection
+  :recipe (:host github :repo "emacs-evil/evil-collection" :branch "master"))
