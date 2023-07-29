@@ -2,11 +2,12 @@
   (lambda ()
     (unless (or (file-exists-p "makefile")
                 (file-exists-p "Makefile"))
-      (setq-local compile-command
-        (if buffer-file-name
-          (concat "g++ -g " (shell-quote-argument buffer-file-name) " -o " (shell-quote-argument (file-name-sans-extension buffer-file-name)))
-          ("g++ -g")
-          )))))
+      (if buffer-file-name
+        (let* ((src (file-name-nondirectory (buffer-file-name)))
+               (exe (file-name-sans-extension src)))
+              (setq-local compile-command (concat "g++ -g " src " -o " exe " && timeout 1s ./" exe)))
+        (setq-local compile-command ("g++ -g ")))
+    )))
 
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
