@@ -97,7 +97,13 @@ List of keybindings (SPC h b b)")
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
 
-;; (elcord-mode)
+(add-hook 'after-make-frame-functions
+  (lambda (frame) (elcord-mode 1)))
+(add-hook 'after-delete-frame-functions
+  (lambda (frame)
+    (if (eq (- (length (visible-frame-list)) 1) 0) (elcord-mode 0))))
+
+(setq elcord-editor-icon "emacs_icon")
 
 (use-package emojify
   :hook (after-init . global-emojify-mode))

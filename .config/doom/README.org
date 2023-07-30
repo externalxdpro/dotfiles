@@ -210,7 +210,13 @@ Setting the theme to doom-one. To try out new themes, I set a keybinding for cou
 ** Elcord
 
 #+begin_src emacs-lisp :tangle config.el
-;; (elcord-mode)
+(add-hook 'after-make-frame-functions
+  (lambda (frame) (elcord-mode 1)))
+(add-hook 'after-delete-frame-functions
+  (lambda (frame)
+    (if (eq (- (length (visible-frame-list)) 1) 0) (elcord-mode 0))))
+
+(setq elcord-editor-icon "emacs_icon")
 #+end_src
 
 ** Emojis
