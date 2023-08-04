@@ -41,13 +41,17 @@
 This is my personal Doom Emacs config. Doom Emacs is a distribution of Emacs that uses the "evil" keybindings (Vim keybindings) and includes a number of nice extensions and bit of configuration out of the box.
 
 * Config
+:PROPERTIES:
+:header-args: :tangle config.el
+:END:
+
 These are the contents of the *config.el* file.
 
 ** C++
 Some extra settings to auto-set compile commands for C++.
 (Also will need to install ccls, gdb, and mono to have everything working correctly)
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (add-hook 'c++-mode-hook
   (lambda ()
     (unless (or (file-exists-p "makefile")
@@ -63,7 +67,7 @@ Some extra settings to auto-set compile commands for C++.
 ** Company
 Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster and to change keybindings.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
 
@@ -82,7 +86,7 @@ Emacs Dashboard is an extensible startup screen showing you recent files, bookma
 
 *** Configuring Dashboard
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (use-package dashboard
   :init      ;; tweak dashboard config before loading it
   (setq dashboard-set-heading-icons t)
@@ -111,14 +115,14 @@ List of keybindings (SPC h b b)")
 *** Dashboard in Emacsclient
 This setting ensures that emacsclient always opens on *dashboard* rather than *scratch*.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (setq doom-fallback-buffer-name "*dashboard*")
 #+end_src
 
 ** Debug Adapter Protocol
 These are settings for the Debug Adapter Protocol also known as dap-mode that works with LSP to create a seamless IDE experience
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
   (require 'dap-netcore)
@@ -155,7 +159,7 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
 | dired-do-chown          | /Change the owner of marked files/            | O          |
 | dired-do-rename         | /Rename file or all marked files/             | R          |
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (map! :leader
       (:prefix ("d" . "dired")
        :desc "Open dired" "d" #'dired
@@ -199,17 +203,15 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
 #+end_src
 
 ** Doom Theme
-Setting the theme to doom-one. To try out new themes, I set a keybinding for counsel-load-theme with 'SPC h t'.
+Setting the theme to doom-one.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (setq doom-theme 'doom-one)
-(map! :leader
-      :desc "Load new theme" "h t" #'counsel-load-theme)
 #+end_src
 
 ** Elcord
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (add-hook 'after-make-frame-functions
   (lambda (frame) (elcord-mode 1)))
 (add-hook 'after-delete-frame-functions
@@ -222,7 +224,7 @@ Setting the theme to doom-one. To try out new themes, I set a keybinding for cou
 ** Emojis
 Emojify is an Emacs extension to display emojis. It can display github style emojis like :smile: or plain ascii ones like :).
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (use-package emojify
   :hook (after-init . global-emojify-mode))
 #+end_src
@@ -230,7 +232,7 @@ Emojify is an Emacs extension to display emojis. It can display github style emo
 ** EWW
 EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to open in a specific browser (eww) with browse-url-browser-function.  By default, Doom Emacs does not use ‘SPC e’ for anything, so I choose to use the format ‘SPC e’ plus ‘key’ for these (I also use ‘SPC e’ for ‘eval’ keybindings).  I chose to use ‘SPC s w’ for eww-search-words because Doom Emacs uses ‘SPC s’ for ‘search’ commands.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (setq browse-url-browser-function 'eww-browse-url)
 (map! :leader
       :desc "Search web for text between BEG/END"
@@ -242,7 +244,7 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
 
 ** Fonts
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (setq doom-font (font-spec :family "JetBrains Mono" :size 15)
       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
       doom-big-font (font-spec :family "JetBrains Mono" :size 24))
@@ -265,7 +267,7 @@ I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comm
 | doom/toggle-line-numbers | /Toggle line numbers/                      | SPC t l     |
 | toggle-truncate-lines    | /Toggle truncate lines/                    | SPC t t     |
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (setq display-line-numbers-type t)
 (good-scroll-mode 1)
 (map! :leader
@@ -283,7 +285,7 @@ Setting up mu4e which is an email client that works within emacs.  You must inst
 *** Setting Up Multiple Accounts
 The settings below are specific to each of three different email accounts.  These settings are fictional and are here for documentation purposes.  Hence, I have this source block entirely commented out.  Now, I do use a source code block similar to the one below, but I don’t want to share it publicly.  Keep reading to see how I handle this.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 ;; (defvar my-mu4e-account-alist
 ;;   '(("acc1-domain"
 ;;      (mu4e-sent-folder "/acc1-domain/Sent")
@@ -331,14 +333,14 @@ The settings below are specific to each of three different email accounts.  Thes
 
 I’m sourcing an elisp file (~/.config/doom/email.el) that contains the above source block but with my actual email settings.  I do this so I don’t have to share my email addresses publicly.  If you uncommented the above source block to use, then you should comment out or delete this line below.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (load "~/.config/doom/email.el")
 #+end_src
 
 *** Function To Facilitate Switching Between Accounts
 The following function can be used to select an account. This function is then added to mu4e-compose-pre-hook.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (defun my-mu4e-set-account ()
   "Set the account for composing a message."
   (let* ((account
@@ -364,7 +366,7 @@ The following function can be used to select an account. This function is then a
 *** Org-Msg
 This extension makes it possible to use org mode when composing emails in mu4e.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (setq org-msg-signature "
       Regards,
 
@@ -377,7 +379,7 @@ This extension makes it possible to use org mode when composing emails in mu4e.
 *** Extra Settings
 These are some extra settings for mu4e for convenience.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (after! mu4e
   (setq mu4e-update-interval (* 5 60)                       ;; get emails and index every 5 minutes
     mu4e-get-mail-command "mbsync -a -c ~/.config/mbsyncrc" ;; set a custom sync command
@@ -391,20 +393,20 @@ These are some extra settings for mu4e for convenience.
 ** Mouse Support
 Adding mouse support in the terminal version of Emacs.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (xterm-mouse-mode 1)
 #+end_src
 
 ** Open Links in Browser
 This opens any link clicked in emacs in the browser specified below.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (setq browse-url-browser-function 'browse-url-generic)
 (setq browse-url-generic-program "xdg-open")
 #+end_src
 
 ** Org Auto Tangle
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (use-package! org-auto-tangle
   :defer t
   :hook (org-mode . org-auto-tangle-mode)
@@ -415,7 +417,7 @@ This opens any link clicked in emacs in the browser specified below.
 ** Org Mode
 I wrapped most of this block in (after! org).  Without this, my settings might be evaluated too early, which will result in my settings being overwritten by Doom’s defaults.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (map! :leader
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 (after! org
@@ -428,7 +430,7 @@ I wrapped most of this block in (after! org).  Without this, my settings might b
 *** Set font sizes for each header level
 You can set the Org heading levels to be different font sizes.  So I choose to have level 1 headings to be 140% in height, level 2 to be 130%, etc.  Other interesting things you could play with include adding :foreground color and/or :background color if you want to override the theme colors.
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (custom-set-faces
   '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
   '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
@@ -441,17 +443,21 @@ You can set the Org heading levels to be different font sizes.  So I choose to h
 ** Workspaces
 Prevent a new workspace from being created whenever opening emacs with emacsclient
 
-#+begin_src emacs-lisp :tangle config.el
+#+begin_src emacs-lisp
 (after! persp-mode
   (setq persp-emacsclient-init-frame-behaviour-override "main"))
 #+end_src
 
 * Init
+:PROPERTIES:
+:header-args: :tangle init.el
+:END:
+
 These are the contents of the *init.el* file.
 
 ** Information
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
 ;;; init.el -*- lexical-binding: t; -*-
 
 ;; This file controls what Doom modules are enabled and what order they load
@@ -471,7 +477,7 @@ These are the contents of the *init.el* file.
 
 ** Input
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
 (doom! :input
        ;;chinese
        ;;japanese
@@ -480,7 +486,7 @@ These are the contents of the *init.el* file.
 
 ** Completion
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :completion
        company           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
@@ -491,7 +497,7 @@ These are the contents of the *init.el* file.
 
 ** UI
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
@@ -520,7 +526,7 @@ These are the contents of the *init.el* file.
 
 ** Editor
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :editor
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
@@ -538,7 +544,7 @@ These are the contents of the *init.el* file.
 
 ** Emacs
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :emacs
        (dired +icons)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
@@ -549,7 +555,7 @@ These are the contents of the *init.el* file.
 
 ** Term
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :term
        eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
@@ -558,7 +564,7 @@ These are the contents of the *init.el* file.
 #+end_src
 
 ** Checkers
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :checkers
        syntax              ; tasing you for every semicolon you forget
        spell               ; tasing you for misspelling mispelling
@@ -567,7 +573,7 @@ These are the contents of the *init.el* file.
 
 ** Tools
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :tools
        ;;ansible
        (debugger +lsp)          ; FIXME stepping through code, to help you add bugs
@@ -594,7 +600,7 @@ These are the contents of the *init.el* file.
 
 ** OS
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
        ;;tty               ; improve the terminal Emacs experience
@@ -602,7 +608,7 @@ These are the contents of the *init.el* file.
 
 ** Lang
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
@@ -668,7 +674,7 @@ These are the contents of the *init.el* file.
 
 ** Email
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :email
        (mu4e +org +gmail)
        ;;notmuch
@@ -677,7 +683,7 @@ These are the contents of the *init.el* file.
 
 ** App
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :app
        ;;calendar
        ;;emms
@@ -689,16 +695,20 @@ These are the contents of the *init.el* file.
 
 ** Config
 
-#+begin_src emacs-lisp :tangle init.el
+#+begin_src emacs-lisp
        :config
        ;;literate
        (default +bindings +smartparens))
 #+end_src
 
 * Packages
+:PROPERTIES:
+:header-args: :tangle packages.el
+:END:
+
 These are the contents of the *packages.el* file.
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
@@ -751,7 +761,7 @@ These are the contents of the *packages.el* file.
 ;(unpin! t)
 #+end_src
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp
 (package! dashboard)
 (package! elcord)
 (package! emojify)
