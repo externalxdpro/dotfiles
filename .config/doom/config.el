@@ -94,8 +94,6 @@ List of keybindings (SPC h b b)")
                               ("mp4" . "mpv")))
 
 (setq doom-theme 'doom-one)
-(map! :leader
-      :desc "Load new theme" "h t" #'counsel-load-theme)
 
 (add-hook 'after-make-frame-functions
   (lambda (frame) (elcord-mode 1)))
