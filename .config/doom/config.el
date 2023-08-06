@@ -223,6 +223,15 @@ List of keybindings (SPC h b b)")
 (setq browse-url-browser-function 'browse-url-generic)
 (setq browse-url-generic-program "xdg-open")
 
+(use-package! org-alert
+  :config
+  (setq alert-default-style 'libnotify
+        org-alert-interval 300
+        org-alert-notification-title "Org Alert Reminder!"
+        org-alert-notify-cutoff 10
+        org-alert-notify-after-event-cutoff 10)
+  (org-alert-enable))
+
 (use-package! org-auto-tangle
   :defer t
   :hook (org-mode . org-auto-tangle-mode)

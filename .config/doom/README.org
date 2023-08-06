@@ -17,6 +17,7 @@
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
   - [[#open-links-in-browser][Open Links in Browser]]
+  - [[#org-alert][Org Alert]]
   - [[#org-auto-tangle][Org Auto Tangle]]
   - [[#org-mode][Org Mode]]
   - [[#workspaces][Workspaces]]
@@ -405,6 +406,18 @@ This opens any link clicked in emacs in the browser specified below.
 (setq browse-url-generic-program "xdg-open")
 #+end_src
 
+** Org Alert
+#+begin_src emacs-lisp
+(use-package! org-alert
+  :config
+  (setq alert-default-style 'libnotify
+        org-alert-interval 300
+        org-alert-notification-title "Org Alert Reminder!"
+        org-alert-notify-cutoff 10
+        org-alert-notify-after-event-cutoff 10)
+  (org-alert-enable))
+#+end_src
+
 ** Org Auto Tangle
 #+begin_src emacs-lisp
 (use-package! org-auto-tangle
@@ -767,9 +780,9 @@ These are the contents of the *packages.el* file.
 (package! emojify)
 (package! evil-tutor)
 (package! good-scroll)
+(package! org-alert)
 (package! org-auto-tangle)
 
-;; (package! evil-collection :disable t)
 (unpin! evil-collection)
 (package! evil-collection
   :recipe (:host github :repo "emacs-evil/evil-collection" :branch "master"))
