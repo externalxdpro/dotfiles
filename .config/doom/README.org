@@ -88,7 +88,7 @@ Emacs Dashboard is an extensible startup screen showing you recent files, bookma
 *** Configuring Dashboard
 
 #+begin_src emacs-lisp
-(use-package dashboard
+(use-package! dashboard
   :init      ;; tweak dashboard config before loading it
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
@@ -226,7 +226,7 @@ Setting the theme to doom-one.
 Emojify is an Emacs extension to display emojis. It can display github style emojis like :smile: or plain ascii ones like :).
 
 #+begin_src emacs-lisp
-(use-package emojify
+(use-package! emojify
   :hook (after-init . global-emojify-mode))
 #+end_src
 

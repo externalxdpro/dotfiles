@@ -21,7 +21,7 @@
   (define-key company-active-map (kbd "RET") nil)
   (define-key company-active-map (kbd "<return>") nil))
 
-(use-package dashboard
+(use-package! dashboard
   :init      ;; tweak dashboard config before loading it
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
@@ -103,7 +103,7 @@ List of keybindings (SPC h b b)")
 
 (setq elcord-editor-icon "emacs_icon")
 
-(use-package emojify
+(use-package! emojify
   :hook (after-init . global-emojify-mode))
 
 (setq browse-url-browser-function 'eww-browse-url)
