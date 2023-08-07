@@ -20,7 +20,7 @@ Config { font            = "Ubuntu Bold 9"
        , hideOnStart  = False
        , allDesktops  = True
        , persistent   = True
-       , iconRoot     = ".xmonad/xpm/"  -- default: "."
+       , iconRoot     = ".config/xmonad/xpm/"  -- default: "."
        , commands = [
                         -- Echos a "play" icon in front of media output
                     Run Com "echo" ["<fn=2>\xf144</fn>"] "play" 36000
