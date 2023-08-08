@@ -6,9 +6,10 @@ set -U fish_user_paths $HOME/.local/bin $HOME/Applications $HOME/.config/emacs/b
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
-set -Ux TERM "xterm-256color"                     # Sets the terminal type
-set -Ux EDITOR "nvim"                             # $EDITOR use Neovim in terminal
-set -Ux VISUAL "emacsclient -c -a emacs"          # $VISUAL use Emacs in GUI mode
+set -gx TERM "xterm-256color"                     # Sets the terminal type
+set -gx PAGER "less"                              # Sets default pager
+set -gx EDITOR "nvim"                             # $EDITOR use Neovim in terminal
+set -gx VISUAL "emacsclient -c -a emacs"          # $VISUAL use Emacs in GUI mode
 
 ### SET MANPAGER
 ### Uncomment only one of these!
