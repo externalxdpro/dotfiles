@@ -323,7 +323,7 @@ myKeys =
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
-        , ("M-<Space>", spawn "~/.config/rofi/launchers/type-1/launcher.sh") -- Rofi
+        , ("M-<Space>", spawn "rofi -show combi -show-icons") -- Rofi
         -- , ("M-<Space>", spawn "dmenu_run -h 24 -i -p \"Run: \"") -- Dmenu
 
     -- KB_GROUP Password Prompt
