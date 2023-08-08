@@ -53,7 +53,6 @@
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
-(package! good-scroll)
 (package! org-alert)
 (package! org-auto-tangle)
 

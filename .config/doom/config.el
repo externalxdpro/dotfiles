@@ -125,7 +125,7 @@ List of keybindings (SPC h b b)")
   '(font-lock-keyword-face :slant italic))
 
 (setq display-line-numbers-type t)
-(good-scroll-mode 1)
+(pixel-scroll-precision-mode 1)
 (map! :leader
       :desc "Comment or uncomment lines" "TAB TAB" #'comment-line
       (:prefix ("t" . "toggle")
