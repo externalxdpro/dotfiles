@@ -14,6 +14,7 @@
   - [[#eww][EWW]]
   - [[#fonts][Fonts]]
   - [[#line-settings][Line Settings]]
+  - [[#language-server-protocol][Language Server Protocol]]
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
   - [[#open-links-in-browser][Open Links in Browser]]
@@ -278,6 +279,13 @@ I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comm
        :desc "Toggle line highlight in frame" "h" #'hl-line-mode
        :desc "Toggle line highlight globally" "H" #'global-hl-line-mode
        :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
+#+end_src
+
+** Language Server Protocol
+Configuration for LSP
+
+#+begin_src emacs-lisp
+(setq lsp-ui-peek-always-show t)
 #+end_src
 
 ** MU4E

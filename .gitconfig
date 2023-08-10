@@ -3,3 +3,5 @@
 	name = externalxdpro
 [init]
 	defaultBranch = main
+[safe]
+	directory = /opt/flutter
