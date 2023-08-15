@@ -13,8 +13,8 @@
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
   - [[#fonts][Fonts]]
-  - [[#line-settings][Line Settings]]
   - [[#language-server-protocol][Language Server Protocol]]
+  - [[#line-settings][Line Settings]]
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
   - [[#open-links-in-browser][Open Links in Browser]]
@@ -258,6 +258,13 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
   '(font-lock-keyword-face :slant italic))
 #+end_src
 
+** Language Server Protocol
+Configuration for LSP
+
+#+begin_src emacs-lisp
+(setq lsp-ui-peek-always-show t)
+#+end_src
+
 ** Line Settings
 I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comment-line is ‘C-x C-;’.  The other keybindings are for commands that toggle on/off various line-related settings.  Doom Emacs uses ‘SPC t’ for “toggle” commands, so I choose ‘SPC t’ plus ‘key’ for those bindings.
 
@@ -279,13 +286,6 @@ I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comm
        :desc "Toggle line highlight in frame" "h" #'hl-line-mode
        :desc "Toggle line highlight globally" "H" #'global-hl-line-mode
        :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
-#+end_src
-
-** Language Server Protocol
-Configuration for LSP
-
-#+begin_src emacs-lisp
-(setq lsp-ui-peek-always-show t)
 #+end_src
 
 ** MU4E

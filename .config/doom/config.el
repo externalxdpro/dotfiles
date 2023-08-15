@@ -124,6 +124,8 @@ List of keybindings (SPC h b b)")
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 
+(setq lsp-ui-peek-always-show t)
+
 (setq display-line-numbers-type t)
 (pixel-scroll-precision-mode 1)
 (map! :leader
@@ -133,8 +135,6 @@ List of keybindings (SPC h b b)")
        :desc "Toggle line highlight in frame" "h" #'hl-line-mode
        :desc "Toggle line highlight globally" "H" #'global-hl-line-mode
        :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
-
-(setq lsp-ui-peek-always-show t)
 
 ;; (defvar my-mu4e-account-alist
 ;;   '(("acc1-domain"
