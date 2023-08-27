@@ -4,7 +4,7 @@
     ### Display ###
 
     # Which monitor should the notifications be displayed on.
-    monitor = 0
+    #monitor = 0
 
     # Display notification on focused monitor.  Possible modes are:
     #   mouse: follow mouse pointer
@@ -17,7 +17,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = none
+    follow = mouse
 
     ### Geometry ###
 
@@ -33,7 +33,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 15x15
+    offset = 16x55
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
