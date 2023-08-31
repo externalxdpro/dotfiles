@@ -13,6 +13,7 @@
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
   - [[#fonts][Fonts]]
+  - [[#javascripttypescript][JavaScript/TypeScript]]
   - [[#language-server-protocol][Language Server Protocol]]
   - [[#line-settings][Line Settings]]
   - [[#mu4e][MU4E]]
@@ -256,6 +257,14 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+#+end_src
+
+** JavaScript/TypeScript
+These are some settings for javascript/typescript. I'm disabling lsp formatting (because ts-ls formatting isn't good) to use prettier instead.
+
+#+begin_src emacs-lisp
+(setq-hook! 'rjsx-mode-hook +format-with-lsp nil)
+(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
 #+end_src
 
 ** Language Server Protocol

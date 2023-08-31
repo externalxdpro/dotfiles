@@ -124,6 +124,9 @@ List of keybindings (SPC h b b)")
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 
+(setq-hook! 'rjsx-mode-hook +format-with-lsp nil)
+(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
+
 (setq lsp-ui-peek-always-show t)
 
 (setq display-line-numbers-type t)
