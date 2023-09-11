@@ -127,6 +127,9 @@ List of keybindings (SPC h b b)")
 (setq-hook! 'rjsx-mode-hook +format-with-lsp nil)
 (setq-hook! 'typescript-mode-hook +format-with-lsp nil)
 
+(after! js
+  (setq-default js--prettify-symbols-alist '()))
+
 (setq lsp-ui-peek-always-show t)
 
 (setq display-line-numbers-type t)

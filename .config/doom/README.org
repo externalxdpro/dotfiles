@@ -260,11 +260,14 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
 #+end_src
 
 ** JavaScript/TypeScript
-These are some settings for javascript/typescript. I'm disabling lsp formatting (because ts-ls formatting isn't good) to use prettier instead.
+These are some settings for javascript/typescript. I'm disabling lsp formatting (because ts-ls formatting isn't good) to use prettier instead. Also, I'm disabling the built-in ligatures to use the ones supplied by the font.
 
 #+begin_src emacs-lisp
 (setq-hook! 'rjsx-mode-hook +format-with-lsp nil)
 (setq-hook! 'typescript-mode-hook +format-with-lsp nil)
+
+(after! js
+  (setq-default js--prettify-symbols-alist '()))
 #+end_src
 
 ** Language Server Protocol
