@@ -10,7 +10,15 @@
     )))
 
 (setq company-idle-delay 0)
-(setq company-minimum-prefix-length 1)
+(setq company-minimum-prefix-length 0)
+
+;; Have snippets come up before keywords
+(setq +lsp-company-backends '(:separate company-yasnippet company-capf))
+
+(after! company
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+  (define-key company-active-map (kbd "TAB") 'company-complete-selection)
+  (define-key company-active-map (kbd "C-SPC") 'company-abort))
 
 (use-package! dashboard
   :init      ;; tweak dashboard config before loading it

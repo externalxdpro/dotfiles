@@ -68,11 +68,19 @@ Some extra settings to auto-set compile commands for C++.
 #+end_src
 
 ** Company
-Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster.
+Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster and to change keybindings.
 
 #+begin_src emacs-lisp
 (setq company-idle-delay 0)
-(setq company-minimum-prefix-length 1)
+(setq company-minimum-prefix-length 0)
+
+;; Have snippets come up before keywords
+(setq +lsp-company-backends '(:separate company-yasnippet company-capf))
+
+(after! company
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+  (define-key company-active-map (kbd "TAB") 'company-complete-selection)
+  (define-key company-active-map (kbd "C-SPC") 'company-abort))
 #+end_src
 
 ** Dashboard
@@ -512,7 +520,7 @@ These are the contents of the *init.el* file.
 
 #+begin_src emacs-lisp
        :completion
-       (company +tng)           ; the ultimate code completion backend
+       company           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
