@@ -280,7 +280,7 @@ I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comm
 | toggle-truncate-lines    | /Toggle truncate lines/                    | SPC t t     |
 
 #+begin_src emacs-lisp
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 (pixel-scroll-precision-mode 1)
 (map! :leader
       :desc "Comment or uncomment lines" "TAB TAB" #'comment-line

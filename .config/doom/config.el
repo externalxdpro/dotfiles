@@ -123,7 +123,7 @@ List of keybindings (SPC h b b)")
 
 (setq lsp-ui-peek-always-show t)
 
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 (pixel-scroll-precision-mode 1)
 (map! :leader
       :desc "Comment or uncomment lines" "TAB TAB" #'comment-line
