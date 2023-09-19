@@ -318,8 +318,7 @@ myKeys =
         [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
         , ("M-r", spawn "xmonad --restart")    -- Restarts xmonad
         -- , ("M-x", io exitSuccess)               -- Quits xmonad
-        -- , ("M-x", spawn "arcolinux-logout")        -- Displays logout menu (You can install this from the AUR)
-        , ("M-x", spawn "archlinux-logout")
+        , ("M-x", spawn "archlinux-logout")    -- Displays logout menu (You can install this from the AUR)
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
@@ -355,7 +354,7 @@ myKeys =
         , ("M-w", spawn (myBrowser))
         , ("M-S-w", spawn (mySecondaryBrowser))
 
-        , ("M-e", spawn (myEditor))
+        -- , ("M-e", spawn (myEditor))
 
         , ("M-S-s", spawn ("maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i"))
 
@@ -435,23 +434,21 @@ myKeys =
         , ("M-u <Space>", spawn "mocp --toggle-pause")
 
     -- KB_GROUP Emacs (CTRL-e followed by a key)
-        -- , ("C-e e", spawn myEmacs)                 -- start emacs
-        {-
-        , ("C-e e", spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))   -- emacs dashboard
-        , ("C-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))   -- list buffers
-        , ("C-e d", spawn (myEmacs ++ ("--eval '(dired nil)'"))) -- dired
-        , ("C-e i", spawn (myEmacs ++ ("--eval '(erc)'")))       -- erc irc client
-        , ("C-e m", spawn (myEmacs ++ ("--eval '(mu4e)'")))      -- mu4e email
-        , ("C-e n", spawn (myEmacs ++ ("--eval '(elfeed)'")))    -- elfeed rss
-        , ("C-e s", spawn (myEmacs ++ ("--eval '(eshell)'")))    -- eshell
-        , ("C-e t", spawn (myEmacs ++ ("--eval '(mastodon)'")))  -- mastodon.el
-        -- , ("C-e v", spawn (myEmacs ++ ("--eval '(vterm nil)'"))) -- vterm if on GNU Emacs
-        , ("C-e v", spawn (myEmacs ++ ("--eval '(+vterm/here nil)'"))) -- vterm if on Doom Emacs
-        -- , ("C-e w", spawn (myEmacs ++ ("--eval '(eww \"distrotube.com\")'"))) -- eww browser if on GNU Emacs
-        , ("C-e w", spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"start.duckduckgo.com\"))'"))) -- eww browser if on Doom Emacs
+        , ("M-e e", spawn myEmacs)                 -- start emacs
+        -- , ("M-e e", spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))   -- emacs dashboard
+        , ("M-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))   -- list buffers
+        , ("M-e d", spawn (myEmacs ++ ("--eval '(dired nil)'"))) -- dired
+        -- , ("M-e i", spawn (myEmacs ++ ("--eval '(erc)'")))       -- erc irc client
+        , ("M-e m", spawn (myEmacs ++ ("--eval '(mu4e)'")))      -- mu4e email
+        -- , ("M-e n", spawn (myEmacs ++ ("--eval '(elfeed)'")))    -- elfeed rss
+        -- , ("M-e s", spawn (myEmacs ++ ("--eval '(eshell)'")))    -- eshell
+        -- , ("M-e t", spawn (myEmacs ++ ("--eval '(mastodon)'")))  -- mastodon.el
+        -- , ("M-e v", spawn (myEmacs ++ ("--eval '(vterm nil)'"))) -- vterm if on GNU Emacs
+        , ("M-e v", spawn (myEmacs ++ ("--eval '(+vterm/here nil)'"))) -- vterm if on Doom Emacs
+        -- , ("M-e w", spawn (myEmacs ++ ("--eval '(eww \"distrotube.com\")'"))) -- eww browser if on GNU Emacs
+        , ("M-e w", spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"start.duckduckgo.com\"))'"))) -- eww browser if on Doom Emacs
         -- emms is an emacs audio player. I set it to auto start playing in a specific directory.
-        , ("C-e a", spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")))
-        -}
+        -- , ("M-e a", spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")))
 
     -- KB_GROUP Multimedia Keys
         , ("<XF86AudioPlay>", spawn "mocp --play")
