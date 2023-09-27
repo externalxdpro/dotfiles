@@ -22,6 +22,7 @@
   - [[#org-alert][Org Alert]]
   - [[#org-auto-tangle][Org Auto Tangle]]
   - [[#org-mode][Org Mode]]
+  - [[#org-tree-slide][Org Tree Slide]]
   - [[#workspaces][Workspaces]]
 - [[#init][Init]]
   - [[#information][Information]]
@@ -471,6 +472,16 @@ You can set the Org heading levels to be different font sizes.  So I choose to h
 )
 #+end_src
 
+** Org Tree Slide
+These are some settings for Org Tree Slide, a mode for making org files into presentations.
+
+#+begin_src emacs-lisp
+(after! org-tree-slide
+  (advice-remove 'org-tree-slide--display-tree-with-narrow
+                 #'+org-present--hide-first-heading-maybe-a)
+  (setq-local cwm-frame-internal-border 100))
+#+end_src
+
 ** Workspaces
 Prevent a new workspace from being created whenever opening emacs with emacsclient
 
@@ -679,7 +690,7 @@ These are the contents of the *init.el* file.
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +dragndrop +pandoc +pretty)               ; organize your plain life in plain text
+       (org +dragndrop +pandoc +present +pretty)               ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional

@@ -260,5 +260,10 @@ List of keybindings (SPC h b b)")
   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
 )
 
+(after! org-tree-slide
+  (advice-remove 'org-tree-slide--display-tree-with-narrow
+                 #'+org-present--hide-first-heading-maybe-a)
+  (setq-local cwm-frame-internal-border 100))
+
 (after! persp-mode
   (setq persp-emacsclient-init-frame-behaviour-override "main"))
