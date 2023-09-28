@@ -83,8 +83,6 @@ List of keybindings (SPC h b b)")
   (kbd "% u") 'dired-upcase
   (kbd "; d") 'epa-dired-do-decrypt
   (kbd "; e") 'epa-dired-do-encrypt)
-;; Get file icons in dired
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 ;; With dired-open plugin, you can launch external programs for certain extensions
 ;; For example, I set all .png files to open in 'nsxiv' and all .mp4 files to open in 'mpv'
 (setq dired-open-extensions '(("gif" . "nsxiv")
@@ -265,7 +263,8 @@ List of keybindings (SPC h b b)")
 (after! org-tree-slide
   (advice-remove 'org-tree-slide--display-tree-with-narrow
                  #'+org-present--hide-first-heading-maybe-a)
-  (setq-local cwm-frame-internal-border 100))
+  (setq-local cwm-frame-internal-border 100)
+  (org-tree-slide-presentation-profile))
 
 (after! persp-mode
   (setq persp-emacsclient-init-frame-behaviour-override "main"))
