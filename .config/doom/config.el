@@ -18,7 +18,9 @@
 (after! company
   (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
   (define-key company-active-map (kbd "TAB") 'company-complete-selection)
-  (define-key company-active-map (kbd "C-SPC") 'company-abort))
+  (define-key company-active-map (kbd "C-SPC") 'company-abort)
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "<return>") nil))
 
 (use-package! dashboard
   :init      ;; tweak dashboard config before loading it

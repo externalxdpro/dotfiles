@@ -81,7 +81,9 @@ Company is used for auto-completion in Emacs. It supports almost every programmi
 (after! company
   (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
   (define-key company-active-map (kbd "TAB") 'company-complete-selection)
-  (define-key company-active-map (kbd "C-SPC") 'company-abort))
+  (define-key company-active-map (kbd "C-SPC") 'company-abort)
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "<return>") nil))
 #+end_src
 
 ** Dashboard
@@ -134,8 +136,8 @@ These are settings for the Debug Adapter Protocol also known as dap-mode that wo
 ** Dired
 Dired is the file manager within Emacs.  Below, I setup keybindings for image previews (peep-dired).  Doom Emacs does not use 'SPC d' for any of its keybindings, so I've chosen the format of 'SPC d' plus 'key'.
 
-| Command                 | Description                                 | Keybinding |
-|-------------------------+---------------------------------------------+------------|
+| Command                 | Description                                   | Keybinding |
+|-------------------------+-----------------------------------------------+------------|
 | dired                   | /Open dired file manager/                     | SPC d d    |
 | dired-jump              | /Jump to current directory in dired/          | SPC d j    |
 | dired-view-file         | /View file in dired/                          | SPC d v    |
@@ -279,8 +281,8 @@ Configuration for LSP
 ** Line Settings
 I set comment-line to ‘SPC TAB TAB’.  The standard Emacs keybinding for comment-line is ‘C-x C-;’.  The other keybindings are for commands that toggle on/off various line-related settings.  Doom Emacs uses ‘SPC t’ for “toggle” commands, so I choose ‘SPC t’ plus ‘key’ for those bindings.
 
-| Command                  | Description                              | Keybinding  |
-|--------------------------+------------------------------------------+-------------|
+| Command                  | Description                                | Keybinding  |
+|--------------------------+--------------------------------------------+-------------|
 | comment-line             | /Comment or uncomment lines/               | SPC TAB TAB |
 | hl-line-mode             | /Toggle line higlighting in current frame/ | SPC t h     |
 | global-hl-line-mode      | /Toggle line highlighting globally/        | SPC t H     |
