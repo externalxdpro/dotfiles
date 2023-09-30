@@ -235,6 +235,11 @@ alias pacup='paru -Syyu'                           # Update all pkgs using paru
 alias unlock='sudo rm /var/lib/pacman/db.lck'      # remove pacman lock
 alias cleanup='sudo pacman -Runs (pacman -Qtdq)'   # remove orphaned packages
 
+# dnf
+alias dnfin='sudo dnf install'        # Install software using paru
+alias dnfrm='sudo dnf remove'                           # Remove software and dependancies using paru
+alias dnfup='sudo dnf update'                           # Update all pkgs using paru
+
 # get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
