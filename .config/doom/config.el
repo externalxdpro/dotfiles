@@ -247,8 +247,8 @@ List of keybindings (SPC h b b)")
 (map! :leader
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 (after! org
-  (setq org-directory "~/Notes/"
-        org-agenda-files '("~/Notes/agenda.org")
+  (setq org-directory "~/nc/Notes/"
+        org-agenda-files '("~/nc/Notes/agenda")
         org-log-done 'time
         org-hide-emphasis-markers t))
 
