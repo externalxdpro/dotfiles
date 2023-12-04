@@ -53,6 +53,7 @@
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
+(package! mixed-pitch)
 (package! org-alert)
 (package! org-auto-tangle)
 

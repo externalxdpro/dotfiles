@@ -248,7 +248,7 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
 
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :family "Hack JBM Ligatured" :size 15)
-      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+      doom-variable-pitch-font (font-spec :family "Times New Roman" :size 15)
       doom-big-font (font-spec :family "Hack JBM Ligatured" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -256,6 +256,7 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+(add-hook 'text-mode-hook 'mixed-pitch-mode)
 #+end_src
 
 ** JavaScript/TypeScript
@@ -809,6 +810,7 @@ These are the contents of the *packages.el* file.
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
+(package! mixed-pitch)
 (package! org-alert)
 (package! org-auto-tangle)
 

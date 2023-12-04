@@ -113,7 +113,7 @@ List of keybindings (SPC h b b)")
        :desc "Eww reload page" "R" #'eww-reload))
 
 (setq doom-font (font-spec :family "Hack JBM Ligatured" :size 15)
-      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+      doom-variable-pitch-font (font-spec :family "Times New Roman" :size 15)
       doom-big-font (font-spec :family "Hack JBM Ligatured" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -121,6 +121,7 @@ List of keybindings (SPC h b b)")
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+(add-hook 'text-mode-hook 'mixed-pitch-mode)
 
 (setq-hook! 'rjsx-mode-hook +format-with-lsp nil)
 (setq-hook! 'typescript-mode-hook +format-with-lsp nil)
