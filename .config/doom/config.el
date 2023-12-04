@@ -5,7 +5,7 @@
       (if buffer-file-name
           (let* ((src (file-name-nondirectory (buffer-file-name)))
                  (exe (file-name-sans-extension src)))
-            (setq-local compile-command (concat "g++ -g " src " -o " exe " && timeout 1s ./" exe)))
+            (setq-local compile-command (concat "g++ -g -std=c++20 " src " -o " exe " && timeout 1s ./" exe)))
         (setq-local compile-command ("g++ -g ")))
     )))
 
