@@ -113,8 +113,9 @@ List of keybindings (SPC h b b)")
        :desc "Eww reload page" "R" #'eww-reload))
 
 (setq doom-font (font-spec :family "Hack JBM Ligatured" :size 15)
-      doom-variable-pitch-font (font-spec :family "Times New Roman" :size 15)
-      doom-big-font (font-spec :family "Hack JBM Ligatured" :size 24))
+      doom-variable-pitch-font (font-spec :family "Avenir Next LT Pro" :size 17)
+      doom-big-font (font-spec :family "Hack JBM Ligatured" :size 24)
+      mixed-pitch-set-height t)
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
