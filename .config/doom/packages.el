@@ -56,7 +56,3 @@
 (package! mixed-pitch)
 (package! org-alert)
 (package! org-auto-tangle)
-
-(unpin! evil-collection)
-(package! evil-collection
-  :recipe (:host github :repo "emacs-evil/evil-collection" :branch "master"))
