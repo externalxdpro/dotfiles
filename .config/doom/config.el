@@ -9,8 +9,7 @@
         (setq-local compile-command ("g++ -g ")))
     )))
 
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 0)
+(setq company-selection-wrap-around t)
 
 ;; Have snippets come up before keywords
 (setq +lsp-company-backends '(:separate company-yasnippet company-capf))
@@ -19,8 +18,10 @@
   (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
   (define-key company-active-map (kbd "TAB") 'company-complete-selection)
   (define-key company-active-map (kbd "C-SPC") 'company-abort)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "<return>") nil))
+  ;; (define-key company-active-map (kbd "RET") nil)
+  ;; (define-key company-active-map (kbd "<return>") nil)
+
+  (company-prescient-mode 1))
 
 (use-package! dashboard
   :init      ;; tweak dashboard config before loading it

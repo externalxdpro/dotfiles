@@ -69,11 +69,10 @@ Some extra settings to auto-set compile commands for C++.
 #+end_src
 
 ** Company
-Company is used for auto-completion in Emacs. It supports almost every programming language. These are some settings I use to make Company activate faster and to change keybindings.
+Company is used for auto-completion in Emacs. These are some settings I use for Company.
 
 #+begin_src emacs-lisp
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 0)
+(setq company-selection-wrap-around t)
 
 ;; Have snippets come up before keywords
 (setq +lsp-company-backends '(:separate company-yasnippet company-capf))
@@ -82,8 +81,10 @@ Company is used for auto-completion in Emacs. It supports almost every programmi
   (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
   (define-key company-active-map (kbd "TAB") 'company-complete-selection)
   (define-key company-active-map (kbd "C-SPC") 'company-abort)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "<return>") nil))
+  ;; (define-key company-active-map (kbd "RET") nil)
+  ;; (define-key company-active-map (kbd "<return>") nil)
+
+  (company-prescient-mode 1))
 #+end_src
 
 ** Dashboard
@@ -807,6 +808,7 @@ These are the contents of the *packages.el* file.
 #+end_src
 
 #+begin_src emacs-lisp
+(package! company-prescient)
 (package! dashboard)
 (package! elcord)
 (package! emojify)
