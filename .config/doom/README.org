@@ -39,6 +39,7 @@
   - [[#email][Email]]
   - [[#app][App]]
   - [[#config-1][Config]]
+  - [[#other][Other]]
 - [[#packages][Packages]]
 
 * About
@@ -745,6 +746,12 @@ These are the contents of the *init.el* file.
        :config
        ;;literate
        (default +bindings +smartparens))
+#+end_src
+
+** Other
+These are some settings that need to be set before any modules are set
+#+begin_src emacs-lisp
+(setq evil-respect-visual-line-mode t)
 #+end_src
 
 * Packages
