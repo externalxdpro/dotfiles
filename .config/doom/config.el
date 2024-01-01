@@ -133,6 +133,19 @@ List of keybindings (SPC h b b)")
 
 (setq lsp-ui-peek-always-show t)
 
+(after! ox-latex
+  (add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
 (setq display-line-numbers-type 'relative)
 (pixel-scroll-precision-mode 1)
 (map! :leader

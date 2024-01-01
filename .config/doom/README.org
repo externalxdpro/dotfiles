@@ -15,6 +15,7 @@
   - [[#fonts][Fonts]]
   - [[#javascripttypescript][JavaScript/TypeScript]]
   - [[#language-server-protocol][Language Server Protocol]]
+  - [[#latex][LaTeX]]
   - [[#line-settings][Line Settings]]
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
@@ -278,6 +279,23 @@ Configuration for LSP
 
 #+begin_src emacs-lisp
 (setq lsp-ui-peek-always-show t)
+#+end_src
+
+** LaTeX
+
+#+begin_src emacs-lisp
+(after! ox-latex
+  (add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 #+end_src
 
 ** Line Settings
@@ -687,7 +705,7 @@ These are the contents of the *init.el* file.
        (javascript +lsp +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       latex             ; writing papers in Emacs has never been so fun
+       (latex +cdlatex)             ; writing papers in Emacs has never been so fun
        ;;lean              ; for folks with too much to prove
        ;;ledger            ; be audit you can be
        ;;lua               ; one-based indices? one-based indices
