@@ -1,13 +1,9 @@
 (add-hook 'c++-mode-hook
   (lambda ()
-    (unless (or (file-exists-p "makefile")
-                (file-exists-p "Makefile"))
-      (if buffer-file-name
-          (let* ((src (file-name-nondirectory (buffer-file-name)))
-                 (exe (file-name-sans-extension src)))
-            (setq-local compile-command (concat "g++ -g -std=c++20 " src " -o " exe " && timeout 1s ./" exe)))
-        (setq-local compile-command ("g++ -g ")))
-    )))
+    (if buffer-file-name
+      (let* ((src (file-name-nondirectory (buffer-file-name)))
+             (exe (file-name-sans-extension src)))
+        (setq-local compile-command (concat "make " exe " && timeout 1s ./" exe))))))
 
 (setq company-selection-wrap-around t)
 
