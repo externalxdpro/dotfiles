@@ -430,7 +430,7 @@ myKeys =
         -}
 
     -- KB_GROUP Useful programs to have a keybinding for launch
-        , ("M-<Return>", spawn (myTerminal ++ " -e fish"))
+        , ("M-<Return>", spawn (myTerminal ++ " -e tmux"))
         , ("C-S-<Esc>", spawn (myTerminal ++ " -e htop"))
 
         , ("M-S-<Return>", spawn (myFileManager))
