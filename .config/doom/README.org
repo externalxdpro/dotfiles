@@ -55,7 +55,7 @@ These are the contents of the *config.el* file.
 
 ** C++
 Some extra settings to auto-set compile commands for C++.
-(Also will need to install ccls, gdb, and mono to have everything working correctly)
+(Also will need to install clangd, gdb, and mono to have everything working correctly)
 
 #+begin_src emacs-lisp
 (add-hook 'c++-mode-hook
