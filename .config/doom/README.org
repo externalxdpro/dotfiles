@@ -80,6 +80,16 @@ Some extra settings to auto-set compile commands for C++.
                                    ]
                    )))
                     ))))
+
+(after! lsp-clangd
+  (setq lsp-clients-clangd-args
+        '("-j=3"
+          "--background-index"
+          "--clang-tidy"
+          "--completion-style=detailed"
+          "--header-insertion=iwyu"
+          "--header-insertion-decorators=0"))
+  (set-lsp-priority! 'clangd 2))
 #+end_src
 
 ** Company
