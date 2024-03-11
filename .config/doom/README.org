@@ -300,7 +300,9 @@ These are some settings for javascript/typescript. I'm disabling lsp formatting 
 Configuration for LSP
 
 #+begin_src emacs-lisp
-(setq lsp-ui-peek-always-show t)
+(after! lsp-mode
+  (setq lsp-ui-peek-always-show t)
+  (setq lsp-inlay-hint-enable t))
 #+end_src
 
 ** LaTeX

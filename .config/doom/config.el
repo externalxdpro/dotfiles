@@ -153,7 +153,9 @@ List of keybindings (SPC h b b)")
 (after! js
   (setq-default js--prettify-symbols-alist '()))
 
-(setq lsp-ui-peek-always-show t)
+(after! lsp-mode
+  (setq lsp-ui-peek-always-show t)
+  (setq lsp-inlay-hint-enable t))
 
 (after! ox-latex
   (add-to-list 'org-latex-classes
