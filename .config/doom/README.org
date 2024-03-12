@@ -64,22 +64,7 @@ Some extra settings to auto-set compile commands for C++.
       (let* ((src (file-name-nondirectory (buffer-file-name)))
              (exe (file-name-sans-extension src)))
         (setq-local compile-command (concat "make " exe " && timeout 1s ./" exe))
-        (after! dap-mode
-          (dap-register-debug-template
-           "cpptools::Run Configuration"
-             (list :type "cppdbg"
-                   :request "launch"
-                   :name "cpptools::Run Configuration"
-                   :MIMode "gdb"
-                   :program "${fileDirname}/${fileBasenameNoExtension}"
-                   :cwd "${workspaceFolder}"
-                   :setupCommands [(:description "Setup pretty-printing for gdb" :text "python import sys;sys.path.insert(0, '/usr/share/gcc-13.2.1/python');from libstdcxx.v6.printers import register_libstdcxx_printers;register_libstdcxx_printers(None)" :ignoreFailures nil)
-                                   (:description "Enable pretty-printing for gdb" :text "-enable-pretty-printing" :ignoreFailures t)
-                                   (:description "Do not stop on SIGPIPE error" :text "handle SIGPIPE nostop noprint pass" :ignoreFailures t)
-
-                                   ]
-                   )))
-                    ))))
+))))
 
 (after! lsp-clangd
   (setq lsp-clients-clangd-args
@@ -151,21 +136,93 @@ This setting ensures that emacsclient always opens on *dashboard* rather than *s
 ** Debug Adapter Protocol
 These are settings for the Debug Adapter Protocol also known as dap-mode that works with LSP to create a seamless IDE experience
 
+| Command                      | Description                              | Keybinding |
+|------------------------------+------------------------------------------+------------|
+| dap-next                     | /Go to next line/                          | SPC-d-n    |
+| dap-step-in                  | /Step into function/                       | SPC-d-i    |
+| dap-step-out                 | /Step out of function/                     | SPC-d-o    |
+| dap-continue                 | /Continue until next breakpoint/           | SPC-d-c    |
+| dap-hydra                    | /Enable hydra mode/                        | SPC-d-h    |
+| dap-debug                    | /Start debugger/                           | SPC-d-s    |
+| dap-debug-restart            | /Restart debugger/                         | SPC-d-r    |
+| dap-disconnect               | /Stop debugger/                            | SPC-d-k    |
+| dap-delete-all-sessions      | /Kill all dap sessions/                    | SPC-d-K    |
+| dap-debug-recent             | /Start debugger with recent configuration/ | SPC-d-d-r  |
+| dap-debug-last               | /Start debugger with last configuration/   | SPC-d-d-l  |
+| dap-eval                     | /Eval string/                              | SPC-d-e-e  |
+| dap-eval-region              | /Eval region string/                       | SPC-d-e-r  |
+| dap-eval-thing-at-point      | /Eval symbol on cursor/                    | SPC-d-e-s  |
+| dap-ui-expressions-add       | /Add expression/                           | SPC-d-e-a  |
+| dap-ui-expressions-remove    | /Remove expression/                        | SPC-d-e-d  |
+| dap-breakpoint-toggle        | /Toggle breakpoint on cursor/              | SPC-d-b-b  |
+| dap-breakpoint-condition     | /Set condition for breakpoint/             | SPC-d-b-c  |
+| dap-breakpoint-hit-condition | /Set hit count for breakpoint/             | SPC-d-b-h  |
+| dap-breakpoint-log-message   | /Set log message for breakpoint/           | SPC-d-b-l  |
+
 #+begin_src emacs-lisp
+(map! :map dap-mode-map
+      :leader
+      :prefix ("d" . "dap")
+      ;; basics
+      :desc "dap next"                "n" #'dap-next
+      :desc "dap step in"             "i" #'dap-step-in
+      :desc "dap step out"            "o" #'dap-step-out
+      :desc "dap continue"            "c" #'dap-continue
+      :desc "dap hydra"               "h" #'dap-hydra
+      :desc "dap debug"               "s" #'dap-debug
+      :desc "dap debug restart"       "r" #'dap-debug-restart
+      :desc "dap disconnect"          "k" #'dap-disconnect
+      :desc "dap delete all sessions" "K" #'dap-delete-all-sessions
+
+      ;; debug
+      :prefix ("dd" . "Debug")
+      :desc "dap debug recent" "r" #'dap-debug-recent
+      :desc "dap debug last"   "l" #'dap-debug-last
+
+      ;; eval
+      :prefix ("de" . "Eval")
+      :desc "eval"                "e" #'dap-eval
+      :desc "eval region"         "r" #'dap-eval-region
+      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+      :desc "add expression"      "a" #'dap-ui-expressions-add
+      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+
+      :prefix ("db" . "Breakpoint")
+      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
   (require 'dap-netcore)
-  (require 'dap-cpptools))
+
+  (require 'dap-codelldb)
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (dap-register-debug-template
+   "LLDB::Run C++"
+   (list :type "lldb"
+         :request "launch"
+         :name "LLDB::Run C++"
+         :miDebuggerPath "/usr/bin/lldb-mi"
+         :cwd "${workspaceFolder}"
+         :program "${fileDirname}/${fileBasenameNoExtension}"))
+  (dap-register-debug-template
+   "LLDB::Run Rust"
+   (list :type "lldb"
+         :request "launch"
+         :name "LLDB::Run Rust"
+         :miDebuggerPath "~/.cargo/bin/rust-lldb"
+         :cwd "${workspaceFolder}"
+         :program "${workspaceFolder}/target/debug/${fileBasenameNoExtension}"))
+)
 #+end_src
 
 ** Dired
 Dired is the file manager within Emacs.  Below, I setup keybindings for image previews (peep-dired).  Doom Emacs does not use 'SPC d' for any of its keybindings, so I've chosen the format of 'SPC d' plus 'key'.
 
-| Command                 | Description                                   | Keybinding |
-|-------------------------+-----------------------------------------------+------------|
-| dired                   | /Open dired file manager/                     | SPC d d    |
-| dired-jump              | /Jump to current directory in dired/          | SPC d j    |
-| dired-view-file         | /View file in dired/                          | SPC d v    |
+| Command                 | Description                                 | Keybinding |
+|-------------------------+---------------------------------------------+------------|
 | dired-up-directory      | /Go up in directory tree/                     | h          |
 | dired-find-file         | /Go down in directory tree (or open if file)/ | l          |
 | dired-next-line         | /Move down to next line/                      | j          |
@@ -189,15 +246,6 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
 | dired-do-rename         | /Rename file or all marked files/             | R          |
 
 #+begin_src emacs-lisp
-(map! :leader
-      (:prefix ("d" . "dired")
-       :desc "Open dired" "d" #'dired
-       :desc "Dired jump to current" "j" #'dired-jump)
-      (:after dired
-       (:map dired-mode-map
-        :desc "Peep-dired image previews" "d p" #'peep-dired
-        :desc "Dired view file" "d v" #'dired-view-file)))
-
 (evil-define-key 'normal dired-mode-map
   (kbd "M-RET") 'dired-display-file
   (kbd "h") 'dired-up-directory

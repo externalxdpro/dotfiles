@@ -4,22 +4,7 @@
       (let* ((src (file-name-nondirectory (buffer-file-name)))
              (exe (file-name-sans-extension src)))
         (setq-local compile-command (concat "make " exe " && timeout 1s ./" exe))
-        (after! dap-mode
-          (dap-register-debug-template
-           "cpptools::Run Configuration"
-             (list :type "cppdbg"
-                   :request "launch"
-                   :name "cpptools::Run Configuration"
-                   :MIMode "gdb"
-                   :program "${fileDirname}/${fileBasenameNoExtension}"
-                   :cwd "${workspaceFolder}"
-                   :setupCommands [(:description "Setup pretty-printing for gdb" :text "python import sys;sys.path.insert(0, '/usr/share/gcc-13.2.1/python');from libstdcxx.v6.printers import register_libstdcxx_printers;register_libstdcxx_printers(None)" :ignoreFailures nil)
-                                   (:description "Enable pretty-printing for gdb" :text "-enable-pretty-printing" :ignoreFailures t)
-                                   (:description "Do not stop on SIGPIPE error" :text "handle SIGPIPE nostop noprint pass" :ignoreFailures t)
-
-                                   ]
-                   )))
-                    ))))
+))))
 
 (after! lsp-clangd
   (setq lsp-clients-clangd-args
@@ -70,19 +55,62 @@ List of keybindings (SPC h b b)")
 
 (setq doom-fallback-buffer-name "*dashboard*")
 
+(map! :map dap-mode-map
+      :leader
+      :prefix ("d" . "dap")
+      ;; basics
+      :desc "dap next"                "n" #'dap-next
+      :desc "dap step in"             "i" #'dap-step-in
+      :desc "dap step out"            "o" #'dap-step-out
+      :desc "dap continue"            "c" #'dap-continue
+      :desc "dap hydra"               "h" #'dap-hydra
+      :desc "dap debug"               "s" #'dap-debug
+      :desc "dap debug restart"       "r" #'dap-debug-restart
+      :desc "dap disconnect"          "k" #'dap-disconnect
+      :desc "dap delete all sessions" "K" #'dap-delete-all-sessions
+
+      ;; debug
+      :prefix ("dd" . "Debug")
+      :desc "dap debug recent" "r" #'dap-debug-recent
+      :desc "dap debug last"   "l" #'dap-debug-last
+
+      ;; eval
+      :prefix ("de" . "Eval")
+      :desc "eval"                "e" #'dap-eval
+      :desc "eval region"         "r" #'dap-eval-region
+      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+      :desc "add expression"      "a" #'dap-ui-expressions-add
+      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+
+      :prefix ("db" . "Breakpoint")
+      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
   (require 'dap-netcore)
-  (require 'dap-cpptools))
 
-(map! :leader
-      (:prefix ("d" . "dired")
-       :desc "Open dired" "d" #'dired
-       :desc "Dired jump to current" "j" #'dired-jump)
-      (:after dired
-       (:map dired-mode-map
-        :desc "Peep-dired image previews" "d p" #'peep-dired
-        :desc "Dired view file" "d v" #'dired-view-file)))
+  (require 'dap-codelldb)
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (dap-register-debug-template
+   "LLDB::Run C++"
+   (list :type "lldb"
+         :request "launch"
+         :name "LLDB::Run C++"
+         :miDebuggerPath "/usr/bin/lldb-mi"
+         :cwd "${workspaceFolder}"
+         :program "${fileDirname}/${fileBasenameNoExtension}"))
+  (dap-register-debug-template
+   "LLDB::Run Rust"
+   (list :type "lldb"
+         :request "launch"
+         :name "LLDB::Run Rust"
+         :miDebuggerPath "~/.cargo/bin/rust-lldb"
+         :cwd "${workspaceFolder}"
+         :program "${workspaceFolder}/target/debug/${fileBasenameNoExtension}"))
+)
 
 (evil-define-key 'normal dired-mode-map
   (kbd "M-RET") 'dired-display-file
