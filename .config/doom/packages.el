@@ -50,7 +50,6 @@
 ;(unpin! t)
 
 (package! company-prescient)
-(package! dashboard)
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
