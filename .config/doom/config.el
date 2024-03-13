@@ -66,25 +66,25 @@
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
   (require 'dap-netcore)
+  (require 'dap-gdb-lldb)
 
-  (require 'dap-codelldb)
-  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  (setq dap-auto-configure-features '(locals expressions controls tooltip))
+
   (dap-register-debug-template
-   "LLDB::Run C++"
-   (list :type "lldb"
-         :request "launch"
-         :name "LLDB::Run C++"
-         :miDebuggerPath "/usr/bin/lldb-mi"
-         :cwd "${workspaceFolder}"
-         :program "${fileDirname}/${fileBasenameNoExtension}"))
+    "GDB::Run C/C++"
+    (list :type "gdb"
+          :request "launch"
+          :name "GDB::Run C/C++"
+          :target nil
+          :cwd nil))
   (dap-register-debug-template
-   "LLDB::Run Rust"
-   (list :type "lldb"
-         :request "launch"
-         :name "LLDB::Run Rust"
-         :miDebuggerPath "~/.cargo/bin/rust-lldb"
-         :cwd "${workspaceFolder}"
-         :program "${workspaceFolder}/target/debug/${fileBasenameNoExtension}"))
+    "GDB::Run Rust"
+    (list :type "gdb"
+          :request "launch"
+          :name "GDB::Run Rust"
+          :gdbpath "rust-gdb"
+          :target nil
+          :cwd nil))
 )
 
 (evil-define-key 'normal dired-mode-map
