@@ -293,7 +293,8 @@
   (setq org-directory "~/nc/Notes/"
         org-agenda-files (directory-files-recursively "~/nc/Notes/agenda/" "\\.org$")
         org-log-done 'time
-        org-hide-emphasis-markers t))
+        org-hide-emphasis-markers t)
+  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/agenda.html"))))
 
 (custom-set-faces
   '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
