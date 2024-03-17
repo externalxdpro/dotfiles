@@ -292,6 +292,7 @@
 (after! org
   (setq org-directory "~/nc/Notes/"
         org-agenda-files (directory-files-recursively "~/nc/Notes/agenda/" "\\.org$")
+        org-agenda-span 'month
         org-log-done 'time
         org-hide-emphasis-markers t)
   (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/agenda.html"))))
