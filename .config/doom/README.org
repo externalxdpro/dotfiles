@@ -514,7 +514,7 @@ I wrapped most of this block in (after! org).  Without this, my settings might b
         org-agenda-span 'month
         org-log-done 'time
         org-hide-emphasis-markers t)
-  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/agenda.html"))))
+  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/nc/Notes/agenda/agenda.html"))))
 #+end_src
 
 *** Set font sizes for each header level

@@ -295,7 +295,7 @@
         org-agenda-span 'month
         org-log-done 'time
         org-hide-emphasis-markers t)
-  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/agenda.html"))))
+  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/nc/Notes/agenda/agenda.html"))))
 
 (custom-set-faces
   '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
