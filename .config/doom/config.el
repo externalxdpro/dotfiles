@@ -157,6 +157,9 @@
   (setq-default js--prettify-symbols-alist '()))
 
 (after! lsp-mode
+  (map! :leader
+        (:prefix ("t" . "toggle")
+         :desc "LSP inlay hints" "L" #'lsp-inlay-hints-mode))
   (setq lsp-ui-peek-always-show t)
   (setq lsp-inlay-hint-enable t))
 
