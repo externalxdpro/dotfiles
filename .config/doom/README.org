@@ -4,7 +4,6 @@
 - [[#about][About]]
 - [[#config][Config]]
   - [[#c][C++]]
-  - [[#company][Company]]
   - [[#debug-adapter-protocol][Debug Adapter Protocol]]
   - [[#dired][Dired]]
   - [[#doom-theme][Doom Theme]]
@@ -74,25 +73,6 @@ Some extra settings to auto-set compile commands for C++.
           "--header-insertion=iwyu"
           "--header-insertion-decorators=0"))
   (set-lsp-priority! 'clangd 2))
-#+end_src
-
-** Company
-Company is used for auto-completion in Emacs. These are some settings I use for Company.
-
-#+begin_src emacs-lisp
-(setq company-selection-wrap-around t)
-
-;; Have snippets come up before keywords
-(setq +lsp-company-backends '(:separate company-yasnippet company-capf))
-
-(after! company
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
-  (define-key company-active-map (kbd "TAB") 'company-complete-selection)
-  (define-key company-active-map (kbd "C-SPC") 'company-abort)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "<return>") nil)
-
-  (company-prescient-mode 1))
 #+end_src
 
 ** Debug Adapter Protocol
@@ -592,7 +572,8 @@ These are the contents of the *init.el* file.
 
 #+begin_src emacs-lisp
        :completion
-       (company +childframe)           ; the ultimate code completion backend
+       ;;(company +childframe)           ; the ultimate code completion backend
+       (corfu +dabbrev +icons)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
@@ -872,7 +853,6 @@ These are the contents of the *packages.el* file.
 #+end_src
 
 #+begin_src emacs-lisp
-(package! company-prescient)
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)

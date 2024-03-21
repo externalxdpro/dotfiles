@@ -49,7 +49,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! company-prescient)
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
