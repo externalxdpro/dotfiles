@@ -4,6 +4,7 @@
 - [[#about][About]]
 - [[#config][Config]]
   - [[#c][C++]]
+  - [[#corfu][Corfu]]
   - [[#debug-adapter-protocol][Debug Adapter Protocol]]
   - [[#dired][Dired]]
   - [[#doom-theme][Doom Theme]]
@@ -75,31 +76,51 @@ Some extra settings to auto-set compile commands for C++.
   (set-lsp-priority! 'clangd 2))
 #+end_src
 
+** Corfu
+
+| Command        | Description                 | Keybinding |
+|----------------+-----------------------------+------------|
+| corfu-complete | Complete current completion | TAB        |
+| corfu-quit     | Close autocomplete          | C-SPC      |
+
+#+begin_src emacs-lisp
+(after! corfu
+  (setq! corfu-preselect 'first)
+  (map! :map corfu-map
+      "<insert-state> TAB" #'corfu-complete
+      "<insert-state> <tab>" #'corfu-complete
+      "TAB" #'corfu-complete
+      "<tab>" #'corfu-complete
+      "<insert-state> C-SPC" #'corfu-quit
+  )
+)
+#+end_src
+
 ** Debug Adapter Protocol
 These are settings for the Debug Adapter Protocol also known as dap-mode that works with LSP to create a seamless IDE experience
 
 | Command                      | Description                              | Keybinding |
 |------------------------------+------------------------------------------+------------|
-| dap-next                     | /Go to next line/                          | SPC-d-n    |
-| dap-step-in                  | /Step into function/                       | SPC-d-i    |
-| dap-step-out                 | /Step out of function/                     | SPC-d-o    |
-| dap-continue                 | /Continue until next breakpoint/           | SPC-d-c    |
-| dap-hydra                    | /Enable hydra mode/                        | SPC-d-h    |
-| dap-debug                    | /Start debugger/                           | SPC-d-s    |
-| dap-debug-restart            | /Restart debugger/                         | SPC-d-r    |
-| dap-disconnect               | /Stop debugger/                            | SPC-d-k    |
-| dap-delete-all-sessions      | /Kill all dap sessions/                    | SPC-d-K    |
-| dap-debug-recent             | /Start debugger with recent configuration/ | SPC-d-d-r  |
-| dap-debug-last               | /Start debugger with last configuration/   | SPC-d-d-l  |
-| dap-eval                     | /Eval string/                              | SPC-d-e-e  |
-| dap-eval-region              | /Eval region string/                       | SPC-d-e-r  |
-| dap-eval-thing-at-point      | /Eval symbol on cursor/                    | SPC-d-e-s  |
-| dap-ui-expressions-add       | /Add expression/                           | SPC-d-e-a  |
-| dap-ui-expressions-remove    | /Remove expression/                        | SPC-d-e-d  |
-| dap-breakpoint-toggle        | /Toggle breakpoint on cursor/              | SPC-d-b-b  |
-| dap-breakpoint-condition     | /Set condition for breakpoint/             | SPC-d-b-c  |
-| dap-breakpoint-hit-condition | /Set hit count for breakpoint/             | SPC-d-b-h  |
-| dap-breakpoint-log-message   | /Set log message for breakpoint/           | SPC-d-b-l  |
+| dap-next                     | /Go to next line/                          | SPC d n    |
+| dap-step-in                  | /Step into function/                       | SPC d i    |
+| dap-step-out                 | /Step out of function/                     | SPC d o    |
+| dap-continue                 | /Continue until next breakpoint/           | SPC d c    |
+| dap-hydra                    | /Enable hydra mode/                        | SPC d h    |
+| dap-debug                    | /Start debugger/                           | SPC d s    |
+| dap-debug-restart            | /Restart debugger/                         | SPC d r    |
+| dap-disconnect               | /Stop debugger/                            | SPC d k    |
+| dap-delete-all-sessions      | /Kill all dap sessions/                    | SPC d K    |
+| dap-debug-recent             | /Start debugger with recent configuration/ | SPC d d r  |
+| dap-debug-last               | /Start debugger with last configuration/   | SPC d d l  |
+| dap-eval                     | /Eval string/                              | SPC d e e  |
+| dap-eval-region              | /Eval region string/                       | SPC d e r  |
+| dap-eval-thing-at-point      | /Eval symbol on cursor/                    | SPC d e s  |
+| dap-ui-expressions-add       | /Add expression/                           | SPC d e a  |
+| dap-ui-expressions-remove    | /Remove expression/                        | SPC d e d  |
+| dap-breakpoint-toggle        | /Toggle breakpoint on cursor/              | SPC d b b  |
+| dap-breakpoint-condition     | /Set condition for breakpoint/             | SPC d b c  |
+| dap-breakpoint-hit-condition | /Set hit count for breakpoint/             | SPC d b h  |
+| dap-breakpoint-log-message   | /Set log message for breakpoint/           | SPC d b l  |
 
 #+begin_src emacs-lisp
 (map! :map dap-mode-map

@@ -16,6 +16,17 @@
           "--header-insertion-decorators=0"))
   (set-lsp-priority! 'clangd 2))
 
+(after! corfu
+  (setq! corfu-preselect 'first)
+  (map! :map corfu-map
+      "<insert-state> TAB" #'corfu-complete
+      "<insert-state> <tab>" #'corfu-complete
+      "TAB" #'corfu-complete
+      "<tab>" #'corfu-complete
+      "<insert-state> C-SPC" #'corfu-quit
+  )
+)
+
 (map! :map dap-mode-map
       :leader
       :prefix ("d" . "dap")
