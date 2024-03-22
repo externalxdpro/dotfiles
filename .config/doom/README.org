@@ -87,11 +87,13 @@ Some extra settings to auto-set compile commands for C++.
 (after! corfu
   (setq! corfu-preselect 'first)
   (map! :map corfu-map
-      "<insert-state> TAB" #'corfu-complete
-      "<insert-state> <tab>" #'corfu-complete
-      "TAB" #'corfu-complete
-      "<tab>" #'corfu-complete
-      "<insert-state> C-SPC" #'corfu-quit
+        "<insert-state> TAB" #'corfu-complete
+        "<insert-state> <tab>" #'corfu-complete
+        "<insert-state> C-SPC" #'corfu-quit
+  )
+  (map! :map corfu-mode-map
+        "<insert-state> TAB" #'indent-for-tab-command
+        "<insert-state> <tab>" #'indent-for-tab-command
   )
 )
 #+end_src
