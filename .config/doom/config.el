@@ -160,7 +160,8 @@
         (:prefix ("t" . "toggle")
          :desc "LSP inlay hints" "L" #'lsp-inlay-hints-mode))
   (setq lsp-ui-peek-always-show t)
-  (setq lsp-inlay-hint-enable t))
+  (setq lsp-inlay-hint-enable t)
+  (setq lsp-headerline-breadcrumb-enable t))
 
 (after! ox-latex
   (add-to-list 'org-latex-classes
