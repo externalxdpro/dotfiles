@@ -118,6 +118,11 @@
 
 (setq doom-theme 'doom-one)
 
+(after! eglot
+  (map! :leader
+        (:prefix ("t" . "toggle")
+         :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode)))
+
 (add-hook 'after-make-frame-functions
   (lambda (frame) (elcord-mode 1)))
 (add-hook 'after-delete-frame-functions
@@ -154,14 +159,6 @@
 
 (after! js
   (setq-default js--prettify-symbols-alist '()))
-
-(after! lsp-mode
-  (map! :leader
-        (:prefix ("t" . "toggle")
-         :desc "LSP inlay hints" "L" #'lsp-inlay-hints-mode))
-  (setq lsp-ui-peek-always-show t)
-  (setq lsp-inlay-hint-enable t)
-  (setq lsp-headerline-breadcrumb-enable t))
 
 (after! ox-latex
   (add-to-list 'org-latex-classes
