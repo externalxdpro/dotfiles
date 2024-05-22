@@ -12,6 +12,7 @@
   - [[#elcord][Elcord]]
   - [[#emojis][Emojis]]
   - [[#eww][EWW]]
+  - [[#frame-settings][Frame Settings]]
   - [[#fonts][Fonts]]
   - [[#javascripttypescript][JavaScript/TypeScript]]
   - [[#latex][LaTeX]]
@@ -290,6 +291,13 @@ EWW is the Emacs Web Wowser, the builtin browser in Emacs.  Below I set urls to 
       (:prefix ("e" . "evaluate/EWW")
        :desc "Eww web browser" "w" #'eww
        :desc "Eww reload page" "R" #'eww-reload))
+#+end_src
+
+** Frame Settings
+Add some options that relate to frames, like a frame being maximized when opened
+
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 #+end_src
 
 ** Fonts
@@ -710,7 +718,7 @@ These are the contents of the *init.el* file.
 #+begin_src emacs-lisp
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty               ; improve the terminal Emacs experience
 #+end_src
 
 ** Lang
