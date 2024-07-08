@@ -15,6 +15,7 @@
   - [[#frame-settings][Frame Settings]]
   - [[#fonts][Fonts]]
   - [[#javascripttypescript][JavaScript/TypeScript]]
+  - [[#language-server-protocol][Language Server Protocol]]
   - [[#latex][LaTeX]]
   - [[#line-settings][Line Settings]]
   - [[#mu4e][MU4E]]
@@ -254,10 +255,10 @@ Setting the theme to doom-one.
 Configuration for Eglot
 
 #+begin_src emacs-lisp
-(after! eglot
-  (map! :leader
-        (:prefix ("t" . "toggle")
-         :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode)))
+;; (after! eglot
+;;   (map! :leader
+;;         (:prefix ("t" . "toggle")
+;;          :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode)))
 #+end_src
 
 ** Elcord
@@ -325,6 +326,19 @@ These are some settings for javascript/typescript. I'm disabling lsp formatting 
 
 (after! js
   (setq-default js--prettify-symbols-alist '()))
+#+end_src
+
+** Language Server Protocol
+Configuration for LSP
+
+#+begin_src emacs-lisp
+(after! lsp-mode
+  (map! :leader
+        (:prefix ("t" . "toggle")
+         :desc "LSP inlay hints" "L" #'lsp-inlay-hints-mode))
+  (setq lsp-ui-peek-always-show t)
+  (setq lsp-inlay-hint-enable t)
+  (setq lsp-headerline-breadcrumb-enable t))
 #+end_src
 
 ** LaTeX
@@ -699,7 +713,7 @@ These are the contents of the *init.el* file.
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        (lookup +dictionary)              ; navigate your code and its documentation
-       (lsp +eglot +peek)               ; M-x vscode
+       (lsp +peek)               ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        (pass +auth)              ; password manager for nerds
