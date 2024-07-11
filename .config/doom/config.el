@@ -16,18 +16,32 @@
           "--header-insertion-decorators=0"))
   (set-lsp-priority! 'clangd 2))
 
-(after! corfu
-  (setq! corfu-preselect 'first)
-  (map! :map corfu-map
-        "<insert-state> TAB" #'corfu-complete
-        "<insert-state> <tab>" #'corfu-complete
-        "<insert-state> C-SPC" #'corfu-quit
-  )
-  (map! :map corfu-mode-map
-        "<insert-state> TAB" #'indent-for-tab-command
-        "<insert-state> <tab>" #'indent-for-tab-command
-  )
-)
+(setq company-selection-wrap-around t)
+
+;; Have snippets come up before keywords
+(setq +lsp-company-backends '(:separate company-yasnippet company-capf))
+
+(after! company
+  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+  (define-key company-active-map (kbd "TAB") 'company-complete-selection)
+  (define-key company-active-map (kbd "C-SPC") 'company-abort)
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map (kbd "<return>") nil)
+
+  (company-prescient-mode 1))
+
+;; (after! corfu
+;;   (setq! corfu-preselect 'first)
+;;   (map! :map corfu-map
+;;         "<insert-state> TAB" #'corfu-complete
+;;         "<insert-state> <tab>" #'corfu-complete
+;;         "<insert-state> C-SPC" #'corfu-quit
+;;   )
+;;   (map! :map corfu-mode-map
+;;         "<insert-state> TAB" #'indent-for-tab-command
+;;         "<insert-state> <tab>" #'indent-for-tab-command
+;;   )
+;; )
 
 (map! :map dap-mode-map
       :leader
