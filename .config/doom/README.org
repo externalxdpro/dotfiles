@@ -18,6 +18,7 @@
   - [[#javascripttypescript][JavaScript/TypeScript]]
   - [[#language-server-protocol][Language Server Protocol]]
   - [[#latex][LaTeX]]
+  - [[#leetcode][Leetcode]]
   - [[#line-settings][Line Settings]]
   - [[#mu4e][MU4E]]
   - [[#mouse-support][Mouse Support]]
@@ -376,6 +377,53 @@ Configuration for LSP
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+#+end_src
+
+** Leetcode
+
+| Command                      | Description                        | Keybinding |
+|------------------------------+------------------------------------+------------|
+| my-leetcode                  | Open problem list and set language | SPC l l    |
+| leetcode-restore-layout      | Reset layout                       | SPC l r    |
+| leetcode-try                 | Try running solution               | SPC l t    |
+| leetcode-submit              | Submit solution                    | SPC l s    |
+| leetcode-quit                | Close all leetcode windows         | SPC l q    |
+| leetcode-set-prefer-language | Set preferred language             | SPC l L    |
+| leetcode-daily               | Open daily problem                 | SPC l d    |
+
+A function that opens leetcode, sets preferred language and sets leetcode directory
+#+begin_src emacs-lisp
+(defun my-leetcode () (interactive)
+  (leetcode)
+  (leetcode-set-prefer-language)
+
+  (setq leetcode-directory
+        (cdr (assoc leetcode-prefer-language
+                    '(("cpp"     . "~/repos/LeetcodeSolutions/CPP")
+                      ("csharp"  . "~/repos/LeetcodeSolutions/CS")
+                      ("python3" . "~/repos/LeetcodeSolutions/Python")
+                      ("rust"    . "~/repos/LeetcodeSolutions/Rust/src/bin"))))))
+#+end_src
+
+Keybindings:
+#+begin_src emacs-lisp
+(map! :leader
+      :prefix ("l" . "leetcode")
+      :desc "leetcode"            "l" #'my-leetcode)
+(map! :map leetcode-solution-mode-map
+      :leader
+      :prefix "l"
+      :desc "reset layout"        "r" #'leetcode-restore-layout
+      :desc "try"                 "t" #'leetcode-try
+      :desc "submit"              "s" #'leetcode-submit
+      :desc "quit"                "q" #'leetcode-quit
+      :desc "set prefer language" "L" #'leetcode-set-prefer-language
+      :desc "daily"               "d" #'leetcode-daily)
+#+end_src
+
+#+begin_src emacs-lisp
+(after! leetcode
+  (setq leetcode-save-solutions t))
 #+end_src
 
 ** Line Settings
@@ -921,6 +969,7 @@ These are the contents of the *packages.el* file.
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
+(package! leetcode)
 (package! org-alert)
 (package! org-auto-tangle)
 #+end_src

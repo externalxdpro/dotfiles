@@ -197,6 +197,33 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
+(defun my-leetcode () (interactive)
+  (leetcode)
+  (leetcode-set-prefer-language)
+
+  (setq leetcode-directory
+        (cdr (assoc leetcode-prefer-language
+                    '(("cpp"     . "~/repos/LeetcodeSolutions/CPP")
+                      ("csharp"  . "~/repos/LeetcodeSolutions/CS")
+                      ("python3" . "~/repos/LeetcodeSolutions/Python")
+                      ("rust"    . "~/repos/LeetcodeSolutions/Rust/src/bin"))))))
+
+(map! :leader
+      :prefix ("l" . "leetcode")
+      :desc "leetcode"            "l" #'my-leetcode)
+(map! :map leetcode-solution-mode-map
+      :leader
+      :prefix "l"
+      :desc "reset layout"        "r" #'leetcode-restore-layout
+      :desc "try"                 "t" #'leetcode-try
+      :desc "submit"              "s" #'leetcode-submit
+      :desc "quit"                "q" #'leetcode-quit
+      :desc "set prefer language" "L" #'leetcode-set-prefer-language
+      :desc "daily"               "d" #'leetcode-daily)
+
+(after! leetcode
+  (setq leetcode-save-solutions t))
+
 (setq display-line-numbers-type 'relative)
 (pixel-scroll-precision-mode 1)
 (map! :leader

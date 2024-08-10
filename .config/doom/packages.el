@@ -53,5 +53,6 @@
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
+(package! leetcode)
 (package! org-alert)
 (package! org-auto-tangle)
