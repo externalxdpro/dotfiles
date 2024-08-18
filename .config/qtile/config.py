@@ -34,9 +34,10 @@ from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
 
 mod = "mod4"
-term = "alacritty"
-browser = "firefox"
-emacs = "emacsclient -c -a 'emacs' "
+myTerminal = "alacritty"
+myFileManager = "thunar"
+myBrowser = "firefox"
+myEmacs = "emacsclient -c -a 'emacs' "
 
 colors = [
     ["#282c34", "#282c34"],  # bg
@@ -51,9 +52,10 @@ colors = [
 ]
 
 keys = [
-    Key([mod], "Return", lazy.spawn(term), desc="Terminal"),
+    Key([mod], "Return", lazy.spawn(myTerminal), desc="Terminal"),
+    Key([mod, "shift"], "Return", lazy.spawn(myFileManager), desc="File manager"),
     Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Run launcher"),
-    Key([mod], "w", lazy.spawn(browser), desc="Browser"),
+    Key([mod], "w", lazy.spawn(myBrowser), desc="Browser"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
@@ -126,19 +128,25 @@ keys = [
         [mod],
         "e",
         [
-            Key([], "e", lazy.spawn(emacs), desc="Emacs Dashboard"),
+            Key([], "e", lazy.spawn(myEmacs), desc="Emacs Dashboard"),
             Key(
-                [], "b", lazy.spawn(emacs + "--eval '(ibuffer)'"), desc="Emacs Ibuffer"
+                [],
+                "b",
+                lazy.spawn(myEmacs + "--eval '(ibuffer)'"),
+                desc="Emacs Ibuffer",
             ),
             Key(
-                [], "d", lazy.spawn(emacs + "--eval '(dired nil)'"), desc="Emacs Dired"
+                [],
+                "d",
+                lazy.spawn(myEmacs + "--eval '(dired nil)'"),
+                desc="Emacs Dired",
             ),
-            Key([], "m", lazy.spawn(emacs + "--eval '(=mu4e)'"), desc="Emacs MU4E"),
-            Key([], "v", lazy.spawn(emacs + "--eval '(vterm)'"), desc="Emacs VTerm"),
+            Key([], "m", lazy.spawn(myEmacs + "--eval '(=mu4e)'"), desc="Emacs MU4E"),
+            Key([], "v", lazy.spawn(myEmacs + "--eval '(vterm)'"), desc="Emacs VTerm"),
             Key(
                 [],
                 "w",
-                lazy.spawn(emacs + "--eval '(eww \"start.duckduckgo.com\")'"),
+                lazy.spawn(myEmacs + "--eval '(eww \"start.duckduckgo.com\")'"),
                 desc="Emacs EWW",
             ),
             Key(
@@ -226,7 +234,7 @@ def init_widgets():
         widget.Image(
             filename="~/.config/qtile/logo.png",
             scale="False",
-            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(term)},
+            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(myTerminal)},
         ),
         widget.GroupBox(
             fontsize=11,
@@ -287,7 +295,9 @@ def init_widgets():
         widget.Spacer(length=8),
         widget.Memory(
             foreground=colors[8],
-            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(term + " -e htop")},
+            mouse_callbacks={
+                "Button1": lambda: qtile.cmd_spawn(myTerminal + " -e htop")
+            },
             format="{MemUsed: .0f}{mm}",
             fmt="🖥  Mem: {} used",
             decorations=[
@@ -301,7 +311,7 @@ def init_widgets():
         widget.DF(
             update_interval=60,
             foreground=colors[5],
-            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(term + " -e df")},
+            mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(myTerminal + " -e df")},
             partition="/",
             # format="[{p}] {uf}{m} ({r:.0f}%)",
             format="{uf}{m} free",
