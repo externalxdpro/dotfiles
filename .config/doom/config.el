@@ -363,5 +363,11 @@
   (setq-local cwm-frame-internal-border 100)
   (org-tree-slide-presentation-profile))
 
+(add-hook 'rustic-mode-hook
+  (lambda ()
+    (if (string= (car (last (string-split (file-name-directory "/home/sakib/repos/LeetcodeSolutions/Rust/src/bin/test.rs") "/") 2)) "bin")
+      (let* ((bin (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))))
+        (setq-local rustic-run-arguments (concat "--bin " bin))))))
+
 (after! persp-mode
   (setq persp-emacsclient-init-frame-behaviour-override "main"))
