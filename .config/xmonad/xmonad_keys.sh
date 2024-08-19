@@ -2,7 +2,7 @@
 set -euo pipefail
 
 
-sed -n '/START_KEYS/,/END_KEYS/p' ~/.xmonad/xmonad.hs | \
+sed -n '/START_KEYS/,/END_KEYS/p' ~/.config/xmonad/xmonad.hs | \
     grep -e ', ("' \
     -e '\[ (' \
     -e 'KB_GROUP' | \

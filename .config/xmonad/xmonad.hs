@@ -320,7 +320,7 @@ myKeys =
         , ("M-r", spawn "xmonad --restart")    -- Restarts xmonad
         -- , ("M-x", io exitSuccess)               -- Quits xmonad
         , ("M-x", spawn "archlinux-logout")    -- Displays logout menu (You can install this from the AUR)
-        , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh")
+        , ("M-S-/", spawn "~/.config/xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt
         , ("M-<Space>", spawn "rofi -show combi -show-icons") -- Rofi
