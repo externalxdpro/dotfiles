@@ -452,9 +452,9 @@ myKeys =
         -- , ("M-e a", spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/Non-Classical/70s-80s/\")'")))
 
     -- KB_GROUP Multimedia Keys
-        , ("<XF86AudioPlay>", spawn "mocp --play")
-        , ("<XF86AudioPrev>", spawn "mocp --previous")
-        , ("<XF86AudioNext>", spawn "mocp --next")
+        , ("<XF86AudioPlay>", spawn "playerctl play-pause")
+        , ("<XF86AudioPrev>", spawn "playerctl previous")
+        , ("<XF86AudioNext>", spawn "playerctl next")
         , ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
         , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
         , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
