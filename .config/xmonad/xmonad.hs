@@ -440,7 +440,7 @@ myKeys =
         , ("M-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))   -- list buffers
         , ("M-e d", spawn (myEmacs ++ ("--eval '(dired nil)'"))) -- dired
         -- , ("M-e i", spawn (myEmacs ++ ("--eval '(erc)'")))       -- erc irc client
-        , ("M-e m", spawn (myEmacs ++ ("--eval '(mu4e)'")))      -- mu4e email
+        , ("M-e m", spawn (myEmacs ++ ("--eval '(=mu4e)'")))      -- mu4e email
         -- , ("M-e n", spawn (myEmacs ++ ("--eval '(elfeed)'")))    -- elfeed rss
         -- , ("M-e s", spawn (myEmacs ++ ("--eval '(eshell)'")))    -- eshell
         -- , ("M-e t", spawn (myEmacs ++ ("--eval '(mastodon)'")))  -- mastodon.el
