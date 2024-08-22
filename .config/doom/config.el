@@ -365,7 +365,7 @@
 
 (add-hook 'rustic-mode-hook
   (lambda ()
-    (if (string= (car (last (string-split (file-name-directory "/home/sakib/repos/LeetcodeSolutions/Rust/src/bin/test.rs") "/") 2)) "bin")
+    (if (string= (car (last (string-split (file-name-directory buffer-file-name) "/") 2)) "bin")
       (let* ((bin (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))))
         (setq-local rustic-run-arguments (concat "--bin " bin))))))
 
