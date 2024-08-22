@@ -252,12 +252,12 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # confirm before overwriting something
-alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 alias ln='ln -i'
 
 # adding flags
+alias cp="rsync -ah --progress"
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
