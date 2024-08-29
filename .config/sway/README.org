@@ -350,30 +350,30 @@ focus_wrapping workspace
 
 ** Window rules
 #+begin_src conf
-assign [app_id="Alacritty"]                     dev
-assign [class="Emacs"]                          dev
+assign [app_id="Alacritty"]                     $ws1
+assign [class="Emacs"]                          $ws1
 
-assign [class="firefox"]                        www
-assign [app_id="org.qutebrowser.qutebrowser"]   www
+assign [class="firefox"]                        $ws2
+assign [app_id="org.qutebrowser.qutebrowser"]   $ws2
 
-assign [app_id="chiaki"]                        game
-assign [class="GeForce NOW"]                    game
-assign [app_id="lutris"]                        game
-assign [class="Steam"]                          game
+assign [app_id="chiaki"]                        $ws3
+assign [class="GeForce NOW"]                    $ws3
+assign [app_id="lutris"]                        $ws3
+assign [class="Steam"]                          $ws3
 
-assign [app_id="libreoffice-startcenter"]       doc
+assign [app_id="libreoffice-startcenter"]       $ws4
 
-assign [app_id="virt-manager"]                  virt
+assign [app_id="virt-manager"]                  $ws5
 
-assign [class="discord"]                        chat
+assign [class="discord"]                        $ws6
 
-assign [class="Spotify"]                        mus
+assign [class="Spotify"]                        $ws7
 
-assign [app_id="mpv"]                           vid
-assign [app_id="com.obsproject.Studio"]         vid
-assign [class="vlc"]                            vid
+assign [app_id="mpv"]                           $ws8
+assign [app_id="com.obsproject.Studio"]         $ws8
+assign [class="vlc"]                            $ws8
 
-assign [class="Gimp"]                           gfx
+assign [class="Gimp"]                           $ws9
 #+end_src
 
 * Autostart
