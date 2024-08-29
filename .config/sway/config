@@ -12,18 +12,18 @@ set $up k
 set $right l
 # Preferred applications
 set $term alacritty
-set $browser brave
+set $browser firefox
 set $secondBrowser qutebrowser
 set $editor emacsclient -c -a 'emacs'
-set $fileManager thunar
+set $fileManager pcmanfm-qt
 set $screenshot grimshot copy area
 # Preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu wofi --show drun,run
+set $menu rofi -show combi -show-icons
 # Preferred password manager
-set $pass wofi-pass -t
+set $pass tessen
 # Audio control
 set $sink_volume pactl get-sink-volume @DEFAULT_SINK@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
 set $source_volume pactl get-source-volume @DEFAULT_SOURCE@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
@@ -33,12 +33,33 @@ set $volume_mute $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-m
 set $mic_mute $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
 set $pulseaudio $term -e pulsemixer
 
+set $ws1 1:dev
+set $ws2 2:www
+set $ws3 3:game
+set $ws4 4:doc
+set $ws5 5:virt
+set $ws6 6:chat
+set $ws7 7:mus
+set $ws8 8:vid
+set $ws9 9:gfx
+
+# Rename workspaces
+exec swaymsg rename workspace number 1 to $ws1
+exec swaymsg rename workspace number 2 to $ws2
+exec swaymsg rename workspace number 3 to $ws3
+exec swaymsg rename workspace number 4 to $ws4
+exec swaymsg rename workspace number 5 to $ws5
+exec swaymsg rename workspace number 6 to $ws6
+exec swaymsg rename workspace number 7 to $ws7
+exec swaymsg rename workspace number 8 to $ws8
+exec swaymsg rename workspace number 9 to $ws9
+
 # Example configuration
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output DP-1 resolution 1920x1080 position 1920,0
-output eDP-1 resolution 1920x1080 position 0,800
+output DP-1 resolution 1920x1080@100Hz position 0,0
+output HDMI-A-1 resolution 1920x1080@75Hz position 1920,0
 focus output DP-1
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -55,8 +76,14 @@ input type:pointer {
     dwt disabled
     middle_emulation enabled
     natural_scroll disabled
-    pointer_accel 0
+    pointer_accel -0.5
     tap enabled
+}
+
+input type:keyboard {
+    xkb_options caps:escape_shifted_capslock
+    repeat_rate 75
+    repeat_delay 250
 }
 
     # Start a terminal
@@ -66,10 +93,10 @@ input type:pointer {
     bindsym $mod+Shift+c kill
 
     # Start your launcher
-    bindsym $mod+p exec $menu
+    bindsym $mod+Space exec $menu
 
     # Start password manager
-    bindsym $mod+Shift+p exec $pass
+    bindsym $mod+p exec $pass
 
     # Take a screenshot
     bindsym $mod+Shift+s exec $screenshot
@@ -110,26 +137,33 @@ input type:pointer {
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
 
+    # Move focus between monitors
+    bindsym $mod+Comma focus output left
+    bindsym $mod+Period focus output right
+    # Move focused workspace between monitors
+    bindsym $mod+Shift+Comma move workspace to output left
+    bindsym $mod+Shift+Period move workspace to output right
+
     # Switch to workspace
-    bindsym $mod+1 [workspace="dev"] move workspace to output current; workspace dev
-    bindsym $mod+2 [workspace="www"] move workspace to output current; workspace www
-    bindsym $mod+3 [workspace="game"] move workspace to output current; workspace game
-    bindsym $mod+4 [workspace="doc"] move workspace to output current; workspace doc
-    bindsym $mod+5 [workspace="virt"] move workspace to output current; workspace virt
-    bindsym $mod+6 [workspace="chat"] move workspace to output current; workspace chat
-    bindsym $mod+7 [workspace="mus"] move workspace to output current; workspace mus
-    bindsym $mod+8 [workspace="vid"] move workspace to output current; workspace vid
-    bindsym $mod+9 [workspace="gfx"] move workspace to output current; workspace gfx
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace dev
-    bindsym $mod+Shift+2 move container to workspace www
-    bindsym $mod+Shift+3 move container to workspace game
-    bindsym $mod+Shift+4 move container to workspace doc
-    bindsym $mod+Shift+5 move container to workspace virt
-    bindsym $mod+Shift+6 move container to workspace chat
-    bindsym $mod+Shift+7 move container to workspace mus
-    bindsym $mod+Shift+8 move container to workspace vid
-    bindsym $mod+Shift+9 move container to workspace gfx
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
 
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
@@ -143,13 +177,10 @@ input type:pointer {
     bindsym $mod+y layout tabbed
 
     # Make the current focus fullscreen
-    bindsym $mod+space fullscreen
+    bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+f floating toggle
-
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+Shift+f focus mode_toggle
+    bindsym $mod+Shift+f floating toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -188,6 +219,9 @@ bindsym $mod+Shift+w exec $secondBrowser
 bindsym $mod+e exec $editor
 bindsym $mod+Shift+Return exec $fileManager
 
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym --locked XF86AudioNext exec playerctl next
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -214,9 +248,15 @@ bar {
 }
 
 # Disable titlebar
-default_border none
+default_border pixel 2
 # Set window gaps
 gaps inner 10
+# Mouse hover focuses window
+focus_follows_mouse yes
+# Mouse follows focus
+mouse_warping container
+# Limit focus wrapping to workspace
+focus_wrapping workspace
 
 assign [app_id="Alacritty"]                     dev
 assign [class="Emacs"]                          dev
