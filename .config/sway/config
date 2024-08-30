@@ -144,6 +144,9 @@ input type:keyboard {
     bindsym $mod+Shift+Comma move workspace to output left
     bindsym $mod+Shift+Period move workspace to output right
 
+    # Swap workspaces between monitors
+    bindsym $mod+o exec .config/sway/scripts/swap-monitors.sh
+
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
