@@ -287,7 +287,9 @@ assign [class="vlc"]                            $ws8
 assign [class="Gimp"]                           $ws9
 
 exec $HOME/.config/sway/azotebg
-exec_always dunst -conf $HOME/.config/dunst/swayrc
-exec dex -a -s .config/autostart
-exec blueman-applet
 exec lxpolkit
+exec dunst -conf $HOME/.config/dunst/swayrc
+exec /usr/bin/emacs --daemon
+exec blueman-applet
+exec udiskie
+exec dex -a -s .config/autostart
