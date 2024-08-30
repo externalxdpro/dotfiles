@@ -382,7 +382,8 @@ assign [class="Gimp"]                           $ws9
 * Autostart
 These are some programs I want to start automatically on the window manager's startup
 #+begin_src conf
-exec dunst -conf $HOME/.config/dunst/swayrc
+exec $HOME/.config/sway/azotebg
+exec_always dunst -conf $HOME/.config/dunst/swayrc
 exec dex -a -s .config/autostart
 exec blueman-applet
 exec lxpolkit

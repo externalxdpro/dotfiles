@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+pkill swaybg
+swaybg -o 'DP-1' -i "/home/sakib/Pictures/wallpapers/008.png" -m fill &
+swaybg -o 'HDMI-A-1' -i "/home/sakib/Pictures/wallpapers/008.png" -m fill &
