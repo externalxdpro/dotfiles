@@ -147,7 +147,7 @@ input type:keyboard {
 ** Basics
 #+begin_src conf
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $term -e tmux
 
     # Kill focused window
     bindsym $mod+Shift+c kill
