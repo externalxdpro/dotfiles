@@ -104,8 +104,8 @@ exec swaymsg rename workspace number 9 to $ws9
 ** Displays
 #+begin_src conf
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output DP-1 resolution 1920x1080@100Hz position 0,0
-output HDMI-A-1 resolution 1920x1080@75Hz position 1920,0
+output DP-1 resolution 1920x1080@100Hz position 0,0 adaptive_sync on
+output HDMI-A-1 resolution 1920x1080@75Hz position 1920,0 adaptive_sync on
 focus output DP-1
 #+end_src
 
