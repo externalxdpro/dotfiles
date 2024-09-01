@@ -16,7 +16,8 @@ set $browser firefox
 set $secondBrowser qutebrowser
 set $editor emacsclient -c -a 'emacs'
 set $fileManager pcmanfm-qt
-set $screenshot grimshot copy area
+set $screenshot grim -g "$(slurp -d)" - | wl-copy
+
 # Preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
