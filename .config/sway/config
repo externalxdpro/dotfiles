@@ -75,7 +75,7 @@ focus output DP-1
 input type:pointer {
     accel_profile flat
     dwt disabled
-    middle_emulation enabled
+    middle_emulation disabled
     natural_scroll disabled
     pointer_accel -0.5
     tap enabled
