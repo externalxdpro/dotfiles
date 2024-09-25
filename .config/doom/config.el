@@ -158,9 +158,9 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15)
+(setq doom-font (font-spec :family "Caskaydia Cove Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "Avenir Next LT Pro" :size 17)
-      doom-big-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 24)
+      doom-big-font (font-spec :family "Caskaydia Cove Nerd Font" :size 24)
       mixed-pitch-set-height t)
 (after! doom-themes
   (setq doom-themes-enable-bold t
