@@ -314,7 +314,11 @@
     mu4e-get-mail-command "mbsync -a -c ~/.config/mbsyncrc" ;; set a custom sync command
     mu4e-compose-format-flowed t                            ;; send emails with format=flowed
     mu4e-index-cleanup nil                                  ;; don't do a full cleanup check
-    mu4e-index-lazy-check t))                               ;; don't consider up-to-date dirs
+    mu4e-index-lazy-check t                                 ;; don't consider up-to-date dirs
+    mu4e-notification-support nil                           ;; disable built-in notifications
+    mu4e-alert-style 'libnotify                             ;; set notification style for mu4e-alert
+    mu4e-alert-email-notification-types  '(subjects))       ;; set notification style for mu4e-alert
+  (mu4e-alert-enable-notifications))                        ;; enable mu4e-alert
 
 (mu4e t)        ;; check for emails in the background
 

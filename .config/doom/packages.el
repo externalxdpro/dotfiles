@@ -54,5 +54,6 @@
 (package! emojify)
 (package! evil-tutor)
 (package! leetcode)
+(package! mu4e-alert)
 (package! org-alert)
 (package! org-auto-tangle)
