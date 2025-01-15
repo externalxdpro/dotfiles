@@ -101,7 +101,7 @@
         "spacing": 10
     },
     "clock": {
-        "format": "   {:%d/%m      %R}",
+        "format": "   {:%m/%d      %R}",
         // "format": "{:%H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
