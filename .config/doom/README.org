@@ -85,19 +85,19 @@ Some extra settings to auto-set compile commands for C++.
 Company is used for auto-completion in Emacs. These are some settings I use for Company.
 
 #+begin_src emacs-lisp
-(setq company-selection-wrap-around t)
+;; (setq company-selection-wrap-around t)
 
-;; Have snippets come up before keywords
-(setq +lsp-company-backends '(:separate company-yasnippet company-capf))
+;; ;; Have snippets come up before keywords
+;; (setq +lsp-company-backends '(:separate company-yasnippet company-capf))
 
-(after! company
-  (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
-  (define-key company-active-map (kbd "TAB") 'company-complete-selection)
-  (define-key company-active-map (kbd "C-SPC") 'company-abort)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "<return>") nil)
+;; (after! company
+;;   (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+;;   (define-key company-active-map (kbd "TAB") 'company-complete-selection)
+;;   (define-key company-active-map (kbd "C-SPC") 'company-abort)
+;;   (define-key company-active-map (kbd "RET") nil)
+;;   (define-key company-active-map (kbd "<return>") nil)
 
-  (company-prescient-mode 1))
+;;   (company-prescient-mode 1))
 #+end_src
 
 ** Corfu
@@ -108,18 +108,13 @@ Company is used for auto-completion in Emacs. These are some settings I use for 
 | corfu-quit     | Close autocomplete          | C-SPC      |
 
 #+begin_src emacs-lisp
-;; (after! corfu
-;;   (setq! corfu-preselect 'first)
-;;   (map! :map corfu-map
-;;         "<insert-state> TAB" #'corfu-complete
-;;         "<insert-state> <tab>" #'corfu-complete
-;;         "<insert-state> C-SPC" #'corfu-quit
-;;   )
-;;   (map! :map corfu-mode-map
-;;         "<insert-state> TAB" #'indent-for-tab-command
-;;         "<insert-state> <tab>" #'indent-for-tab-command
-;;   )
-;; )
+(after! corfu
+  (setq! corfu-preselect 'first))
+(map! :after corfu
+      :map corfu-map
+      :i "TAB" #'corfu-complete
+      :i "<tab>" #'corfu-complete
+      :i "C-SPC" #'corfu-quit)
 #+end_src
 
 ** Debug Adapter Protocol
@@ -698,12 +693,12 @@ These are the contents of the *init.el* file.
 
 #+begin_src emacs-lisp
        :completion
-       (company +childframe)           ; the ultimate code completion backend
-       ;;(corfu +dabbrev +icons)  ; complete with cap(f), cape and a flying feather!
+       ;;(company +childframe)           ; the ultimate code completion backend
+       (corfu +icons +orderless)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life
-       (vertico +childframe +icons)           ; the search engine of the future
+       (vertico +icons)           ; the search engine of the future
 #+end_src
 
 ** UI
@@ -728,7 +723,7 @@ These are the contents of the *init.el* file.
        ;;tabs              ; a tab bar for Emacs
        (treemacs +lsp)          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
-       vc-gutter         ; vcs diff in the fringe
+       (vc-gutter +pretty)         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;;window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
@@ -979,7 +974,7 @@ These are the contents of the *packages.el* file.
 #+end_src
 
 #+begin_src emacs-lisp
-(package! company-prescient)
+;; (package! company-prescient)
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
