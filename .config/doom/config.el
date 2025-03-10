@@ -36,7 +36,8 @@
       :map corfu-map
       :i "TAB" #'corfu-complete
       :i "<tab>" #'corfu-complete
-      :i "C-SPC" #'corfu-quit)
+      :i "C-SPC" #'corfu-quit
+      :i "<backspace>" #'evil-delete-backward-char-and-join)
 
 (map! :map dap-mode-map
       :leader

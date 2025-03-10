@@ -114,7 +114,8 @@ Company is used for auto-completion in Emacs. These are some settings I use for 
       :map corfu-map
       :i "TAB" #'corfu-complete
       :i "<tab>" #'corfu-complete
-      :i "C-SPC" #'corfu-quit)
+      :i "C-SPC" #'corfu-quit
+      :i "<backspace>" #'evil-delete-backward-char-and-join)
 #+end_src
 
 ** Debug Adapter Protocol
