@@ -604,12 +604,12 @@ I wrapped most of this block in (after! org).  Without this, my settings might b
 (map! :leader
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 (after! org
-  (setq org-directory "~/nc/Notes/"
-        org-agenda-files (directory-files-recursively "~/nc/Notes/agenda/" "\\.org$")
+  (setq org-directory "~/Sync/Notes/"
+        org-agenda-files (directory-files-recursively "~/Sync/Notes/agenda/" "\\.org$")
         org-agenda-span 'month
         org-log-done 'time
         org-hide-emphasis-markers t)
-  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/nc/Notes/agenda/agenda.html")))
+  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/Sync/Notes/agenda/agenda.html")))
   (run-at-time 600 t #'org-store-agenda-views))
 #+end_src
 
