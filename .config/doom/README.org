@@ -273,10 +273,10 @@ Setting the theme to doom-one.
 Configuration for Eglot
 
 #+begin_src emacs-lisp
-;; (after! eglot
-;;   (map! :leader
-;;         (:prefix ("t" . "toggle")
-;;          :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode)))
+(after! eglot
+  (map! :leader
+        (:prefix ("t" . "toggle")
+         :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode)))
 #+end_src
 
 ** Elcord
@@ -350,13 +350,13 @@ These are some settings for javascript/typescript. I'm disabling lsp formatting 
 Configuration for LSP
 
 #+begin_src emacs-lisp
-(after! lsp-mode
-  (map! :leader
-        (:prefix ("t" . "toggle")
-         :desc "LSP inlay hints" "L" #'lsp-inlay-hints-mode))
-  (setq lsp-ui-peek-always-show t)
-  (setq lsp-inlay-hint-enable t)
-  (setq lsp-headerline-breadcrumb-enable t))
+;; (after! lsp-mode
+;;   (map! :leader
+;;         (:prefix ("t" . "toggle")
+;;          :desc "LSP inlay hints" "L" #'lsp-inlay-hints-mode))
+;;   (setq lsp-ui-peek-always-show t)
+;;   (setq lsp-inlay-hint-enable t)
+;;   (setq lsp-headerline-breadcrumb-enable t))
 #+end_src
 
 ** LaTeX
@@ -791,7 +791,7 @@ These are the contents of the *init.el* file.
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        (lookup +dictionary)              ; navigate your code and its documentation
-       (lsp +peek)               ; M-x vscode
+       (lsp +eglot +peek)               ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        (pass +auth)              ; password manager for nerds
