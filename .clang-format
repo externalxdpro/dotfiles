@@ -1,6 +1,6 @@
 BasedOnStyle: LLVM
 IndentWidth: 4
 
-AlignConsecutiveAssignments: Consecutive
-AlignConsecutiveDeclarations: Consecutive
-AllowShortBlocksOnASingleLine: Empty
+# AlignConsecutiveAssignments: Consecutive
+# AlignConsecutiveDeclarations: Consecutive
+# AllowShortBlocksOnASingleLine: Empty
