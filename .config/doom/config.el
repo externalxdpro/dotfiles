@@ -75,7 +75,7 @@
 (after! dap-mode
   (setq dap-python-debugger 'debugpy)
   (require 'dap-netcore)
-  (require 'dap-gdb-lldb)
+  (require 'dap-gdb-lldb) ;; Don't forget to run M-x dap-gdb-lldb-setup on fresh install
 
   (setq dap-auto-configure-features '(locals expressions controls tooltip))
 
@@ -172,13 +172,13 @@
 (after! js
   (setq-default js--prettify-symbols-alist '()))
 
-;; (after! lsp-mode
-;;   (map! :leader
-;;         (:prefix ("t" . "toggle")
-;;          :desc "LSP inlay hints" "L" #'lsp-inlay-hints-mode))
-;;   (setq lsp-ui-peek-always-show t)
-;;   (setq lsp-inlay-hint-enable t)
-;;   (setq lsp-headerline-breadcrumb-enable t))
+(after! lsp-mode
+  (map! :leader
+        (:prefix ("t" . "toggle")
+         :desc "LSP inlay hints" "L" #'lsp-inlay-hints-mode))
+  (setq lsp-ui-peek-always-show t)
+  (setq lsp-inlay-hint-enable t)
+  (setq lsp-headerline-breadcrumb-enable t))
 
 (after! ox-latex
   (add-to-list 'org-latex-classes
