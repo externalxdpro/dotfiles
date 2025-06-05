@@ -39,62 +39,41 @@
       :i "C-SPC" #'corfu-quit
       :i "<backspace>" #'evil-delete-backward-char-and-join)
 
-(map! :map dap-mode-map
-      :leader
-      :prefix ("d" . "dap")
-      ;; basics
-      :desc "dap next"                "n" #'dap-next
-      :desc "dap step in"             "i" #'dap-step-in
-      :desc "dap step out"            "o" #'dap-step-out
-      :desc "dap continue"            "c" #'dap-continue
-      :desc "dap hydra"               "h" #'dap-hydra
-      :desc "dap debug"               "s" #'dap-debug
-      :desc "dap debug restart"       "r" #'dap-debug-restart
-      :desc "dap disconnect"          "k" #'dap-disconnect
-      :desc "dap delete all sessions" "K" #'dap-delete-all-sessions
-
-      ;; debug
-      :prefix ("dd" . "Debug")
-      :desc "dap debug recent" "r" #'dap-debug-recent
-      :desc "dap debug last"   "l" #'dap-debug-last
-
-      ;; eval
-      :prefix ("de" . "Eval")
-      :desc "eval"                "e" #'dap-eval
-      :desc "eval region"         "r" #'dap-eval-region
-      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
-      :desc "add expression"      "a" #'dap-ui-expressions-add
-      :desc "remove expression"   "d" #'dap-ui-expressions-remove
-
-      :prefix ("db" . "Breakpoint")
-      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
-      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
-      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
-      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
-
-(after! dap-mode
-  (setq dap-python-debugger 'debugpy)
-  (require 'dap-netcore)
-  (require 'dap-gdb-lldb) ;; Don't forget to run M-x dap-gdb-lldb-setup on fresh install
-
+(after! dape
   (setq dap-auto-configure-features '(locals expressions controls tooltip))
 
-  (dap-register-debug-template
-    "GDB::Run C/C++"
-    (list :type "gdb"
-          :request "launch"
-          :name "GDB::Run C/C++"
-          :target nil
-          :cwd nil))
-  (dap-register-debug-template
-    "GDB::Run Rust"
-    (list :type "gdb"
-          :request "launch"
-          :name "GDB::Run Rust"
-          :gdbpath "rust-gdb"
-          :target nil
-          :cwd nil))
-)
+  ;; C/C++ config
+  (add-to-list 'dape-configs
+               `(codelldb-cc
+                 modes (c-mode c-ts-mode c++-mode c++-ts-mode)
+                 command-args ("--port" :autoport)
+                 ensure dape-ensure-command
+                 command-cwd dape-command-cwd
+                 command "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
+                 :cwd "."
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil))
+  ;; Rust config
+  (add-to-list 'dape-configs
+               `(codelldb-rust
+                 modes (rust-mode rust-ts-mode)
+                 command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
+                 ensure dape-ensure-command
+                 command-cwd dape-command-cwd
+                 command "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
+                 :cwd "."
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil)))
+
+(require 'dape)
 
 (evil-define-key 'normal dired-mode-map
   (kbd "M-RET") 'dired-display-file

@@ -6,7 +6,7 @@
   - [[#c][C++]]
   - [[#company][Company]]
   - [[#corfu][Corfu]]
-  - [[#debug-adapter-protocol][Debug Adapter Protocol]]
+  - [[#dape][Dape]]
   - [[#dired][Dired]]
   - [[#doom-theme][Doom Theme]]
   - [[#eglot][Eglot]]
@@ -118,89 +118,49 @@ Company is used for auto-completion in Emacs. These are some settings I use for 
       :i "<backspace>" #'evil-delete-backward-char-and-join)
 #+end_src
 
-** Debug Adapter Protocol
-These are settings for the Debug Adapter Protocol also known as dap-mode that works with LSP to create a seamless IDE experience
+** Dape
+These are settings for Dape, a IDE-like debugging tool
 
-| Command                      | Description                              | Keybinding |
-|------------------------------+------------------------------------------+------------|
-| dap-next                     | /Go to next line/                          | SPC d n    |
-| dap-step-in                  | /Step into function/                       | SPC d i    |
-| dap-step-out                 | /Step out of function/                     | SPC d o    |
-| dap-continue                 | /Continue until next breakpoint/           | SPC d c    |
-| dap-hydra                    | /Enable hydra mode/                        | SPC d h    |
-| dap-debug                    | /Start debugger/                           | SPC d s    |
-| dap-debug-restart            | /Restart debugger/                         | SPC d r    |
-| dap-disconnect               | /Stop debugger/                            | SPC d k    |
-| dap-delete-all-sessions      | /Kill all dap sessions/                    | SPC d K    |
-| dap-debug-recent             | /Start debugger with recent configuration/ | SPC d d r  |
-| dap-debug-last               | /Start debugger with last configuration/   | SPC d d l  |
-| dap-eval                     | /Eval string/                              | SPC d e e  |
-| dap-eval-region              | /Eval region string/                       | SPC d e r  |
-| dap-eval-thing-at-point      | /Eval symbol on cursor/                    | SPC d e s  |
-| dap-ui-expressions-add       | /Add expression/                           | SPC d e a  |
-| dap-ui-expressions-remove    | /Remove expression/                        | SPC d e d  |
-| dap-breakpoint-toggle        | /Toggle breakpoint on cursor/              | SPC d b b  |
-| dap-breakpoint-condition     | /Set condition for breakpoint/             | SPC d b c  |
-| dap-breakpoint-hit-condition | /Set hit count for breakpoint/             | SPC d b h  |
-| dap-breakpoint-log-message   | /Set log message for breakpoint/           | SPC d b l  |
+Setting up ~codelldb~ for =C/C++/Rust=:
+1. Download latest vsix [[https://github.com/vadimcn/codelldb/releases][release]] for your platform ~codelldb-<platform>-<os>.vsix~
+2. Unpack ~mkdir -p ~/.config/doom/debug-adapters && unzip codelldb-<platform>-<os>.vsix -d ~/.config/doom/debug-adapters/codelldb~
 
 #+begin_src emacs-lisp
-(map! :map dap-mode-map
-      :leader
-      :prefix ("d" . "dap")
-      ;; basics
-      :desc "dap next"                "n" #'dap-next
-      :desc "dap step in"             "i" #'dap-step-in
-      :desc "dap step out"            "o" #'dap-step-out
-      :desc "dap continue"            "c" #'dap-continue
-      :desc "dap hydra"               "h" #'dap-hydra
-      :desc "dap debug"               "s" #'dap-debug
-      :desc "dap debug restart"       "r" #'dap-debug-restart
-      :desc "dap disconnect"          "k" #'dap-disconnect
-      :desc "dap delete all sessions" "K" #'dap-delete-all-sessions
-
-      ;; debug
-      :prefix ("dd" . "Debug")
-      :desc "dap debug recent" "r" #'dap-debug-recent
-      :desc "dap debug last"   "l" #'dap-debug-last
-
-      ;; eval
-      :prefix ("de" . "Eval")
-      :desc "eval"                "e" #'dap-eval
-      :desc "eval region"         "r" #'dap-eval-region
-      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
-      :desc "add expression"      "a" #'dap-ui-expressions-add
-      :desc "remove expression"   "d" #'dap-ui-expressions-remove
-
-      :prefix ("db" . "Breakpoint")
-      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
-      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
-      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
-      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
-
-(after! dap-mode
-  (setq dap-python-debugger 'debugpy)
-  (require 'dap-netcore)
-  (require 'dap-gdb-lldb) ;; Don't forget to run M-x dap-gdb-lldb-setup on fresh install
-
+(after! dape
   (setq dap-auto-configure-features '(locals expressions controls tooltip))
 
-  (dap-register-debug-template
-    "GDB::Run C/C++"
-    (list :type "gdb"
-          :request "launch"
-          :name "GDB::Run C/C++"
-          :target nil
-          :cwd nil))
-  (dap-register-debug-template
-    "GDB::Run Rust"
-    (list :type "gdb"
-          :request "launch"
-          :name "GDB::Run Rust"
-          :gdbpath "rust-gdb"
-          :target nil
-          :cwd nil))
-)
+  ;; C/C++ config
+  (add-to-list 'dape-configs
+               `(codelldb-cc
+                 modes (c-mode c-ts-mode c++-mode c++-ts-mode)
+                 command-args ("--port" :autoport)
+                 ensure dape-ensure-command
+                 command-cwd dape-command-cwd
+                 command "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
+                 :cwd "."
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil))
+  ;; Rust config
+  (add-to-list 'dape-configs
+               `(codelldb-rust
+                 modes (rust-mode rust-ts-mode)
+                 command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
+                 ensure dape-ensure-command
+                 command-cwd dape-command-cwd
+                 command "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
+                 :cwd "."
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil)))
+
+(require 'dape)
 #+end_src
 
 ** Dired
@@ -783,7 +743,7 @@ These are the contents of the *init.el* file.
 #+begin_src emacs-lisp
        :tools
        ;;ansible
-       (debugger +lsp)          ; FIXME stepping through code, to help you add bugs
+       debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
        ;;docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
