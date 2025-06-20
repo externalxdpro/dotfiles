@@ -935,7 +935,6 @@ These are the contents of the *packages.el* file.
 #+end_src
 
 #+begin_src emacs-lisp
-;; (package! company-prescient)
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
