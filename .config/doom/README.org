@@ -127,7 +127,7 @@ Setting up ~codelldb~ for =C/C++/Rust=:
 
 #+begin_src emacs-lisp
 (after! dape
-  (setq! dape-info-buffer-window-groups '((dape-info-scope-mode) (dape-info-watch-mode dape-info-breakpoints-mode dape-info-threads-mode dape-info-stack-mode dape-info-modules-mode dape-info-sources-mode)))
+  (setq dap-auto-configure-features '(locals expressions controls tooltip))
 
   ;; C/C++ config
   (add-to-list 'dape-configs
@@ -751,7 +751,7 @@ These are the contents of the *init.el* file.
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        (lookup +dictionary)              ; navigate your code and its documentation
-       (lsp +eglot +peek)               ; M-x vscode
+       (lsp +peek)               ; M-x vscode
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        (pass +auth)              ; password manager for nerds
