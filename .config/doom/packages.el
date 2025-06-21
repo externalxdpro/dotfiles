@@ -49,6 +49,7 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! direnv)
 (package! elcord)
 (package! emojify)
 (package! evil-tutor)
