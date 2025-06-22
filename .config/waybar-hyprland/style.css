@@ -78,10 +78,17 @@ tooltip {
   margin-right: 0px;
 }
 
-#disk {
+/* #disk { */
+/*   border-radius: 0 10px 10px 0; */
+/*   margin-left: 0px; */
+/*   margin-right: 5px; */
+/* } */
+
+#battery {
+  /* color: #a6e3a1; */
   border-radius: 0 10px 10px 0;
-  margin-left: 0px;
-  margin-right: 5px;
+  margin-right: 10px;
+  border-left: 0px;
 }
 
 #tray {
@@ -147,13 +154,6 @@ tooltip {
   color: #cba6f7;
   margin-right: 5px;
   border-radius: 0 10px 10px 0;
-}
-
-#battery {
-  color: #a6e3a1;
-  border-radius: 0 10px 10px 0;
-  margin-right: 10px;
-  border-left: 0px;
 }
 
 #custom-weather {

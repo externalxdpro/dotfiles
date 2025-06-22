@@ -19,6 +19,7 @@
         "cpu",
         "memory",
         "disk",
+        "battery",
         "clock",
         "tray",
     ],
@@ -77,6 +78,11 @@
         "format": " {}%",
         "format-alt": " {free} free",
     },
+    "battery": {
+        "interval": 30,
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
     "custom/updates": {
         "exec": "(paru -Qu) | wc -l",
         "interval": 7200,
@@ -110,7 +116,7 @@
         "tooltip": false,
         "format-muted": " Muted",
         "on-click": "pavucontrol",
-        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pamixer -t",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -128,9 +134,9 @@
         "format-source": " {volume}%",
         "format-source-muted": " Muted",
         "on-click": "pavucontrol",
-        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
-        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+        "on-click-right": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
     }
 }
