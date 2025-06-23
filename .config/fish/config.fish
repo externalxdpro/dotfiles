@@ -331,9 +331,11 @@ alias dtoscopy='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.confi
 # Backup contents of /etc/dtos to a backup folder in $HOME.
 alias dtosbackup='cp -Rf /etc/dtos ~/dtos-backup-(date +%Y.%m.%d-%H.%M.%S)'
 
+# Enabling direnv hook
+direnv hook fish | source
+
 ### RANDOM COLOR SCRIPT ###
-# Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
-# Or install it from the Arch User Repository: shell-color-scripts
+# Get this script from the GitLab: gitlab.com/dwt1/shell-color-scripts
 colorscript random
 
 ### SETTING THE STARSHIP PROMPT ###
