@@ -172,6 +172,7 @@
     pamixer
     playerctl
     youtube-music
+    moonlight-qt
 
     kdePackages.breeze
     kdePackages.breeze-gtk
