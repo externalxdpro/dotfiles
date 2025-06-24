@@ -32,7 +32,10 @@
     powerOnBoot = true;
   };
 
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [ intel-media-driver libvdpau-va-gl ];
+  };
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -193,6 +196,8 @@
     rustfmt
     rustc
   ];
+
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
 
   fonts.packages = with pkgs; [ nerd-fonts.caskaydia-cove font-awesome ];
 
