@@ -117,7 +117,7 @@ myFileManager = "pcmanfm-qt"  -- Sets default file manager
 -- myFileManager = "thunar"  -- Sets default file manager
 
 myBrowser :: String
-myBrowser = "firefox"  -- Sets default browser
+myBrowser = "zen"  -- Sets default browser
 
 mySecondaryBrowser :: String
 mySecondaryBrowser = "qutebrowser"  -- Sets qutebrowser as secondary browser
