@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+wallpapersDir="$HOME/Pictures/wallpapers"
+wallpapers=("$wallpapersDir"/*)
+
+while true; do
+    if [ ${#wallpapers[@]} -eq 0 ]; then
+        echo "No wallpapers found"
+        break
+    fi
+
+    wallpaperIndex=$(( RANDOM % ${#wallpapers[@]} ))
+    selectedWallpaper="${wallpapers[$wallpaperIndex]}"
+
+    swww img "$selectedWallpaper"
+
+    sleep 1h
+done

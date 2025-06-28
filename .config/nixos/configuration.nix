@@ -165,6 +165,7 @@
     swaylock-effects
     swayidle
     sway-audio-idle-inhibit
+    swww
     pass
     tessen
     pcmanfm-qt
