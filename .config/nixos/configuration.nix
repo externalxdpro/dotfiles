@@ -140,6 +140,7 @@
     fish
     starship
     wget
+    grimblast
     dwt1-shell-color-scripts
     lolcat
     waybar
