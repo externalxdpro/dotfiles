@@ -133,6 +133,7 @@
     mu
     ispell
     libtool
+    libnotify
     neovim
     git
     stow
