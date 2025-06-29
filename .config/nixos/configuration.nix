@@ -174,6 +174,7 @@
     pavucontrol
     pamixer
     playerctl
+    brightnessctl
     youtube-music
     moonlight-qt
 
