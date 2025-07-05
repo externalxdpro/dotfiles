@@ -8,9 +8,10 @@
     "height": 0,
     "modules-left": [
         "custom/weather",
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "hyprland/window"
     ],
-    "modules-center": ["hyprland/window"],
+    "modules-center": [],
     "modules-right": [
         "custom/updates",
         // "custom/language",

@@ -101,6 +101,7 @@ tooltip {
   background: #1e1e2e;
   border-radius: 10px;
   margin-left: 10px;
+  margin-right: 5px;
   padding-right: 0px;
   padding-left: 5px;
 }
@@ -127,8 +128,8 @@ tooltip {
 
 #window {
   border-radius: 10px;
-  margin-left: 60px;
-  margin-right: 60px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #clock {
