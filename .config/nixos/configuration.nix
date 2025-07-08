@@ -178,6 +178,7 @@
     brightnessctl
     youtube-music
     moonlight-qt
+    jellyfin-media-player
 
     kdePackages.breeze
     kdePackages.breeze-gtk
