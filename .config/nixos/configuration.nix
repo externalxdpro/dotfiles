@@ -113,13 +113,12 @@
 
   programs.direnv.enable = true;
 
-  # Install Hyprland
-  programs.hyprland.enable = true;
-
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
+
+  programs.hyprland.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
