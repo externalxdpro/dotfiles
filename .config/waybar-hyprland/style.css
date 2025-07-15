@@ -138,6 +138,10 @@ tooltip {
   margin-right: 5px;
 }
 
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
 #clock {
   color: #fab387;
   border-radius: 10px;
