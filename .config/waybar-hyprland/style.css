@@ -139,7 +139,8 @@ tooltip {
 }
 
 window#waybar.empty #window {
-    background-color: transparent;
+  border-color: transparent;
+  background-color: transparent;
 }
 
 #clock {
