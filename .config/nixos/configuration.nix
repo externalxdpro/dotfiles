@@ -161,7 +161,6 @@
     lxde.lxsession
     dunst
     dex
-    udisks
     udiskie
     networkmanagerapplet
     wlogout
@@ -224,6 +223,8 @@
     group = "users";
     configDir = "/home/sakib/.config/syncthing";
   };
+
+  services.udisks2.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
