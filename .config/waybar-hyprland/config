@@ -12,7 +12,8 @@
     ],
     "modules-center": [],
     "modules-right": [
-        "custom/updates",
+        "backlight",
+        // "custom/updates",
         // "custom/language",
         "pulseaudio",
         "pulseaudio#microphone",
@@ -60,6 +61,9 @@
         //     "8": [],
         //     "9": [],
         // }
+    },
+    "backlight": {
+        "format": " {percent}%"
     },
     "cpu": {
         "interval": 10,

@@ -73,6 +73,12 @@ tooltip {
   border: 1px solid #181825;
 }
 
+#backlight {
+  color: #f5c2e7;
+  border-right: 0px;
+  border-radius: 10px 0px 0px 10px;
+}
+
 #cpu {
   border-radius: 10px 0px 0px 10px;
   border-right: 0px;
