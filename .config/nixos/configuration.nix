@@ -105,10 +105,7 @@
     isNormalUser = true;
     description = "sakib";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
+    shell = pkgs.zsh;
   };
 
   programs.direnv.enable = true;
@@ -119,6 +116,8 @@
   };
 
   programs.hyprland.enable = true;
+
+  programs.zsh.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -139,6 +138,7 @@
     git
     stow
     fish
+    fzf
     starship
     wget
     grimblast
