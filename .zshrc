@@ -109,8 +109,9 @@ alias dnfin='sudo dnf install'                     # Install software using dnf
 alias dnfrm='sudo dnf remove'                      # Remove software and dependancies using dnf
 alias dnfup='sudo dnf update'                      # Update all pkgs using dnf
 
-alias nixed='xdg-open ~/.config/nixos/configuration.nix'                                                # Edit NixOS config file
+alias nixed='xdg-open ~/.config/nixos/configuration.nix'                           # Edit NixOS config file
 alias nixup='sudo nixos-rebuild switch --flake ~/.config/nixos --impure'           # Update all pkgs
+alias nixgc='sudo nix-collect-garbage -d'                                          # Clean old packages
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
