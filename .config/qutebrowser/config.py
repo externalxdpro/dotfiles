@@ -10,11 +10,14 @@ theme.setup(c, {
 })
 
 # Setting dark mode
-c.colors.webpage.preferred_color_scheme = 'dark'
+c.colors.webpage.preferred_color_scheme = "dark"
 
 # Enabling Brave adblock
 #config.set("content.blocking.method", "adblock");
 c.content.blocking.method = "both"      # Need to install python-adblock or adblock package on system
+
+# Auto restore session
+c.auto_save.session = True
 
 # Keybindings
 config.bind('m', 'spawn mpv {url}')
