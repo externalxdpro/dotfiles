@@ -117,7 +117,7 @@
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "tooltip": false,
+        "tooltip": true,
         "format-muted": " Muted",
         "on-click": "pavucontrol",
         "on-click-right": "pamixer -t",
