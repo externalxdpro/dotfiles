@@ -19,6 +19,9 @@ c.content.blocking.method = "both"      # Need to install python-adblock or adbl
 # Auto restore session
 c.auto_save.session = True
 
+# Don't autoplay videos
+c.content.autoplay = False
+
 # Keybindings
 config.bind('m', 'spawn mpv {url}')
 config.bind('M', 'hint links spawn mpv {hint-url}')
