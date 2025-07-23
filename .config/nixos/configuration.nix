@@ -128,6 +128,7 @@
     (inputs.zen-browser.packages."${system}".default.override {
       nativeMessagingHosts = [ pkgs.passff-host ];
     })
+    qutebrowser
     vim
     (emacs.pkgs.withPackages (epkgs: with epkgs; [ mu4e libvterm ]))
     mu
