@@ -22,6 +22,11 @@ c.auto_save.session = True
 # Don't autoplay videos
 c.content.autoplay = False
 
+# Set default search engine and new tab page
+c.url.searchengines = {"DEFAULT": "https://www.startpage.com/sp/search?query={}"}
+c.url.default_page = "https://www.startpage.com/"
+c.url.start_pages = "https://www.startpage.com/"
+
 # Keybindings
 config.bind('m', 'spawn mpv {url}')
 config.bind('M', 'hint links spawn mpv {hint-url}')
