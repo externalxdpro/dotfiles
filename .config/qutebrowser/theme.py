@@ -125,12 +125,12 @@ def setup(c, options={}):
 
     # Background color for hints. Note that you can use a `rgba(...)` value
     # for transparency.
-    c.colors.hints.bg = palette["yellow"]
+    c.colors.hints.bg = palette["background"]
 
     # Font color for hints.
-    c.colors.hints.fg = palette["gray"]
+    c.colors.hints.fg = palette["foreground"]
 
-    c.hints.border = "1px solid " + palette["dark-gray"]
+    c.hints.border = "1px solid " + palette["foreground"]
 
     # Font color for the matched part of hints.
     c.colors.hints.match.fg = palette["dark-green"]
