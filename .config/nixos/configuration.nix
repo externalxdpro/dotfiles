@@ -198,6 +198,10 @@
     rust-analyzer
     rustfmt
     rustc
+
+    python3
+    pyright
+    black
   ];
 
   environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
