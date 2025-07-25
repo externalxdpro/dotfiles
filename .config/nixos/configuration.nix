@@ -192,7 +192,7 @@
     swww
     pass
     tessen
-    pcmanfm-qt
+    pcmanfm
     pavucontrol
     pamixer
     playerctl
