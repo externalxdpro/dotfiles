@@ -183,6 +183,7 @@
     dunst
     dex
     udiskie
+    cifs-utils
     networkmanagerapplet
     wlogout
     swaylock-effects
