@@ -200,6 +200,7 @@
     youtube-music
     moonlight-qt
     jellyfin-media-player
+    mpv
 
     kdePackages.breeze
     kdePackages.breeze-gtk
