@@ -2,10 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
   ];
 
@@ -34,7 +40,10 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [ intel-media-driver libvdpau-va-gl ];
+    extraPackages = with pkgs; [
+      intel-media-driver
+      libvdpau-va-gl
+    ];
   };
 
   hardware.nvidia = {
@@ -62,7 +71,10 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  services.xserver.videoDrivers = [
+    "modesetting"
+    "nvidia"
+  ];
 
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
@@ -104,7 +116,10 @@
   users.users.sakib = {
     isNormalUser = true;
     description = "sakib";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -130,7 +145,12 @@
     })
     qutebrowser
     vim
-    (emacs.pkgs.withPackages (epkgs: with epkgs; [ mu4e libvterm ]))
+    (emacs.pkgs.withPackages (
+      epkgs: with epkgs; [
+        mu4e
+        libvterm
+      ]
+    ))
     mu
     ispell
     libtool
@@ -204,9 +224,14 @@
     black
   ];
 
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
 
-  fonts.packages = with pkgs; [ nerd-fonts.caskaydia-cove font-awesome ];
+  fonts.packages = with pkgs; [
+    nerd-fonts.caskaydia-cove
+    font-awesome
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -231,7 +256,10 @@
 
   services.udisks2.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
