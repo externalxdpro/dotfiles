@@ -105,6 +105,9 @@
                               ("mkv" . "mpv")
                               ("mp4" . "mpv")))
 
+(setq delete-by-moving-to-trash t
+      trash-directory "~/.local/share/Trash/files/")
+
 (setq doom-theme 'doom-one)
 
 (after! eglot
