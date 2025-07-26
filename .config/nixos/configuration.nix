@@ -256,6 +256,8 @@
     configDir = "/home/sakib/.config/syncthing";
   };
 
+  # Mount, trash, and other functionalities
+  services.gvfs.enable = true;
   services.udisks2.enable = true;
 
   nix.settings.experimental-features = [
