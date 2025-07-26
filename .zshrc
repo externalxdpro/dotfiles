@@ -13,6 +13,10 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Set path
+path=($HOME/.local/bin $HOME/Applications $HOME/.config/emacs/bin $HOME/.cargo/bin $HOME/.ghcup/bin $path)
+export PATH
+
 # Plugins
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
