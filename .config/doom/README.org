@@ -937,7 +937,7 @@ These are the contents of the *packages.el* file.
 #+begin_src emacs-lisp
 (package! elcord)
 (package! emojify)
-(package! evil-tutor)
+(package! dired-open)
 (package! leetcode)
 (package! mu4e-alert)
 (package! org-alert)

@@ -51,7 +51,7 @@
 
 (package! elcord)
 (package! emojify)
-(package! evil-tutor)
+(package! dired-open)
 (package! leetcode)
 (package! mu4e-alert)
 (package! org-alert)
