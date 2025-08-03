@@ -201,10 +201,12 @@
     moonlight-qt
     jellyfin-media-player
     mpv
+
     mpd
     mpdris2
     mpc
     rmpc
+    cava
 
     kdePackages.breeze
     kdePackages.breeze-gtk
