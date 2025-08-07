@@ -201,6 +201,7 @@
     moonlight-qt
     jellyfin-media-player
     mpv
+    lrcget
 
     mpd
     mpdris2
