@@ -4,7 +4,7 @@
 (
     address: "127.0.0.1:6600",
     password: None,
-    theme: None,
+    theme: Some("custom"),
     cache_dir: None,
     on_song_change: None,
     volume_step: 5,
@@ -52,6 +52,8 @@
             ",":       VolumeDown,
             "s":       Stop,
             ".":       VolumeUp,
+            "-":       VolumeDown,
+            "=":       VolumeUp,
             "<Tab>":   NextTab,
             "<S-Tab>": PreviousTab,
             "1":       SwitchToTab("Queue"),
