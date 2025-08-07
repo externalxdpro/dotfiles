@@ -1,7 +1,11 @@
 configuration {
-modi: "window,drun,ssh,run,combi";
+modi: "combi,drun,run,filebrowser,window";
+combi-modi: "drun,run";
 kb-row-up: "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
 kb-row-down: "Down,Control+j";
+kb-mode-complete: "";
+kb-mode-previous: "Control+h";
+kb-mode-next: "Control+l";
 kb-accept-entry: "Control+m,Return,KP_Enter";
 terminal: "mate-terminal";
 kb-remove-to-eol: "Control+Shift+e";
@@ -11,7 +15,7 @@ kb-remove-char-back: "BackSpace";
 /*  width: 50;*/
 /*  lines: 15;*/
 /*  columns: 2;*/
-/*  font: "mono 12";*/
+font: "CaskaydiaCove Nerd Font Propo 10";
 /*  bw: 1;*/
 /*  location: 0;*/
 /*  padding: 5;*/
@@ -44,7 +48,6 @@ kb-remove-char-back: "BackSpace";
 /*  auto-select: false;*/
 /*  parse-hosts: false;*/
 /*  parse-known-hosts: true;*/
-combi-modi: "drun,run";
 /*  matching: "normal";*/
 /*  tokenize: true;*/
 /*  m: "-5";*/
@@ -76,14 +79,14 @@ combi-modi: "drun,run";
 /*  drun-reload-desktop-cache: false;*/
 /*  normalize-match: false;*/
 /*  pid: "/run/user/1000/rofi.pid";*/
-/*  display-window: ;*/
 /*  display-windowcd: ;*/
-/*  display-run: ;*/
+display-drun:        "";
+display-run:         "";
+display-filebrowser: "";
+display-window:      "";
+display-combi:       "";
 /*  display-ssh: ;*/
-/*  display-drun: ;*/
-/*  display-combi: ;*/
 /*  display-keys: ;*/
-/*  display-file-browser: ;*/
 /*  kb-primary-paste: "Control+V,Shift+Insert";*/
 /*  kb-secondary-paste: "Control+v,Insert";*/
 /*  kb-clear-line: "Control+w";*/
@@ -157,4 +160,4 @@ combi-modi: "drun,run";
 /*  me-accept-entry: "MouseDPrimary";*/
 /*  me-accept-custom: "Control+MouseDPrimary";*/
 }
-@theme "~/.local/share/rofi/themes/nord.rasi"
+@theme "~/.local/share/rofi/themes/onedark.rasi"
