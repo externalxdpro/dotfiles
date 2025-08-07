@@ -6,6 +6,7 @@
     password: None,
     theme: Some("custom"),
     cache_dir: None,
+    lyrics_dir: "~/Music",
     on_song_change: None,
     volume_step: 5,
     max_fps: 30,
@@ -57,9 +58,10 @@
             "<Tab>":   NextTab,
             "<S-Tab>": PreviousTab,
             "1":       SwitchToTab("Queue"),
-            "2":       SwitchToTab("Playlists"),
-            "3":       SwitchToTab("Directories"),
-            "4":       SwitchToTab("Artists"),
+            "2":       SwitchToTab("Lyrics"),
+            "3":       SwitchToTab("Playlists"),
+            "4":       SwitchToTab("Directories"),
+            "5":       SwitchToTab("Artists"),
             "F":       SwitchToTab("Search"),
             "q":       Quit,
             ">":       NextTrack,
@@ -159,6 +161,10 @@
                     (size: "60%", pane: Pane(Queue))
                 ],
             ),
+        ),
+        (
+            name: "Lyrics",
+            pane: Pane(Lyrics),
         ),
         (
             name: "Playlists",
