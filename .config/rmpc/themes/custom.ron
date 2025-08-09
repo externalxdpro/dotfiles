@@ -98,7 +98,13 @@
                 size: "3",
             ),
             (
-                pane: Pane(TabContent),
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (size: "25%", pane: Pane(AlbumArt)),
+                        (size: "75%", pane: Pane(TabContent))
+                    ]
+                ),
                 size: "100%",
             ),
         ],
