@@ -205,6 +205,7 @@
 
     mpd
     mpdris2
+    mpd-discord-rpc
     mpc
     rmpc
     cava
