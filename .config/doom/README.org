@@ -149,8 +149,6 @@ Setting up ~codelldb~ for =C/C++/Rust=:
                  :type "lldb-dap"
                  :cwd "."
                  :program (read-file-name "Select a file to debug: "))))
-
-(require 'dape)
 #+end_src
 
 ** Dired
@@ -226,13 +224,15 @@ Setting the theme to doom-one.
 #+end_src
 
 ** Eglot
-Configuration for Eglot
+Configuration for Eglot, the Emacs LSP implementation.
+I added a keybind to toggle inlay hints and require the debugger to load.
 
 #+begin_src emacs-lisp
 (after! eglot
   (map! :leader
         (:prefix ("t" . "toggle")
-         :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode)))
+         :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode))
+  (require 'dape))
 #+end_src
 
 ** Elcord

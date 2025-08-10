@@ -63,8 +63,6 @@
                  :cwd "."
                  :program (read-file-name "Select a file to debug: "))))
 
-(require 'dape)
-
 (evil-define-key 'normal dired-mode-map
   (kbd "M-RET") 'dired-display-file
   (kbd "h") 'dired-up-directory
@@ -103,7 +101,8 @@
 (after! eglot
   (map! :leader
         (:prefix ("t" . "toggle")
-         :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode)))
+         :desc "LSP inlay hints" "L" #'eglot-inlay-hints-mode))
+  (require 'dape))
 
 (add-hook 'after-make-frame-functions
   (lambda (frame) (elcord-mode 1)))
