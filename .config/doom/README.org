@@ -131,34 +131,24 @@ Setting up ~codelldb~ for =C/C++/Rust=:
 
   ;; C/C++ config
   (add-to-list 'dape-configs
-               `(codelldb-cc
+               `(lldb-dap-cc
+                 command "lldb-dap"
                  modes (c-mode c-ts-mode c++-mode c++-ts-mode)
-                 command-args ("--port" :autoport)
                  ensure dape-ensure-command
                  command-cwd dape-command-cwd
-                 command "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"
-                 port :autoport
-                 :type "lldb"
-                 :request "launch"
+                 :type "lldb-dap"
                  :cwd "."
-                 :program (read-file-name "Select a file to debug: ")
-                 :args []
-                 :stopOnEntry nil))
+                 :program (read-file-name "Select a file to debug: ")))
   ;; Rust config
   (add-to-list 'dape-configs
-               `(codelldb-rust
-                 modes (rust-mode rust-ts-mode)
-                 command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
+               `(lldb-dap-rust
+                 command "lldb-dap"
+                 modes (rust-mode rust-ts-mode rustic-mode)
                  ensure dape-ensure-command
                  command-cwd dape-command-cwd
-                 command "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"
-                 port :autoport
-                 :type "lldb"
-                 :request "launch"
+                 :type "lldb-dap"
                  :cwd "."
-                 :program (read-file-name "Select a file to debug: ")
-                 :args []
-                 :stopOnEntry nil)))
+                 :program (read-file-name "Select a file to debug: "))))
 
 (require 'dape)
 #+end_src

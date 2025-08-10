@@ -223,6 +223,7 @@
     gcc
     gnumake
     cmake
+    lldb
 
     cargo
     rust-analyzer
