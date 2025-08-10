@@ -40,7 +40,9 @@
       :i "<backspace>" #'evil-delete-backward-char-and-join)
 
 (after! dape
-  (setq dap-auto-configure-features '(locals expressions controls tooltip))
+  (setq! dape-info-buffer-window-groups '((dape-info-scope-mode)
+                                          (dape-info-watch-mode dape-info-stack-mode dape-info-modules-mode dape-info-sources-mode)
+                                          (dape-info-breakpoints-mode dape-info-threads-mode)))
 
   ;; C/C++ config
   (add-to-list 'dape-configs
