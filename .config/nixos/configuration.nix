@@ -137,6 +137,15 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Overrides
+  nixpkgs.overlays = [
+    (self: super: {
+      mpv = super.mpv.override {
+        scripts = [ self.mpvScripts.mpris ];
+      };
+    })
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
