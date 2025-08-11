@@ -121,10 +121,6 @@ Company is used for auto-completion in Emacs. These are some settings I use for 
 ** Dape
 These are settings for Dape, a IDE-like debugging tool
 
-Setting up ~codelldb~ for =C/C++/Rust=:
-1. Download latest vsix [[https://github.com/vadimcn/codelldb/releases][release]] for your platform ~codelldb-<platform>-<os>.vsix~
-2. Unpack ~mkdir -p ~/.config/doom/debug-adapters && unzip codelldb-<platform>-<os>.vsix -d ~/.config/doom/debug-adapters/codelldb~
-
 #+begin_src emacs-lisp
 (after! dape
   (setq! dape-info-buffer-window-groups '((dape-info-scope-mode)
