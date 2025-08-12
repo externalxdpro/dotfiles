@@ -79,7 +79,46 @@
                  :cwd "."
                  :program (read-file-name "Select a file to debug: ")
                  :args []
-                 :stopOnEntry nil)))
+                 :stopOnEntry nil))
+
+  (defhydra dape-hydra (:hint nil)
+    "
+^Stepping^           ^Breakpoints^               ^Info
+^^^^^^^^-----------------------------------------------------------
+_n_: Next            _bb_: Toggle (add/remove)   _si_: Info
+_i_/_o_: Step in/out   _bd_: Delete                _sm_: Memory
+_<_/_>_: Stack up/down _bD_: Delete all            _ss_: Select Stack
+_c_: Continue        _bl_: Set log message       _R_: Repl
+_r_: Restart
+            _d_: Init   _k_: Kill   _q_: Quit
+"
+    ("n" dape-next)
+    ("i" dape-step-in)
+    ("o" dape-step-out)
+    ("<" dape-stack-select-down)
+    (">" dape-stack-select-up)
+    ("c" dape-continue)
+    ("r" dape-restart)
+    ("ba" dape-breakpoint-toggle)
+    ("bb" dape-breakpoint-toggle)
+    ("be" dape-breakpoint-expression)
+    ("bd" dape-breakpoint-remove-at-point)
+    ("bD" dape-breakpoint-remove-all)
+    ("bl" dape-breakpoint-log)
+    ("si" dape-info)
+    ("sm" dape-read-memory)
+    ("ss" dape-select-stack)
+    ("R"  dape-repl)
+    ("d" dape)
+    ("k" dape-kill :color blue)
+    ("q" dape-quit :color blue))
+  )
+
+(map! :after dape
+      :map dape-global-map
+      :leader
+      :prefix "d"
+      :desc "Hydra" "H" #'dape-hydra/body)
 
 (evil-define-key 'normal dired-mode-map
   (kbd "M-RET") 'dired-display-file
