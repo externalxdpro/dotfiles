@@ -95,18 +95,17 @@ _r_: Restart
     ("n" dape-next)
     ("i" dape-step-in)
     ("o" dape-step-out)
-    ("<" dape-stack-select-down)
-    (">" dape-stack-select-up)
+    ("<" dape-stack-select-up)
+    (">" dape-stack-select-down)
     ("c" dape-continue)
     ("r" dape-restart)
-    ("ba" dape-breakpoint-toggle)
     ("bb" dape-breakpoint-toggle)
     ("be" dape-breakpoint-expression)
     ("bd" dape-breakpoint-remove-at-point)
     ("bD" dape-breakpoint-remove-all)
     ("bl" dape-breakpoint-log)
     ("si" dape-info)
-    ("sm" dape-read-memory)
+    ("sm" dape-memory)
     ("ss" dape-select-stack)
     ("R"  dape-repl)
     ("d" dape)
@@ -117,8 +116,40 @@ _r_: Restart
 (map! :after dape
       :map dape-global-map
       :leader
+      "d" nil ;; Clear pre-existing keybindings
       :prefix "d"
-      :desc "Hydra" "H" #'dape-hydra/body)
+      ;; basics
+      :desc "Start"                      "d" #'dape
+      :desc "Next"                       "n" #'dape-next
+      :desc "Step in"                    "i" #'dape-step-in
+      :desc "Step out"                   "o" #'dape-step-out
+      :desc "Continue"                   "c" #'dape-continue
+      :desc "Hydra"                      "h" #'dape-hydra/body
+      :desc "Restart"                    "r" #'dape-restart
+      :desc "Evaluate expression"        "e" #'dape-evaluate-expression
+      :desc "Toggle watch expression"    "w" #'dape-watch-dwim
+      :desc "Quit"                       "q" #'dape-quit
+
+      ;; misc
+      :desc "Toggle info buffers" "I" #'dape-info
+      :desc "Select stack up"     "<" #'dape-stack-select-up
+      :desc "Select stack down"   ">" #'dape-stack-select-down
+      :desc "Select stack"        "s" #'dape-select-stack
+      :desc "Select thread"       "t" #'dape-select-thread
+      :desc "Disconnect"          "D" #'dape-disconnect-quit
+      :desc "Memory"              "m" #'dape-memory
+      :desc "Disassemble"         "M" #'dape-disassemble
+      :desc "Pause"               "p" #'dape-pause
+      :desc "REPL"                "R" #'dape-repl
+
+      ;; breakpoints
+      :prefix ("db" . "breakpoint")
+      :desc "Toggle"     "b" #'dape-breakpoint-toggle
+      :desc "Expression" "e" #'dape-breakpoint-expression
+      :desc "Hit count"  "h" #'dape-breakpoint-hits
+      :desc "Log"        "l" #'dape-breakpoint-log
+      :desc "Remove"     "d" #'dape-breakpoint-remove-at-point
+      :desc "Remove all" "D" #'dape-breakpoint-remove-all)
 
 (evil-define-key 'normal dired-mode-map
   (kbd "M-RET") 'dired-display-file

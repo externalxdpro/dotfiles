@@ -125,6 +125,35 @@ Setting up ~codelldb~ for =C/C++/Rust= (only required if ~codelldb~ is not in pa
 1. Download latest vsix [[https://github.com/vadimcn/codelldb/releases][release]] for your platform ~codelldb-<platform>-<os>.vsix~
 2. Unpack ~mkdir -p ~/.config/doom/debug-adapters && unzip codelldb-<platform>-<os>.vsix -d ~/.config/doom/debug-adapters/codelldb~
 
+| Command                         | Description             | Keybinding |
+|---------------------------------+-------------------------+------------|
+| dape                            | /Start/                   | SPC d d    |
+| dape-next                       | /Next/                    | SPC d n    |
+| dape-step-in                    | /Step in/                 | SPC d i    |
+| dape-step-out                   | /Step out/                | SPC d o    |
+| dape-continue                   | /Continue/                | SPC d c    |
+| dape-hydra/body                 | /Hydra/                   | SPC d h    |
+| dape-restart                    | /Restart/                 | SPC d r    |
+| dape-evaluate-expression        | /Evaluate expression/     | SPC d e    |
+| dape-watch-dwim                 | /Toggle watch expression/ | SPC d w    |
+| dape-quit                       | /Quit/                    | SPC d q    |
+| dape-info                       | /Toggle info buffers/     | SPC d I    |
+| dape-stack-select-up            | /Select stack up/         | SPC d <    |
+| dape-stack-select-down          | /Select stack down/       | SPC d >    |
+| dape-select-stack               | /Select stack/            | SPC d s    |
+| dape-select-thread              | /Select thread/           | SPC d t    |
+| dape-disconnect-quit            | /Disconnect/              | SPC d D    |
+| dape-memory                     | /Memory/                  | SPC d m    |
+| dape-disassemble                | /Disassemble/             | SPC d M    |
+| dape-pause                      | /Pause/                   | SPC d p    |
+| dape-repl                       | /REPL/                    | SPC d R    |
+| dape-breakpoint-toggle          | /Toggle breakpoint/       | SPC d b b  |
+| dape-breakpoint-expression      | /Expression breakpoint/   | SPC d b e  |
+| dape-breakpoint-hits            | /Hit count breakpoint/    | SPC d b h  |
+| dape-breakpoint-log             | /Log breakpoint/          | SPC d b l  |
+| dape-breakpoint-remove-at-point | /Remove breakpoint/       | SPC d b d  |
+| dape-breakpoint-remove-all      | /Remove all breakpoints/  | SPC d b D  |
+
 #+begin_src emacs-lisp
 (after! dape
   (setq! dape-info-buffer-window-groups '((dape-info-scope-mode)
@@ -182,18 +211,17 @@ _r_: Restart
     ("n" dape-next)
     ("i" dape-step-in)
     ("o" dape-step-out)
-    ("<" dape-stack-select-down)
-    (">" dape-stack-select-up)
+    ("<" dape-stack-select-up)
+    (">" dape-stack-select-down)
     ("c" dape-continue)
     ("r" dape-restart)
-    ("ba" dape-breakpoint-toggle)
     ("bb" dape-breakpoint-toggle)
     ("be" dape-breakpoint-expression)
     ("bd" dape-breakpoint-remove-at-point)
     ("bD" dape-breakpoint-remove-all)
     ("bl" dape-breakpoint-log)
     ("si" dape-info)
-    ("sm" dape-read-memory)
+    ("sm" dape-memory)
     ("ss" dape-select-stack)
     ("R"  dape-repl)
     ("d" dape)
@@ -204,8 +232,40 @@ _r_: Restart
 (map! :after dape
       :map dape-global-map
       :leader
+      "d" nil ;; Clear pre-existing keybindings
       :prefix "d"
-      :desc "Hydra" "H" #'dape-hydra/body)
+      ;; basics
+      :desc "Start"                      "d" #'dape
+      :desc "Next"                       "n" #'dape-next
+      :desc "Step in"                    "i" #'dape-step-in
+      :desc "Step out"                   "o" #'dape-step-out
+      :desc "Continue"                   "c" #'dape-continue
+      :desc "Hydra"                      "h" #'dape-hydra/body
+      :desc "Restart"                    "r" #'dape-restart
+      :desc "Evaluate expression"        "e" #'dape-evaluate-expression
+      :desc "Toggle watch expression"    "w" #'dape-watch-dwim
+      :desc "Quit"                       "q" #'dape-quit
+
+      ;; misc
+      :desc "Toggle info buffers" "I" #'dape-info
+      :desc "Select stack up"     "<" #'dape-stack-select-up
+      :desc "Select stack down"   ">" #'dape-stack-select-down
+      :desc "Select stack"        "s" #'dape-select-stack
+      :desc "Select thread"       "t" #'dape-select-thread
+      :desc "Disconnect"          "D" #'dape-disconnect-quit
+      :desc "Memory"              "m" #'dape-memory
+      :desc "Disassemble"         "M" #'dape-disassemble
+      :desc "Pause"               "p" #'dape-pause
+      :desc "REPL"                "R" #'dape-repl
+
+      ;; breakpoints
+      :prefix ("db" . "breakpoint")
+      :desc "Toggle"     "b" #'dape-breakpoint-toggle
+      :desc "Expression" "e" #'dape-breakpoint-expression
+      :desc "Hit count"  "h" #'dape-breakpoint-hits
+      :desc "Log"        "l" #'dape-breakpoint-log
+      :desc "Remove"     "d" #'dape-breakpoint-remove-at-point
+      :desc "Remove all" "D" #'dape-breakpoint-remove-all)
 #+end_src
 
 ** Dired
