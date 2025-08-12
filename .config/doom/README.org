@@ -121,32 +121,52 @@ Company is used for auto-completion in Emacs. These are some settings I use for 
 ** Dape
 These are settings for Dape, a IDE-like debugging tool
 
+Setting up ~codelldb~ for =C/C++/Rust= (only required if ~codelldb~ is not in path):
+1. Download latest vsix [[https://github.com/vadimcn/codelldb/releases][release]] for your platform ~codelldb-<platform>-<os>.vsix~
+2. Unpack ~mkdir -p ~/.config/doom/debug-adapters && unzip codelldb-<platform>-<os>.vsix -d ~/.config/doom/debug-adapters/codelldb~
+
 #+begin_src emacs-lisp
 (after! dape
   (setq! dape-info-buffer-window-groups '((dape-info-scope-mode)
                                           (dape-info-watch-mode dape-info-stack-mode dape-info-modules-mode dape-info-sources-mode)
                                           (dape-info-breakpoints-mode dape-info-threads-mode)))
 
+  (defun my/codelldb-path ()
+    "If codelldb is in the path, return it, if not, return the default directory"
+    (if (executable-find "codelldb")
+        "codelldb"
+      "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"))
+
   ;; C/C++ config
   (add-to-list 'dape-configs
-               `(lldb-dap-cc
-                 command "lldb-dap"
+               `(codelldb-cc
                  modes (c-mode c-ts-mode c++-mode c++-ts-mode)
+                 command-args ("--port" :autoport)
                  ensure dape-ensure-command
                  command-cwd dape-command-cwd
-                 :type "lldb-dap"
+                 command my/codelldb-path
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
                  :cwd "."
-                 :program (read-file-name "Select a file to debug: ")))
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil))
   ;; Rust config
   (add-to-list 'dape-configs
-               `(lldb-dap-rust
-                 command "lldb-dap"
-                 modes (rust-mode rust-ts-mode rustic-mode)
+               `(codelldb-rust
+                 modes (rust-mode rust-ts-mode)
+                 command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
                  ensure dape-ensure-command
                  command-cwd dape-command-cwd
-                 :type "lldb-dap"
+                 command my/codelldb-path
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
                  :cwd "."
-                 :program (read-file-name "Select a file to debug: "))))
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil)))
 #+end_src
 
 ** Dired

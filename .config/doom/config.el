@@ -44,26 +44,42 @@
                                           (dape-info-watch-mode dape-info-stack-mode dape-info-modules-mode dape-info-sources-mode)
                                           (dape-info-breakpoints-mode dape-info-threads-mode)))
 
+  (defun my/codelldb-path ()
+    "If codelldb is in the path, return it, if not, return the default directory"
+    (if (executable-find "codelldb")
+        "codelldb"
+      "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"))
+
   ;; C/C++ config
   (add-to-list 'dape-configs
-               `(lldb-dap-cc
-                 command "lldb-dap"
+               `(codelldb-cc
                  modes (c-mode c-ts-mode c++-mode c++-ts-mode)
+                 command-args ("--port" :autoport)
                  ensure dape-ensure-command
                  command-cwd dape-command-cwd
-                 :type "lldb-dap"
+                 command my/codelldb-path
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
                  :cwd "."
-                 :program (read-file-name "Select a file to debug: ")))
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil))
   ;; Rust config
   (add-to-list 'dape-configs
-               `(lldb-dap-rust
-                 command "lldb-dap"
-                 modes (rust-mode rust-ts-mode rustic-mode)
+               `(codelldb-rust
+                 modes (rust-mode rust-ts-mode)
+                 command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
                  ensure dape-ensure-command
                  command-cwd dape-command-cwd
-                 :type "lldb-dap"
+                 command my/codelldb-path
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
                  :cwd "."
-                 :program (read-file-name "Select a file to debug: "))))
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil)))
 
 (evil-define-key 'normal dired-mode-map
   (kbd "M-RET") 'dired-display-file
