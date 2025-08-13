@@ -211,6 +211,7 @@
     jellyfin-media-player
     mpv
     lrcget
+    prettier
 
     mpd
     mpdris2
