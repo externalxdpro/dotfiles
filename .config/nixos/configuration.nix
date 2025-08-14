@@ -212,6 +212,7 @@
     mpv
     lrcget
     prettier
+    syncthingtray
 
     mpd
     mpdris2
