@@ -416,6 +416,9 @@ _r_: Restart
   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
 )
 
+(after! org-roam
+  (setq! org-roam-directory "~/Sync/Notes/roam/"))
+
 (after! org-tree-slide
   (advice-remove 'org-tree-slide--display-tree-with-narrow
                  #'+org-present--hide-first-heading-maybe-a)

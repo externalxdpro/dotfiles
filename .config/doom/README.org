@@ -26,6 +26,7 @@
   - [[#org-alert][Org Alert]]
   - [[#org-auto-tangle][Org Auto Tangle]]
   - [[#org-mode][Org Mode]]
+  - [[#org-roam][Org Roam]]
   - [[#org-tree-slide][Org Tree Slide]]
   - [[#rust][Rust]]
   - [[#workspaces][Workspaces]]
@@ -699,6 +700,14 @@ You can set the Org heading levels to be different font sizes.  So I choose to h
 )
 #+end_src
 
+** Org Roam
+Set directory for org-roam notes
+
+#+begin_src emacs-lisp
+(after! org-roam
+  (setq! org-roam-directory "~/Sync/Notes/roam/"))
+#+end_src
+
 ** Org Tree Slide
 These are some settings for Org Tree Slide, a mode for making org files into presentations.
 
@@ -928,7 +937,7 @@ These are the contents of the *init.el* file.
        ;;nim               ; python + lisp at the speed of c
        (nix +lsp +tree-sitter)               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +dragndrop +gnuplot +pandoc +present +pretty)               ; organize your plain life in plain text
+       (org +dragndrop +gnuplot +pandoc +present +pretty +roam2)               ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
