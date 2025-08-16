@@ -708,6 +708,29 @@ Set directory for org-roam notes
   (setq! org-roam-directory "~/Sync/Notes/roam/"))
 #+end_src
 
+*** Org Roam UI
+A graph view for org-roam
+
+#+begin_src emacs-lisp
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+(after! org-roam
+  (map! :map doom-leader-map
+        :desc "Show graph" "n r g" #'org-roam-ui-mode
+        :map org-mode-map
+        :localleader
+        "m g" #'org-roam-ui-mode ))
+#+end_src
+
 ** Org Tree Slide
 These are some settings for Org Tree Slide, a mode for making org files into presentations.
 
@@ -1064,4 +1087,5 @@ These are the contents of the *packages.el* file.
 (package! mu4e-alert)
 (package! org-alert)
 (package! org-auto-tangle)
+(package! org-roam-ui)
 #+end_src

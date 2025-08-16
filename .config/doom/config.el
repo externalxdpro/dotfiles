@@ -419,6 +419,24 @@ _r_: Restart
 (after! org-roam
   (setq! org-roam-directory "~/Sync/Notes/roam/"))
 
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+(after! org-roam
+  (map! :map doom-leader-map
+        :desc "Show graph" "n r g" #'org-roam-ui-mode
+        :map org-mode-map
+        :localleader
+        "m g" #'org-roam-ui-mode ))
+
 (after! org-tree-slide
   (advice-remove 'org-tree-slide--display-tree-with-narrow
                  #'+org-present--hide-first-heading-maybe-a)

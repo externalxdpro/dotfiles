@@ -56,3 +56,4 @@
 (package! mu4e-alert)
 (package! org-alert)
 (package! org-auto-tangle)
+(package! org-roam-ui)
