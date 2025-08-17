@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+config=${1:-"$HOME/.config/isyncrc"}
+
+accounts=$(grep -E "^Account" "$config" | awk '{ print $2 }')
+for a in $accounts; do
+    {
+        mbsync -q -c "$config" $a
+        echo "Account $a finished syncing with exit code: $?"
+    } &
+done
+
+wait
+
+echo "All sync operations complete"
