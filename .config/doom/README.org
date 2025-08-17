@@ -638,6 +638,7 @@ These are some extra settings for mu4e for convenience.
         mu4e-notification-support nil                            ;; disable built-in notifications
         mu4e-alert-style 'libnotify                              ;; set notification style for mu4e-alert
         mu4e-alert-email-notification-types  '(subjects))        ;; set notification style for mu4e-alert
+  (add-hook 'message-sent-hook #'kill-buffer)                    ;; auto-close message buffer after mail is sent
   (mu4e-alert-enable-notifications))                             ;; enable mu4e-alert
 
 (mu4e t)                                                         ;; check for emails in the background
