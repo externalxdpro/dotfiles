@@ -356,13 +356,21 @@ _r_: Restart
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
-(setq org-msg-signature "
-      Regards,
+(setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil \\n:t"
+      org-msg-startup "hidestars indent inlineimages"
+      org-msg-greeting-fmt "\nHi%s,\n\n"
+      org-msg-greeting-name-limit 3
+      org-msg-default-alternatives '((new		. (text html))
+				     (reply-to-html	. (text html))
+				     (reply-to-text	. (text)))
+      org-msg-convert-citation t
+      org-msg-signature "
 
-   #+begin_signature
-   -- *{your-name}* \\\\
-   /Sent from my Emacs/
-   #+end_signature")
+#+begin_signature
+Thanks,
+*Sakib*
+/Sent from Emacs/
+#+end_signature")
 
 (after! mu4e
   (setq mu4e-update-interval (* 5 60)                            ;; get emails and index every 5 minutes
