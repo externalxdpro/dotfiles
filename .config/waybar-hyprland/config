@@ -73,14 +73,14 @@
     },
     "memory": {
         "interval": 30,
-        "format": " {}%",
-        "format-alt":" {used:0.1f}G",
+        "format": " {}%",
+        "format-alt":" {used:0.1f}G",
         "max-length": 10
     },
     "disk": {
         "interval": 30,
-        "format": " {}%",
-        "format-alt": " {free} free",
+        "format": " {}%",
+        "format-alt": " {free} free",
     },
     "battery": {
         "interval": 30,
