@@ -88,8 +88,19 @@
     variant = "";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # Enable CUPS to print documents and avahi for autodiscovery of printers
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      canon-cups-ufr2
+      gutenprintBin
+    ];
+  };
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -213,6 +224,7 @@
     lrcget
     prettier
     syncthingtray
+    system-config-printer
 
     mpd
     mpdris2
