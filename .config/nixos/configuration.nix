@@ -225,6 +225,7 @@
     prettier
     syncthingtray
     system-config-printer
+    libreoffice
 
     mpd
     mpdris2
