@@ -61,6 +61,8 @@
     };
   };
 
+  hardware.openrazer.enable = true;
+
   hardware.steam-hardware.enable = true;
 
   # Set your time zone.
@@ -129,6 +131,7 @@
     description = "sakib";
     extraGroups = [
       "networkmanager"
+      "openrazer"
       "wheel"
     ];
     shell = pkgs.zsh;
@@ -226,6 +229,8 @@
     syncthingtray
     system-config-printer
     libreoffice
+    openrazer-daemon
+    polychromatic
 
     mpd
     mpdris2
