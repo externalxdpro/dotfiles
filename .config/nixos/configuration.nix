@@ -89,6 +89,11 @@
     };
   };
 
+  # Fix waking immediately after suspend
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
+  '';
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   services.xserver.videoDrivers = [
