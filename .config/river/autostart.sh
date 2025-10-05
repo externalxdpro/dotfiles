@@ -7,7 +7,7 @@ waybar -c ~/.config/waybar-river/config -s ~/.config/waybar-river/style.css &
 swww-daemon &
 $HOME/.local/bin/swww-random &
 lxpolkit &
-dunst -conf $HOME/.config/dunst/hyprlandrc &
+dunst -conf $HOME/.config/dunst/riverrc &
 emacs --daemon &
 nm-applet &
 blueman-applet &
