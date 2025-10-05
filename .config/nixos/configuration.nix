@@ -160,6 +160,11 @@
     shell = pkgs.zsh;
   };
 
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   programs.direnv.enable = true;
 
   programs.gnupg.agent = {
@@ -256,6 +261,7 @@
     libreoffice
     openrazer-daemon
     polychromatic
+    gearlever
 
     mpd
     mpdris2
