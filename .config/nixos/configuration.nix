@@ -288,6 +288,8 @@
     pyright
     black
 
+    vscode-langservers-extracted
+
     grim
     slurp
     wl-clipboard-rs
