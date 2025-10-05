@@ -1,0 +1,116 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passtrough": false,
+    "gtk-layer-shell": true,
+    "height": 0,
+    "modules-left": [
+        "river/tags",
+        "river/window",
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "backlight",
+        // "custom/updates",
+        // "custom/language",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "cpu",
+        "memory",
+        "disk",
+        "battery",
+        "clock",
+        "tray",
+    ],
+
+    "river/window": {
+        "format": "{}",
+        "max-length": 50,
+    },
+    "river/tags": {
+        "tag-labels": [ "dev", "www", "game", "doc", "virt", "chat", "mus", "vid", "gfx",],
+    },
+    "backlight": {
+        "format": " {percent}%"
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10,
+        "on-click": ""
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "format-alt":" {used:0.1f}G",
+        "max-length": 10
+    },
+    "disk": {
+        "interval": 30,
+        "format": " {}%",
+        "format-alt": " {free} free",
+    },
+    "battery": {
+        "interval": 30,
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "custom/updates": {
+        "exec": "(paru -Qu) | wc -l",
+        "interval": 7200,
+        "format": " {}"
+    },
+    // "custom/language": {
+    //     "exec": "cat /tmp/kb_layout",
+    //     "interval": 3,
+    //     "format": " {}",
+    //     "tooltip": false
+    // },
+    "custom/weather" : {
+        "tooltip" : true,
+        "format" : "{}",
+        "restart-interval" : 300,
+        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type" : "json"
+    },
+    "tray": {
+        "icon-size": 13,
+        "tooltip": false,
+        "spacing": 10
+    },
+    "clock": {
+        "format": " {:%m/%d   %R}",
+        // "format": "{:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "tooltip": true,
+        "format-muted": " Muted",
+        "on-click": "pavucontrol",
+        "on-click-right": "pamixer -t",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "tooltip": false,
+        "format-source": " {volume}%",
+        "format-source-muted": " Muted",
+        "on-click": "pavucontrol",
+        "on-click-right": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    }
+}

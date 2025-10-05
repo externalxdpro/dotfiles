@@ -168,6 +168,7 @@
   };
 
   programs.hyprland.enable = true;
+  programs.river.enable = true;
 
   programs.zsh.enable = true;
 
@@ -214,7 +215,7 @@
     waybar
     alacritty
     eza
-    rofi
+    rofi-wayland
     ripgrep
     meson
     mu
@@ -232,6 +233,7 @@
     cifs-utils
     networkmanagerapplet
     wlogout
+    wlr-randr
     swaylock-effects
     swayidle
     sway-audio-idle-inhibit
@@ -285,6 +287,11 @@
     python3
     pyright
     black
+
+    grim
+    slurp
+    wl-clipboard-rs
+    kanshi
   ];
 
   environment.sessionVariables = {
