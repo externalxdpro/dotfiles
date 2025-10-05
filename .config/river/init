@@ -4,7 +4,7 @@ export WLR_RENDERER=pixman
 
 # Autostart
 riverctl spawn "dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS SEATD_SOCK DISPLAY WAYLAND_DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP=river"
-riverctl spawn "./autostart.sh"
+riverctl spawn "$HOME/.config/river/autostart.sh"
 
 # Super+Space to open app menu
 riverctl map normal Super Space spawn "rofi -show combi -show-icons"
