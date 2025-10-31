@@ -228,6 +228,8 @@
     syncthing
     zip
     unzip
+    p7zip
+    rar
     nwg-look
     equibop
     btop
@@ -246,6 +248,7 @@
     pass
     tessen
     pcmanfm
+    xarchiver
     pavucontrol
     pamixer
     playerctl
