@@ -298,6 +298,8 @@
     pyright
     black
 
+    nodejs
+    typescript-language-server
     vscode-langservers-extracted
 
     grim
