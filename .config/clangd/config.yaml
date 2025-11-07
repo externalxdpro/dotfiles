@@ -11,5 +11,5 @@ CompileFlags:
 If:
   PathMatch: [.*\.cpp, .*\.hpp]
 CompileFlags:
-  Add: [-xc++, -std=c++20]
+  Add: [-xc++, -std=c++23]
   Compiler: g++
