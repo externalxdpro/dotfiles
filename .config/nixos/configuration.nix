@@ -265,6 +265,7 @@
     openrazer-daemon
     polychromatic
     gearlever
+    gimp3
 
     mpd
     mpdris2
