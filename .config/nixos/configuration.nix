@@ -95,11 +95,29 @@
   '';
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  services.xserver.videoDrivers = [
-    "modesetting"
-    "nvidia"
-  ];
+  services.xserver = {
+    enable = true;
+    extraConfig = ''
+      Section "InputClass"
+          Identifier "Keyboard"
+          Option "AutoRepeat" "250 13"
+      EndSection
+
+      Section "InputClass"
+          Identifier "Mouse"
+          Option "AccelProfile" "flat"
+      EndSection
+    '';
+    exportConfiguration = true;
+    videoDrivers = [
+      "modesetting"
+      "nvidia"
+    ];
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+    };
+  };
 
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
@@ -111,6 +129,7 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "";
+    options = "caps:escape_shifted_capslock";
   };
 
   # Enable CUPS to print documents and avahi for autodiscovery of printers
@@ -267,6 +286,18 @@
     gearlever
     gimp3
 
+    # XMonad stuff
+    xmobar
+    arandr
+    nitrogen
+    picom
+    trayer
+    numlockx
+    pasystray
+    xdotool
+    xclip
+    maim
+
     mpd
     mpdris2
     mpd-discord-rpc
@@ -315,6 +346,8 @@
   fonts.packages = with pkgs; [
     nerd-fonts.caskaydia-cove
     font-awesome
+    mononoki
+    ubuntu-classic
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
