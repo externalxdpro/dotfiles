@@ -192,7 +192,7 @@
   };
 
   programs.hyprland.enable = true;
-  programs.river.enable = true;
+  programs.river-classic.enable = true;
 
   programs.zsh.enable = true;
 
@@ -211,7 +211,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (inputs.zen-browser.packages."${system}".default.override {
+    (inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default.override {
       nativeMessagingHosts = [ pkgs.passff-host ];
     })
     qutebrowser
@@ -239,7 +239,7 @@
     waybar
     alacritty
     eza
-    rofi-wayland
+    rofi
     ripgrep
     meson
     mu
@@ -252,7 +252,7 @@
     nwg-look
     equibop
     btop
-    lxde.lxsession
+    lxsession
     dunst
     dex
     udiskie
@@ -274,7 +274,7 @@
     brightnessctl
     youtube-music
     moonlight-qt
-    jellyfin-media-player
+    # jellyfin-media-player
     mpv
     lrcget
     prettier
@@ -308,7 +308,7 @@
 
     kdePackages.breeze
     kdePackages.breeze-gtk
-    layan-kde
+    # layan-kde
     layan-gtk-theme
     tela-icon-theme
 
