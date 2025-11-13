@@ -285,6 +285,7 @@
     polychromatic
     gearlever
     gimp3
+    texliveFull
 
     # XMonad stuff
     xmobar
