@@ -416,7 +416,7 @@ Thanks,
         org-hide-emphasis-markers t
         org-attach-id-dir "./.attach")
   (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/Sync/Notes/agenda/agenda.html")))
-  (run-at-time 600 t #'org-store-agenda-views))
+  (run-at-time 20 600 #'org-store-agenda-views))
 
 (custom-set-faces
   '(org-level-1 ((t (:inherit outline-1 :height 1.4))))

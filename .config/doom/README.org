@@ -694,7 +694,7 @@ I wrapped most of this block in (after! org).  Without this, my settings might b
         org-hide-emphasis-markers t
         org-attach-id-dir "./.attach")
   (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/Sync/Notes/agenda/agenda.html")))
-  (run-at-time 600 t #'org-store-agenda-views))
+  (run-at-time 20 600 #'org-store-agenda-views))
 #+end_src
 
 *** Set font sizes for each header level
