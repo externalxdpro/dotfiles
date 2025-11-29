@@ -413,7 +413,8 @@ Thanks,
         org-agenda-files (directory-files-recursively "~/Sync/Notes/agenda/" "\\.org$")
         org-agenda-span 'month
         org-log-done 'time
-        org-hide-emphasis-markers t)
+        org-hide-emphasis-markers t
+        org-attach-id-dir "./.attach")
   (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/Sync/Notes/agenda/agenda.html")))
   (run-at-time 600 t #'org-store-agenda-views))
 
