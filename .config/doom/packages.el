@@ -51,6 +51,7 @@
 
 (package! elcord)
 (package! emojify)
+(package! engrave-faces)
 (package! dired-open)
 (package! leetcode)
 (package! mu4e-alert)

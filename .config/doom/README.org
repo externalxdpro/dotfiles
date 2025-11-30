@@ -448,6 +448,11 @@ Configuration for LSP
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+
+(use-package! engrave-faces
+  :config
+  (setq org-latex-src-block-backend 'engraved))
 #+end_src
 
 ** Leetcode
@@ -1092,6 +1097,7 @@ These are the contents of the *packages.el* file.
 #+begin_src emacs-lisp
 (package! elcord)
 (package! emojify)
+(package! engrave-faces)
 (package! dired-open)
 (package! leetcode)
 (package! mu4e-alert)

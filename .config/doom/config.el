@@ -252,6 +252,11 @@ _r_: Restart
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
+
+(use-package! engrave-faces
+  :config
+  (setq org-latex-src-block-backend 'engraved))
+
 (defun my-leetcode () (interactive)
   (leetcode)
   (leetcode-set-prefer-language)
