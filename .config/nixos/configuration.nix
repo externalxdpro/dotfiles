@@ -299,12 +299,12 @@
     xclip
     maim
 
-    mpd
-    mpdris2
-    mpd-discord-rpc
-    mpc
-    rmpc
-    cava
+    # mpd
+    # mpdris2
+    # mpd-discord-rpc
+    # mpc
+    # rmpc
+    # cava
 
     kdePackages.breeze
     kdePackages.breeze-gtk
