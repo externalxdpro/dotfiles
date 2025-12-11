@@ -420,7 +420,7 @@ Thanks,
         org-log-done 'time
         org-hide-emphasis-markers t
         org-attach-id-dir "./.attach")
-  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("~/Sync/Notes/agenda/agenda.html")))
+  (add-to-list 'org-agenda-custom-commands '("X" agenda "" nil ("/tmp/agenda.html")))
   (run-at-time 20 600 #'org-store-agenda-views))
 
 (custom-set-faces
