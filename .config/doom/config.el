@@ -431,6 +431,16 @@ Thanks,
   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
 )
 
+(after! org
+  (use-package! org-gcal
+    :init
+    ;; (setq org-gcal-client-id ""
+    ;;       org-gcal-client-secret ""
+    ;;       org-gcal-file-alist '(("" . "~/org/calendar.org")))
+    (load "~/.config/doom/gcal.el")
+    (setq org-gcal-token-file nil
+          org-gcal-notify-p t)))
+
 (after! org-roam
   (setq! org-roam-directory "~/Sync/Notes/roam/"))
 

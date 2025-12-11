@@ -715,6 +715,22 @@ You can set the Org heading levels to be different font sizes.  So I choose to h
 )
 #+end_src
 
+*** Org-gcal
+Google calendar integration with org agenda
+I commented part of this since it contains sensitive credentials. I have this block in a separate file that I source here
+
+#+begin_src emacs-lisp
+(after! org
+  (use-package! org-gcal
+    :init
+    ;; (setq org-gcal-client-id ""
+    ;;       org-gcal-client-secret ""
+    ;;       org-gcal-file-alist '(("" . "~/org/calendar.org")))
+    (load "~/.config/doom/gcal.el")
+    (setq org-gcal-token-file nil
+          org-gcal-notify-p t)))
+#+end_src
+
 ** Org Roam
 Set directory for org-roam notes
 
@@ -1012,7 +1028,7 @@ These are the contents of the *init.el* file.
 
 #+begin_src emacs-lisp
        :app
-       ;;calendar
+       calendar
        ;;emms
        ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
