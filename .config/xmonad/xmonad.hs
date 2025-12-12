@@ -319,7 +319,7 @@ myKeys =
         [ ("M-S-r", spawn "xmonad --recompile && xmonad --restart")  -- Recompiles xmonad
         , ("M-r", spawn "xmonad --restart")    -- Restarts xmonad
         -- , ("M-x", io exitSuccess)               -- Quits xmonad
-        , ("M-x", spawn "archlinux-logout")    -- Displays logout menu (You can install this from the AUR)
+        , ("M-x", spawn "rofi -show p -modi p:rofi-power-menu")    -- Displays logout menu
         , ("M-S-/", spawn "~/.config/xmonad/xmonad_keys.sh")
 
     -- KB_GROUP Run Prompt

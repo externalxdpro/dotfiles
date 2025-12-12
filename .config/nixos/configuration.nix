@@ -247,6 +247,7 @@
     alacritty
     eza
     rofi
+    rofi-power-menu
     ripgrep
     meson
     mu
