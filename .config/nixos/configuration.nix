@@ -189,6 +189,13 @@
   programs.appimage = {
     enable = true;
     binfmt = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs =
+        pkgs: with pkgs; [
+          mpv
+          libepoxy
+        ];
+    };
   };
 
   programs.direnv.enable = true;
