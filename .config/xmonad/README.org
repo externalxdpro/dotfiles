@@ -538,7 +538,7 @@ myKeys =
         , ("<XF86AudioPlay>", spawn "playerctl play-pause")
         , ("<XF86AudioPrev>", spawn "playerctl previous")
         , ("<XF86AudioNext>", spawn "playerctl next")
-        , ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+        , ("<XF86AudioMute>", spawn "pamixer -t")
         , ("<XF86AudioLowerVolume>", spawn "pamixer -d 5")
         , ("<XF86AudioRaiseVolume>", spawn "pamixer -i 5")
         , ("<XF86HomePage>", spawn "qutebrowser https://www.youtube.com/c/DistroTube")
