@@ -53,6 +53,7 @@
 (package! emojify)
 (package! engrave-faces)
 (package! dired-open)
+(package! hydra)
 (package! leetcode)
 (package! mu4e-alert)
 (package! org-alert)
