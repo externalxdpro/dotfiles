@@ -276,8 +276,7 @@
     wlogout
     wlr-randr
     swaylock-effects
-    swayidle
-    sway-audio-idle-inhibit
+    hypridle
     swww
     pass
     tessen
