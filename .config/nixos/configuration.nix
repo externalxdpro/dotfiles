@@ -265,7 +265,7 @@
     p7zip
     rar
     nwg-look
-    equibop
+    vesktop
     btop
     lxsession
     dunst
