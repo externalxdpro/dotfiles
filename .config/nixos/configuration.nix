@@ -300,6 +300,7 @@
     gearlever
     gimp3
     texliveFull
+    winboat
 
     # XMonad stuff
     xmobar
@@ -394,6 +395,15 @@
     "nix-command"
     "flakes"
   ];
+
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
