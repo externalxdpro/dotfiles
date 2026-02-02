@@ -164,6 +164,12 @@ keys = [
             ),
         ],
     ),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), "Play/Pause player"),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), "Skip to previous"),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next"), "Skip to next"),
+    Key([], "XF86AudioMute", lazy.spawn("pamixer -t"), "Mute/Unmute volume"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 5"), "Lower volume by 5%"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 5"), "Raise volume by 5%"),
 ]
 
 # Add key bindings to switch VTs in Wayland.
