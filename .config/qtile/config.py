@@ -414,7 +414,6 @@ wl_input_rules = {
 
 
 @hook.subscribe.startup_once
-@hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
