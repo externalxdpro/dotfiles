@@ -58,7 +58,9 @@ colors = [
 keys = [
     Key([mod], "Return", lazy.spawn(myTerminal), desc="Terminal"),
     Key([mod, "shift"], "Return", lazy.spawn(myFileManager), desc="File manager"),
-    Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Run launcher"),
+    Key(
+        [mod], "space", lazy.spawn("rofi -show combi -show-icons"), desc="Run launcher"
+    ),
     Key([mod], "w", lazy.spawn(myBrowser), desc="Browser"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
