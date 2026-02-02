@@ -120,9 +120,19 @@
       "modesetting"
       "nvidia"
     ];
-    windowManager.xmonad = {
-      enable = true;
-      enableContribAndExtras = true;
+    windowManager = {
+      qtile = {
+        enable = true;
+        # backend = "wayland";
+        extraPackages =
+          py3Pkgs: with py3Pkgs; [
+            qtile-extras
+          ];
+      };
+      xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
     };
   };
 
@@ -228,6 +238,7 @@
     (inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default.override {
       nativeMessagingHosts = [ pkgs.passff-host ];
     })
+    brave
     qutebrowser
     vim
     (emacs.pkgs.withPackages (
