@@ -404,7 +404,7 @@ auto_minimize = True
 
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = {
-    "*": InputConfig(accel_profile="flat", pointer_accel=-0.5),
+    "*": InputConfig(accel_profile="flat", pointer_accel=0),
     "type:keyboard": InputConfig(
         kb_options="caps:escape_shifted_capslock",
         kb_repeat_delay=250,
