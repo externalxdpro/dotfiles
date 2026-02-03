@@ -164,6 +164,7 @@ keys = [
             ),
         ],
     ),
+    Key([mod, "shift"], "s", lazy.spawn("sh -c 'slurp | grim -g - - | wl-copy'")),
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), "Play/Pause player"),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), "Skip to previous"),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next"), "Skip to next"),
