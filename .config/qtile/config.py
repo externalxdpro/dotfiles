@@ -221,7 +221,7 @@ layouts = [
     # layout.Bsp(**layout_theme),
     # layout.Columns(**layout_theme),
     # layout.Matrix(**layout_theme),
-    layout.MonadTall(**layout_theme),
+    layout.MonadTall(**layout_theme, new_client_position="top"),
     # layout.MonadWide(**layout_theme),
     layout.Max(**layout_theme),
     # layout.RatioTile(**layout_theme),
