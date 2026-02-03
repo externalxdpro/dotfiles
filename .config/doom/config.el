@@ -211,8 +211,6 @@ _r_: Restart
        :desc "Eww web browser" "w" #'eww
        :desc "Eww reload page" "R" #'eww-reload))
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
 (setq doom-font (font-spec :family "Caskaydia Cove Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "Avenir Next LT Pro" :size 17)
       doom-big-font (font-spec :family "Caskaydia Cove Nerd Font" :size 24)
