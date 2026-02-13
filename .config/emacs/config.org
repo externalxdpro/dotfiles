@@ -1,0 +1,867 @@
+#+title: GNU Emacs Config
+
+* Table of Contents :toc:
+- [[#startup-packages][Startup Packages]]
+  - [[#package-manager-elpaca][Package Manager (Elpaca)]]
+  - [[#vim-mode-evil][Vim Mode (Evil)]]
+  - [[#keybindings-general][Keybindings (General)]]
+- [[#custom-functions][Custom Functions]]
+  - [[#copy-file][Copy file]]
+  - [[#delete-file][Delete file]]
+  - [[#move-file][Move file]]
+- [[#all-the-icons][All the Icons]]
+- [[#backup-files][Backup Files]]
+- [[#buffer-move][Buffer Move]]
+- [[#completion][Completion]]
+  - [[#consult][Consult]]
+  - [[#corfu][Corfu]]
+  - [[#marginalia][Marginalia]]
+  - [[#orderless][Orderless]]
+  - [[#vertico][Vertico]]
+- [[#dashboard][Dashboard]]
+- [[#dired][Dired]]
+- [[#eglot][Eglot]]
+- [[#flycheck][Flycheck]]
+- [[#fonts][Fonts]]
+  - [[#setting-font-face][Setting Font Face]]
+  - [[#zooming-keybindings][Zooming Keybindings]]
+- [[#helpful][Helpful]]
+- [[#highlight-todo][Highlight ToDo]]
+- [[#languages][Languages]]
+  - [[#cc][C/C++]]
+  - [[#python][Python]]
+  - [[#rust][Rust]]
+- [[#magit][Magit]]
+- [[#mu4e][MU4E]]
+- [[#modeline][Modeline]]
+- [[#org-mode][Org Mode]]
+  - [[#table-of-contents][Table of Contents]]
+  - [[#org-bullets][Org Bullets]]
+  - [[#fix-src-block-indentation][Fix Src Block Indentation]]
+  - [[#follow-links-with-enter][Follow Links with Enter]]
+  - [[#org-tempo][Org Tempo]]
+- [[#popper][Popper]]
+- [[#projectile][Projectile]]
+- [[#rainbow-delimiters][Rainbow Delimiters]]
+- [[#smartparens][Smartparens]]
+- [[#ui][UI]]
+  - [[#disable-bars][Disable Bars]]
+  - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
+  - [[#use-short-answers][Use Short Answers]]
+- [[#theme][Theme]]
+- [[#shells-and-terminals][Shells and Terminals]]
+  - [[#vterm][Vterm]]
+- [[#sudo-edit][Sudo Edit]]
+- [[#undo-tree][Undo Tree]]
+- [[#which-key][Which Key]]
+- [[#yasnippet-todo][Yasnippet TODO]]
+
+* Startup Packages
+** Package Manager (Elpaca)
+#+begin_src emacs-lisp
+(defvar elpaca-installer-version 0.11)
+(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+(defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
+(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
+                              :ref nil :depth 1 :inherit ignore
+                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
+                              :build (:not elpaca--activate-package)))
+(let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
+       (build (expand-file-name "elpaca/" elpaca-builds-directory))
+       (order (cdr elpaca-order))
+       (default-directory repo))
+  (add-to-list 'load-path (if (file-exists-p build) build repo))
+  (unless (file-exists-p repo)
+    (make-directory repo t)
+    (when (<= emacs-major-version 28) (require 'subr-x))
+    (condition-case-unless-debug err
+        (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                  ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
+                                                  ,@(when-let* ((depth (plist-get order :depth)))
+                                                      (list (format "--depth=%d" depth) "--no-single-branch"))
+                                                  ,(plist-get order :repo) ,repo))))
+                  ((zerop (call-process "git" nil buffer t "checkout"
+                                        (or (plist-get order :ref) "--"))))
+                  (emacs (concat invocation-directory invocation-name))
+                  ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                        "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+                  ((require 'elpaca))
+                  ((elpaca-generate-autoloads "elpaca" repo)))
+            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+          (error "%s" (with-current-buffer buffer (buffer-string))))
+      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+  (unless (require 'elpaca-autoloads nil t)
+    (require 'elpaca)
+    (elpaca-generate-autoloads "elpaca" repo)
+    (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
+(add-hook 'after-init-hook #'elpaca-process-queues)
+(elpaca `(,@elpaca-order))
+
+;; Install use-package support
+(elpaca elpaca-use-package
+  ;; Enable use-package :ensure support for Elpaca.
+  (elpaca-use-package-mode))
+
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("elpa-devel" . "https://elpa.gnu.org/devel/")))
+
+(elpaca-wait)
+#+end_src
+
+** Vim Mode (Evil)
+#+begin_src emacs-lisp
+(use-package evil
+  :ensure t
+  :custom
+  (evil-want-integration t)
+  (evil-want-keybinding nil)
+  (evil-vsplit-window-right t)
+  (evil-split-window-below t)
+  (evil-respect-visual-line-mode t)
+  (evil-want-C-u-scroll t)
+  (evil-want-C-d-scroll t)
+  (evil-undo-system 'undo-tree)
+  :init
+  (evil-mode)
+  :config
+  (unbind-key "RET" evil-motion-state-map))
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+(use-package evil-surround
+  :after evil
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+(use-package evil-goggles
+  :after evil
+  :ensure t
+  :custom
+  (evil-goggles-enable-change nil)
+  (evil-goggles-enable-delete nil)
+  :config
+  (evil-goggles-mode))
+#+end_src
+
+** Keybindings (General)
+#+begin_src emacs-lisp
+(use-package general
+  :ensure t
+  :custom
+  (general-override-states '(insert
+			     emacs
+			     hybrid
+			     normal
+			     visual
+			     motion
+			     operator
+			     replace))
+  :config
+  (general-evil-setup t)
+  (general-create-definer my/leader
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "SPC"
+    :global-prefix "M-SPC")
+  )
+
+(elpaca-wait)
+
+(use-package general
+  :config
+  (my/leader
+    "." '(find-file :wk "Find file")
+    "SPC" '(execute-extended-command :wk "Run command")
+    "RET" '(consult-bookmark :wk "Create/Jump to bookmark")
+    "TAB TAB" '(comment-line :wk "Comment/Uncomment lines"))
+  
+  (my/leader
+   "b" '(:ignore t :wk "buffer")
+   "b b" '(consult-buffer :wk "Switch buffer")
+   "b i" '(ibuffer :wk "ibuffer")
+   "b k" '(kill-current-buffer :wk "Kill buffer")
+   "b l" '(evil-switch-to-windows-last-buffer :wk "Last buffer")
+   "b n" '(next-buffer :wk "Next buffer")
+   "b p" '(previous-buffer :wk "Previous buffer")
+   "b r" '(revert-buffer-quick :wk "Revert buffer"))
+
+  (my/leader
+   "c" '(:ignore t :wk "code")
+   "c a" '(eglot-code-actions :wk "Execute code action")
+   "c c" '(compile :wk "Compile")
+   "c C" '(recompile :wk "Recompile")
+   "c d" '(evil-goto-definition :wk "Jump to definition")
+   "c D" '(xref-find-references :wk "Jump to references")
+   "c f" '(eglot-format :wk "Format")
+   "c x" '(consult-flycheck :wk "List errors"))
+
+  (my/leader
+    "e" '(:ignore t :wk "eval")
+    "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
+    "e d" '(eval-defun :wk "Evaluate defun at or after point")
+    "e e" '(eval-expression :wk "Evaluate an elisp expression")
+    "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
+    "e r" '(eval-region :wk "Evaluate elisp in region"))
+
+  (my/leader
+    "f" '(:ignore t :wk "file")
+    "f c" '((lambda () (interactive) (find-file (concat user-emacs-directory "config.org"))) :wk "Edit emacs config")
+    "f C" '(copy-this-file :wk "Copy file")
+    "f d" '(delete-this-file :wk "Delete file")
+    "f f" '(find-file :wk "Find file")
+    "f r" '(consult-recent-file :wk "Find recent files")
+    "f R" '(move-this-file :wk "Rename/move file")
+    "f u" '(sudo-edit-find-file :wk "Sudo find file")
+    "f U" '(sudo-edit :wk "Sudo this file"))
+
+  (my/leader
+    "h" '(:ignore t :wk "help")
+    "h b" '(describe-bindings :wk "Describe bindings")
+    "h r r" '((lambda () (interactive) (load-file (concat user-emacs-directory "init.el"))) :wk "Reload emacs config")
+    "h m" '(describe-mode :wk "Describe mode")
+    "h t" '(load-theme :wk "Load theme"))
+  
+  (my/leader
+    "o" '(:ignore t :wk "open")
+    "o -" '(dired-jump :wk "Dired")
+    "o e" '(eshell :wk "Open eshell")
+    "o t" '(vterm-toggle :wk "Toggle vterm"))
+
+  (my/leader
+    "p" '(:ignore t :wk "project"))
+
+  (my/leader
+    "s" '(:ignore t :wk "search"))
+
+  (my/leader
+    "t" '(:ignore t :wk "toggle")
+    "t l" '(display-line-numbers-mode :wk "Line numbers")
+    "t r" '(read-only-mode :wk "Read-only mode")
+    "t t" '(visual-line-mode :wk "Truncated lines"))
+
+  (my/leader
+    "w" '(:ignore t :wk "window")
+    "w c" '(evil-window-delete :wk "Close window")
+    ;; Motion
+    "w h" '(evil-window-left :wk "Focus window to the left")
+    "w j" '(evil-window-down :wk "Focus window below")
+    "w k" '(evil-window-up :wk "Focus window above")
+    "w l" '(evil-window-right :wk "Focus window to the right")
+    "w w" '(evil-window-next :wk "Focus next window")
+    ;; Move Windows
+    "w H" '(buf-move-left :wk "Move window left")
+    "w J" '(buf-move-down :wk "Move window down")
+    "w K" '(buf-move-up :wk "Move window right")
+    "w L" '(buf-move-right :wk "Move window right")
+    ;; Splits
+    "w n" '(evil-window-new :wk "New window")
+    "w s" '(evil-window-split :wk "Split horizontally")
+    "w v" '(evil-window-vsplit :wk "Split vertically"))
+  )
+#+end_src
+
+* Custom Functions
+** Copy file
+#+begin_src emacs-lisp
+(defun copy-this-file (new-path &optional force-p)
+  (interactive
+   (list (read-file-name "Copy file to: ")
+	 current-prefix-arg))
+  (unless (and buffer-file-name (file-exists-p buffer-file-name))
+    (user-error "Buffer is not visiting a file"))
+  (let ((old-path (buffer-file-name (buffer-base-buffer)))
+	(new-path (expand-file-name new-path)))
+    (make-directory (file-name-directory new-path) 't)
+    (copy-file old-path new-path (or force-p 1))
+    (find-file new-path)
+    (message "File copied to %S" (abbreviate-file-name new-path))))
+#+end_src
+
+** Delete file
+#+begin_src emacs-lisp
+(defun delete-this-file (&optional force-p)
+  (interactive)
+  (let* ((path (buffer-file-name (buffer-base-buffer)))
+	 (short-path (and path (abbreviate-file-name path))))
+    (unless path
+      (user-error "Buffer is not visiting a file"))
+    (unless (file-exists-p path)
+      (user-error "File does not exist: %s" path))
+    (unless (or force-p (y-or-n-p (format "Really delete %S?" short-path)))
+      (user-error "Aborted"))
+    (let ((buf (current-buffer)))
+      (unwind-protect
+       (progn (delete-file path t) t)
+       (if (file-exists-p path)
+	   (error "Failed to delete %S" short-path)
+	 (kill-buffer)
+	 (message "Deleted %S" short-path)))
+      )
+    )
+  )
+#+end_src
+
+** Move file
+#+begin_src emacs-lisp
+(defun move-this-file (new-path &optional force-p)
+  (interactive
+   (list (read-file-name "Copy file to: ")
+	 current-prefix-arg))
+  (unless (and buffer-file-name (file-exists-p buffer-file-name))
+    (user-error "Buffer is not visiting a file"))
+  (let ((old-path (buffer-file-name (buffer-base-buffer)))
+	(new-path (expand-file-name new-path)))
+    (make-directory (file-name-directory new-path) 't)
+    (rename-file old-path new-path (or force-p 1))
+    (find-file new-path)
+    (message "File moved to %S" (abbreviate-file-name new-path))))
+#+end_src
+
+* All the Icons
+#+begin_src emacs-lisp
+(use-package all-the-icons
+  :ensure t)
+#+end_src
+
+* Backup Files
+#+begin_src emacs-lisp
+(setq backup-directory-alist `(("." . ,trash-directory)))
+#+end_src
+
+* Buffer Move
+#+begin_src emacs-lisp
+(use-package buffer-move
+  :ensure t)
+#+end_src
+
+* Completion 
+** Consult
+#+begin_src emacs-lisp
+(use-package consult
+  :ensure t
+  :config
+  (recentf-mode))
+
+(use-package consult-flycheck
+  :after flycheck
+  :ensure t)
+#+end_src
+
+** Corfu
+#+begin_src emacs-lisp
+(use-package corfu
+  :ensure t
+  :bind
+  ("C-SPC" . complete-symbol)
+  (:map corfu-map
+        ("TAB" . corfu-complete)
+        ("C-SPC" . corfu-quit)
+	("RET" . newline))
+  :custom
+  (corfu-preselect 'first)
+  (corfu-auto t)
+  (corfu-auto-delay 0.2)
+  (corfu-auto-prefix 2)
+  :init
+  (global-corfu-mode))
+#+end_src
+
+** Marginalia
+#+begin_src emacs-lisp
+(use-package marginalia
+  :after vertico
+  :ensure t
+  :init
+  (marginalia-mode))
+#+end_src
+
+** Orderless
+#+begin_src emacs-lisp
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (orderless-matching-styles '(orderless-literal orderless-regexp)))
+#+end_src
+
+** Vertico
+#+begin_src emacs-lisp
+(use-package vertico
+  :ensure t
+  :bind (:map vertico-map
+	      ("C-j" . vertico-next)
+	      ("C-k" . vertico-previous)
+	      ("ESC" . vertico-exit))
+  :custom
+  (vertico-scroll-margin 0)
+  (vertico-count 20)
+  (vertico-resize t)
+  (vertico-cycle t)
+  (enable-recursive-minibuffers t)
+  :init
+  (vertico-mode))
+#+end_src
+
+* Dashboard
+#+begin_src emacs-lisp
+(use-package dashboard
+  :ensure t
+  :custom
+  (initial-buffer-choice 'dashboard-open)
+  (dashboard-set-heading-icons t)
+  (dashboard-set-file-icons t)
+  (dashboard-startup-banner 'logo)
+  (dashboard-center-content nil)
+  (dashboard-items '((recents . 5)
+		     (agenda . 5)
+		     (bookmarks . 3)
+		     (projects . 3)))
+  :config
+  (dashboard-setup-startup-hook))
+#+end_src
+
+* Dired
+#+begin_src emacs-lisp
+(use-package dired
+  :custom
+  (delete-by-moving-to-trash t)
+  (trash-directory "~/.local/share/Trash/files/")
+  :general (:states '(normal motion)
+		    :keymaps 'dired-mode-map
+		    "M-RET" 'dired-display-file
+		    "h" 'dired-up-directory
+		    "l" 'dired-find-file
+		    "m" 'dired-mark
+		    "t" 'dired-toggle-marks
+		    "u" 'dired-unmark
+		    "C" 'dired-do-copy
+		    "D" 'dired-do-delete
+		    "J" 'dired-goto-file
+		    "M" 'dired-do-chmod
+		    "O" 'dired-do-chown
+		    "P" 'dired-do-print
+		    "R" 'dired-do-rename
+		    "T" 'dired-do-touch
+		    "Y" 'dired-copy-filename-as-kill
+		    "+" 'dired-create-directory
+		    "-" 'dired-up-directory
+		    "% l" 'dired-downcase
+		    "% u" 'dired-upcase
+		    "; d" 'epa-dired-do-decrypt
+		    "; e" 'epa-dired-do-encrypt
+		    ))
+
+(use-package dired-open
+  :after dired
+  :ensure t
+  :custom
+  (dired-open-extensions '(("gif" . "nsxiv")
+                           ("jpg" . "nsxiv")
+                           ("png" . "nsxiv")
+                           ("mkv" . "mpv")
+                           ("mp4" . "mpv"))))
+
+(use-package dired-preview
+  :after dired
+  :ensure t
+  :custom
+  (dired-preview-delay 0.7)
+  (dired-preview-max-size (expt 2 20))
+  (dired-preview-ignored-extensions-regexp (concat "\\."
+                                                   "\\(gz\\|"
+                                                   "zst\\|"
+                                                   "tar\\|"
+                                                   "xz\\|"
+                                                   "rar\\|"
+                                                   "zip\\|"
+                                                   "iso\\|"
+                                                   "epub"
+                                                   "\\)"))
+  :init
+  (dired-preview-global-mode 1))
+#+end_src
+
+* Eglot
+#+begin_src emacs-lisp
+(use-package eglot
+  :general
+  (my/leader
+    "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints")))
+#+end_src
+
+* Flycheck
+#+begin_src emacs-lisp
+(use-package flycheck
+  :ensure t
+  :custom
+  (flycheck-display-errors-delay 0.25)
+  :init
+  (global-flycheck-mode 1))
+#+end_src
+
+* Fonts
+** Setting Font Face
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil
+  :font "Caskaydia Cove Nerd Font"
+  :height 110
+  :weight 'medium)
+(set-face-attribute 'fixed-pitch nil
+  :font "Caskaydia Cove Nerd Font"
+  :height 110
+  :weight 'medium)
+(set-face-attribute 'variable-pitch nil
+  :font "Avenir Next LT Pro"
+  :height 120
+  :weight 'medium)
+(set-face-attribute 'font-lock-comment-face nil
+  :slant 'italic)
+(set-face-attribute 'font-lock-keyword-face nil
+  :slant 'italic)
+
+(add-to-list 'default-frame-alist '(font . "Caskaydia Cove Nerd Font-11"))
+
+(setq-default line-spacing 0.12)
+#+end_src
+
+** Zooming Keybindings
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+#+end_src
+
+* Helpful
+#+begin_src emacs-lisp
+(use-package helpful
+  :ensure t
+  :general
+  (my/leader
+    "h f" '(helpful-callable :wk "Describe function")
+    "h k" '(helpful-key :wk "Describe key")
+    "h v" '(helpful-variable :wk "Describe variable")
+    "h x" '(helpful-command :wk "Describe command")))
+#+end_src
+
+* Highlight ToDo
+#+begin_src emacs-lisp
+(use-package hl-todo
+  :ensure t
+  :custom
+  (hl-todo-keyword-faces '(("TODO" warning bold) ("FIXME" error bold)
+			   ("REVIEW" font-lock-keyword-face bold) ("HACK" font-lock-constant-face bold)
+			   ("DEPRECATED" font-lock-doc-face bold) ("NOTE" success bold) ("BUG" error bold)
+			   ("XXX" font-lock-constant-face bold)))
+  :hook (prog-mode text-mode))
+#+end_src
+
+* Languages
+** C/C++
+#+begin_src emacs-lisp
+(use-package cc-mode
+  :hook (c-mode-common . eglot-ensure))
+#+end_src
+
+** Python
+#+begin_src emacs-lisp
+(use-package python
+  :hook (python-mode . eglot-ensure))
+#+end_src
+
+** Rust
+#+begin_src emacs-lisp
+(use-package rust-mode
+  :ensure t
+  :hook (rust-mode . eglot-ensure))
+#+end_src
+
+* Magit
+#+begin_src emacs-lisp
+(use-package transient
+  :ensure t)
+
+(use-package magit
+  :after transient
+  :ensure t
+  :general
+  (my/leader
+    "g" '(:ignore t :wk "git")
+    "g b" '(magit-branch-checkout :wk "Magit switch branch")
+    "g c" '(magit-clone :wk "Magit clone")
+    "g g" '(magit-status :wk "Magit status")
+    "g G" '(magit-status-here :wk "Magit status")
+    "g i" '(magit-init :wk "Init repo")))
+#+end_src
+
+* MU4E
+#+begin_src emacs-lisp
+(use-package mu4e
+  :demand t
+  :general
+  (:states 'normal
+	   :keymaps 'mu4e-main-mode-map
+	   "q" '(lambda () (interactive) (mu4e-quit t)))
+  (my/leader
+    "o m" '(mu4e :wk "mu4e"))
+  :custom
+  (mu4e-update-interval (* 5 60))
+  (mu4e-get-mail-command "mbsync-update ~/.config/mbsyncrc")
+  (mu4e-change-filenames-when-moving t)
+  (mu4e-headers-fields '((:human-date . 12)
+			 (:flags . 8)
+			 (:from-or-to . 25)
+			 (:subject)))
+  (mu4e-compose-format-flowed t)
+  (mu4e-index-cleanup nil)
+  (mu4e-index-lazy-check t)
+  (mu4e-notification-support nil)
+  (mu4e-confirm-quit nil)
+  (mu4e-context-policy 'pick-first)
+  (mu4e-use-fancy-chars t)
+  :config
+  (setq mu4e-headers-new-mark '("N" . " 󰓦"))
+  (setq mu4e-headers-draft-mark '("D" . " "))
+  (setq mu4e-headers-list-mark '("l" . " "))
+  (setq mu4e-headers-seen-mark '("S" . ""))
+  (setq mu4e-headers-attach-mark '("a" . " "))
+  (setq mu4e-headers-signed-mark '("s" . " "))
+  (setq mu4e-headers-unread-mark '("u" . " "))
+  (setq mu4e-headers-flagged-mark '("F" . " "))
+  (setq mu4e-headers-replied-mark '("R" . " "))
+  (setq mu4e-headers-trashed-mark '("T" . " "))
+  (setq mu4e-headers-calendar-mark '("c" . " "))
+  (setq mu4e-headers-personal-mark '("p" . " "))
+  (setq mu4e-headers-encrypted-mark '("x" . " "))
+
+  (load (expand-file-name "email.el" user-emacs-directory) t)
+  (mu4e t))
+
+(use-package mu4e-alert
+  :after (alert mu4e)
+  :ensure t
+  :custom
+  (mu4e-alert-style 'libnotify)
+  (mu4e-alert-email-notification-types '(subjects))
+  :init
+  (mu4e-alert-enable-notifications))
+#+end_src
+
+* Modeline
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :init
+  (doom-modeline-mode 1))
+#+end_src
+
+* Org Mode
+#+begin_src emacs-lisp
+(use-package org
+  :hook (org-mode . (lambda () (flycheck-mode -1) (flymake-mode 1))))
+#+end_src
+
+** Table of Contents
+#+begin_src emacs-lisp
+(use-package toc-org
+  :ensure t
+  :commands toc-org-enable
+  :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
+
+** Org Bullets
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+(use-package org-bullets
+  :ensure t
+  :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+
+** Fix Src Block Indentation
+#+begin_src emacs-lisp
+(setq org-src-preserve-indentation t)
+#+end_src
+
+** Follow Links with Enter
+#+begin_src emacs-lisp
+(setq org-return-follows-link t)
+#+end_src
+
+** Org Tempo
+#+begin_src emacs-lisp
+(require 'org-tempo)
+#+end_src
+
+* Popper
+#+begin_src emacs-lisp
+(use-package popper
+  :ensure t
+  :general
+  (my/leader
+    "`" '(popper-toggle :wk "Toggle popups")
+    "~" '(popper-cycle :wk "Cycle popup"))
+  :custom
+  (popper-mode-line nil)
+  (popper-group-function #'popper-group-by-directory)
+  (popper-reference-buffers '(compilation-mode
+			      help-mode
+			      helpful-mode
+			      messages-mode
+			      occur-mode
+			      special-mode
+			      "\\*Messages\\*"
+			      "Output\\*$"
+			      "\\*Async Shell Command\\*"))
+  :init
+  (popper-mode 1)
+  (popper-echo-mode 1))
+#+end_src
+
+* Projectile
+#+begin_src emacs-lisp
+(use-package projectile
+  :ensure t
+  :general
+  (my/leader
+    "p !" '(projectile-run-shell-command-in-root :wk "Run command in project root")
+    "p a" '(projectile-add-known-project :wk "Add new project")
+    "p b" '(projectile-switch-to-buffer :wk "Switch to project buffer")
+    "p c" '(projectile-compile-project :wk "Compile in project")
+    "p f" '(projectile-find-file :wk "Find file in project")
+    "p i" '(projectile-invalidate-cache :wk "Invalidate project cache")
+    "p k" '(projectile-kill-buffers :wk "Kill project buffers")
+    "p p" '(projectile-switch-project :wk "Switch project")
+    "p r" '(projectile-recentf :wk "Find recent project files")
+    "p s" '(projectile-save-project-buffers :wk "Save project buffers"))
+  :config
+  (projectile-mode 1))
+#+end_src
+
+* Rainbow Delimiters
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode text-mode))
+#+end_src
+
+* Smartparens
+#+begin_src emacs-lisp
+(use-package smartparens
+  :after org
+  :ensure t
+  :custom
+  (sp-highlight-pair-overlay nil)
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode 1))
+#+end_src
+
+* UI
+** Disable Bars
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+#+end_src
+
+** Display Line Numbers and Truncated Lines
+#+begin_src emacs-lisp
+(setq display-line-numbers-type 'relative)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'text-mode-hook 'display-line-numbers-mode)
+
+(global-visual-line-mode t)
+#+end_src
+
+** Use Short Answers
+#+begin_src emacs-lisp
+(setopt use-short-answers t)
+#+end_src
+
+* Theme
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :ensure t
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
+  :config
+  (load-theme 'doom-one t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
+#+end_src
+
+* Shells and Terminals
+** Vterm
+#+begin_src emacs-lisp
+(use-package vterm
+  :ensure t)
+
+(use-package vterm-toggle
+  :after vterm
+  :ensure t
+  :custom
+  (vterm-toggle-fullscreen-p nil)
+  (vterm-toggle-scope 'project)
+  :config
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                     (let ((buffer (get-buffer buffer-or-name)))
+                       (with-current-buffer buffer
+                         (or (equal major-mode 'vterm-mode)
+                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                  (display-buffer-reuse-window display-buffer-at-bottom)
+                  ;;(display-buffer-reuse-window display-buffer-in-direction)
+                  ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                  ;;(direction . bottom)
+                  ;;(dedicated . t) ;dedicated is supported in emacs27
+                  (reusable-frames . visible)
+                  (window-height . 0.3))))
+#+end_src
+
+* Sudo Edit
+#+begin_src emacs-lisp
+(use-package sudo-edit
+  :ensure t)
+#+end_src
+
+* Undo Tree
+#+begin_src emacs-lisp
+(use-package undo-tree
+  :ensure t
+  :custom
+  (undo-tree-history-directory-alist '(("." . "/home/sakib/.cache/emacs/undo-tree-hist/")))
+  :general
+  (my/leader
+    "s u" '(undo-tree-visualize :wk "Undo history"))
+  :init
+  (global-undo-tree-mode))
+#+end_src
+
+* Which Key
+#+begin_src emacs-lisp
+(use-package which-key
+  :ensure t
+  :custom
+  (which-key-side-window-location 'bottom)
+  (which-key-sort-order #'which-key-key-order-alpha)
+  (which-key-sort-uppercase-first nil)
+  (which-key-add-column-padding 1)
+  (which-key-max-display-columns nil)
+  (which-key-min-display-lines 6)
+  (which-key-side-window-slot -10)
+  (which-key-side-window-max-height 0.25)
+  (which-key-idle-delay 0.8)
+  (which-key-max-description-length 25)
+  (which-key-allow-imprecise-window-fit nil)
+  :init
+  (which-key-mode 1))
+#+end_src
+
+* Yasnippet TODO
