@@ -754,7 +754,6 @@
 * Smartparens
 #+begin_src emacs-lisp
 (use-package smartparens
-  :after org
   :ensure t
   :custom
   (sp-highlight-pair-overlay nil)
