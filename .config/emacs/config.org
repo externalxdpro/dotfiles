@@ -38,9 +38,6 @@
 - [[#org-mode][Org Mode]]
   - [[#table-of-contents][Table of Contents]]
   - [[#org-bullets][Org Bullets]]
-  - [[#fix-src-block-indentation][Fix Src Block Indentation]]
-  - [[#follow-links-with-enter][Follow Links with Enter]]
-  - [[#org-tempo][Org Tempo]]
 - [[#popper][Popper]]
 - [[#projectile][Projectile]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
@@ -677,7 +674,14 @@
 * Org Mode
 #+begin_src emacs-lisp
 (use-package org
-  :hook (org-mode . (lambda () (flycheck-mode -1) (flymake-mode 1))))
+  :custom
+  (org-src-preserve-indentation t)
+  (org-return-follows-link t)
+  :hook
+  (org-mode . (lambda () (flycheck-mode -1) (flymake-mode 1)))
+  (org-mode . org-indent-mode)
+  :config
+  (require 'org-tempo))
 #+end_src
 
 ** Table of Contents
@@ -685,30 +689,14 @@
 (use-package toc-org
   :ensure t
   :commands toc-org-enable
-  :init (add-hook 'org-mode-hook 'toc-org-enable))
+  :hook org-mode)
 #+end_src
 
 ** Org Bullets
 #+begin_src emacs-lisp
-(add-hook 'org-mode-hook 'org-indent-mode)
 (use-package org-bullets
   :ensure t
-  :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-#+end_src
-
-** Fix Src Block Indentation
-#+begin_src emacs-lisp
-(setq org-src-preserve-indentation t)
-#+end_src
-
-** Follow Links with Enter
-#+begin_src emacs-lisp
-(setq org-return-follows-link t)
-#+end_src
-
-** Org Tempo
-#+begin_src emacs-lisp
-(require 'org-tempo)
+  :hook (org-mode-hook))
 #+end_src
 
 * Popper
