@@ -406,6 +406,13 @@
   (enable-recursive-minibuffers t)
   :init
   (vertico-mode))
+
+(use-package vertico-directory
+  :after vertico
+  :bind (:map vertico-map
+              ("DEL" . vertico-directory-delete-char)
+              ("RET" . vertico-directory-enter))
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 #+end_src
 
 * Dashboard
