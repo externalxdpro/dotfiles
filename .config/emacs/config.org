@@ -22,6 +22,7 @@
 - [[#dired][Dired]]
 - [[#eglot][Eglot]]
 - [[#flycheck][Flycheck]]
+- [[#follow-symlinks][Follow Symlinks]]
 - [[#fonts][Fonts]]
   - [[#setting-font-face][Setting Font Face]]
   - [[#zooming-keybindings][Zooming Keybindings]]
@@ -510,6 +511,11 @@
   (flycheck-display-errors-delay 0.25)
   :init
   (global-flycheck-mode 1))
+#+end_src
+
+* Follow Symlinks
+#+begin_src emacs-lisp
+(setq find-file-visit-truename t)
 #+end_src
 
 * Fonts
