@@ -42,6 +42,7 @@
 - [[#projectile][Projectile]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
 - [[#smartparens][Smartparens]]
+- [[#suppress-native-compiler-warnings][Suppress Native Compiler Warnings]]
 - [[#ui][UI]]
   - [[#disable-bars][Disable Bars]]
   - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
@@ -760,6 +761,11 @@
   :config
   (require 'smartparens-config)
   (smartparens-global-mode 1))
+#+end_src
+
+* Suppress Native Compiler Warnings
+#+begin_src emacs-lisp
+(setq warning-minimum-level :emergency)
 #+end_src
 
 * UI
