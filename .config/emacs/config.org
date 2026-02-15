@@ -31,6 +31,7 @@
 - [[#highlight-todo][Highlight ToDo]]
 - [[#languages][Languages]]
   - [[#cc][C/C++]]
+  - [[#java][Java]]
   - [[#python][Python]]
   - [[#rust][Rust]]
 - [[#magit][Magit]]
@@ -592,6 +593,12 @@
 #+begin_src emacs-lisp
 (use-package cc-mode
   :hook (c-mode-common . eglot-ensure))
+#+end_src
+
+** Java
+#+begin_src emacs-lisp
+(use-package java-mode
+  :hook (java-mode . eglot-ensure))
 #+end_src
 
 ** Python
