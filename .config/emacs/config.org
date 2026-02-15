@@ -182,24 +182,21 @@
     "TAB TAB" '(comment-line :wk "Comment/Uncomment lines"))
   
   (my/leader
-   "b" '(:ignore t :wk "buffer")
-   "b b" '(consult-buffer :wk "Switch buffer")
-   "b i" '(ibuffer :wk "ibuffer")
-   "b k" '(kill-current-buffer :wk "Kill buffer")
-   "b l" '(evil-switch-to-windows-last-buffer :wk "Last buffer")
-   "b n" '(next-buffer :wk "Next buffer")
-   "b p" '(previous-buffer :wk "Previous buffer")
-   "b r" '(revert-buffer-quick :wk "Revert buffer"))
+    "b" '(:ignore t :wk "buffer")
+    "b b" '(consult-buffer :wk "Switch buffer")
+    "b i" '(ibuffer :wk "ibuffer")
+    "b k" '(kill-current-buffer :wk "Kill buffer")
+    "b l" '(evil-switch-to-windows-last-buffer :wk "Last buffer")
+    "b n" '(next-buffer :wk "Next buffer")
+    "b p" '(previous-buffer :wk "Previous buffer")
+    "b r" '(revert-buffer-quick :wk "Revert buffer"))
 
   (my/leader
-   "c" '(:ignore t :wk "code")
-   "c a" '(eglot-code-actions :wk "Execute code action")
-   "c c" '(compile :wk "Compile")
-   "c C" '(recompile :wk "Recompile")
-   "c d" '(evil-goto-definition :wk "Jump to definition")
-   "c D" '(xref-find-references :wk "Jump to references")
-   "c f" '(eglot-format :wk "Format")
-   "c x" '(consult-flycheck :wk "List errors"))
+    "c" '(:ignore t :wk "code")
+    "c c" '(compile :wk "Compile")
+    "c C" '(recompile :wk "Recompile")
+    "c d" '(evil-goto-definition :wk "Jump to definition")
+    "c D" '(xref-find-references :wk "Jump to references"))
 
   (my/leader
     "e" '(:ignore t :wk "eval")
@@ -350,7 +347,10 @@
 
 (use-package consult-flycheck
   :after flycheck
-  :ensure t)
+  :ensure t
+  :general
+  (my/leader
+    "c x" '(consult-flycheck :wk "List errors")))
 #+end_src
 
 ** Corfu
@@ -508,6 +508,10 @@
 (use-package eglot
   :general
   (my/leader
+    "c a" '(eglot-code-actions :wk "Execute code action")
+    "c f" '(eglot-format :wk "Format")
+    "c r" '(eglot-rename :wk "Rename")
+
     "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints")))
 #+end_src
 
