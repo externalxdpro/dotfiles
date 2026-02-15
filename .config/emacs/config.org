@@ -622,7 +622,9 @@
     "g c" '(magit-clone :wk "Magit clone")
     "g g" '(magit-status :wk "Magit status")
     "g G" '(magit-status-here :wk "Magit status")
-    "g i" '(magit-init :wk "Init repo")))
+    "g i" '(magit-init :wk "Init repo"))
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 #+end_src
 
 * MU4E
