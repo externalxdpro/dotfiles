@@ -20,6 +20,7 @@
   - [[#vertico][Vertico]]
 - [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
+- [[#dirvish][Dirvish]]
 - [[#eglot][Eglot]]
 - [[#flycheck][Flycheck]]
 - [[#follow-symlinks][Follow Symlinks]]
@@ -491,6 +492,15 @@
                                                    "\\)"))
   :init
   (dired-preview-global-mode 1))
+#+end_src
+
+* Dirvish
+#+begin_src emacs-lisp
+(use-package dirvish
+  :after dired
+  :ensure t
+  :init
+  (dirvish-override-dired-mode))
 #+end_src
 
 * Eglot
