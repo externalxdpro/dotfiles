@@ -170,7 +170,12 @@
     :keymaps 'override
     :prefix "SPC"
     :global-prefix "M-SPC")
-  )
+
+  (general-create-definer my/local-leader
+    :states '(normal insert visual emacs)
+    :keymaps 'local
+    :prefix "SPC m"
+    :global-prefix "M-SPC m"))
 
 (elpaca-wait)
 
@@ -604,6 +609,12 @@
 ** Python
 #+begin_src emacs-lisp
 (use-package python
+  :general
+  (my/local-leader
+    :keymaps 'python-mode-map
+    "r" '(run-python :wk "Python shell")
+    "b" '(python-shell-send-buffer :wk "Send buffer to shell")
+    "f" '(python-shell-send-defun :wk "Send function to shell"))
   :hook (python-mode . eglot-ensure))
 #+end_src
 
@@ -737,6 +748,7 @@
   (popper-reference-buffers '(compilation-mode
 			      help-mode
 			      helpful-mode
+			      inferior-python-mode
 			      messages-mode
 			      occur-mode
 			      special-mode
