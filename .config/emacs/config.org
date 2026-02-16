@@ -386,6 +386,10 @@
   :ensure t
   :init
   (marginalia-mode))
+
+(use-package all-the-icons-completion
+  :ensure t
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup))
 #+end_src
 
 ** Orderless
