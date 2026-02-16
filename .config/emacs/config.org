@@ -526,7 +526,10 @@
     "c f" '(eglot-format :wk "Format")
     "c r" '(eglot-rename :wk "Rename")
 
-    "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints")))
+    "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints"))
+  :config
+  (setq eglot-stay-out-of '(flymake)))
+
 (use-package eglot-booster
   :after eglot
   :ensure (:host github :repo "jdtsmith/eglot-booster")
@@ -542,6 +545,12 @@
   (flycheck-display-errors-delay 0.25)
   :init
   (global-flycheck-mode 1))
+
+(use-package flycheck-eglot
+  :after (eglot flycheck)
+  :ensure t
+  :config
+  (global-flycheck-eglot-mode 1))
 #+end_src
 
 * Follow Symlinks
