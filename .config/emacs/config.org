@@ -527,6 +527,11 @@
     "c r" '(eglot-rename :wk "Rename")
 
     "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints")))
+(use-package eglot-booster
+  :after eglot
+  :ensure (:host github :repo "jdtsmith/eglot-booster")
+  :config
+  (eglot-booster-mode))
 #+end_src
 
 * Flycheck
