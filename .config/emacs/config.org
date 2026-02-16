@@ -499,6 +499,10 @@
                                                    "\\)"))
   :init
   (dired-preview-global-mode 1))
+
+(use-package all-the-icons-dired
+  :ensure (:host github :repo "jtbm37/all-the-icons-dired")
+  :hook dired-mode)
 #+end_src
 
 * Dirvish
