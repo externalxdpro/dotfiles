@@ -21,6 +21,7 @@
 - [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
 - [[#dirvish][Dirvish]]
+- [[#eldoc][Eldoc]]
 - [[#eglot][Eglot]]
 - [[#flycheck][Flycheck]]
 - [[#follow-symlinks][Follow Symlinks]]
@@ -507,6 +508,13 @@
   :ensure t
   :init
   (dirvish-override-dired-mode))
+#+end_src
+
+* Eldoc
+#+begin_src emacs-lisp
+(use-package eldoc
+  :custom
+  (eldoc-idle-delay 0.1))
 #+end_src
 
 * Eglot
