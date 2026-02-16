@@ -541,7 +541,8 @@
 
 * Follow Symlinks
 #+begin_src emacs-lisp
-(setq find-file-visit-truename t)
+(setq find-file-visit-truename t
+      vc-follow-symlinks t)
 #+end_src
 
 * Fonts
