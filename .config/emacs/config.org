@@ -216,11 +216,11 @@
   (my/leader
     "f" '(:ignore t :wk "file")
     "f c" '((lambda () (interactive) (find-file (concat user-emacs-directory "config.org"))) :wk "Edit emacs config")
-    "f C" '(copy-this-file :wk "Copy file")
-    "f d" '(delete-this-file :wk "Delete file")
+    "f C" '(my/copy-this-file :wk "Copy file")
+    "f d" '(my/delete-this-file :wk "Delete file")
     "f f" '(find-file :wk "Find file")
     "f r" '(consult-recent-file :wk "Find recent files")
-    "f R" '(move-this-file :wk "Rename/move file")
+    "f R" '(my/move-this-file :wk "Rename/move file")
     "f u" '(sudo-edit-find-file :wk "Sudo find file")
     "f U" '(sudo-edit :wk "Sudo this file"))
 
@@ -273,7 +273,7 @@
 * Custom Functions
 ** Copy file
 #+begin_src emacs-lisp
-(defun copy-this-file (new-path &optional force-p)
+(defun my/copy-this-file (new-path &optional force-p)
   (interactive
    (list (read-file-name "Copy file to: ")
 	 current-prefix-arg))
@@ -289,7 +289,7 @@
 
 ** Delete file
 #+begin_src emacs-lisp
-(defun delete-this-file (&optional force-p)
+(defun my/delete-this-file (&optional force-p)
   (interactive)
   (let* ((path (buffer-file-name (buffer-base-buffer)))
 	 (short-path (and path (abbreviate-file-name path))))
@@ -313,7 +313,7 @@
 
 ** Move file
 #+begin_src emacs-lisp
-(defun move-this-file (new-path &optional force-p)
+(defun my/move-this-file (new-path &optional force-p)
   (interactive
    (list (read-file-name "Copy file to: ")
 	 current-prefix-arg))
