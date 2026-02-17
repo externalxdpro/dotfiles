@@ -706,6 +706,7 @@ This block is from Doom Emacs
 ** C/C++
 #+begin_src emacs-lisp
 (use-package cc-mode
+  :custom (c-basic-offset 4)
   :hook (c-mode-common . eglot-ensure))
 #+end_src
 
