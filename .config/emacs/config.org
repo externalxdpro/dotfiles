@@ -56,7 +56,7 @@
 - [[#sudo-edit][Sudo Edit]]
 - [[#undo-tree][Undo Tree]]
 - [[#which-key][Which Key]]
-- [[#yasnippet-todo][Yasnippet TODO]]
+- [[#yasnippet][Yasnippet]]
 
 * Startup Packages
 ** Vim Mode (Evil)
@@ -1005,4 +1005,20 @@ This block is from Doom Emacs
   (which-key-mode 1))
 #+end_src
 
-* Yasnippet TODO
+* Yasnippet
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
+
+(use-package yasnippet-capf
+  :after yasnippet
+  :ensure t
+  :config
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
+
+(use-package yasnippet-snippets
+  :after yasnippet
+  :ensure t)
+#+end_src
