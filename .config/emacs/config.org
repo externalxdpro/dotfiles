@@ -10,6 +10,7 @@
   - [[#move-file][Move file]]
   - [[#org-dwim][Org DWIM]]
 - [[#all-the-icons][All the Icons]]
+- [[#apheleia][Apheleia]]
 - [[#backup-files][Backup Files]]
 - [[#buffer-move][Buffer Move]]
 - [[#completion][Completion]]
@@ -400,6 +401,17 @@ This block is from Doom Emacs
   :ensure t)
 #+end_src
 
+* Apheleia
+#+begin_src emacs-lisp
+(use-package apheleia
+  :ensure t
+  :general
+  (my/leader
+    "c f" '(apheleia-format-buffer :wk "Format"))
+  :config
+  (apheleia-global-mode 1))
+#+end_src
+
 * Backup Files
 #+begin_src emacs-lisp
 (setq backup-directory-alist `(("." . ,trash-directory)))
@@ -598,7 +610,6 @@ This block is from Doom Emacs
   :general
   (my/leader
     "c a" '(eglot-code-actions :wk "Execute code action")
-    "c f" '(eglot-format :wk "Format")
     "c r" '(eglot-rename :wk "Rename")
 
     "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints"))
