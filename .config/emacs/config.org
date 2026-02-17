@@ -518,29 +518,28 @@ This block is from Doom Emacs
   (delete-by-moving-to-trash t)
   (trash-directory "~/.local/share/Trash/files/")
   :general (:states '(normal motion)
-		    :keymaps 'dired-mode-map
-		    "M-RET" 'dired-display-file
-		    "h" 'dired-up-directory
-		    "l" 'dired-find-file
-		    "m" 'dired-mark
-		    "t" 'dired-toggle-marks
-		    "u" 'dired-unmark
-		    "C" 'dired-do-copy
-		    "D" 'dired-do-delete
-		    "J" 'dired-goto-file
-		    "M" 'dired-do-chmod
-		    "O" 'dired-do-chown
-		    "P" 'dired-do-print
-		    "R" 'dired-do-rename
-		    "T" 'dired-do-touch
-		    "Y" 'dired-copy-filename-as-kill
-		    "+" 'dired-create-directory
-		    "-" 'dired-up-directory
-		    "% l" 'dired-downcase
-		    "% u" 'dired-upcase
-		    "; d" 'epa-dired-do-decrypt
-		    "; e" 'epa-dired-do-encrypt
-		    ))
+					:keymaps 'dired-mode-map
+					"M-RET" 'dired-display-file
+					"h" 'dired-up-directory
+					"l" 'dired-find-file
+					"m" 'dired-mark
+					"t" 'dired-toggle-marks
+					"u" 'dired-unmark
+					"C" 'dired-do-copy
+					"D" 'dired-do-delete
+					"J" 'dired-goto-file
+					"M" 'dired-do-chmod
+					"O" 'dired-do-chown
+					"P" 'dired-do-print
+					"R" 'dired-do-rename
+					"T" 'dired-do-touch
+					"Y" 'dired-copy-filename-as-kill
+					"+" 'dired-create-directory
+					"-" 'dired-up-directory
+					"% l" 'dired-downcase
+					"% u" 'dired-upcase
+					"; d" 'epa-dired-do-decrypt
+					"; e" 'epa-dired-do-encrypt))
 
 (use-package dired-open
   :after dired
