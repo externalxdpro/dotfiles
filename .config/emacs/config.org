@@ -442,6 +442,7 @@ This block is from Doom Emacs
   (corfu-auto t)
   (corfu-auto-delay 0.2)
   (corfu-auto-prefix 2)
+  (corfu-cycle t)
   :init
   (global-corfu-mode))
 #+end_src
