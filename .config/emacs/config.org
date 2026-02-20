@@ -837,12 +837,12 @@ This block is from Doom Emacs
   (mu4e t))
 
 (use-package mu4e-alert
-  :after (alert mu4e)
+  :after mu4e
   :ensure t
   :custom
   (mu4e-alert-style 'libnotify)
   (mu4e-alert-email-notification-types '(subjects))
-  :init
+  :config
   (mu4e-alert-enable-notifications))
 #+end_src
 
