@@ -45,6 +45,7 @@
   - [[#table-of-contents][Table of Contents]]
   - [[#org-bullets][Org Bullets]]
   - [[#org-agenda][Org Agenda]]
+  - [[#org-roam][Org Roam]]
 - [[#popper][Popper]]
 - [[#projectile][Projectile]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
@@ -921,6 +922,25 @@ This block is from Doom Emacs
 
 (use-package htmlize
   :ensure t)
+#+end_src
+
+** Org Roam
+#+begin_src emacs-lisp
+(use-package org-roam
+  :after org
+  :ensure t
+  :general
+  (my/leader
+    "n r" '(:ignore t :wk "roam")
+    "n r f" '(org-roam-node-find :wk "Find node")
+    "n r i" '(org-roam-node-insert :wk "Insert node")
+    "n r r" '(org-roam-buffer-toggle :wk "Toggle roam buffer")
+    "n r R" '(org-roam-buffer :wk "Open roam buffer"))
+  :custom
+  (org-roam-directory "~/Sync/Notes/roam/")
+  (org-roam-completion-everywhere t)
+  :config
+  (org-roam-db-autosync-mode))
 #+end_src
 
 * Popper
