@@ -9,6 +9,7 @@
   - [[#delete-file][Delete file]]
   - [[#move-file][Move file]]
   - [[#org-dwim][Org DWIM]]
+  - [[#is-there-an-open-frame][Is there an open frame]]
 - [[#all-the-icons][All the Icons]]
 - [[#apheleia][Apheleia]]
 - [[#backup-files][Backup Files]]
@@ -22,6 +23,7 @@
 - [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
 - [[#dirvish][Dirvish]]
+- [[#elcord][Elcord]]
 - [[#eldoc][Eldoc]]
 - [[#eglot][Eglot]]
 - [[#flycheck][Flycheck]]
@@ -396,6 +398,13 @@ This block is from Doom Emacs
             (org-element-property :end context))))))))
 #+end_src
 
+** Is there an open frame
+#+begin_src emacs-lisp
+(defun my/has-gui-frame-p ()
+  (seq-some (lambda (f) (display-graphic-p f))
+	    (frame-list)))
+#+end_src
+
 * All the Icons
 #+begin_src emacs-lisp
 (use-package all-the-icons
@@ -596,6 +605,20 @@ This block is from Doom Emacs
   :ensure t
   :init
   (dirvish-override-dired-mode))
+#+end_src
+
+* Elcord
+#+begin_src emacs-lisp
+(use-package elcord
+  :ensure t
+  :commands (elcord-mode)
+  :init
+  (defun my/update-elcord-mode ()
+    (if (my/has-gui-frame-p)
+	(elcord-mode 1)
+      (elcord-mode -1)))
+  (add-hook 'after-make-frame-functions (lambda (_frame) (my/update-elcord-mode)))
+  (add-hook 'delete-frame-functions (lambda (_frame) (my/update-elcord-mode))))
 #+end_src
 
 * Eldoc
