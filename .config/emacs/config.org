@@ -837,6 +837,9 @@ This block is from Doom Emacs
   :custom
   (org-src-preserve-indentation t)
   (org-return-follows-link t)
+  (org-directory "~/Sync/Notes/")
+  (org-log-done 'time)
+  (org-attach-id-dir "./.attach")
   :general (:states '(normal motion)
 					:keymaps 'org-mode-map
                     "RET" 'my/org-dwim-at-point)
