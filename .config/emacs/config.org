@@ -156,7 +156,7 @@
     "e d" '(eval-defun :wk "Evaluate defun at or after point")
     "e e" '(eval-expression :wk "Evaluate an elisp expression")
     "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
-    "e r" '(eval-region :wk "Evaluate elisp in region"))
+    "e r" '((lambda (beg end) (interactive "r") (eval-region beg end t)) :wk "Evaluate elisp in region"))
 
   (my/leader
     "f" '(:ignore t :wk "file")
