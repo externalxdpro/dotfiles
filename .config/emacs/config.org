@@ -864,9 +864,14 @@ This block is from Doom Emacs
   (org-directory "~/Sync/Notes/")
   (org-log-done 'time)
   (org-attach-id-dir "./.attach")
-  :general (:states '(normal motion)
-					:keymaps 'org-mode-map
-                    "RET" 'my/org-dwim-at-point)
+  :general
+  (:states '(normal motion)
+	   :keymaps 'org-mode-map
+           "RET" 'my/org-dwim-at-point)
+  (my/leader
+    "n" '(:ignore t :wk "notes")
+    "n f" '((lambda () (interactive) (let ((default-directory org-directory))
+				       (call-interactively #'find-file))) :wk "Browse notes"))
   :hook
   (org-mode . (lambda () (flycheck-mode -1) (flymake-mode 1)))
   (org-mode . org-indent-mode)
