@@ -812,6 +812,8 @@ This block is from Doom Emacs
 #+begin_src emacs-lisp
 (use-package doom-modeline
   :ensure t
+  :custom
+  (doom-modeline-buffer-file-name-style 'relative-from-project)
   :init
   (doom-modeline-mode 1))
 #+end_src
