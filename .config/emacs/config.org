@@ -714,6 +714,19 @@ This block is from Doom Emacs
 #+begin_src emacs-lisp
 (use-package java-mode
   :hook (java-mode . eglot-ensure))
+
+(use-package eglot-java
+  :ensure t
+  :general
+  (my/local-leader
+    :keymaps 'eglot-java-mode-map
+    "n" '(eglot-java-file-new :wk "New file")
+    "N" '(eglot-java-project-new :wk "New project")
+    "R" '(eglot-java-project-build-refresh :wk "Refresh project")
+    "t" '(eglot-java-run-test :wk "Run test")
+    "T" '(eglot-java-project-build-task) :wk "Run build task"
+    "x" '(eglot-java-run-main :wk "Run main method"))
+  :hook java-mode)
 #+end_src
 
 ** Python
