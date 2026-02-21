@@ -20,7 +20,6 @@
   - [[#marginalia][Marginalia]]
   - [[#orderless][Orderless]]
   - [[#vertico][Vertico]]
-- [[#dashboard][Dashboard]]
 - [[#dired][Dired]]
 - [[#dirvish][Dirvish]]
 - [[#elcord][Elcord]]
@@ -515,24 +514,6 @@ This block is from Doom Emacs
               ("DEL" . vertico-directory-delete-char)
               ("RET" . vertico-directory-enter))
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-#+end_src
-
-* Dashboard
-#+begin_src emacs-lisp
-(use-package dashboard
-  :ensure t
-  :custom
-  (initial-buffer-choice 'dashboard-open)
-  (dashboard-set-heading-icons t)
-  (dashboard-set-file-icons t)
-  (dashboard-startup-banner 'logo)
-  (dashboard-center-content nil)
-  (dashboard-items '((recents . 5)
-		     (agenda . 5)
-		     (bookmarks . 3)
-		     (projects . 3)))
-  :config
-  (dashboard-setup-startup-hook))
 #+end_src
 
 * Dired
