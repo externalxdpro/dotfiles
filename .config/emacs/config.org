@@ -58,6 +58,7 @@
 - [[#shells-and-terminals][Shells and Terminals]]
   - [[#vterm][Vterm]]
 - [[#sudo-edit][Sudo Edit]]
+- [[#treesitter][Treesitter]]
 - [[#undo-tree][Undo Tree]]
 - [[#which-key][Which Key]]
 - [[#yasnippet][Yasnippet]]
@@ -1080,6 +1081,17 @@ This block is from Doom Emacs
 #+begin_src emacs-lisp
 (use-package sudo-edit
   :ensure t)
+#+end_src
+
+* Treesitter
+#+begin_src emacs-lisp
+(use-package treesit-auto
+  :ensure t
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 #+end_src
 
 * Undo Tree
