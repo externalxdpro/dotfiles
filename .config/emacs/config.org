@@ -77,8 +77,7 @@
   (evil-want-C-d-scroll t)
   (evil-undo-system 'undo-tree)
   :init
-  (evil-mode)
-  )
+  (evil-mode))
 (use-package evil-collection
   :after evil
   :ensure t
@@ -214,8 +213,7 @@
     ;; Splits
     "w n" '(evil-window-new :wk "New window")
     "w s" '(evil-window-split :wk "Split horizontally")
-    "w v" '(evil-window-vsplit :wk "Split vertically"))
-  )
+    "w v" '(evil-window-vsplit :wk "Split vertically")))
 #+end_src
 
 * Custom Functions
