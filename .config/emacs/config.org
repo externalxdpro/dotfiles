@@ -188,6 +188,12 @@
     "p" '(:ignore t :wk "project"))
 
   (my/leader
+    "q" '(:ignore t :wk "quit")
+    "q k" '(save-buffers-kill-emacs :wk "Kill Emacs (and daemon)")
+    "q r" '(restart-emacs :wk "Restart emacs")
+    "q q" '(save-buffers-kill-terminal :wk "Quit Emacs"))
+
+  (my/leader
     "s" '(:ignore t :wk "search"))
 
   (my/leader
