@@ -177,6 +177,9 @@
     "h r r" '((lambda () (interactive) (load-file (concat user-emacs-directory "init.el"))) :wk "Reload emacs config")
     "h m" '(describe-mode :wk "Describe mode")
     "h t" '(load-theme :wk "Load theme"))
+
+  (my/leader
+    "m" '(:ignore t :wk "local-leader"))
   
   (my/leader
     "o" '(:ignore t :wk "open")
