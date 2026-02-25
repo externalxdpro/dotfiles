@@ -611,6 +611,7 @@ This block is from Doom Emacs
 * Eglot
 #+begin_src emacs-lisp
 (use-package eglot
+  :hook (prog-mode . eglot-ensure)
   :general
   (my/leader
     "c a" '(eglot-code-actions :wk "Execute code action")
@@ -712,15 +713,11 @@ This block is from Doom Emacs
 (use-package cc-mode
   :custom
   (c-basic-offset 4)
-  (c-ts-mode-indent-offset 4)
-  :hook (c-mode-common . eglot-ensure))
+  (c-ts-mode-indent-offset 4))
 #+end_src
 
 ** Java
 #+begin_src emacs-lisp
-(use-package java-mode
-  :hook (java-mode . eglot-ensure))
-
 (use-package eglot-java
   :ensure t
   :general
@@ -743,15 +740,13 @@ This block is from Doom Emacs
     :keymaps 'python-mode-map
     "r" '(run-python :wk "Python shell")
     "b" '(python-shell-send-buffer :wk "Send buffer to shell")
-    "f" '(python-shell-send-defun :wk "Send function to shell"))
-  :hook (python-mode . eglot-ensure))
+    "f" '(python-shell-send-defun :wk "Send function to shell")))
 #+end_src
 
 ** Rust
 #+begin_src emacs-lisp
 (use-package rust-mode
-  :ensure t
-  :hook (rust-mode . eglot-ensure))
+  :ensure t)
 #+end_src
 
 * Magit
