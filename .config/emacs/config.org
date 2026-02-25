@@ -1002,6 +1002,7 @@ This block is from Doom Emacs
   (require 'smartparens-config)
   (sp-local-pair 'c-ts-mode "{" "}" :post-handlers nil)
   (sp-local-pair 'c++-ts-mode "{" "}" :post-handlers nil)
+  (sp-local-pair 'java-ts-mode "{" "}" :post-handlers '(:add ("||\n[i]" "RET")))
   (smartparens-global-mode 1))
 #+end_src
 
