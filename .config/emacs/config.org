@@ -58,7 +58,7 @@
   - [[#vterm][Vterm]]
 - [[#sudo-edit][Sudo Edit]]
 - [[#treesitter][Treesitter]]
-- [[#undo-tree][Undo Tree]]
+- [[#undo-fu][Undo Fu]]
 - [[#which-key][Which Key]]
 - [[#yasnippet][Yasnippet]]
 
@@ -75,7 +75,6 @@
   (evil-respect-visual-line-mode t)
   (evil-want-C-u-scroll t)
   (evil-want-C-d-scroll t)
-  (evil-undo-system 'undo-tree)
   :init
   (evil-mode))
 (use-package evil-collection
@@ -1094,17 +1093,29 @@ This block is from Doom Emacs
   (global-treesit-auto-mode))
 #+end_src
 
-* Undo Tree
+* Undo Fu
 #+begin_src emacs-lisp
-(use-package undo-tree
+(use-package undo-fu
   :ensure t
   :custom
-  (undo-tree-history-directory-alist '(("." . "/home/sakib/.cache/emacs/undo-tree-hist/")))
+  (evil-undo-system 'undo-fu))
+
+(use-package undo-fu-session
+  :after undo-fu
+  :ensure t
+  :custom
+  (undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
+  :init
+  (global-undo-fu-session-mode))
+
+(use-package vundo
+  :after undo-fu
+  :ensure t
   :general
   (my/leader
-    "s u" '(undo-tree-visualize :wk "Undo history"))
-  :init
-  (global-undo-tree-mode))
+    "s u" '(vundo :wk "Undo history"))
+  :custom
+  (undo-tree-history-directory-alist '(("." . "/home/sakib/.cache/emacs/undo-tree-hist/"))))
 #+end_src
 
 * Which Key
