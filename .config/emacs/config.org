@@ -11,6 +11,7 @@
   - [[#org-dwim][Org DWIM]]
 - [[#all-the-icons][All the Icons]]
 - [[#apheleia][Apheleia]]
+- [[#auto-revert][Auto Revert]]
 - [[#backup-files][Backup Files]]
 - [[#buffer-move][Buffer Move]]
 - [[#completion][Completion]]
@@ -420,6 +421,15 @@ This block is from Doom Emacs
     "c f" '(apheleia-format-buffer :wk "Format"))
   :config
   (apheleia-global-mode 1))
+#+end_src
+
+* Auto Revert
+#+begin_src emacs-lisp
+(use-package autorevert
+  :custom
+  (global-auto-revert-non-file-buffers t)
+  :config
+  (global-auto-revert-mode 1))
 #+end_src
 
 * Backup Files
