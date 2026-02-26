@@ -47,6 +47,7 @@
 - [[#popper][Popper]]
 - [[#projectile][Projectile]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
+- [[#recentf][Recentf]]
 - [[#smartparens][Smartparens]]
 - [[#suppress-native-compiler-warnings][Suppress Native Compiler Warnings]]
 - [[#ui][UI]]
@@ -436,9 +437,7 @@ This block is from Doom Emacs
 ** Consult
 #+begin_src emacs-lisp
 (use-package consult
-  :ensure t
-  :config
-  (recentf-mode))
+  :ensure t)
 
 (use-package consult-flycheck
   :after flycheck
@@ -990,6 +989,13 @@ This block is from Doom Emacs
 (use-package rainbow-delimiters
   :ensure t
   :hook (prog-mode text-mode))
+#+end_src
+
+* Recentf
+#+begin_src emacs-lisp
+(use-package recentf
+  :config
+  (recentf-mode 1))
 #+end_src
 
 * Smartparens
