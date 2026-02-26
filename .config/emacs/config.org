@@ -49,6 +49,7 @@
 - [[#projectile][Projectile]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
 - [[#recentf][Recentf]]
+- [[#savehist][Savehist]]
 - [[#smartparens][Smartparens]]
 - [[#suppress-native-compiler-warnings][Suppress Native Compiler Warnings]]
 - [[#ui][UI]]
@@ -1006,6 +1007,13 @@ This block is from Doom Emacs
 (use-package recentf
   :config
   (recentf-mode 1))
+#+end_src
+
+* Savehist
+#+begin_src emacs-lisp
+(use-package savehist
+  :config
+  (savehist-mode 1))
 #+end_src
 
 * Smartparens
