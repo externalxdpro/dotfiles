@@ -790,6 +790,7 @@ This block is from Doom Emacs
   (my/leader
     "o m" '(mu4e :wk "mu4e"))
   :custom
+  (mu4e-hide-index-messages t)
   (mu4e-update-interval (* 5 60))
   (mu4e-get-mail-command "mbsync-update ~/.config/mbsyncrc")
   (mu4e-change-filenames-when-moving t)
