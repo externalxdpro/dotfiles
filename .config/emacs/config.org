@@ -602,6 +602,8 @@ This block is from Doom Emacs
 (use-package elcord
   :ensure t
   :commands (elcord-mode)
+  :custom
+  (elcord-idle-message nil)
   :init
   (add-hook 'after-make-frame-functions
 			(lambda (_frame) (elcord-mode 1)))
