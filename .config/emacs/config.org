@@ -45,6 +45,7 @@
   - [[#org-bullets][Org Bullets]]
   - [[#org-agenda][Org Agenda]]
   - [[#org-roam][Org Roam]]
+  - [[#org-capture][Org Capture]]
 - [[#popper][Popper]]
 - [[#projectile][Projectile]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
@@ -853,6 +854,7 @@ This block is from Doom Emacs
   (org-directory "~/Sync/Notes/")
   (org-log-done 'time)
   (org-attach-id-dir "./.attach")
+  (org-refile-targets `((,(directory-files-recursively org-directory "\\.org$") :maxlevel . 1)))
   :general
   (:states '(normal motion)
 	   :keymaps 'org-mode-map
@@ -879,7 +881,8 @@ This block is from Doom Emacs
     "d t" '(org-time-stamp :wk "Timestamp")
     "d T" '(org-time-stamp-inactive :wk "Inactive timestamp")
     "e" '(org-export-dispatch :wk "Export")
-    "l" '(org-insert-link :wk "Insert link"))
+    "l" '(org-insert-link :wk "Insert link")
+    "w" '(org-refile :wk "Refile"))
   :hook
   (org-mode . (lambda () (flycheck-mode -1) (flymake-mode 1)))
   (org-mode . org-indent-mode)
@@ -949,6 +952,19 @@ This block is from Doom Emacs
   (org-roam-completion-everywhere t)
   :config
   (org-roam-db-autosync-mode))
+#+end_src
+
+** Org Capture
+#+begin_src emacs-lisp
+(use-package org-capture
+  :general
+  (my/leader
+    "n c" '(org-capture :wk "Org capture"))
+  :custom
+  (org-capture-templates '(("n" "Note" entry
+			    (file "inbox.org") "* %?\n\n")
+			   ("t" "Task" entry
+			    (file "inbox.org") "* TODO %?\n\n"))))
 #+end_src
 
 * Popper
