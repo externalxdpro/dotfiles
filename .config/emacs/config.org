@@ -46,6 +46,7 @@
   - [[#org-agenda][Org Agenda]]
   - [[#org-roam][Org Roam]]
   - [[#org-capture][Org Capture]]
+- [[#pdf-tools][PDF Tools]]
 - [[#popper][Popper]]
 - [[#projectile][Projectile]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
@@ -965,6 +966,17 @@ This block is from Doom Emacs
 			    (file "inbox.org") "* %?\n\n")
 			   ("t" "Task" entry
 			    (file "inbox.org") "* TODO %?\n\n"))))
+#+end_src
+
+* PDF Tools
+#+begin_src emacs-lisp
+(use-package pdf-tools
+  :ensure t
+  :mode (("\\.pdf\\'" . pdf-view-mode))
+  :custom
+  (pdf-view-display-size 'fit-page)
+  :config
+  (pdf-tools-install))
 #+end_src
 
 * Popper
