@@ -1000,7 +1000,7 @@ This block is from Doom Emacs
 			      "\\*Messages\\*"
 			      "Output\\*$"
 			      "\\*Async Shell Command\\*"
-				  "\\*Agenda Commands\\*"))
+			      "\\*Agenda Commands\\*"))
   :init
   (popper-mode 1)
   (popper-echo-mode 1))
