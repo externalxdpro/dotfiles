@@ -48,7 +48,7 @@
   - [[#org-capture][Org Capture]]
 - [[#pdf-tools][PDF Tools]]
 - [[#popper][Popper]]
-- [[#projectile][Projectile]]
+- [[#project][Project]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
 - [[#recentf][Recentf]]
 - [[#savehist][Savehist]]
@@ -1006,24 +1006,21 @@ This block is from Doom Emacs
   (popper-echo-mode 1))
 #+end_src
 
-* Projectile
+* Project
 #+begin_src emacs-lisp
-(use-package projectile
+(use-package project
   :ensure t
+  :custom
+  (project-vc-extra-root-markers '(".project"))
   :general
   (my/leader
-    "p !" '(projectile-run-shell-command-in-root :wk "Run command in project root")
-    "p a" '(projectile-add-known-project :wk "Add new project")
-    "p b" '(projectile-switch-to-buffer :wk "Switch to project buffer")
-    "p c" '(projectile-compile-project :wk "Compile in project")
-    "p f" '(projectile-find-file :wk "Find file in project")
-    "p i" '(projectile-invalidate-cache :wk "Invalidate project cache")
-    "p k" '(projectile-kill-buffers :wk "Kill project buffers")
-    "p p" '(projectile-switch-project :wk "Switch project")
-    "p r" '(projectile-recentf :wk "Find recent project files")
-    "p s" '(projectile-save-project-buffers :wk "Save project buffers"))
-  :config
-  (projectile-mode 1))
+    "p !" '(project-shell-command :wk "Run command in project root")
+    "p b" '(project-switch-to-buffer :wk "Switch to project buffer")
+    "p c" '(project-compile :wk "Compile in project")
+    "p f" '(project-find-file :wk "Find file in project")
+    "p k" '(project-kill-buffers :wk "Kill project buffers")
+    "p p" '(project-switch-project :wk "Switch project")
+    "p s" '(project-save-some-buffers :wk "Save project buffers")))
 #+end_src
 
 * Rainbow Delimiters
