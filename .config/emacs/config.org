@@ -99,6 +99,13 @@
   (evil-goggles-enable-delete nil)
   :config
   (evil-goggles-mode))
+(use-package evil-org
+  :after org
+  :ensure t
+  :hook org-mode
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 #+end_src
 
 ** Keybindings (General)
@@ -919,13 +926,6 @@ This block is from Doom Emacs
   (org-agenda-skip-deadline-if-done t)
   (org-agenda-skip-scheduled-if-done t)
   :general
-  (:states '(emacs)
-	   :keymaps 'org-agenda-mode-map
-	   "j" 'evil-next-visual-line
-	   "J" 'org-agenda-clock-goto
-	   "k" 'evil-previous-visual-line
-	   "[" 'org-agenda-earlier
-	   "]" 'org-agenda-later)
   (my/leader
     "o a" '(org-agenda :wk "Org agenda"))
   :config
