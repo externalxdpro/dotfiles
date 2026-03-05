@@ -323,8 +323,7 @@ This block is from Doom Emacs
                     (org-element-property :scheduled context))
                 (org-todo
                  (if (eq (org-element-property :todo-type context) 'done)
-                     (or (car (+org-get-todo-keywords-for (org-element-property :todo-keyword context)))
-                         'todo)
+                     'todo
                    'done))))
          ;; Update any metadata or inline previews in this subtree
          (org-update-checkbox-count)
@@ -346,7 +345,6 @@ This block is from Doom Emacs
                 (image-overlays
                  (cl-find-if (lambda (o) (overlay-get o 'org-image-overlay))
                              overlays)))
-           (+org--toggle-inline-images-in-subtree beg end)
            (if (or image-overlays latex-overlays)
                (org-clear-latex-preview beg end)
              (org--latex-preview-region beg end))))
@@ -392,27 +390,18 @@ This block is from Doom Emacs
         (`link
          (let* ((lineage (org-element-lineage context '(link) t))
                 (path (org-element-property :path lineage)))
-           (if (or (equal (org-element-property :type lineage) "img")
-                   (and path (image-type-from-file-name path)))
-               (+org--toggle-inline-images-in-subtree
-                (org-element-property :begin lineage)
-                (org-element-property :end lineage))
+           (unless (or (equal (org-element-property :type lineage) "img")
+                       (and path (image-type-from-file-name path)))
              (org-open-at-point arg))))
 
         ((guard (org-element-property :checkbox (org-element-lineage context '(item) t)))
          (org-toggle-checkbox))
 
-        (`paragraph
-         (+org--toggle-inline-images-in-subtree))
-
         (_
          (if (or (org-in-regexp org-ts-regexp-both nil t)
                  (org-in-regexp org-tsr-regexp-both nil  t)
                  (org-in-regexp org-link-any-re nil t))
-             (call-interactively #'org-open-at-point)
-           (+org--toggle-inline-images-in-subtree
-            (org-element-property :begin context)
-            (org-element-property :end context))))))))
+             (call-interactively #'org-open-at-point)))))))
 #+end_src
 
 * All the Icons
