@@ -921,6 +921,7 @@ This block is from Doom Emacs
   :custom
   (org-agenda-files (directory-files-recursively "~/Sync/Notes/agenda/" "\\.org$"))
   (org-agenda-window-setup 'current-window)
+  (org-agenda-inhibit-startup t)
   (org-agenda-span 'fortnight)
   (org-agenda-start-on-weekday nil)
   (org-deadline-warning-days 7)
