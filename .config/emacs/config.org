@@ -21,6 +21,7 @@
   - [[#orderless][Orderless]]
   - [[#vertico][Vertico]]
 - [[#dired][Dired]]
+- [[#direnv][Direnv]]
 - [[#dirvish][Dirvish]]
 - [[#elcord][Elcord]]
 - [[#eldoc][Eldoc]]
@@ -584,6 +585,14 @@ This block is from Doom Emacs
 (use-package all-the-icons-dired
   :ensure (:host github :repo "jtbm37/all-the-icons-dired")
   :hook dired-mode)
+#+end_src
+
+* Direnv
+#+begin_src emacs-lisp
+(use-package direnv
+  :ensure t
+  :config
+  (direnv-mode 1))
 #+end_src
 
 * Dirvish
