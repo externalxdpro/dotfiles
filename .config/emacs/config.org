@@ -954,6 +954,22 @@ This block is from Doom Emacs
   (org-roam-completion-everywhere t)
   :config
   (org-roam-db-autosync-mode))
+
+(use-package org-roam-dailies
+  :after org
+  :general
+  (my/leader
+    "n d" '(:ignore t :wk "dailies")
+    "n d d" '(org-roam-dailies-goto-today :wk "Open today's note")
+    "n d D" '(org-roam-dailies-goto-date :wk "Open note for some day")
+    "n d n" '(org-roam-dailies-capture-today :wk "Capture today's entry")
+    "n d N" '(org-roam-dailies-capture-date :wk "Capture entry for some day")
+    "n d t" '(org-roam-dailies-capture-tomorrow :wk "Capture tomorrow's entry")
+    "n d T" '(org-roam-dailies-goto-tomorrow :wk "Open tomorrow's note")
+    "n d y" '(org-roam-dailies-capture-yesterday :wk "Capture yesterday's entry")
+    "n d Y" '(org-roam-dailies-goto-yesterday :wk "Open yesterday's note"))
+  :custom
+  (org-roam-dailies-directory "journal/"))
 #+end_src
 
 ** Org Capture
