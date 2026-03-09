@@ -54,6 +54,7 @@
 - [[#recentf][Recentf]]
 - [[#savehist][Savehist]]
 - [[#smartparens][Smartparens]]
+- [[#spell-check][Spell check]]
 - [[#suppress-native-compiler-warnings][Suppress Native Compiler Warnings]]
 - [[#sudo-edit][Sudo Edit]]
 - [[#theme][Theme]]
@@ -1073,6 +1074,18 @@ This block is from Doom Emacs
   (sp-local-pair 'c++-ts-mode "{" "}" :post-handlers nil)
   (sp-local-pair 'java-ts-mode "{" "}" :post-handlers '(:add ("||\n[i]" "RET")))
   (smartparens-global-mode 1))
+#+end_src
+
+* Spell check
+#+begin_src emacs-lisp
+(use-package flyspell
+  :custom
+  (ispell-dictionary "en_CA")
+  :hook text-mode)
+
+(use-package flyspell-correct
+  :after flyspell
+  :ensure t)
 #+end_src
 
 * Suppress Native Compiler Warnings
