@@ -1,13 +1,8 @@
 #!/usr/bin/env sh
 
-$HOME/.screenlayout.sh &    # for x11
-kanshi &                    # for wayland
-nitrogen --restore &
-/usr/bin/lxpolkit &
+lxpolkit &
 dunst -conf $HOME/.config/dunst/qtilerc &
-picom &
-/usr/bin/emacs --daemon &
-numlockx on &
+emacs --daemon &
 nm-applet --indicator &
 blueman-applet &
 udiskie &

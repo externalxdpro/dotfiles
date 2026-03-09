@@ -430,6 +430,10 @@ wl_input_rules = {
 def autostart():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
+    if IS_WAYLAND:
+        subprocess.call([home + "/.config/qtile/autostart-wayland.sh"])
+    else:
+        subprocess.call([home + "/.config/qtile/autostart-x11.sh"])
 
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
