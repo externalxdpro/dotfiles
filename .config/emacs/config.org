@@ -465,8 +465,7 @@ This block is from Doom Emacs
   ("C-SPC" . complete-symbol)
   (:map corfu-map
         ("TAB" . corfu-complete)
-        ("C-SPC" . corfu-quit)
-	("RET" . newline))
+        ("C-SPC" . corfu-quit))
   :custom
   (corfu-preselect 'first)
   (corfu-auto t)
@@ -474,7 +473,9 @@ This block is from Doom Emacs
   (corfu-auto-prefix 2)
   (corfu-cycle t)
   :init
-  (global-corfu-mode))
+  (global-corfu-mode)
+  :config
+  (unbind-key "RET" 'corfu-map))
 #+end_src
 
 ** Marginalia
