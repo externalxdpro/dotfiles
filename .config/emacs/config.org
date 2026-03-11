@@ -31,6 +31,7 @@
 - [[#fonts][Fonts]]
   - [[#setting-font-face][Setting Font Face]]
   - [[#zooming-keybindings][Zooming Keybindings]]
+- [[#grammar-check][Grammar check]]
 - [[#helpful][Helpful]]
 - [[#highlight-todo][Highlight ToDo]]
 - [[#languages][Languages]]
@@ -701,6 +702,15 @@ This block is from Doom Emacs
 (global-set-key (kbd "C--") 'text-scale-decrease)
 (global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
 (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+#+end_src
+
+* Grammar check
+#+begin_src emacs-lisp
+(use-package langtool
+  :ensure t
+  :custom
+  (langtool-bin (executable-find "languagetool-commandline"))
+  (langtool-default-language "en-CA"))
 #+end_src
 
 * Helpful

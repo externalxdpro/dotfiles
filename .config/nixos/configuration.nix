@@ -313,6 +313,7 @@
     gimp3
     texliveFull
     winboat
+    languagetool
 
     # XMonad stuff
     xmobar
