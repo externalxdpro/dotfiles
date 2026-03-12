@@ -33,7 +33,7 @@
   - [[#zooming-keybindings][Zooming Keybindings]]
 - [[#grammar-check][Grammar check]]
 - [[#helpful][Helpful]]
-- [[#highlight-todo][Highlight ToDo]]
+- [[#highlight-to-do][Highlight To-Do]]
 - [[#languages][Languages]]
   - [[#cc][C/C++]]
   - [[#java][Java]]
@@ -725,7 +725,7 @@ This block is from Doom Emacs
     "h x" '(helpful-command :wk "Describe command")))
 #+end_src
 
-* Highlight ToDo
+* Highlight To-Do
 #+begin_src emacs-lisp
 (use-package hl-todo
   :ensure t
