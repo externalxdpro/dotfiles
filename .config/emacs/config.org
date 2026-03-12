@@ -39,6 +39,7 @@
   - [[#java][Java]]
   - [[#python][Python]]
   - [[#rust][Rust]]
+- [[#latex][LaTeX]]
 - [[#magit][Magit]]
 - [[#mu4e][MU4E]]
 - [[#modeline][Modeline]]
@@ -777,6 +778,18 @@ This block is from Doom Emacs
 #+begin_src emacs-lisp
 (use-package rust-mode
   :ensure t)
+#+end_src
+
+* LaTeX
+#+begin_src emacs-lisp
+(use-package auctex
+  :ensure t)
+
+(use-package cdlatex
+  :ensure t
+  :hook
+  (LaTeX-mode . turn-on-cdlatex)
+  (org-mode . turn-on-org-cdlatex))
 #+end_src
 
 * Magit
