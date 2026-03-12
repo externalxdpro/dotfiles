@@ -50,6 +50,7 @@
   - [[#org-roam][Org Roam]]
   - [[#org-capture][Org Capture]]
   - [[#org-fragtog][Org Fragtog]]
+  - [[#org-appear][Org Appear]]
   - [[#org-export][Org Export]]
 - [[#pdf-tools][PDF Tools]]
 - [[#popper][Popper]]
@@ -892,6 +893,7 @@ This block is from Doom Emacs
   (org-refile-targets `((,(directory-files-recursively org-directory "\\.org$") :maxlevel . 1)))
   (org-startup-with-inline-images t)
   (org-startup-with-latex-preview t)
+  (org-pretty-entities t)
   :general
   (:states '(normal motion)
 	   :keymaps 'org-mode-map
@@ -1023,6 +1025,19 @@ This block is from Doom Emacs
 (use-package org-fragtog
   :ensure t
   :hook org-mode)
+#+end_src
+
+** Org Appear
+#+begin_src emacs-lisp
+(use-package org-appear
+  :ensure t
+  :hook org-mode
+  :custom
+  (org-appear-autoemphasis t)
+  (org-appear-autoentities t)
+  (org-appear-autolinks t)
+  (org-appear-autosubmarkers t)
+  (org-appear-inside-latex t))
 #+end_src
 
 ** Org Export
