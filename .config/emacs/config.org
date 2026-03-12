@@ -918,6 +918,10 @@ This block is from Doom Emacs
     "d T" '(org-time-stamp-inactive :wk "Inactive timestamp")
     "e" '(org-export-dispatch :wk "Export")
     "l" '(org-insert-link :wk "Insert link")
+    "t" '(:ignore t :wk "toggle")
+    "t i" '(org-toggle-inline-images :wk "Toggle inline images")
+    "t l" '(org-latex-preview :wk "Preview LaTeX for section")
+    "t L" '((lambda () (interactive) (let ((current-prefix-arg '(16))) (call-interactively #'org-latex-preview))) :wk "Preview LaTeX for buffer")
     "w" '(org-refile :wk "Refile"))
   :hook
   (org-mode . (lambda () (flycheck-mode -1) (flymake-mode 1)))
