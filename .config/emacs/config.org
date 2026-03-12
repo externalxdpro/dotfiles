@@ -49,6 +49,7 @@
   - [[#org-agenda][Org Agenda]]
   - [[#org-roam][Org Roam]]
   - [[#org-capture][Org Capture]]
+  - [[#org-fragtog][Org Fragtog]]
   - [[#org-export][Org Export]]
 - [[#pdf-tools][PDF Tools]]
 - [[#popper][Popper]]
@@ -1015,6 +1016,13 @@ This block is from Doom Emacs
 			    (file "inbox.org") "* %?\n\n")
 			   ("t" "Task" entry
 			    (file "inbox.org") "* TODO %?\n\n"))))
+#+end_src
+
+** Org Fragtog
+#+begin_src emacs-lisp
+(use-package org-fragtog
+  :ensure t
+  :hook org-mode)
 #+end_src
 
 ** Org Export
