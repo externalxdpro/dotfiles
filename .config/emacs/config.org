@@ -888,6 +888,8 @@ This block is from Doom Emacs
   (org-log-done 'time)
   (org-attach-id-dir "./.attach")
   (org-refile-targets `((,(directory-files-recursively org-directory "\\.org$") :maxlevel . 1)))
+  (org-startup-with-inline-images t)
+  (org-startup-with-latex-preview t)
   :general
   (:states '(normal motion)
 	   :keymaps 'org-mode-map
