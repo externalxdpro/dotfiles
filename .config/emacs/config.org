@@ -31,6 +31,9 @@
 - [[#fonts][Fonts]]
   - [[#setting-font-face][Setting Font Face]]
   - [[#zooming-keybindings][Zooming Keybindings]]
+- [[#git][Git]]
+  - [[#magit][Magit]]
+  - [[#diff-hl][Diff HL]]
 - [[#grammar-check][Grammar check]]
 - [[#helpful][Helpful]]
 - [[#highlight-to-do][Highlight To-Do]]
@@ -40,7 +43,6 @@
   - [[#python][Python]]
   - [[#rust][Rust]]
 - [[#latex][LaTeX]]
-- [[#magit][Magit]]
 - [[#mu4e][MU4E]]
 - [[#modeline][Modeline]]
 - [[#org-mode][Org Mode]]
@@ -708,6 +710,37 @@ This block is from Doom Emacs
 (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
 #+end_src
 
+* Git
+** Magit
+#+begin_src emacs-lisp
+(use-package transient
+  :ensure t)
+
+(use-package magit
+  :after transient
+  :ensure t
+  :general
+  (my/leader
+    "g" '(:ignore t :wk "git")
+    "g b" '(magit-branch-checkout :wk "Magit switch branch")
+    "g c" '(magit-clone :wk "Magit clone")
+    "g g" '(magit-status :wk "Magit status")
+    "g G" '(magit-status-here :wk "Magit status here")
+    "g i" '(magit-init :wk "Init repo")
+    "g l" '(magit-log-all :wk "Magit log")
+    "g L" '(magit-log-buffer-file :wk "Magit log current file"))
+  :custom
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+#+end_src
+
+** Diff HL
+#+begin_src emacs-lisp
+(use-package diff-hl
+  :ensure t
+  :config
+  (global-diff-hl-mode 1))
+#+end_src
+
 * Grammar check
 #+begin_src emacs-lisp
 (use-package langtool
@@ -793,28 +826,6 @@ This block is from Doom Emacs
   :hook
   (LaTeX-mode . turn-on-cdlatex)
   (org-mode . turn-on-org-cdlatex))
-#+end_src
-
-* Magit
-#+begin_src emacs-lisp
-(use-package transient
-  :ensure t)
-
-(use-package magit
-  :after transient
-  :ensure t
-  :general
-  (my/leader
-    "g" '(:ignore t :wk "git")
-    "g b" '(magit-branch-checkout :wk "Magit switch branch")
-    "g c" '(magit-clone :wk "Magit clone")
-    "g g" '(magit-status :wk "Magit status")
-    "g G" '(magit-status-here :wk "Magit status here")
-    "g i" '(magit-init :wk "Init repo")
-    "g l" '(magit-log-all :wk "Magit log")
-    "g L" '(magit-log-buffer-file :wk "Magit log current file"))
-  :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 #+end_src
 
 * MU4E
