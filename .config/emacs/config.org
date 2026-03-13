@@ -929,6 +929,9 @@ This block is from Doom Emacs
   :hook
   (org-mode . (lambda () (flycheck-mode -1) (flymake-mode 1)))
   (org-mode . org-indent-mode)
+  (org-mode . (lambda ()
+		(modify-syntax-entry ?< "." org-mode-syntax-table)
+		(modify-syntax-entry ?> "." org-mode-syntax-table)))
   :config
   (require 'org-tempo))
 #+end_src
