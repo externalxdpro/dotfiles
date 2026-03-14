@@ -43,6 +43,7 @@
 - [[#mu4e][MU4E]]
 - [[#modeline][Modeline]]
 - [[#org-mode][Org Mode]]
+  - [[#evil-org][Evil Org]]
   - [[#table-of-contents][Table of Contents]]
   - [[#org-bullets][Org Bullets]]
   - [[#org-agenda][Org Agenda]]
@@ -142,16 +143,25 @@
   (evil-want-C-d-scroll t)
   :init
   (evil-mode))
+
 (use-package evil-collection
   :after evil
   :ensure t
   :config
   (evil-collection-init))
+#+end_src
+
+*** Evil Surround
+#+begin_src
 (use-package evil-surround
   :after evil
   :ensure t
   :config
   (global-evil-surround-mode 1))
+#+end_src
+
+*** Evil Goggles
+#+begin_src
 (use-package evil-goggles
   :after evil
   :ensure t
@@ -160,13 +170,6 @@
   (evil-goggles-enable-delete nil)
   :config
   (evil-goggles-mode))
-(use-package evil-org
-  :after org
-  :ensure t
-  :hook org-mode
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
 #+end_src
 
 ** Keybindings (General)
@@ -956,6 +959,17 @@ This block is from Doom Emacs
 		(modify-syntax-entry ?> "." org-mode-syntax-table)))
   :config
   (require 'org-tempo))
+#+end_src
+
+** Evil Org
+#+begin_src
+(use-package evil-org
+  :after org
+  :ensure t
+  :hook org-mode
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 #+end_src
 
 ** Table of Contents
