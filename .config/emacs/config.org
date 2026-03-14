@@ -23,9 +23,9 @@
 - [[#dired][Dired]]
 - [[#direnv][Direnv]]
 - [[#dirvish][Dirvish]]
+- [[#eglot][Eglot]]
 - [[#elcord][Elcord]]
 - [[#eldoc][Eldoc]]
-- [[#eglot][Eglot]]
 - [[#flycheck][Flycheck]]
 - [[#git][Git]]
   - [[#magit][Magit]]
@@ -657,6 +657,26 @@ This block is from Doom Emacs
   (dirvish-override-dired-mode))
 #+end_src
 
+* Eglot
+#+begin_src emacs-lisp
+(use-package eglot
+  :hook (prog-mode . eglot-ensure)
+  :general
+  (my/leader
+    "c a" '(eglot-code-actions :wk "Execute code action")
+    "c r" '(eglot-rename :wk "Rename")
+
+    "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints"))
+  :config
+  (setq eglot-stay-out-of '(flymake)))
+
+(use-package eglot-booster
+  :after eglot
+  :ensure (:host github :repo "jdtsmith/eglot-booster")
+  :config
+  (eglot-booster-mode))
+#+end_src
+
 * Elcord
 #+begin_src emacs-lisp
 (use-package elcord
@@ -677,26 +697,6 @@ This block is from Doom Emacs
 (use-package eldoc
   :custom
   (eldoc-idle-delay 0.1))
-#+end_src
-
-* Eglot
-#+begin_src emacs-lisp
-(use-package eglot
-  :hook (prog-mode . eglot-ensure)
-  :general
-  (my/leader
-    "c a" '(eglot-code-actions :wk "Execute code action")
-    "c r" '(eglot-rename :wk "Rename")
-
-    "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints"))
-  :config
-  (setq eglot-stay-out-of '(flymake)))
-
-(use-package eglot-booster
-  :after eglot
-  :ensure (:host github :repo "jdtsmith/eglot-booster")
-  :config
-  (eglot-booster-mode))
 #+end_src
 
 * Flycheck
