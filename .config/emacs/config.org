@@ -2,6 +2,7 @@
 
 * Table of Contents :toc:
 - [[#startup-packages][Startup Packages]]
+  - [[#general-settings-emacs][General Settings (Emacs)]]
   - [[#vim-mode-evil][Vim Mode (Evil)]]
   - [[#keybindings-general][Keybindings (General)]]
 - [[#custom-functions][Custom Functions]]
@@ -12,7 +13,6 @@
 - [[#all-the-icons][All the Icons]]
 - [[#apheleia][Apheleia]]
 - [[#auto-revert][Auto Revert]]
-- [[#backup-files][Backup Files]]
 - [[#buffer-move][Buffer Move]]
 - [[#completion][Completion]]
   - [[#consult][Consult]]
@@ -27,10 +27,6 @@
 - [[#eldoc][Eldoc]]
 - [[#eglot][Eglot]]
 - [[#flycheck][Flycheck]]
-- [[#follow-symlinks][Follow Symlinks]]
-- [[#fonts][Fonts]]
-  - [[#setting-font-face][Setting Font Face]]
-  - [[#zooming-keybindings][Zooming Keybindings]]
 - [[#git][Git]]
   - [[#magit][Magit]]
   - [[#diff-hl][Diff HL]]
@@ -63,20 +59,75 @@
 - [[#savehist][Savehist]]
 - [[#smartparens][Smartparens]]
 - [[#spell-check][Spell check]]
-- [[#suppress-native-compiler-warnings][Suppress Native Compiler Warnings]]
 - [[#sudo-edit][Sudo Edit]]
 - [[#theme][Theme]]
 - [[#treesitter][Treesitter]]
-- [[#ui][UI]]
-  - [[#disable-bars][Disable Bars]]
-  - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
-  - [[#use-short-answers][Use Short Answers]]
 - [[#undo-fu][Undo Fu]]
 - [[#vterm][Vterm]]
 - [[#which-key][Which Key]]
 - [[#yasnippet][Yasnippet]]
 
 * Startup Packages
+** General Settings (Emacs)
+#+begin_src emacs-lisp
+(use-package emacs
+  :custom
+  ;; Trash settings
+  (delete-by-moving-to-trash t)
+  (trash-directory "~/.local/share/Trash/files/")
+
+  ;; Backup files
+  (backup-directory-alist `((".*" . ,trash-directory)))
+
+  ;; Follow symlinks
+  (find-file-visit-truename t)
+  (vc-follow-symlinks t)
+
+  ;; Suppress native compiler warnings
+  (warning-minimum-level :emergency)
+
+  ;; Use short answers
+  (use-short-answers t)
+
+  :config
+  ;; Fonts
+  (set-face-attribute 'default nil
+		      :font "Caskaydia Cove Nerd Font"
+		      :height 110
+		      :weight 'medium)
+  (set-face-attribute 'fixed-pitch nil
+		      :font "Caskaydia Cove Nerd Font"
+		      :height 110
+		      :weight 'medium)
+  (set-face-attribute 'variable-pitch nil
+		      :font "Avenir Next LT Pro"
+		      :height 120
+		      :weight 'medium)
+  (set-face-attribute 'font-lock-comment-face nil
+		      :slant 'italic)
+  (set-face-attribute 'font-lock-keyword-face nil
+		      :slant 'italic)
+  (add-to-list 'default-frame-alist '(font . "Caskaydia Cove Nerd Font-11"))
+  (setq-default line-spacing 0.12)
+
+  ;; Zooming keybindings
+  (global-set-key (kbd "C-=") 'text-scale-increase)
+  (global-set-key (kbd "C--") 'text-scale-decrease)
+  (global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+  (global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+
+  ;; Disable bars
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+
+  ;; Display line numbers and truncated lines
+  (setq display-line-numbers-type 'relative)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (add-hook 'text-mode-hook 'display-line-numbers-mode)
+  (add-hook 'text-mode-hook 'visual-line-mode))
+#+end_src
+
 ** Vim Mode (Evil)
 #+begin_src emacs-lisp
 (use-package evil
@@ -440,11 +491,6 @@ This block is from Doom Emacs
   (global-auto-revert-mode 1))
 #+end_src
 
-* Backup Files
-#+begin_src emacs-lisp
-(setq backup-directory-alist `(("." . ,trash-directory)))
-#+end_src
-
 * Buffer Move
 #+begin_src emacs-lisp
 (use-package buffer-move
@@ -536,9 +582,6 @@ This block is from Doom Emacs
 * Dired
 #+begin_src emacs-lisp
 (use-package dired
-  :custom
-  (delete-by-moving-to-trash t)
-  (trash-directory "~/.local/share/Trash/files/")
   :general (:states '(normal motion)
 					:keymaps 'dired-mode-map
 					"M-RET" 'dired-display-file
@@ -670,45 +713,6 @@ This block is from Doom Emacs
   :ensure t
   :config
   (global-flycheck-eglot-mode 1))
-#+end_src
-
-* Follow Symlinks
-#+begin_src emacs-lisp
-(setq find-file-visit-truename t
-      vc-follow-symlinks t)
-#+end_src
-
-* Fonts
-** Setting Font Face
-#+begin_src emacs-lisp
-(set-face-attribute 'default nil
-  :font "Caskaydia Cove Nerd Font"
-  :height 110
-  :weight 'medium)
-(set-face-attribute 'fixed-pitch nil
-  :font "Caskaydia Cove Nerd Font"
-  :height 110
-  :weight 'medium)
-(set-face-attribute 'variable-pitch nil
-  :font "Avenir Next LT Pro"
-  :height 120
-  :weight 'medium)
-(set-face-attribute 'font-lock-comment-face nil
-  :slant 'italic)
-(set-face-attribute 'font-lock-keyword-face nil
-  :slant 'italic)
-
-(add-to-list 'default-frame-alist '(font . "Caskaydia Cove Nerd Font-11"))
-
-(setq-default line-spacing 0.12)
-#+end_src
-
-** Zooming Keybindings
-#+begin_src emacs-lisp
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
-(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
 #+end_src
 
 * Git
@@ -1181,11 +1185,6 @@ Settings for different =ox-= packages
   :ensure t)
 #+end_src
 
-* Suppress Native Compiler Warnings
-#+begin_src emacs-lisp
-(setq warning-minimum-level :emergency)
-#+end_src
-
 * Sudo Edit
 #+begin_src emacs-lisp
 (use-package sudo-edit
@@ -1214,28 +1213,6 @@ Settings for different =ox-= packages
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
-#+end_src
-
-* UI
-** Disable Bars
-#+begin_src emacs-lisp
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-#+end_src
-
-** Display Line Numbers and Truncated Lines
-#+begin_src emacs-lisp
-(setq display-line-numbers-type 'relative)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'text-mode-hook 'display-line-numbers-mode)
-
-(add-hook 'text-mode-hook 'visual-line-mode)
-#+end_src
-
-** Use Short Answers
-#+begin_src emacs-lisp
-(setopt use-short-answers t)
 #+end_src
 
 * Undo Fu
