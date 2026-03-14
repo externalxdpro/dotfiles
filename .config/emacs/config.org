@@ -40,6 +40,7 @@
 - [[#languages][Languages]]
   - [[#cc][C/C++]]
   - [[#java][Java]]
+  - [[#nix][Nix]]
   - [[#python][Python]]
   - [[#rust][Rust]]
 - [[#latex][LaTeX]]
@@ -797,6 +798,12 @@ This block is from Doom Emacs
     "T" '(eglot-java-project-build-task) :wk "Run build task"
     "x" '(eglot-java-run-main :wk "Run main method"))
   :hook java-mode)
+#+end_src
+
+** Nix
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :ensure t)
 #+end_src
 
 ** Python
