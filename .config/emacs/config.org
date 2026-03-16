@@ -919,6 +919,7 @@ This block is from Doom Emacs
   (org-startup-with-inline-images t)
   (org-startup-with-latex-preview t)
   (org-pretty-entities t)
+  (org-preview-latex-image-directory (concat user-emacs-directory "ltximg/"))
   :general
   (:states '(normal motion)
 	   :keymaps 'org-mode-map
