@@ -607,7 +607,9 @@ This block is from Doom Emacs
 		    "% l" 'dired-downcase
 		    "% u" 'dired-upcase
 		    "; d" 'epa-dired-do-decrypt
-		    "; e" 'epa-dired-do-encrypt))
+		    "; e" 'epa-dired-do-encrypt)
+  :custom
+  (dired-listing-switches "-lah -v --group-directories-first"))
 
 (use-package dired-open
   :after dired
