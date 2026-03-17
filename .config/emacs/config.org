@@ -963,12 +963,15 @@ This block is from Doom Emacs
 #+end_src
 
 ** Evil Org
-#+begin_src
+#+begin_src emacs-lisp
 (use-package evil-org
-  :after org
   :ensure t
+  :demand t
+  :hook org-mode)
+
+(use-package evil-org-agenda
+  :after evil-org
   :config
-  (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 #+end_src
 
