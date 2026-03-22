@@ -153,7 +153,7 @@
 #+end_src
 
 *** Evil Surround
-#+begin_src
+#+begin_src emacs-lisp
 (use-package evil-surround
   :after evil
   :ensure t
@@ -162,7 +162,7 @@
 #+end_src
 
 *** Evil Goggles
-#+begin_src
+#+begin_src emacs-lisp
 (use-package evil-goggles
   :after evil
   :ensure t
