@@ -1167,6 +1167,8 @@ Settings for different =ox-= packages
 * Recentf
 #+begin_src emacs-lisp
 (use-package recentf
+  :custom
+  (recentf-max-saved-items 100)
   :config
   (recentf-mode 1))
 #+end_src
