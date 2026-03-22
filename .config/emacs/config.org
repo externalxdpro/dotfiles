@@ -51,6 +51,7 @@
   - [[#org-capture][Org Capture]]
   - [[#org-fragtog][Org Fragtog]]
   - [[#org-appear][Org Appear]]
+  - [[#org-contrib][Org Contrib]]
   - [[#org-export][Org Export]]
 - [[#pdf-tools][PDF Tools]]
 - [[#popper][Popper]]
@@ -1084,9 +1085,22 @@ This block is from Doom Emacs
   (org-appear-inside-latex t))
 #+end_src
 
+** Org Contrib
+Some extra packages that enhance org mode
+#+begin_src emacs-lisp
+(use-package org-contrib
+  :after org
+  :ensure t)
+#+end_src
+
 ** Org Export
 Settings for different =ox-= packages
 #+begin_src emacs-lisp
+(use-package ox-extra
+  :after org-contrib
+  :config
+  (ox-extras-activate '(latex-header-blocks ignore-headlines)))
+
 (use-package ox-latex
   :config
   (add-to-list 'org-latex-classes
