@@ -218,6 +218,8 @@
   programs.hyprland.enable = true;
   programs.river-classic.enable = true;
 
+  programs.kdeconnect.enable = true;
+
   programs.zsh.enable = true;
 
   # Allow unfree packages
