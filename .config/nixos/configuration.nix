@@ -21,9 +21,7 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [
-    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-  ];
+  boot.kernelParams = [ ];
 
   networking.hostName = "ext-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -57,15 +55,9 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    powerManagement = {
-      enable = true;
-      finegrained = true;
-    };
+    powerManagement.enable = true;
     prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
+      reverseSync.enable = true;
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };
@@ -368,7 +360,7 @@
   ];
 
   environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
+    LIBVA_DRIVER_NAME = "nvidia";
   };
 
   fonts.packages = with pkgs; [
