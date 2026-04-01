@@ -240,7 +240,13 @@
     ))
     mu
     ispell
-    (aspellWithDicts (d: with d; [ en en-computers en-science ]))
+    (aspellWithDicts (
+      d: with d; [
+        en
+        en-computers
+        en-science
+      ]
+    ))
     libtool
     libnotify
     neovim
