@@ -872,6 +872,7 @@ This block is from Doom Emacs
   (mu4e-confirm-quit nil)
   (mu4e-context-policy 'pick-first)
   (mu4e-use-fancy-chars t)
+  (send-mail-function #'smtpmail-send-it)
   :config
   (setq mu4e-headers-new-mark '("N" . " 󰓦"))
   (setq mu4e-headers-draft-mark '("D" . " "))
