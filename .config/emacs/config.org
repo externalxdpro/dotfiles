@@ -74,6 +74,9 @@
 #+begin_src emacs-lisp
 (use-package emacs
   :custom
+  ;; Set custom file path
+  (custom-file (concat user-emacs-directory "custom.el"))
+
   ;; Trash settings
   (delete-by-moving-to-trash t)
   (trash-directory "~/.local/share/Trash/files/")
