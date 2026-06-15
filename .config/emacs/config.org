@@ -538,6 +538,9 @@ This block is from Doom Emacs
   (global-corfu-mode)
   :config
   (unbind-key "RET" 'corfu-map))
+
+(use-package cape
+  :ensure t)
 #+end_src
 
 ** Marginalia
@@ -1356,10 +1359,17 @@ Settings for different =ox-= packages
   (yas-global-mode 1))
 
 (use-package yasnippet-capf
-  :after yasnippet
+  :after (cape yasnippet)
   :ensure t
   :config
-  (add-to-list 'completion-at-point-functions #'yasnippet-capf))
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf)
+  (defun my/eglot-capf ()
+    (setq-local completion-at-point-functions
+		(list (cape-capf-super
+		       #'yasnippet-capf
+		       #'eglot-completion-at-point))))
+  (with-eval-after-load 'eglot
+    (add-hook 'eglot-managed-mode-hook #'my/eglot-capf)))
 
 (use-package yasnippet-snippets
   :after yasnippet
