@@ -64,10 +64,16 @@ zinit cdreplay -q
 # Backup prompt
 # eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/default.toml)"
 
+# Treat special characters as word separators
+WORDCHARS=''
+
 # Keybindings
-bindkey '^[OA' history-search-backward
-bindkey '^[OB' history-search-forward
-bindkey '^n' autosuggest-accept
+bindkey -M viins '^[OA' history-search-backward
+bindkey -M viins '^[OB' history-search-forward
+bindkey -M viins '^N' autosuggest-accept
+bindkey -M viins '^H' backward-kill-word
+bindkey -M viins '[1;5D' backward-word
+bindkey -M viins '[1;5C' forward-word
 
 # History
 HISTSIZE=5000
