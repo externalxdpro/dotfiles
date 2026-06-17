@@ -1371,7 +1371,13 @@ Settings for different =ox-= packages
   (with-eval-after-load 'eglot
     (add-hook 'eglot-managed-mode-hook #'my/eglot-capf)))
 
-(use-package yasnippet-snippets
+(use-package doom-snippets
   :after yasnippet
-  :ensure t)
+  :ensure (doom-snippets
+	   :host github
+	   :repo "doomemacs/snippets"
+	   :files ("*.el" "*"))
+  :config
+  (setq doom-snippets-dir (expand-file-name "snippets" elpaca-repos-directory))
+  (yas-reload-all))
 #+end_src
