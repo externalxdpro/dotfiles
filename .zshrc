@@ -68,12 +68,16 @@ zinit cdreplay -q
 WORDCHARS=''
 
 # Keybindings
-bindkey -M viins '^[OA' history-search-backward
-bindkey -M viins '^[OB' history-search-forward
-bindkey -M viins '^N' autosuggest-accept
-bindkey -M viins '^H' backward-kill-word
-bindkey -M viins '[1;5D' backward-word
-bindkey -M viins '[1;5C' forward-word
+autoload -Uz add-zsh-hook
+_fix_bindings() {
+  bindkey -M viins '^[OA' history-search-backward
+  bindkey -M viins '^[OB' history-search-forward
+  bindkey -M viins '^N' autosuggest-accept
+  bindkey -M viins '^H' backward-kill-word
+  bindkey -M viins '[1;5D' backward-word
+  bindkey -M viins '[1;5C' forward-word
+}
+add-zsh-hook precmd _fix_bindings
 
 # History
 HISTSIZE=5000
