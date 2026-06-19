@@ -23,6 +23,7 @@
 - [[#dired][Dired]]
 - [[#direnv][Direnv]]
 - [[#dirvish][Dirvish]]
+- [[#docker][Docker]]
 - [[#eglot][Eglot]]
 - [[#elcord][Elcord]]
 - [[#eldoc][Eldoc]]
@@ -668,6 +669,19 @@ This block is from Doom Emacs
   :ensure t
   :init
   (dirvish-override-dired-mode))
+#+end_src
+
+* Docker
+#+begin_src emacs-lisp
+(use-package docker
+  :ensure t
+  :general
+  (my/leader
+    "d" '(docker :wk "Docker")))
+
+(use-package dockerfile-mode
+  :ensure t
+  :mode ("Dockerfile\\'" "\\.dockerfile\\'"))
 #+end_src
 
 * Eglot
