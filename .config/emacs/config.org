@@ -20,6 +20,7 @@
   - [[#marginalia][Marginalia]]
   - [[#orderless][Orderless]]
   - [[#vertico][Vertico]]
+- [[#dape][Dape]]
 - [[#dired][Dired]]
 - [[#direnv][Direnv]]
 - [[#dirvish][Dirvish]]
@@ -34,6 +35,7 @@
 - [[#grammar-check][Grammar check]]
 - [[#helpful][Helpful]]
 - [[#highlight-to-do][Highlight To-Do]]
+- [[#hydra][Hydra]]
 - [[#languages][Languages]]
   - [[#cc][C/C++]]
   - [[#java][Java]]
@@ -604,6 +606,138 @@ This block is from Doom Emacs
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 #+end_src
 
+* Dape
+These are settings for Dape, a IDE-like debugging tool
+
+Setting up ~codelldb~ for =C/C++/Rust= (only required if ~codelldb~ is not in path):
+1. Download latest vsix [[https://github.com/vadimcn/codelldb/releases][release]] for your platform ~codelldb-<platform>-<os>.vsix~
+2. Unpack ~mkdir -p ~/.config/emacs/debug-adapters && unzip codelldb-<platform>-<os>.vsix -d ~/.config/emacs/debug-adapters/codelldb~
+
+#+begin_src emacs-lisp
+(use-package dape
+  :ensure t
+
+  :preface
+  (setq dape-key-prefix nil)
+
+  :hook
+  (kill-emacs . dape-breakpoint-save)
+  (after-init . dape-breakpoint-load)
+
+  :general
+  (my/leader
+    "d" '(:ignore t :wk "dape")
+    "d d" '(dape :wk "Start")
+    "d n" '(dape-next :wk "Next")
+    "d i" '(dape-step-in :wk "Step in")
+    "d o" '(dape-step-out :wk "Step out")
+    "d c" '(dape-continue :wk "Continue")
+    "d h" '(dape-hydra/body :wk "Hydra")
+    "d r" '(dape-restart :wk "Restart")
+    "d e" '(dape-evaluate-expression :wk "Evaluate expression")
+    "d w" '(dape-watch-dwim :wk "Toggle watch expression")
+    "d q" '(dape-quit :wk "Quit")
+
+    "d I" '(dape-info :wk "Toggle info buffers")
+    "d <" '(dape-stack-select-up :wk "Select stack up")
+    "d >" '(dape-stack-select-down :wk "Select stack down")
+    "d s" '(dape-select-stack :wk "Select stack")
+    "d t" '(dape-select-thread :wk "Select thread")
+    "d D" '(dape-disconnect-quit :wk "Disconnect")
+    "d m" '(dape-memory :wk "Memory")
+    "d M" '(dape-disassemble :wk "Disassemble")
+    "d p" '(dape-pause :wk "Pause")
+    "d R" '(dape-repl :wk "REPL")
+
+    "d b" '(:ignore t :wk "breakpoint")
+    "d b b" '(dape-breakpoint-toggle :wk "Toggle")
+    "d b e" '(dape-breakpoint-expression :wk "Expression")
+    "d b h" '(dape-breakpoint-hits :wk "Hit count")
+    "d b l" '(dape-breakpoint-log :wk "Log")
+    "d b d" '(dape-breakpoint-remove-at-point :wk "Remove")
+    "d b D" '(dape-breakpoint-remove-all :wk "Remove all")
+    )
+
+  :custom
+  (dape-breakpoint-global-mode +1)
+  (dape-buffer-window-arrangement 'right)
+  (dape-info-buffer-window-groups '((dape-info-scope-mode)
+                                    (dape-info-watch-mode dape-info-stack-mode dape-info-modules-mode dape-info-sources-mode)
+                                    (dape-info-breakpoints-mode dape-info-threads-mode)))
+
+  :config
+  (add-hook 'dape-start-hook (lambda () (save-some-buffers t t)))
+  (add-hook 'dape-compile-hook #'kill-buffer)
+
+  (defun my/codelldb-path ()
+    "If codelldb is in the path, return it, if not, return the default directory"
+    (if (executable-find "codelldb")
+        "codelldb"
+      "/home/sakib/.config/doom/debug-adapters/codelldb/extension/adapter/codelldb"))
+
+  ;; C/C++ config
+  (add-to-list 'dape-configs
+               `(codelldb-cc
+                 modes (c-mode c-ts-mode c++-mode c++-ts-mode)
+                 command-args ("--port" :autoport)
+                 ensure dape-ensure-command
+                 command-cwd dape-command-cwd
+                 command my/codelldb-path
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
+                 :cwd "."
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil))
+  ;; Rust config
+  (add-to-list 'dape-configs
+               `(codelldb-rust
+                 modes (rust-mode rust-ts-mode)
+                 command-args ("--port" :autoport "--settings" "{\"sourceLanguages\":[\"rust\"]}")
+                 ensure dape-ensure-command
+                 command-cwd dape-command-cwd
+                 command my/codelldb-path
+                 port :autoport
+                 :type "lldb"
+                 :request "launch"
+                 :cwd "."
+                 :program (read-file-name "Select a file to debug: ")
+                 :args []
+                 :stopOnEntry nil))
+
+  (defhydra dape-hydra (:hint nil)
+	    "
+^Stepping^           ^Breakpoints^               ^Info
+^^^^^^^^-----------------------------------------------------------
+_n_: Next            _bb_: Toggle (add/remove)   _si_: Info
+_i_/_o_: Step in/out   _bd_: Delete                _sm_: Memory
+_<_/_>_: Stack up/down _bD_: Delete all            _ss_: Select Stack
+_c_: Continue        _bl_: Set log message       _R_: Repl
+_r_: Restart
+            _d_: Init   _k_: Kill   _q_: Quit
+"
+	    ("n" dape-next)
+	    ("i" dape-step-in)
+	    ("o" dape-step-out)
+	    ("<" dape-stack-select-up)
+	    (">" dape-stack-select-down)
+	    ("c" dape-continue)
+	    ("r" dape-restart)
+	    ("bb" dape-breakpoint-toggle)
+	    ("be" dape-breakpoint-expression)
+	    ("bd" dape-breakpoint-remove-at-point)
+	    ("bD" dape-breakpoint-remove-all)
+	    ("bl" dape-breakpoint-log)
+	    ("si" dape-info)
+	    ("sm" dape-memory)
+	    ("ss" dape-select-stack)
+	    ("R"  dape-repl)
+	    ("d" dape)
+	    ("k" dape-kill :color blue)
+	    ("q" dape-quit :color blue)))
+#+end_src
+
 * Dired
 #+begin_src emacs-lisp
 (use-package dired
@@ -690,7 +824,7 @@ This block is from Doom Emacs
   :ensure t
   :general
   (my/leader
-    "d" '(docker :wk "Docker")))
+    "D" '(docker :wk "Docker")))
 
 (use-package dockerfile-mode
   :ensure t
@@ -817,6 +951,12 @@ This block is from Doom Emacs
 			   ("DEPRECATED" font-lock-doc-face bold) ("NOTE" success bold) ("BUG" error bold)
 			   ("XXX" font-lock-constant-face bold)))
   :hook (prog-mode text-mode))
+#+end_src
+
+* Hydra
+#+begin_src emacs-lisp
+(use-package hydra
+  :ensure t)
 #+end_src
 
 * Languages
