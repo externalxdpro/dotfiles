@@ -43,6 +43,7 @@
   - [[#python][Python]]
   - [[#rust][Rust]]
 - [[#latex][LaTeX]]
+- [[#leetcode][Leetcode]]
 - [[#mu4e][MU4E]]
 - [[#modeline][Modeline]]
 - [[#org-mode][Org Mode]]
@@ -1017,6 +1018,61 @@ _r_: Restart
   :hook
   (LaTeX-mode . turn-on-cdlatex)
   (org-mode . turn-on-org-cdlatex))
+#+end_src
+
+* Leetcode
+#+begin_src emacs-lisp
+(use-package leetcode
+  :ensure t
+  :init
+  ;; A function that opens leetcode, sets preferred language and sets leetcode directory
+  (defun my/leetcode () (interactive)
+	 (leetcode)
+	 (leetcode-set-prefer-language)
+
+	 (setq leetcode-directory
+	       (cdr (assoc leetcode-prefer-language
+			   '(("cpp"     . "~/repos/LeetcodeSolutions/CPP")
+			     ("csharp"  . "~/repos/LeetcodeSolutions/CS")
+			     ("python3" . "~/repos/LeetcodeSolutions/Python")
+			     ("rust"    . "~/repos/LeetcodeSolutions/Rust/src/bin"))))))
+
+  ;; A function that inserts code to the buffer to make LSPs work
+  (defun my/leetcode-add-header (&rest _args)
+    (save-excursion
+      (goto-char (point-min))
+
+      (cond
+       ;; C++
+       ((derived-mode-p 'c++-mode 'c++-ts-mode)
+	(unless (looking-at-p "#include <bits/stdc++.h>")
+          (insert "#include <bits/stdc++.h>\n"
+                  "using namespace std;")))
+
+       ;; Rust
+       ((derived-mode-p 'rust-mode 'rust-ts-mode)
+	(unless (looking-at-p "pub struct Solution {}")
+          (insert "pub struct Solution {}\n\n// code_start\n\n"))
+	(goto-char (point-max))
+	(unless (re-search-backward "fn main()" nil t)
+          (goto-char (point-max))
+          (insert "\n\n// code_end\n\nfn main() {}\n"))))))
+
+  (advice-add #'leetcode--insert-code-end-marker :after #'my/leetcode-add-header)
+
+  :general
+  (my/leader
+    "l" '(:ignore t :wk "leetcode")
+    "l l" '(my/leetcode :wk "Open Leetcode")
+    "l r" '(leetcode-restore-layout :wk "Reset layout")
+    "l t" '(leetcode-try :wk "Try solution")
+    "l s" '(leetcode-submit :wk "Submit solution")
+    "l q" '(leetcode-quit :wk "Quit leetcode")
+    "l L" '(leetcode-set-prefer-language :wk "Set preferred language")
+    "l d" '(leetcode-daily :wk "Open daily problem")
+    )
+  :custom
+  (leetcode-save-solutions t))
 #+end_src
 
 * MU4E
