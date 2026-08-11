@@ -872,7 +872,8 @@ _r_: Restart
 #+begin_src emacs-lisp
 (use-package eldoc
   :custom
-  (eldoc-idle-delay 0.1))
+  (eldoc-idle-delay 0.1)
+  (eldoc-display-functions '(eldoc-display-in-echo-area)))
 #+end_src
 
 * Exec Path From Shell
