@@ -1521,7 +1521,7 @@ Settings for different =ox-= packages
   :ensure t
   :custom
   (undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
-  :init
+  :config
   (global-undo-fu-session-mode))
 
 (use-package vundo
