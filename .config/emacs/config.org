@@ -28,6 +28,7 @@
 - [[#eglot][Eglot]]
 - [[#elcord][Elcord]]
 - [[#eldoc][Eldoc]]
+- [[#exec-path-from-shell][Exec Path From Shell]]
 - [[#flycheck][Flycheck]]
 - [[#git][Git]]
   - [[#magit][Magit]]
@@ -872,6 +873,14 @@ _r_: Restart
 (use-package eldoc
   :custom
   (eldoc-idle-delay 0.1))
+#+end_src
+
+* Exec Path From Shell
+#+begin_src emacs-lisp
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 #+end_src
 
 * Flycheck
