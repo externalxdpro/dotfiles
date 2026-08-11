@@ -1601,6 +1601,6 @@ Settings for different =ox-= packages
 	   :repo "doomemacs/snippets"
 	   :files ("*.el" "*"))
   :config
-  (setq doom-snippets-dir (expand-file-name "snippets" elpaca-repos-directory))
+  (setq doom-snippets-dir (expand-file-name "snippets" elpaca-sources-directory))
   (yas-reload-all))
 #+end_src
