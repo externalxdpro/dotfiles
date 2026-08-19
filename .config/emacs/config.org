@@ -3,6 +3,7 @@
 * Table of Contents :toc:
 - [[#startup-packages][Startup Packages]]
   - [[#general-settings-emacs][General Settings (Emacs)]]
+  - [[#utilities][Utilities]]
   - [[#vim-mode-evil][Vim Mode (Evil)]]
   - [[#keybindings-general][Keybindings (General)]]
 - [[#custom-functions][Custom Functions]]
@@ -77,6 +78,8 @@
 * Startup Packages
 ** General Settings (Emacs)
 #+begin_src emacs-lisp
+;;; -*- lexical-binding: t; -*-
+
 (use-package emacs
   :custom
   ;; Set custom file path
@@ -136,6 +139,19 @@
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
   (add-hook 'text-mode-hook 'display-line-numbers-mode)
   (add-hook 'text-mode-hook 'visual-line-mode))
+#+end_src
+
+** Utilities
+*** Transient
+#+begin_src emacs-lisp
+(use-package transient
+  :ensure t)
+#+end_src
+
+*** AIO
+#+begin_src emacs-lisp
+(use-package aio
+  :ensure t)
 #+end_src
 
 ** Vim Mode (Evil)
@@ -903,9 +919,6 @@ _r_: Restart
 * Git
 ** Magit
 #+begin_src emacs-lisp
-(use-package transient
-  :ensure t)
-
 (use-package magit
   :after transient
   :ensure t
@@ -1036,16 +1049,16 @@ _r_: Restart
   :ensure t
   :init
   ;; A function that opens leetcode, sets preferred language and sets leetcode directory
-  (defun my/leetcode () (interactive)
-	 (leetcode)
-	 (leetcode-set-prefer-language)
+  (aio-defun my/leetcode ()
+    (aio-await (leetcode))
+    (leetcode-set-prefer-language)
 
-	 (setq leetcode-directory
-	       (cdr (assoc leetcode-prefer-language
-			   '(("cpp"     . "~/repos/LeetcodeSolutions/CPP")
-			     ("csharp"  . "~/repos/LeetcodeSolutions/CS")
-			     ("python3" . "~/repos/LeetcodeSolutions/Python")
-			     ("rust"    . "~/repos/LeetcodeSolutions/Rust/src/bin"))))))
+    (setq leetcode-directory
+	  (cdr (assoc leetcode-prefer-language
+		      '(("cpp"     . "~/repos/LeetcodeSolutions/CPP")
+			("csharp"  . "~/repos/LeetcodeSolutions/CS")
+			("python3" . "~/repos/LeetcodeSolutions/Python")
+			("rust"    . "~/repos/LeetcodeSolutions/Rust/src/bin"))))))
 
   ;; A function that inserts code to the buffer to make LSPs work
   (defun my/leetcode-add-header (&rest _args)
@@ -1073,7 +1086,7 @@ _r_: Restart
   :general
   (my/leader
     "l" '(:ignore t :wk "leetcode")
-    "l l" '(my/leetcode :wk "Open Leetcode")
+    "l l" '((lambda () (interactive) (my/leetcode)) :wk "Open Leetcode")
     "l r" '(leetcode-restore-layout :wk "Reset layout")
     "l t" '(leetcode-try :wk "Try solution")
     "l s" '(leetcode-submit :wk "Submit solution")
