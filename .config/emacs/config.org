@@ -507,8 +507,10 @@ This block is from Doom Emacs
   :ensure t
   :general
   (my/leader
-    "c f" '(apheleia-format-buffer :wk "Format"))
+    "c f" '(apheleia-format-buffer :wk "Format buffer"))
   :config
+  (setf (alist-get 'google-java-format apheleia-formatters)
+        '("google-java-format" "--aosp" "-"))
   (apheleia-global-mode 1))
 #+end_src
 
