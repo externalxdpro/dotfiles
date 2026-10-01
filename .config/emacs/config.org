@@ -856,10 +856,19 @@ _r_: Restart
   :general
   (my/leader
     "c a" '(eglot-code-actions :wk "Execute code action")
-    "c r" '(eglot-rename :wk "Rename")
+    "c r" '(my/eglot-rename :wk "Rename")
 
     "t L" '(eglot-inlay-hints-mode :wk "LSP inlay hints"))
   :config
+  (defun my/eglot-rename ()
+    "Rename symbol with current symbol as default."
+    (interactive)
+    (let ((symbol (thing-at-point 'symbol t)))
+      (eglot-rename
+       ;; Point at the beginning of the suggested replacement:
+       (minibuffer-with-setup-hook 'end-of-line
+	 (read-string "Rename to: " symbol)))))
+
   (setq eglot-stay-out-of '(flymake)))
 
 (use-package eglot-booster
