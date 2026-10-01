@@ -1012,9 +1012,9 @@ _r_: Restart
     "N" '(eglot-java-project-new :wk "New project")
     "R" '(eglot-java-project-build-refresh :wk "Refresh project")
     "t" '(eglot-java-run-test :wk "Run test")
-    "T" '(eglot-java-project-build-task) :wk "Run build task"
+    "T" '(eglot-java-project-build-task :wk "Run build task")
     "x" '(eglot-java-run-main :wk "Run main method"))
-  :hook java-mode)
+  :hook (java-mode java-ts-mode))
 #+end_src
 
 ** Nix
