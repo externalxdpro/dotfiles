@@ -560,7 +560,7 @@ This block is from Doom Emacs
   :bind
   ("C-SPC" . complete-symbol)
   (:map corfu-map
-        ("TAB" . corfu-complete)
+        ("TAB" . corfu-insert)
         ("C-SPC" . corfu-quit))
   :custom
   (corfu-preselect 'first)
