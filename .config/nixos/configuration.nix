@@ -362,7 +362,12 @@
     rustfmt
     rustc
 
-    python3
+    (python3.withPackages (
+      pkgs: with pkgs; [
+        beautifulsoup4
+        requests
+      ]
+    ))
     pyright
     black
 
