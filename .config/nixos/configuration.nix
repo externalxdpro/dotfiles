@@ -190,6 +190,7 @@
     isNormalUser = true;
     description = "sakib";
     extraGroups = [
+      "libvirtd"
       "networkmanager"
       "openrazer"
       "wheel"
@@ -220,6 +221,8 @@
   programs.river-classic.enable = true;
 
   programs.kdeconnect.enable = true;
+
+  programs.virt-manager.enable = true;
 
   programs.zsh.enable = true;
 
@@ -417,6 +420,10 @@
 
   virtualisation = {
     containers.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+    };
     podman = {
       enable = true;
       dockerCompat = true;
