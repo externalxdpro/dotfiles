@@ -15,13 +15,22 @@
     /etc/nixos/hardware-configuration.nix
   ];
 
+  swapDevices = [
+    {
+      device = "/var/lib/swap";
+      size = 16 * 1024;
+    }
+  ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ ];
+  boot.kernelParams = [ "resume_offset=27424768" ];
+
+  boot.resumeDevice = "/dev/disk/by-uuid/4e1a9acb-ddd5-4187-a27f-01a3fa73dbb9";
 
   networking.hostName = "ext-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
