@@ -63,7 +63,8 @@
     modesetting.enable = true;
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    nvidiaPersistenced = true;
     powerManagement.enable = true;
     prime = {
       reverseSync.enable = true;
@@ -298,7 +299,7 @@
     wlr-randr
     swaylock-effects
     hypridle
-    swww
+    awww
     pass
     tessen
     pcmanfm
@@ -307,7 +308,7 @@
     pamixer
     playerctl
     brightnessctl
-    youtube-music
+    pear-desktop
     moonlight-qt
     # jellyfin-media-player
     mpv
@@ -321,13 +322,14 @@
     gearlever
     gimp3
     texliveFull
-    winboat
+    # winboat
     languagetool
+    dnsmasq
 
     # XMonad stuff
     xmobar
     arandr
-    nitrogen
+    feh
     picom
     trayer
     numlockx
@@ -345,9 +347,6 @@
 
     kdePackages.breeze
     kdePackages.breeze-gtk
-    # layan-kde
-    layan-gtk-theme
-    tela-icon-theme
 
     nil
     nixfmt
