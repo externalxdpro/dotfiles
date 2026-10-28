@@ -60,6 +60,7 @@
   - [[#org-contrib][Org Contrib]]
   - [[#org-export][Org Export]]
 - [[#pdf-tools][PDF Tools]]
+- [[#plantuml][PlantUML]]
 - [[#popper][Popper]]
 - [[#project][Project]]
 - [[#rainbow-delimiters][Rainbow Delimiters]]
@@ -1390,6 +1391,26 @@ Settings for different =ox-= packages
   (pdf-view-display-size 'fit-page)
   :config
   (pdf-tools-install))
+#+end_src
+
+* PlantUML
+#+begin_src emacs-lisp
+(use-package plantuml-mode
+  :ensure t
+  :mode (("\\.plantuml\\'" . plantuml-mode))
+  :custom
+  (plantuml-executable-path "plantuml")
+  (plantuml-default-exec-mode 'executable)
+  (plantuml-indent-level 2)
+  :config
+  (add-hook 'plantuml-mode-hook
+            (lambda ()
+              (setq-local completion-at-point-functions
+			  (list #'plantuml-completion-at-point-function))
+	      (add-hook 'after-save-hook
+			(lambda ()
+			  (plantuml-preview-buffer 1))
+			nil t))))
 #+end_src
 
 * Popper
