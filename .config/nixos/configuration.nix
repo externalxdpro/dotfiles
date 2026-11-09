@@ -289,6 +289,7 @@
     nwg-look
     vesktop
     btop
+    caligula
     lxsession
     dunst
     dex
