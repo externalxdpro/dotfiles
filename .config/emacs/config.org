@@ -277,6 +277,7 @@
     "f C" '(my/copy-this-file :wk "Copy file")
     "f d" '(my/delete-this-file :wk "Delete file")
     "f f" '(find-file :wk "Find file")
+    "f s" '(save-buffer :wk "Save file")
     "f R" '(my/move-this-file :wk "Rename/move file"))
 
   (my/leader
