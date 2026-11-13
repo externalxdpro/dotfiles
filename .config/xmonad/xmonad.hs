@@ -79,11 +79,11 @@ myTerminal :: String
 myTerminal = "alacritty"    -- Sets default terminal
 
 myFileManager :: String
-myFileManager = "pcmanfm-qt"  -- Sets default file manager
+myFileManager = "pcmanfm"  -- Sets default file manager
 -- myFileManager = "thunar"  -- Sets default file manager
 
 myBrowser :: String
-myBrowser = "zen"  -- Sets default browser
+myBrowser = "brave"  -- Sets default browser
 
 mySecondaryBrowser :: String
 mySecondaryBrowser = "qutebrowser"  -- Sets qutebrowser as secondary browser
