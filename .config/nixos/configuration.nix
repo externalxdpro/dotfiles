@@ -262,6 +262,7 @@
         en
       ]
     ))
+    emacs-lsp-booster
     libtool
     libnotify
     neovim
