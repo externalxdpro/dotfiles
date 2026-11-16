@@ -230,6 +230,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "qutebrowser-3.7.0"
+  ];
+
   # Overrides
   nixpkgs.overlays = [
     (self: super: {
@@ -256,8 +260,6 @@
     (aspellWithDicts (
       d: with d; [
         en
-        en-computers
-        en-science
       ]
     ))
     libtool
@@ -332,7 +334,7 @@
     arandr
     feh
     picom
-    trayer
+    # trayer
     numlockx
     pasystray
     xdotool
