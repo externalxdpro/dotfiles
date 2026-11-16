@@ -534,7 +534,7 @@ This block is from Doom Emacs
   (my/leader
     "w H" '(buf-move-left :wk "Move window left")
     "w J" '(buf-move-down :wk "Move window down")
-    "w K" '(buf-move-up :wk "Move window right")
+    "w K" '(buf-move-up :wk "Move window up")
     "w L" '(buf-move-right :wk "Move window right")))
 #+end_src
 
