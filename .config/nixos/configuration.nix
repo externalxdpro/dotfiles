@@ -311,8 +311,10 @@
     swaylock-effects
     hypridle
     awww
-    pass
-    tessen
+    rbw
+    rofi-rbw
+    pinentry-rofi
+    wtype
     pcmanfm
     xarchiver
     pavucontrol
