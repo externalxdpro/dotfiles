@@ -439,6 +439,21 @@
     };
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    wlr = {
+      enable = true;
+      settings.screencast = {
+        chooser_type = "dmenu";
+        chooser_cmd = "${pkgs.rofi}/bin/rofi -dmenu";
+      };
+    };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
