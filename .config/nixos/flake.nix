@@ -3,12 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-  };
-
-  outputs = { nixpkgs, ... }@inputs: {
-    nixosConfigurations.ext-nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [ ./configuration.nix ];
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations.ext-nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [ ./configuration.nix ];
+      };
+    };
 }

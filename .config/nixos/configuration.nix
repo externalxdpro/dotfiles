@@ -13,6 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
+    inputs.mangowm.nixosModules.mango
   ];
 
   swapDevices = [
@@ -219,6 +220,7 @@
   };
 
   programs.hyprland.enable = true;
+  programs.mango.enable = true;
   programs.river-classic.enable = true;
 
   programs.kdeconnect.enable = true;
