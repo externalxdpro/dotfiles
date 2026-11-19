@@ -214,6 +214,11 @@
 
   programs.direnv.enable = true;
 
+  programs.dms-shell = {
+    enable = true;
+    systemd.enable = false;
+  };
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
