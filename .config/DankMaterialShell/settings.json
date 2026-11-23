@@ -35,12 +35,33 @@
     }
   ],
   "showWorkspaceName": true,
-  "workspaceFollowFocus": true,
   "dwlShowAllTags": true,
   "workspaceOccupiedColorMode": "sec",
   "workspaceFocusedBorderEnabled": true,
   "appIdSubstitutions": [],
   "useAutoLocation": true,
+  "dashTabs": [
+    {
+      "id": "overview",
+      "enabled": true
+    },
+    {
+      "id": "media",
+      "enabled": true
+    },
+    {
+      "id": "wallpaper",
+      "enabled": false
+    },
+    {
+      "id": "weather",
+      "enabled": true
+    },
+    {
+      "id": "settings",
+      "enabled": false
+    }
+  ],
   "networkPreference": "wifi",
   "cursorSettings": {
     "theme": "System Default",
@@ -64,6 +85,7 @@
   "acLockTimeout": 1800,
   "lockScreenNotificationMode": 3,
   "notificationFocusedMonitor": true,
+  "osdAlwaysShowValue": true,
   "osdPosition": 0,
   "osdPowerProfileEnabled": true,
   "powerActionHoldDuration": 0.25,
@@ -103,7 +125,12 @@
       ],
       "centerWidgets": [
         "music",
-        "clock",
+        {
+          "id": "clock",
+          "enabled": true,
+          "clockCompactMode": false,
+          "clockDateOrder": "timeFirst"
+        },
         "weather"
       ],
       "rightWidgets": [
@@ -120,7 +147,7 @@
         "controlCenterButton",
         "notificationButton"
       ],
-      "spacing": 4,
+      "spacing": 10,
       "innerPadding": 4,
       "barInsetPadding": -1,
       "barLengthPadding": 0,
