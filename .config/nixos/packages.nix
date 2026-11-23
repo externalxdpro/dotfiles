@@ -19,6 +19,7 @@ let
     wget
     btop
     caligula
+    jq
   ];
 
   archives = with pkgs; [
