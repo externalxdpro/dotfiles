@@ -62,14 +62,14 @@
   };
 
   hardware.nvidia = {
-    modesetting.enable = true;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-    nvidiaPersistenced = true;
-    powerManagement.enable = true;
     prime = {
-      reverseSync.enable = true;
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };
