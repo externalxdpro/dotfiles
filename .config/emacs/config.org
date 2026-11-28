@@ -29,6 +29,7 @@
 - [[#eglot][Eglot]]
 - [[#elcord][Elcord]]
 - [[#eldoc][Eldoc]]
+  - [[#eldoc-box][Eldoc-Box]]
 - [[#exec-path-from-shell][Exec Path From Shell]]
 - [[#flycheck][Flycheck]]
 - [[#git][Git]]
@@ -901,8 +902,21 @@ _r_: Restart
 #+begin_src emacs-lisp
 (use-package eldoc
   :custom
-  (eldoc-idle-delay 0.1)
-  (eldoc-display-functions '(eldoc-display-in-echo-area)))
+  (eldoc-idle-delay 0.1))
+#+end_src
+
+** Eldoc-Box
+#+begin_src emacs-lisp
+(use-package eldoc-box
+  :ensure t
+  :after (evil general)
+  :hook (eglot-managed-mode . my/eldoc-box-bind-K)
+  :init
+  (defun my/eldoc-box-bind-K ()
+    (general-define-key
+     :states 'normal
+     :keymaps 'local
+     "K" #'eldoc-box-help-at-point)))
 #+end_src
 
 * Exec Path From Shell
