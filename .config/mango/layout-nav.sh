@@ -29,6 +29,8 @@ case $layout in
 		    disp exchange_stack_client next
 		fi
 		;;
+	    resize)
+		disp switch_proportion_preset
 	esac
 	;;
     *)
@@ -45,6 +47,13 @@ case $layout in
 		    disp exchange_stack_client next
 		elif [[ $direction == k ]]; then
 		    disp exchange_stack_client prev
+		fi
+		;;
+	    resize)
+		if [[ $direction == h ]]; then
+		    disp resizewin -10,0
+		elif [[ $direction == l ]]; then
+		    disp resizewin +10,0
 		fi
 		;;
 	esac
