@@ -872,7 +872,10 @@ _r_: Restart
       (eglot-rename
        ;; Point at the beginning of the suggested replacement:
        (minibuffer-with-setup-hook 'end-of-line
-	 (read-string "Rename to: " symbol)))))
+	 (read-string "Rename to: " symbol))))
+
+    (add-to-list 'eglot-ignored-server-capabilities
+		 :documentOnTypeFormattingProvider))
 
   (setq eglot-stay-out-of '(flymake)))
 
